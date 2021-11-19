@@ -8,8 +8,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
-<%--<link rel="stylesheet" href="w3.css">--%>
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="w3.css">
+<%--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">--%>
 
 <head>
     <title>Title</title>
@@ -39,6 +39,7 @@ Welcome to the Fatty Acids! <br>
 
 </form>
 
+
 <table class="w3-table w3-striped">
     <thead>
     <tr>
@@ -47,32 +48,33 @@ Welcome to the Fatty Acids! <br>
         <th>Omega-6 content, mg</th>
         <th>Number of portions (1pt = 28g)</th>
         <th>Delete</th>
+        <th>Edit</th>
     </tr>
     </thead>
     <tbody>
-    <c:forEach var="product" items="${requestScope.products}">
+    <c:forEach var="product" items="${productsInContext.values()}">
 
     <tr>
-
-        <td><c:out value="${product.productName}"/></td>
+        <td><c:out value="${product.productName}"/></td
+<%--            Unsolved bug - 2nd line after product.productName always go above the table--%>
+        <td><c:out value=""/></td>
         <td><c:out value="${product.omegaThree}"/></td>
         <td><c:out value="${product.omegaSix}"/></td>
         <td><c:out value="${product.portion}"/></td>
 
-<%--                    <td>--%>
-<%--                        <form method="post" action="<c:url value='/delete'/>">--%>
-<%--                            <input type="number" hidden name="id" value="${product.id}" />--%>
-<%--                            <input type="submit" name="Delete" value="Удалить"/>--%>
-<%--                        </form>--%>
-<%--                    </td>--%>
+                    <td>
+                        <form method="post" action="<c:url value='/delete'/>">
+                            <input type="number" hidden name="id" value="${product.id}" />
+                            <input type="submit" name="Delete" value="Delete"/>
+                        </form>
+                    </td>
 
-
-<%--                    <td>--%>
-<%--                        <form method="get" action="<c:url value='/update'/>">--%>
-<%--                            <input type="number" hidden name="id" value="${product.id}" />--%>
-<%--                            <input type="submit" name="Edit" value="Редактировать"/>--%>
-<%--                        </form>--%>
-<%--                    </td>--%>
+                    <td>
+                        <form method="get" action="<c:url value='/update'/>">
+                            <input type="number" hidden name="id" value="${product.id}" />
+                            <input type="submit" name="Edit" value="Edit"/>
+                        </form>
+                    </td>
 
     </tr>
     </c:forEach>
@@ -80,10 +82,18 @@ Welcome to the Fatty Acids! <br>
 </table>
 
 
-<%
-    out.println("Your proportion: " + request.getAttribute("proportion"));
-%>
 
+<%--<td><c:out value="${proportion}"/></td>--%>
+<%--    <br>--%>
+<%--<td><c:out value="${noValidName}"/></td>--%>
+
+<%--<%--%>
+<%--  if (request.getAttribute("proportion") != null)  out.println("Your proportion: " + request.getAttribute("proportion"));--%>
+<%--  if (request.getAttribute("noValidName") != null) out.println("" + request.getAttribute("noValidName"));--%>
+<%--%>--%>
+
+<p><c:out value="Your proportion: ${proportion}" default="" /></p>
+<p><c:out value="${noValidName}" default="" /></p>
 
 </body>
 </html>

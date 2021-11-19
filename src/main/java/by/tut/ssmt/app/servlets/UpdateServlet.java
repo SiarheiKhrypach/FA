@@ -12,63 +12,61 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.logging.Logger;
 
-@WebServlet("/add")
-public class AddServlet extends HttpServlet {
+@WebServlet("/update")
+public class UpdateServlet extends HttpServlet {
 
-    private static final Logger LOGGER = Logger.getLogger(AddServlet.class.getName());
-    private AtomicInteger id;
     private Map<Integer, Product> products;
-    String noValidData;
+    String noValidName;
     final Validator validator = new EntryValidatorImpl();
     final DataProcessor dataProcessor = new AcidsProportion();
 
-    public void init() {
-        LOGGER.info("Call to init()");
-        id = new AtomicInteger(2);
+
+    @Override
+    public void init() throws ServletException {
+//        products = (ConcurrentHashMap<Integer, Product>) getServletContext().getAttribute("productsInContext");
         final Object products = getServletContext().getAttribute("productsInContext");
         if (products == null) {
             throw new IllegalStateException("Initialization error in AddServlet!");
         } else {
             this.products = (ConcurrentHashMap<Integer, Product>) products;
         }
+//        System.out.println(products);
+//        System.out.println("!!!!!!!!init in UpdateServlet");
+
     }
 
-    @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        if (    validator.validate(req.getParameter("productName")) &&
-                validator.validate(req.getParameter("omegaThree")) &&
-                validator.validate(req.getParameter("omegaSix")) &&
-                validator.validate(req.getParameter("portions"))) {
-            collectData(req);
-
+        if (validator.validate(req.getParameter("productName"))) {
+//            String idString = req.getParameter("id");
+//            System.out.println(idString);
+            resetData(req);
 //            collectProportion(req);
             collectProportionForContext(getServletContext());
 
 //            collectNameValidity(req);
-//            req.getRequestDispatcher("index.jsp").forward(req, resp);
-            resp.sendRedirect(req.getContextPath() + "/");
-
-        } else {
-            noValidData = "Please enter valid data";
-            req.setAttribute("noValidName", noValidData);
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
+        }
+        else {
+            noValidName = "Please enter a valid name";
+            req.setAttribute("noValidName", noValidName);
             req.setAttribute("products", products.values());
-
 //            collectProportion(req);
             collectProportionForContext(getServletContext());
-
             req.getRequestDispatcher("index.jsp").forward(req, resp);
-//            resp.sendRedirect(req.getContextPath() + "/");
-            LOGGER.warning(noValidData);
         }
+    }
+
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        final String id = req.getParameter("id");
+        final Product product = products.get(Integer.parseInt(id));
+//        System.out.println("!!!!!!!!doGet in UpdateServlet " + id);
+        req.setAttribute("product", product);
+        req.getRequestDispatcher("update.jsp").forward(req, resp);
     }
 
 //    private void collectNameValidity(HttpServletRequest req) {
@@ -76,27 +74,35 @@ public class AddServlet extends HttpServlet {
 //        req.setAttribute("noValidName", noValidName);
 //    }
 
-    //    private void collectProportion(HttpServletRequest req) {
-//        double proportion = dataProcessor.calculate(products);
-//        String formattedProportion = new DecimalFormat("#0.00").format(proportion);
+//    private void collectProportion(HttpServletRequest req) {
+////        double proportion = dataProcessor.calculate(products);
+//        String formattedProportion = dataProcessor.calculate(products);
+////        String formattedProportion = new DecimalFormat("#0.00").format(proportion);
 //        req.setAttribute("proportion", formattedProportion);
 //    }
+
     private void collectProportionForContext(ServletContext servletContext) {
         final String formattedProportion = dataProcessor.calculate(products);
 //        String formattedProportion = new DecimalFormat("#0.00").format(proportion);
         servletContext.setAttribute("proportion", formattedProportion);
-
     }
 
-    private void collectData(HttpServletRequest req) {
+
+        private void resetData(HttpServletRequest req) {
+            Product product = getProduct(req);
+//            String idString = req.getParameter("id");
+        final int id = Integer.valueOf(req.getParameter("id"));
+        product.setId(id);
+        products.put(id, product);
+//        System.out.println("!!!!!!resetData in UpdateServlet " + products);
+//        req.setAttribute("products", products.values());
+    }
+
+    private Product getProduct(HttpServletRequest req) {
         final String productName = req.getParameter("productName");
         final String omegaThree = req.getParameter("omegaThree");
         final String omegaSix = req.getParameter("omegaSix");
         final String portion = req.getParameter("portions");
-        final Product product = new Product(productName, Double.parseDouble(omegaThree), Double.parseDouble(omegaSix), Integer.parseInt(portion));
-        int id = this.id.getAndIncrement();
-        product.setId(id);
-        products.put(id, product);
-//        req.setAttribute("products", products.values());
+        return new Product(productName, Double.parseDouble(omegaThree), Double.parseDouble(omegaSix), Integer.parseInt(portion));
     }
 }
