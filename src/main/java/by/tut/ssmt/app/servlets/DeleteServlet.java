@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class CalculationServlet extends HttpServlet {
+public class DeleteServlet extends HttpServlet {
 
     ArrayList finalList;
 
