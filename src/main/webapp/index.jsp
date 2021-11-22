@@ -9,13 +9,18 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <link rel="stylesheet" href="w3.css">
-<%--<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">--%>
 
 <head>
     <title>Title</title>
 </head>
 <body>
 Welcome to the Fatty Acids! <br>
+
+<div>
+<button onclick="location.href='/login'">Log in</button>
+<button onclick="location.href='/register'">Register</button>
+</div>
+
 <p>
     Please fill out the form below to add your product: <br>
 </p>
@@ -81,19 +86,8 @@ Welcome to the Fatty Acids! <br>
     </tbody>
 </table>
 
-
-
-<%--<td><c:out value="${proportion}"/></td>--%>
-<%--    <br>--%>
-<%--<td><c:out value="${noValidName}"/></td>--%>
-
-<%--<%--%>
-<%--  if (request.getAttribute("proportion") != null)  out.println("Your proportion: " + request.getAttribute("proportion"));--%>
-<%--  if (request.getAttribute("noValidName") != null) out.println("" + request.getAttribute("noValidName"));--%>
-<%--%>--%>
-
 <p><c:out value="Your proportion: ${proportion}" default="" /></p>
-<p><c:out value="${noValidName}" default="" /></p>
+<p><c:out value="${message}${name}" default="" /></p>
 
 </body>
 </html>

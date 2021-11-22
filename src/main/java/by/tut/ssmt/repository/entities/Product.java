@@ -15,7 +15,6 @@ public class Product {
         this.portion = portion;
     }
 
-
     public long getId() {
         return id;
     }

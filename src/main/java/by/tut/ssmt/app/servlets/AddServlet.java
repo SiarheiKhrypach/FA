@@ -12,9 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.text.DecimalFormat;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -26,7 +24,7 @@ public class AddServlet extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(AddServlet.class.getName());
     private AtomicInteger id;
     private Map<Integer, Product> products;
-    String noValidData;
+    String message;
     final Validator validator = new EntryValidatorImpl();
     final DataProcessor dataProcessor = new AcidsProportion();
 
@@ -49,43 +47,22 @@ public class AddServlet extends HttpServlet {
                 validator.validate(req.getParameter("omegaSix")) &&
                 validator.validate(req.getParameter("portions"))) {
             collectData(req);
-
-//            collectProportion(req);
             collectProportionForContext(getServletContext());
-
-//            collectNameValidity(req);
-//            req.getRequestDispatcher("index.jsp").forward(req, resp);
             resp.sendRedirect(req.getContextPath() + "/");
 
         } else {
-            noValidData = "Please enter valid data";
-            req.setAttribute("noValidName", noValidData);
+            message = "Please enter valid data";
+            req.setAttribute("message", message);
             req.setAttribute("products", products.values());
-
-//            collectProportion(req);
             collectProportionForContext(getServletContext());
-
             req.getRequestDispatcher("index.jsp").forward(req, resp);
-//            resp.sendRedirect(req.getContextPath() + "/");
-            LOGGER.warning(noValidData);
+            LOGGER.warning(message);
         }
     }
 
-//    private void collectNameValidity(HttpServletRequest req) {
-//        noValidName = "";
-//        req.setAttribute("noValidName", noValidName);
-//    }
-
-    //    private void collectProportion(HttpServletRequest req) {
-//        double proportion = dataProcessor.calculate(products);
-//        String formattedProportion = new DecimalFormat("#0.00").format(proportion);
-//        req.setAttribute("proportion", formattedProportion);
-//    }
     private void collectProportionForContext(ServletContext servletContext) {
         final String formattedProportion = dataProcessor.calculate(products);
-//        String formattedProportion = new DecimalFormat("#0.00").format(proportion);
         servletContext.setAttribute("proportion", formattedProportion);
-
     }
 
     private void collectData(HttpServletRequest req) {
@@ -97,6 +74,5 @@ public class AddServlet extends HttpServlet {
         int id = this.id.getAndIncrement();
         product.setId(id);
         products.put(id, product);
-//        req.setAttribute("products", products.values());
     }
 }
