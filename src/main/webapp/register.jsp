@@ -22,7 +22,7 @@
         <label>Name:
             <input type="text" name="name"><br/>
         </label>
-        <label>
+        <label>Password:
             <input type="password" name="pass"><br/>
         </label>
         <button type="submit">Sumbit</button>
