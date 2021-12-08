@@ -57,12 +57,10 @@ Welcome to the Fatty Acids! <br>
     </tr>
     </thead>
     <tbody>
-    <c:forEach var="product" items="${productsInContext.values()}">
+    <c:forEach var="product" items="${productsAttribute}">
 
     <tr>
-        <td><c:out value="${product.productName}"/></td
-<%--            Unsolved bug - 2nd line after product.productName always go above the table--%>
-        <td><c:out value=""/></td>
+        <td><c:out value="${product.productName}"/></td>
         <td><c:out value="${product.omegaThree}"/></td>
         <td><c:out value="${product.omegaSix}"/></td>
         <td><c:out value="${product.portion}"/></td>

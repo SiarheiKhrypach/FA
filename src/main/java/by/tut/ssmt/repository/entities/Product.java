@@ -15,6 +15,14 @@ public class Product {
         this.portion = portion;
     }
 
+    public Product(int id, String productName, double omegaThree, double omegaSix, int portion) {
+        this.id = id;
+        this.productName = productName;
+        this.omegaThree = omegaThree;
+        this.omegaSix = omegaSix;
+        this.portion = portion;
+    }
+
     public long getId() {
         return id;
     }

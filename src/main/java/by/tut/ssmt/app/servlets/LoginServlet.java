@@ -1,5 +1,6 @@
 package by.tut.ssmt.app.servlets;
 
+import by.tut.ssmt.DAO.UserDB;
 import by.tut.ssmt.repository.entities.User;
 import by.tut.ssmt.services.EntryValidatorImpl;
 import by.tut.ssmt.services.Validator;
@@ -12,27 +13,19 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.logging.Logger;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
     Validator validator = new EntryValidatorImpl();
     String message;
-    String welcomeMessage;
     boolean passwordVerified;
     private ArrayList<User> users;
     private static final Logger LOGGER = Logger.getLogger(RegisterServlet.class.getName());
 
-public void init() throws ServletException {
-    final Object users = getServletContext().getAttribute("usersInContext");
-    if (users == null) {
-        throw new IllegalStateException("Initialization error in LoginServlet!");
-    } else {
-        this.users = (ArrayList<User>) users;
+    public void init() throws ServletException {
+        users = UserDB.select();
     }
-}
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -45,7 +38,7 @@ public void init() throws ServletException {
         if (validator.validate(req.getParameter("name")) &&
                 validator.validate(req.getParameter("pass"))) {
             User user = collectData(req);
-            verify (user);
+            verify(user);
             req.setAttribute("name", user.getUserName());
             postToMainPage(req, resp);
         } else {
@@ -69,23 +62,19 @@ public void init() throws ServletException {
         }
     }
 
-    private User collectData (HttpServletRequest req) {
+    private User collectData(HttpServletRequest req) {
         final String userName = req.getParameter("name");
         final String password = req.getParameter("pass");
         User user = new User(userName, password);
         return user;
     }
 
-    private void verify (User user) {
-//        for (int i = 0; i<users.size(); i++) {
+    private void verify(User user) {
         LOGGER.info("Call to verify()" + users);
         for (int i = 0; i < users.size(); i++) {
             if ((user.equals(users.get(i)))) {
-            passwordVerified = true;
+                passwordVerified = true;
             }
-//        if (user.equals(userEntry.get(i))) {
-//            passwordVerified = true;
-//        }
         }
     }
 }
