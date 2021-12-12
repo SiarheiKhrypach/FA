@@ -2,10 +2,12 @@ package by.tut.ssmt.app.servlets;
 
 import by.tut.ssmt.DAO.ProductDB;
 import by.tut.ssmt.repository.entities.Product;
-import by.tut.ssmt.services.AcidsProportionListImpl;
-import by.tut.ssmt.services.DataProcessorList;
-import by.tut.ssmt.services.Validator;
+import by.tut.ssmt.services.*;
+import by.tut.ssmt.services.dataProcessors.AcidsProportionListImpl;
+import by.tut.ssmt.services.dataProcessors.DataProcessorList;
 import by.tut.ssmt.services.exceptions.NullOrEmptyException;
+import by.tut.ssmt.services.formDataCollectors.FormDataCollector;
+import by.tut.ssmt.services.formDataCollectors.ProductFormDataCollector;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -23,6 +25,8 @@ public class UpdateServlet extends HttpServlet {
     String message;
     final Validator validator = new Validator();
     final DataProcessorList dataProcessorList = new AcidsProportionListImpl();
+    final FormDataCollector dataCollector = new ProductFormDataCollector();
+
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final String id = req.getParameter("id");
@@ -68,14 +72,9 @@ public class UpdateServlet extends HttpServlet {
 
     private Product getProduct(HttpServletRequest req) throws NullOrEmptyException {
         final String id = req.getParameter("id");
-        final String productName = req.getParameter("productName");
-        validator.validate(productName);
-        final String omegaThree = req.getParameter("omegaThree");
-        validator.validate(omegaThree);
-        final String omegaSix = req.getParameter("omegaSix");
-        validator.validate(omegaSix);
-        final String portion = req.getParameter("portions");
-        validator.validate(portion);
-        return new Product(Integer.parseInt(id), productName, Double.parseDouble(omegaThree), Double.parseDouble(omegaSix), Integer.parseInt(portion));
+        validator.validate(id);
+        final Product product = (Product) dataCollector.collectFormData(req);
+        product.setId(Long.parseLong(id));
+        return product;
     }
 }

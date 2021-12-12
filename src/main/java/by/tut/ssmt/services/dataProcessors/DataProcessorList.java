@@ -1,4 +1,4 @@
-package by.tut.ssmt.services;
+package by.tut.ssmt.services.dataProcessors;
 
 import by.tut.ssmt.repository.entities.Product;
 

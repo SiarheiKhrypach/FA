@@ -4,8 +4,8 @@ import by.tut.ssmt.DAO.ProductDB;
 import by.tut.ssmt.DAO.UserDB;
 import by.tut.ssmt.repository.entities.Product;
 import by.tut.ssmt.repository.entities.User;
-import by.tut.ssmt.services.AcidsProportionListImpl;
-import by.tut.ssmt.services.DataProcessorList;
+import by.tut.ssmt.services.dataProcessors.AcidsProportionListImpl;
+import by.tut.ssmt.services.dataProcessors.DataProcessorList;
 import by.tut.ssmt.services.Validator;
 
 import javax.servlet.ServletContext;

@@ -2,10 +2,12 @@ package by.tut.ssmt.app.servlets;
 
 import by.tut.ssmt.DAO.ProductDB;
 import by.tut.ssmt.repository.entities.Product;
-import by.tut.ssmt.services.AcidsProportionListImpl;
-import by.tut.ssmt.services.DataProcessorList;
-import by.tut.ssmt.services.Validator;
+import by.tut.ssmt.services.*;
+import by.tut.ssmt.services.dataProcessors.AcidsProportionListImpl;
+import by.tut.ssmt.services.dataProcessors.DataProcessorList;
 import by.tut.ssmt.services.exceptions.NullOrEmptyException;
+import by.tut.ssmt.services.formDataCollectors.FormDataCollector;
+import by.tut.ssmt.services.formDataCollectors.ProductFormDataCollector;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -25,6 +27,7 @@ public class AddServlet extends HttpServlet {
     String message;
     final Validator validator = new Validator();
     final DataProcessorList dataProcessorList = new AcidsProportionListImpl();
+    final FormDataCollector dataCollector = new ProductFormDataCollector();
 
     public void init() {
         LOGGER.info("Call to init()");
@@ -65,15 +68,7 @@ public class AddServlet extends HttpServlet {
     }
 
     private void collectDataForDB(HttpServletRequest req) throws NullOrEmptyException {
-        final String productName = req.getParameter("productName");
-        validator.validate(productName);
-        final String omegaThree = req.getParameter("omegaThree");
-        validator.validate(omegaThree);
-        final String omegaSix = req.getParameter("omegaSix");
-        validator.validate(omegaSix);
-        final String portion = req.getParameter("portions");
-        validator.validate(portion);
-        final Product product = new Product(productName, Double.parseDouble(omegaThree), Double.parseDouble(omegaSix), Integer.parseInt(portion));
+        final Product product = (Product) dataCollector.collectFormData(req);
         ProductDB.insert(product);
     }
 }
