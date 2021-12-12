@@ -6,19 +6,16 @@ import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
-public class AcidsProportionListImpl implements DataProcessor{
+public class AcidsProportionListImpl implements DataProcessorList {
     private static final Logger LOGGER = Logger.getLogger(AcidsProportionListImpl.class.getName());
 
-//    public String calculate(Map <Integer, Product> products) {
     public String calculate(ArrayList <Product> products) {
         LOGGER.info("Products: " + products);
 
         double totalOmegaThree = 0;
         double totalOmegaSix = 0;
         String proportion = "";
-//        for (Map.Entry entry : products.entrySet()) {
         for (Product product : products) {
-//            Product product = (Product) entry.getValue();
             totalOmegaThree += product.getOmegaThree() * product.getPortion();
             totalOmegaSix += product.getOmegaSix() * product.getPortion();
             if ((totalOmegaThree != 0)) {
@@ -29,5 +26,6 @@ public class AcidsProportionListImpl implements DataProcessor{
         }
         return proportion;
     }
+
 
 }

@@ -2,8 +2,8 @@ package by.tut.ssmt.app.servlets;
 
 import by.tut.ssmt.DAO.UserDB;
 import by.tut.ssmt.repository.entities.User;
-import by.tut.ssmt.services.EntryValidatorImpl;
 import by.tut.ssmt.services.Validator;
+import by.tut.ssmt.services.exceptions.NullOrEmptyException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,14 +17,15 @@ import java.util.logging.Logger;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-    Validator validator = new EntryValidatorImpl();
     String message;
     boolean passwordVerified;
     private ArrayList<User> users;
-    private static final Logger LOGGER = Logger.getLogger(RegisterServlet.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(LoginServlet.class.getName());
+    final Validator validator = new Validator();
 
     public void init() throws ServletException {
         users = UserDB.select();
+        validator.isValidData(users);
     }
 
     @Override
@@ -35,18 +36,19 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         passwordVerified = false;
-        if (validator.validate(req.getParameter("name")) &&
-                validator.validate(req.getParameter("pass"))) {
-            User user = collectData(req);
+
+        User user = null;
+        try {
+            user = collectData(req);
             verify(user);
             req.setAttribute("name", user.getUserName());
             postToMainPage(req, resp);
-        } else {
+        } catch (NullOrEmptyException e) {
             message = "Please fill out the form";
             req.setAttribute("message", message);
             req.getRequestDispatcher("login.jsp").forward(req, resp);
-
         }
+
     }
 
     private void postToMainPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -62,9 +64,11 @@ public class LoginServlet extends HttpServlet {
         }
     }
 
-    private User collectData(HttpServletRequest req) {
+    private User collectData(HttpServletRequest req) throws NullOrEmptyException {
         final String userName = req.getParameter("name");
+        validator.validate(userName);
         final String password = req.getParameter("pass");
+        validator.validate(password);
         User user = new User(userName, password);
         return user;
     }
