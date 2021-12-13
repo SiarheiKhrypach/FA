@@ -2,11 +2,10 @@ package by.tut.ssmt.app.servlets;
 
 import by.tut.ssmt.DAO.ProductDB;
 import by.tut.ssmt.repository.entities.Product;
-import by.tut.ssmt.services.*;
+import by.tut.ssmt.services.Validator;
 import by.tut.ssmt.services.dataProcessors.AcidsProportionListImpl;
 import by.tut.ssmt.services.dataProcessors.DataProcessorList;
 import by.tut.ssmt.services.exceptions.NullOrEmptyException;
-import by.tut.ssmt.services.formDataCollectors.FormDataCollector;
 import by.tut.ssmt.services.formDataCollectors.ProductFormDataCollector;
 
 import javax.servlet.ServletContext;
@@ -27,7 +26,7 @@ public class AddServlet extends HttpServlet {
     String message;
     final Validator validator = new Validator();
     final DataProcessorList dataProcessorList = new AcidsProportionListImpl();
-    final FormDataCollector dataCollector = new ProductFormDataCollector();
+    final ProductFormDataCollector dataCollector = new ProductFormDataCollector();
 
     public void init() {
         LOGGER.info("Call to init()");
@@ -68,7 +67,7 @@ public class AddServlet extends HttpServlet {
     }
 
     private void collectDataForDB(HttpServletRequest req) throws NullOrEmptyException {
-        final Product product = (Product) dataCollector.collectFormData(req);
+        final Product product = dataCollector.collectFormData(req);
         ProductDB.insert(product);
     }
 }

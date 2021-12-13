@@ -2,10 +2,9 @@ package by.tut.ssmt.app.servlets;
 
 import by.tut.ssmt.DAO.UserDB;
 import by.tut.ssmt.repository.entities.User;
-import by.tut.ssmt.services.formDataCollectors.FormDataCollector;
-import by.tut.ssmt.services.formDataCollectors.UserFormDataCollector;
 import by.tut.ssmt.services.Validator;
 import by.tut.ssmt.services.exceptions.NullOrEmptyException;
+import by.tut.ssmt.services.formDataCollectors.UserFormDataCollector;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,7 +21,7 @@ public class RegisterServlet extends HttpServlet {
     String message;
     private ArrayList<User> users;
     private static final Logger LOGGER = Logger.getLogger(RegisterServlet.class.getName());
-    final FormDataCollector dataCollector = new UserFormDataCollector();
+    final UserFormDataCollector dataCollector = new UserFormDataCollector();
 
 
     public void init() throws ServletException {
@@ -49,7 +48,7 @@ public class RegisterServlet extends HttpServlet {
     }
 
     private void collectDataForDB(HttpServletRequest req) throws NullOrEmptyException {
-        User user = (User) dataCollector.collectFormData(req);
+        User user = dataCollector.collectFormData(req);
         UserDB.insert(user);
     }
 }
