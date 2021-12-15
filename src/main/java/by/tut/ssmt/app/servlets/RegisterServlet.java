@@ -38,6 +38,7 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
+            req.setAttribute("message", "");
             User user = dataCollector.collectFormData(req);
             verify (user);
             if (loginAndPassAreNotTaken) {UserDB.insert(user);}
