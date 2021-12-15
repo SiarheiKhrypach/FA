@@ -38,7 +38,8 @@ public class AddServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
         try {
-            collectDataForDB(req);
+            final Product product = dataCollector.collectFormData(req);
+            ProductDB.insert(product);
             assignAttribute(getServletContext());
             collectProportionForContext(getServletContext());
             resp.sendRedirect(req.getContextPath() + "/");
@@ -66,8 +67,4 @@ public class AddServlet extends HttpServlet {
         servletContext.setAttribute("proportion", formattedProportion);
     }
 
-    private void collectDataForDB(HttpServletRequest req) throws NullOrEmptyException {
-        final Product product = dataCollector.collectFormData(req);
-        ProductDB.insert(product);
-    }
 }

@@ -41,7 +41,7 @@ public class LoginServlet extends HttpServlet {
 
         User user = null;
         try {
-            user = collectData(req);
+            user = dataCollector.collectFormData(req);
             verify(user);
             req.setAttribute("name", user.getUserName());
             postToMainPage(req, resp);
@@ -64,11 +64,6 @@ public class LoginServlet extends HttpServlet {
             req.setAttribute("message", message);
             req.getRequestDispatcher("login.jsp").forward(req, resp);
         }
-    }
-
-    private User collectData(HttpServletRequest req) throws NullOrEmptyException {
-        User user = dataCollector.collectFormData(req);
-        return user;
     }
 
     private void verify(User user) {

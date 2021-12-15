@@ -37,7 +37,8 @@ public class RegisterServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            collectDataForDB(req);
+            User user = dataCollector.collectFormData(req);
+            UserDB.insert(user);
             resp.sendRedirect(req.getContextPath() + "/");
         } catch (NullOrEmptyException e) {
             message = "Please fill out the form";
@@ -45,10 +46,5 @@ public class RegisterServlet extends HttpServlet {
             req.getRequestDispatcher("register.jsp").forward(req, resp);
         }
 
-    }
-
-    private void collectDataForDB(HttpServletRequest req) throws NullOrEmptyException {
-        User user = dataCollector.collectFormData(req);
-        UserDB.insert(user);
     }
 }
