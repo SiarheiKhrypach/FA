@@ -23,7 +23,6 @@ public class AddServlet extends HttpServlet {
 
     private static final Logger LOGGER = Logger.getLogger(AddServlet.class.getName());
     private ArrayList<Product> products;
-    String message;
     final Validator validator = new Validator();
     final DataProcessorList dataProcessorList = new AcidsProportionListImpl();
     final ProductFormDataCollector dataCollector = new ProductFormDataCollector();
@@ -42,16 +41,13 @@ public class AddServlet extends HttpServlet {
             ProductDB.insert(product);
             assignAttribute(getServletContext());
             collectProportionForContext(getServletContext());
-            message = "";
-            getServletContext().setAttribute("message", message);
+            getServletContext().setAttribute("message", "");
             resp.sendRedirect(req.getContextPath() + "/");
         } catch (NullOrEmptyException e) {
-            message = "Please enter valid data";
-            getServletContext().setAttribute("message", message);
+            getServletContext().setAttribute("message", "Please enter valid data");
             assignAttribute(getServletContext());
             collectProportionForContext(getServletContext());
             resp.sendRedirect(req.getContextPath() + "/");
-            LOGGER.warning(message);
         }
 
     }

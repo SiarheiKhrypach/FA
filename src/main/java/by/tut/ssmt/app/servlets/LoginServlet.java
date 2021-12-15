@@ -18,7 +18,6 @@ import java.util.logging.Logger;
 
 @WebServlet("/login")
 public class LoginServlet extends HttpServlet {
-    String message;
     boolean passwordVerified;
     private ArrayList<User> users;
     private static final Logger LOGGER = Logger.getLogger(LoginServlet.class.getName());
@@ -45,8 +44,7 @@ public class LoginServlet extends HttpServlet {
             req.setAttribute("name", user.getUserName());
             postToMainPage(req, resp);
         } catch (NullOrEmptyException e) {
-            message = "Please fill out the form";
-            req.setAttribute("message", message);
+            req.setAttribute("message", "Please fill out the form");
             req.getRequestDispatcher("login.jsp").forward(req, resp);
         }
 
@@ -54,13 +52,11 @@ public class LoginServlet extends HttpServlet {
 
     private void postToMainPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if (passwordVerified) {
-            message = "Welcome, ";
             HttpSession session = req.getSession();
-            session.setAttribute("message", message);
+            session.setAttribute("message", "Welcome, ");
             req.getRequestDispatcher("index.jsp").forward(req, resp);
         } else {
-            message = "User name or/and password are not valid";
-            req.setAttribute("message", message);
+            req.setAttribute("message", "User name or/and password are not valid");
             req.getRequestDispatcher("login.jsp").forward(req, resp);
         }
     }

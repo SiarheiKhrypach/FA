@@ -18,7 +18,6 @@ import java.util.logging.Logger;
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
     final Validator validator = new Validator();
-    String message;
     boolean loginAndPassAreNotTaken = true;
     private ArrayList<User> users;
     private static final Logger LOGGER = Logger.getLogger(RegisterServlet.class.getName());
@@ -44,8 +43,7 @@ public class RegisterServlet extends HttpServlet {
             if (loginAndPassAreNotTaken) {UserDB.insert(user);}
             postToMainPage(req, resp);
         } catch (NullOrEmptyException e) {
-            message = "Please fill out the form";
-            req.setAttribute("message", message);
+            req.setAttribute("message", "Please fill out the form");
             req.getRequestDispatcher("register.jsp").forward(req, resp);
         }
     }
@@ -63,8 +61,7 @@ public class RegisterServlet extends HttpServlet {
         if (loginAndPassAreNotTaken) {
             req.getRequestDispatcher("index.jsp").forward(req, resp);
         } else {
-            message = "User name or/and password are already in use, try one more time";
-            req.setAttribute("message", message);
+            req.setAttribute("message", "User name or/and password are already in use, try one more time");
             req.getRequestDispatcher("register.jsp").forward(req, resp);
         }
     }

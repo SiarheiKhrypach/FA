@@ -22,7 +22,6 @@ import java.util.ArrayList;
 public class UpdateServlet extends HttpServlet {
 
     private ArrayList<Product> products;
-    String message;
     final Validator validator = new Validator();
     final DataProcessorList dataProcessorList = new AcidsProportionListImpl();
     final FormDataCollector dataCollector = new ProductFormDataCollector();
@@ -44,8 +43,7 @@ public class UpdateServlet extends HttpServlet {
             req.getRequestDispatcher("index.jsp").forward(req, resp);
 
         } catch (NullOrEmptyException e) {
-            message = "Please enter a valid name";
-            req.setAttribute("message", message);
+            req.setAttribute("message", "Please enter a valid name");
             req.setAttribute("products", products);
             collectProportionForContext(getServletContext());
             req.getRequestDispatcher("index.jsp").forward(req, resp);
