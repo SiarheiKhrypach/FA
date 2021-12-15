@@ -42,6 +42,8 @@ public class AddServlet extends HttpServlet {
             ProductDB.insert(product);
             assignAttribute(getServletContext());
             collectProportionForContext(getServletContext());
+            message = "";
+            getServletContext().setAttribute("message", message);
             resp.sendRedirect(req.getContextPath() + "/");
         } catch (NullOrEmptyException e) {
             message = "Please enter valid data";
