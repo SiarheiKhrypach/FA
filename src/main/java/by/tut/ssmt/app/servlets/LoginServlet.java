@@ -38,8 +38,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         passwordVerified = false;
-
-        User user = null;
+        User user;
         try {
             user = dataCollector.collectFormData(req);
             verify(user);
@@ -54,7 +53,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     private void postToMainPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        if (passwordVerified == true) {
+        if (passwordVerified) {
             message = "Welcome, ";
             HttpSession session = req.getSession();
             session.setAttribute("message", message);

@@ -19,12 +19,14 @@ import java.util.logging.Logger;
 public class RegisterServlet extends HttpServlet {
     final Validator validator = new Validator();
     String message;
+    boolean loginAndPassAreNotTaken = true;
     private ArrayList<User> users;
     private static final Logger LOGGER = Logger.getLogger(RegisterServlet.class.getName());
     final UserFormDataCollector dataCollector = new UserFormDataCollector();
 
 
-    public void init() throws ServletException {
+    public void init() {
+        LOGGER.info("Call to init - loginAndPassAreNotTaken - " + loginAndPassAreNotTaken);
         users = UserDB.select();
         validator.isValidData(users);
     }
@@ -38,13 +40,32 @@ public class RegisterServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             User user = dataCollector.collectFormData(req);
-            UserDB.insert(user);
-            resp.sendRedirect(req.getContextPath() + "/");
+            verify (user);
+            if (loginAndPassAreNotTaken) {UserDB.insert(user);}
+            postToMainPage(req, resp);
         } catch (NullOrEmptyException e) {
             message = "Please fill out the form";
             req.setAttribute("message", message);
             req.getRequestDispatcher("register.jsp").forward(req, resp);
         }
+    }
 
+    private void verify(User user) {
+        loginAndPassAreNotTaken = true;
+        for (int i = 0; i < users.size(); i++) {
+            if ((user.getUserName().equals(users.get(i).getUserName())) || (user.getPassword().equals(users.get(i).getPassword()))) {
+                loginAndPassAreNotTaken = false;
+            }
+        }
+    }
+
+    private void postToMainPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (loginAndPassAreNotTaken) {
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
+        } else {
+            message = "User name or/and password are already in use, try one more time";
+            req.setAttribute("message", message);
+            req.getRequestDispatcher("register.jsp").forward(req, resp);
+        }
     }
 }
