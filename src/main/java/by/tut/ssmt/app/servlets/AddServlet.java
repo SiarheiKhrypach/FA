@@ -43,23 +43,25 @@ public class AddServlet extends HttpServlet {
             ProductDB.insert(product);
             assignAttribute(getServletContext());
             collectProportionForContext(getServletContext());
-            getServletContext().setAttribute("message", "");
             resp.sendRedirect(req.getContextPath() + "/");
         } catch (NullOrEmptyException e) {
             assignAttribute(getServletContext());
-            getServletContext().setAttribute("message", "Please enter valid data");
+            req.setAttribute("message", "Please enter valid data");
             collectProportionForContext(getServletContext());
-            resp.sendRedirect(req.getContextPath() + "/");
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
+
         } catch (NegativeNumberException e) {
             assignAttribute(getServletContext());
-            getServletContext().setAttribute("message", "The data can not be negative");
+            req.setAttribute("message", "The data can not be negative");
             collectProportionForContext(getServletContext());
-            resp.sendRedirect(req.getContextPath() + "/");
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
+
         } catch (ZeroException e) {
             assignAttribute(getServletContext());
             getServletContext().setAttribute("message", "The portions can not be zero");
             collectProportionForContext(getServletContext());
-            resp.sendRedirect(req.getContextPath() + "/");
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
+
         }
 
     }

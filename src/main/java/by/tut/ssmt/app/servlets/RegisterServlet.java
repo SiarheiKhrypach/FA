@@ -3,7 +3,6 @@ package by.tut.ssmt.app.servlets;
 import by.tut.ssmt.DAO.UserDB;
 import by.tut.ssmt.repository.entities.User;
 import by.tut.ssmt.services.Validator;
-import by.tut.ssmt.services.exceptions.NegativeNumberException;
 import by.tut.ssmt.services.exceptions.NullOrEmptyException;
 import by.tut.ssmt.services.formDataCollectors.UserFormDataCollector;
 
@@ -33,14 +32,12 @@ public class RegisterServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("message", "");
         req.getRequestDispatcher("register.jsp").forward(req, resp);
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
-            req.setAttribute("message", "");
             User user = dataCollector.collectFormData(req);
             verify (user);
             if (loginAndPassAreNotTaken) {UserDB.insert(user);}
