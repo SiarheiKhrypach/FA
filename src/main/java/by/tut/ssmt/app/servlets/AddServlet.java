@@ -5,7 +5,9 @@ import by.tut.ssmt.repository.entities.Product;
 import by.tut.ssmt.services.Validator;
 import by.tut.ssmt.services.dataProcessors.AcidsProportionListImpl;
 import by.tut.ssmt.services.dataProcessors.DataProcessorList;
+import by.tut.ssmt.services.exceptions.NegativeNumberException;
 import by.tut.ssmt.services.exceptions.NullOrEmptyException;
+import by.tut.ssmt.services.exceptions.ZeroException;
 import by.tut.ssmt.services.formDataCollectors.ProductFormDataCollector;
 
 import javax.servlet.ServletContext;
@@ -44,8 +46,18 @@ public class AddServlet extends HttpServlet {
             getServletContext().setAttribute("message", "");
             resp.sendRedirect(req.getContextPath() + "/");
         } catch (NullOrEmptyException e) {
-            getServletContext().setAttribute("message", "Please enter valid data");
             assignAttribute(getServletContext());
+            getServletContext().setAttribute("message", "Please enter valid data");
+            collectProportionForContext(getServletContext());
+            resp.sendRedirect(req.getContextPath() + "/");
+        } catch (NegativeNumberException e) {
+            assignAttribute(getServletContext());
+            getServletContext().setAttribute("message", "The data can not be negative");
+            collectProportionForContext(getServletContext());
+            resp.sendRedirect(req.getContextPath() + "/");
+        } catch (ZeroException e) {
+            assignAttribute(getServletContext());
+            getServletContext().setAttribute("message", "The portions can not be zero");
             collectProportionForContext(getServletContext());
             resp.sendRedirect(req.getContextPath() + "/");
         }

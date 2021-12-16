@@ -5,7 +5,9 @@ import by.tut.ssmt.repository.entities.Product;
 import by.tut.ssmt.services.*;
 import by.tut.ssmt.services.dataProcessors.AcidsProportionListImpl;
 import by.tut.ssmt.services.dataProcessors.DataProcessorList;
+import by.tut.ssmt.services.exceptions.NegativeNumberException;
 import by.tut.ssmt.services.exceptions.NullOrEmptyException;
+import by.tut.ssmt.services.exceptions.ZeroException;
 import by.tut.ssmt.services.formDataCollectors.FormDataCollector;
 import by.tut.ssmt.services.formDataCollectors.ProductFormDataCollector;
 
@@ -43,12 +45,31 @@ public class UpdateServlet extends HttpServlet {
             req.getRequestDispatcher("index.jsp").forward(req, resp);
 
         } catch (NullOrEmptyException e) {
+            assignAttribute();
             req.setAttribute("message", "Please enter a valid name");
             req.setAttribute("products", products);
             collectProportionForContext(getServletContext());
             req.getRequestDispatcher("index.jsp").forward(req, resp);
+        } catch (NegativeNumberException e) {
+            assignAttribute();
+            req.setAttribute("message", "The data can not be negative");
+            req.setAttribute("products", products);
+            collectProportionForContext(getServletContext());
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
+        } catch (ZeroException e) {
+            assignAttribute();
+            req.setAttribute("message", "The portions can not be zero");
+            collectProportionForContext(getServletContext());
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
         }
     }
+
+        private void assignAttribute() {
+        products = ProductDB.select();
+        validator.isValidData(products);
+        getServletContext().setAttribute("productsAttribute", products);
+    }
+
 
     private void collectProportionForContext(ServletContext servletContext) {
         final String formattedProportion = dataProcessorList.calculate(products);
@@ -56,7 +77,7 @@ public class UpdateServlet extends HttpServlet {
         servletContext.setAttribute("proportion", formattedProportion);
     }
 
-    private void resetData(HttpServletRequest req) throws NullOrEmptyException {
+    private void resetData(HttpServletRequest req) throws NullOrEmptyException, NegativeNumberException, ZeroException {
         Product product = getProduct(req);
         ProductDB.update(product);
         assignAttribute(getServletContext());
@@ -68,9 +89,9 @@ public class UpdateServlet extends HttpServlet {
         servletContext.setAttribute("productsAttribute", products);
     }
 
-    private Product getProduct(HttpServletRequest req) throws NullOrEmptyException {
+    private Product getProduct(HttpServletRequest req) throws NullOrEmptyException, NegativeNumberException, ZeroException {
         final String id = req.getParameter("id");
-        validator.validate(id);
+        validator.isNotNullOrNegativeNumber(id);
         final Product product = (Product) dataCollector.collectFormData(req);
         product.setId(Long.parseLong(id));
         return product;
