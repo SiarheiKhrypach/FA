@@ -1,7 +1,6 @@
 package by.tut.ssmt.services.formDataCollectors;
 
 import by.tut.ssmt.repository.entities.User;
-import by.tut.ssmt.services.exceptions.NegativeNumberException;
 import by.tut.ssmt.services.exceptions.NullOrEmptyException;
 
 import javax.servlet.http.HttpServletRequest;

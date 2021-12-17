@@ -32,13 +32,13 @@ Welcome to the Fatty Acids! <br>
     <input class="w3-input w3-border-0" type="text" class="register-input" name="productName">
 
     <label>Omega-3 content, mg:</label>
-    <input class="w3-input w3-border-0" type="number" class="register-input" name="omegaThree">
+    <input class="w3-input w3-border-0" type="number" class="register-input" name="omegaThree" min="0">
 
     <label>Omega-6 content, mg:</label>
-    <input class="w3-input w3-border-0" type="number" class="register-input" name="omegaSix">
+    <input class="w3-input w3-border-0" type="number" class="register-input" name="omegaSix" min="0">
 
     <label>Number of portions (1pt = 28g):</label>
-    <input class="w3-input w3-border-0" type="number" class="register-input" name="portions">
+    <input class="w3-input w3-border-0" type="number" class="register-input" name="portions" min="1">
 
     <input type="submit" value="Add" name="Add">
 

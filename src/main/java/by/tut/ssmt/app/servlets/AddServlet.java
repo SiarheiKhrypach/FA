@@ -5,9 +5,7 @@ import by.tut.ssmt.repository.entities.Product;
 import by.tut.ssmt.services.Validator;
 import by.tut.ssmt.services.dataProcessors.AcidsProportionListImpl;
 import by.tut.ssmt.services.dataProcessors.DataProcessorList;
-import by.tut.ssmt.services.exceptions.NegativeNumberException;
 import by.tut.ssmt.services.exceptions.NullOrEmptyException;
-import by.tut.ssmt.services.exceptions.ZeroException;
 import by.tut.ssmt.services.formDataCollectors.ProductFormDataCollector;
 
 import javax.servlet.ServletContext;
@@ -48,17 +46,6 @@ public class AddServlet extends HttpServlet {
             assignAttributes(getServletContext());
             req.setAttribute("message", "Please enter valid data");
             req.getRequestDispatcher("index.jsp").forward(req, resp);
-
-        } catch (NegativeNumberException e) {
-            assignAttributes(getServletContext());
-            req.setAttribute("message", "The data can not be negative");
-            req.getRequestDispatcher("index.jsp").forward(req, resp);
-
-        } catch (ZeroException e) {
-            assignAttributes(getServletContext());
-            req.setAttribute("message", "The portions can not be zero");
-            req.getRequestDispatcher("index.jsp").forward(req, resp);
-
         }
 
     }
