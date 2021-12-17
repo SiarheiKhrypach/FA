@@ -41,32 +41,34 @@ public class AddServlet extends HttpServlet {
         try {
             final Product product = dataCollector.collectFormData(req);
             ProductDB.insert(product);
-            assignAttribute(getServletContext());
-            collectProportionForContext(getServletContext());
+            assignAttributes(getServletContext());
             resp.sendRedirect(req.getContextPath() + "/");
+
         } catch (NullOrEmptyException e) {
-            assignAttribute(getServletContext());
+            assignAttributes(getServletContext());
             req.setAttribute("message", "Please enter valid data");
-            collectProportionForContext(getServletContext());
             req.getRequestDispatcher("index.jsp").forward(req, resp);
 
         } catch (NegativeNumberException e) {
-            assignAttribute(getServletContext());
+            assignAttributes(getServletContext());
             req.setAttribute("message", "The data can not be negative");
-            collectProportionForContext(getServletContext());
             req.getRequestDispatcher("index.jsp").forward(req, resp);
 
         } catch (ZeroException e) {
-            assignAttribute(getServletContext());
-            getServletContext().setAttribute("message", "The portions can not be zero");
-            collectProportionForContext(getServletContext());
+            assignAttributes(getServletContext());
+            req.setAttribute("message", "The portions can not be zero");
             req.getRequestDispatcher("index.jsp").forward(req, resp);
 
         }
 
     }
 
-    private void assignAttribute(ServletContext servletContext) {
+    private void assignAttributes(ServletContext servletContext) {
+        collectProductDataForContext(servletContext);
+        collectProportionForContext(servletContext);
+    }
+
+    private void collectProductDataForContext(ServletContext servletContext) {
         products = ProductDB.select();
         validator.isValidData(products);
         LOGGER.info("Content of products, call to init(): " + products);
