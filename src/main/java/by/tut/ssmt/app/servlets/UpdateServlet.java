@@ -8,6 +8,8 @@ import by.tut.ssmt.services.dataProcessors.DataProcessorList;
 import by.tut.ssmt.services.exceptions.NullOrEmptyException;
 import by.tut.ssmt.services.formDataCollectors.FormDataCollector;
 import by.tut.ssmt.services.formDataCollectors.ProductFormDataCollector;
+import java.util.logging.Logger;
+
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -21,10 +23,18 @@ import java.util.ArrayList;
 @WebServlet("/update")
 public class UpdateServlet extends HttpServlet {
 
+    private static final Logger LOGGER = Logger.getLogger(AddServlet.class.getName()) ;
     private ArrayList<Product> products;
     final Validator validator = new Validator();
     final DataProcessorList dataProcessorList = new AcidsProportionListImpl();
     final FormDataCollector dataCollector = new ProductFormDataCollector();
+    private boolean productDoesntExist;
+
+    public void init() {
+        LOGGER.info("Call to init()");
+        products = ProductDB.select();
+        validator.isValidData(products);
+    }
 
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -40,7 +50,7 @@ public class UpdateServlet extends HttpServlet {
         try {
             resetData(req);
             collectProportionForContext(getServletContext());
-            req.getRequestDispatcher("index.jsp").forward(req, resp);
+            postToMainPage(req, resp);
 
         } catch (NullOrEmptyException e) {
             assignAttribute();
@@ -51,7 +61,14 @@ public class UpdateServlet extends HttpServlet {
         }
     }
 
-        private void assignAttribute() {
+    private void postToMainPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (!productDoesntExist) {
+            req.setAttribute("message", "The list already has product with such name");
+        }
+        req.getRequestDispatcher("index.jsp").forward(req, resp);
+    }
+
+    private void assignAttribute() {
         products = ProductDB.select();
         validator.isValidData(products);
         getServletContext().setAttribute("productsAttribute", products);
@@ -66,8 +83,18 @@ public class UpdateServlet extends HttpServlet {
 
     private void resetData(HttpServletRequest req) throws NullOrEmptyException {
         Product product = getProduct(req);
+        verify (product);
         ProductDB.update(product);
         assignAttribute(getServletContext());
+    }
+
+    private void verify(Product product) {
+        productDoesntExist = true;
+        for (int i = 0; i < products.size(); i++) {
+            if (product.getProductName().equals(products.get(i).getProductName()) && product.getId() != products.get(i).getId()) {
+                productDoesntExist = false;
+            }
+        }
     }
 
     private void assignAttribute(ServletContext servletContext) {

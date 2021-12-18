@@ -25,6 +25,7 @@ public class AddServlet extends HttpServlet {
     final Validator validator = new Validator();
     final DataProcessorList dataProcessorList = new AcidsProportionListImpl();
     final ProductFormDataCollector dataCollector = new ProductFormDataCollector();
+    private boolean productDoesntExist;
 
     public void init() {
         LOGGER.info("Call to init()");
@@ -37,9 +38,10 @@ public class AddServlet extends HttpServlet {
 
         try {
             final Product product = dataCollector.collectFormData(req);
-            ProductDB.insert(product);
+            verify (product);
+            if (productDoesntExist) {ProductDB.insert(product);}
             assignAttributes();
-            resp.sendRedirect(req.getContextPath() + "/");
+            postToMainPage(req, resp);
 
         } catch (NullOrEmptyException e) {
             assignAttributes();
@@ -48,6 +50,25 @@ public class AddServlet extends HttpServlet {
         }
 
     }
+
+    private void verify(Product product) {
+        productDoesntExist = true;
+        for (int i = 0; i < products.size(); i++) {
+            if (product.getProductName().equals(products.get(i).getProductName())) {
+                productDoesntExist = false;
+            }
+        }
+    }
+
+    private void postToMainPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        if (productDoesntExist) {
+            resp.sendRedirect(req.getContextPath() + "/");
+        } else {
+            req.setAttribute("message", "The list already has product with such name");
+            req.getRequestDispatcher("index.jsp").forward(req, resp);
+        }
+    }
+
 
     private void assignAttributes() {
         collectProductDataForContext();
