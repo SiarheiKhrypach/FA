@@ -84,7 +84,8 @@ Welcome to the Fatty Acids! <br>
     </tbody>
 </table>
 
-<p><c:out value="Your proportion: ${proportion}" default="" /></p>
+<p><c:out value="Your proportion: ${proportion}" default=""/></p>
+Optimum range is 2-5.
 <p><c:out value="${message}${name}" default="" /></p>
 
 </body>
