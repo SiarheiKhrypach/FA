@@ -8,7 +8,6 @@ import by.tut.ssmt.services.dataProcessors.DataProcessorList;
 import by.tut.ssmt.services.exceptions.NullOrEmptyException;
 import by.tut.ssmt.services.formDataCollectors.ProductFormDataCollector;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -39,33 +38,33 @@ public class AddServlet extends HttpServlet {
         try {
             final Product product = dataCollector.collectFormData(req);
             ProductDB.insert(product);
-            assignAttributes(getServletContext());
+            assignAttributes();
             resp.sendRedirect(req.getContextPath() + "/");
 
         } catch (NullOrEmptyException e) {
-            assignAttributes(getServletContext());
+            assignAttributes();
             req.setAttribute("message", "Please enter valid data");
             req.getRequestDispatcher("index.jsp").forward(req, resp);
         }
 
     }
 
-    private void assignAttributes(ServletContext servletContext) {
-        collectProductDataForContext(servletContext);
-        collectProportionForContext(servletContext);
+    private void assignAttributes() {
+        collectProductDataForContext();
+        collectProportionForContext();
     }
 
-    private void collectProductDataForContext(ServletContext servletContext) {
+    private void collectProductDataForContext() {
         products = ProductDB.select();
         validator.isValidData(products);
         LOGGER.info("Content of products, call to init(): " + products);
-        servletContext.setAttribute("productsAttribute", products);
+        getServletContext().setAttribute("productsAttribute", products);
     }
 
-    private void collectProportionForContext(ServletContext servletContext) {
+    private void collectProportionForContext() {
         final String formattedProportion = dataProcessorList.calculate(products);
         validator.isValidData(formattedProportion);
-        servletContext.setAttribute("proportion", formattedProportion);
+        getServletContext().setAttribute("proportion", formattedProportion);
     }
 
 }
