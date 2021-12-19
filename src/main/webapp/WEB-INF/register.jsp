@@ -33,7 +33,7 @@
 </body>
 
 <div>
-    <button onclick="location.href='/'">Back to main</button>
+    <button onclick="location.href='..'">Back to main</button>
 </div>
 
 <p><c:out value="${message}" default="" /></p>

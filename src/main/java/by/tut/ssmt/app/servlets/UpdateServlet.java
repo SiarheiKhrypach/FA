@@ -42,7 +42,7 @@ public class UpdateServlet extends HttpServlet {
         final Product product = ProductDB.selectOne(Integer.parseInt(id));
         validator.isValidData(product);
         req.setAttribute("product", product);
-        req.getRequestDispatcher("update.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/update.jsp").forward(req, resp);
 
     }
 

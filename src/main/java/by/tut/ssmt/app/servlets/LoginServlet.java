@@ -31,7 +31,7 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.getRequestDispatcher("login.jsp").forward(req, resp);
+        req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
     }
 
     @Override
@@ -45,7 +45,7 @@ public class LoginServlet extends HttpServlet {
             postToMainPage(req, resp);
         } catch (NullOrEmptyException e) {
             req.setAttribute("message", "Please fill out the form");
-            req.getRequestDispatcher("login.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
         }
 
     }
@@ -57,7 +57,7 @@ public class LoginServlet extends HttpServlet {
             req.getRequestDispatcher("index.jsp").forward(req, resp);
         } else {
             req.setAttribute("message", "User name or/and password are not valid");
-            req.getRequestDispatcher("login.jsp").forward(req, resp);
+            req.getRequestDispatcher("/WEB-INF/login.jsp").forward(req, resp);
         }
     }
 
