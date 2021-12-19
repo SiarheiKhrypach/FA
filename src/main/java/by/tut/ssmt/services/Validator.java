@@ -30,7 +30,7 @@ public class Validator {
 
     public void isNotNullOrEmpty(String s) throws NullOrEmptyException {
         if (isNull(s) || "".equals(s)) {
-            throw new NullOrEmptyException("The incoming string is null");
+            throw new   NullOrEmptyException("The incoming string is null");
         }
     }
 }

@@ -83,12 +83,12 @@ public class UpdateServlet extends HttpServlet {
 
     private void resetData(HttpServletRequest req) throws NullOrEmptyException {
         Product product = getProduct(req);
-        verify (product);
+        verifyIfExist (product);
         ProductDB.update(product);
         assignAttribute(getServletContext());
     }
 
-    private void verify(Product product) {
+    private void verifyIfExist(Product product) {
         productDoesntExist = true;
         for (int i = 0; i < products.size(); i++) {
             if (product.getProductName().equals(products.get(i).getProductName()) && product.getId() != products.get(i).getId()) {

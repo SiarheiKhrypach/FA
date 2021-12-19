@@ -60,8 +60,7 @@ public class ProductDB {
         return product;
     }
 
-    public static int insert(Product product) {
-
+    public static void insert(Product product) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
             try (Connection conn = DriverManager.getConnection(url, username, password)) {
@@ -77,11 +76,9 @@ public class ProductDB {
         } catch (Exception ex) {
             System.out.println(ex);
         }
-        return 0;
     }
 
-    public static int update(Product product) {
-
+    public static void update(Product product) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
             try (Connection conn = DriverManager.getConnection(url, username, password)) {
@@ -98,11 +95,9 @@ public class ProductDB {
         } catch (Exception ex) {
             System.out.println(ex);
         }
-        return 0;
     }
 
-    public static int delete(int id) {
-
+    public static void delete(int id) {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
             try (Connection conn = DriverManager.getConnection(url, username, password)) {
@@ -115,7 +110,6 @@ public class ProductDB {
         } catch (Exception ex) {
             System.out.println(ex);
         }
-        return 0;
     }
 
 }

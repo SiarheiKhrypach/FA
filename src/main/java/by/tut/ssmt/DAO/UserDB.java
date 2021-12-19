@@ -56,7 +56,7 @@ public class UserDB {
         return user;
     }
 
-    public static int insert(User user) {
+    public static void insert(User user) {
 
         try{
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
@@ -72,10 +72,9 @@ public class UserDB {
         catch(Exception ex){
             System.out.println(ex);
         }
-        return 0;
     }
 
-    public static int update(User user) {
+    public static void update(User user) {
 
         try{
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
@@ -91,10 +90,9 @@ public class UserDB {
         catch(Exception ex){
             System.out.println(ex);
         }
-        return 0;
     }
 
-    public static int delete(String userName ) {
+    public static void delete(String userName ) {
 
         try{
             Class.forName("com.mysql.cj.jdbc.Driver").getDeclaredConstructor().newInstance();
@@ -109,6 +107,5 @@ public class UserDB {
         catch(Exception ex){
             System.out.println(ex);
         }
-        return 0;
     }
 }
