@@ -27,7 +27,7 @@ public class RegisterServlet extends HttpServlet {
     public void init() {
         LOGGER.info("Call to init - loginAndPassAreNotTaken - " + loginAndPassAreNotTaken);
         users = UserDB.select();
-        validator.isValidData(users);
+        validator.isNotNull(users);
     }
 
     @Override

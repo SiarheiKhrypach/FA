@@ -22,7 +22,7 @@ public class StartServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         products = ProductDB.select();
-        validator.isValidData(products);
+        validator.isNotNull(products);
         req.setAttribute("productsAttribute", products);
         LOGGER.info("Call to doGet() , Attribute productsAttribute:" + req.getAttribute("productsAttribute"));
         LOGGER.info("Call to doGet() , Attribute productsAttribute:" + getServletContext().getAttribute("productsAttribute"));

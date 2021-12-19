@@ -33,13 +33,13 @@ public class DeleteServlet extends HttpServlet {
 
     private void assignAttribute(ServletContext servletContext) {
         products = ProductDB.select();
-        validator.isValidData(products);
+        validator.isNotNull(products);
         servletContext.setAttribute("productsAttribute", products);
     }
 
     private void collectProportionForContext(ServletContext servletContext) {
         final String formattedProportion = dataProcessorList.calculate(products);
-        validator.isValidData(formattedProportion);
+        validator.isNotNull(formattedProportion);
         servletContext.setAttribute("proportion", formattedProportion);
     }
 

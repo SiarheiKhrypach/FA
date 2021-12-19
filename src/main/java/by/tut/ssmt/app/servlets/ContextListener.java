@@ -34,19 +34,19 @@ public class ContextListener implements ServletContextListener {
 
     private void setUserInitialData(ServletContext servletContext) {
         users = UserDB.select();
-        validator.isValidData(users);
+        validator.isNotNull(users);
         servletContext.setAttribute("usersInContext", users);
     }
 
     private void setProductInitialData(ServletContext servletContext) {
         products = ProductDB.select();
-        validator.isValidData(products);
+        validator.isNotNull(products);
         servletContext.setAttribute("productsAttribute", products);
     }
 
     private void collectProportionForContext(ServletContext servletContext) {
         String formattedProportion = dataProcessorList.calculate(products);
-        validator.isValidData(formattedProportion);
+        validator.isNotNull(formattedProportion);
         LOGGER.info("proportion: " + formattedProportion);
         servletContext.setAttribute("proportion", formattedProportion);
     }

@@ -30,7 +30,7 @@ public class AddServlet extends HttpServlet {
     public void init() {
         LOGGER.info("Call to init()");
         products = ProductDB.select();
-        validator.isValidData(products);
+        validator.isNotNull(products);
     }
 
     @Override
@@ -77,14 +77,14 @@ public class AddServlet extends HttpServlet {
 
     private void collectProductDataForContext() {
         products = ProductDB.select();
-        validator.isValidData(products);
+        validator.isNotNull(products);
         LOGGER.info("Content of products, call to init(): " + products);
         getServletContext().setAttribute("productsAttribute", products);
     }
 
     private void collectProportionForContext() {
         final String formattedProportion = dataProcessorList.calculate(products);
-        validator.isValidData(formattedProportion);
+        validator.isNotNull(formattedProportion);
         getServletContext().setAttribute("proportion", formattedProportion);
     }
 

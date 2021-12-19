@@ -33,14 +33,14 @@ public class UpdateServlet extends HttpServlet {
     public void init() {
         LOGGER.info("Call to init()");
         products = ProductDB.select();
-        validator.isValidData(products);
+        validator.isNotNull(products);
     }
 
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final String id = req.getParameter("id");
         final Product product = ProductDB.selectOne(Integer.parseInt(id));
-        validator.isValidData(product);
+        validator.isNotNull(product);
         req.setAttribute("product", product);
         req.getRequestDispatcher("/WEB-INF/update.jsp").forward(req, resp);
 
@@ -70,14 +70,14 @@ public class UpdateServlet extends HttpServlet {
 
     private void assignAttribute() {
         products = ProductDB.select();
-        validator.isValidData(products);
+        validator.isNotNull(products);
         getServletContext().setAttribute("productsAttribute", products);
     }
 
 
     private void collectProportionForContext(ServletContext servletContext) {
         final String formattedProportion = dataProcessorList.calculate(products);
-        validator.isValidData(formattedProportion);
+        validator.isNotNull(formattedProportion);
         servletContext.setAttribute("proportion", formattedProportion);
     }
 
@@ -99,7 +99,7 @@ public class UpdateServlet extends HttpServlet {
 
     private void assignAttribute(ServletContext servletContext) {
         products = ProductDB.select();
-        validator.isValidData(products);
+        validator.isNotNull(products);
         servletContext.setAttribute("productsAttribute", products);
     }
 

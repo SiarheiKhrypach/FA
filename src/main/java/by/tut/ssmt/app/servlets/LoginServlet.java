@@ -26,7 +26,7 @@ public class LoginServlet extends HttpServlet {
 
     public void init() throws ServletException {
         users = UserDB.select();
-        validator.isValidData(users);
+        validator.isNotNull(users);
     }
 
     @Override

@@ -9,19 +9,19 @@ import static java.util.Objects.isNull;
 
 public class Validator {
 
-    public void isValidData(final String str) {
+    public void isNotNull(final String str) {
         if (isNull(str)) {
             throw new NullPointerException("The incoming string is null");
         }
     }
 
-    public void isValidData(final ArrayList list) {
+    public void isNotNull(final ArrayList list) {
         if (isNull(list)) {
             throw new NullPointerException("The incoming list is null");
         }
     }
 
-    public void isValidData(final Product product) {
+    public void isNotNull(final Product product) {
         if (isNull(product)) {
             throw new NullPointerException("The incoming product is null");
         }
