@@ -25,7 +25,6 @@ public class StartServlet extends HttpServlet {
         validator.isNotNull(products);
         req.setAttribute("productsAttribute", products);
         LOGGER.info("Call to doGet() , Attribute productsAttribute:" + req.getAttribute("productsAttribute"));
-        LOGGER.info("Call to doGet() , Attribute productsAttribute:" + getServletContext().getAttribute("productsAttribute"));
         req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
 }
