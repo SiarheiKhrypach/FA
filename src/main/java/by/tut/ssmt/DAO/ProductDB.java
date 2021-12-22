@@ -38,11 +38,11 @@ public class ProductDB {
                 products.add(product);
             }
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            System.out.println("loadProperties() method caused IOException");
+        } catch (SQLException e) {
+            System.out.println("SQLException caught");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Class.forName method caused ClassNotFoundException");
         }
         return products;
     }
@@ -66,11 +66,11 @@ public class ProductDB {
                 product = new Product(productId, productName, omegaThree, omegaSix, portion);
             }
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            System.out.println("loadProperties() method caused IOException");
+        } catch (SQLException e) {
+            System.out.println("SQLException caught");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Class.forName method caused ClassNotFoundException");
         }
         return product;
     }
@@ -88,11 +88,11 @@ public class ProductDB {
             preparedStatement.executeUpdate();
 
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            System.out.println("loadProperties() method caused IOException");
+        } catch (SQLException e) {
+            System.out.println("SQLException caught");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Class.forName method caused ClassNotFoundException");
         }
     }
 
@@ -109,11 +109,11 @@ public class ProductDB {
             preparedStatement.setLong(5, product.getId());
             preparedStatement.executeUpdate();
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            System.out.println("loadProperties() method caused IOException");
+        } catch (SQLException e) {
+            System.out.println("SQLException caught");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Class.forName method caused ClassNotFoundException");
         }
     }
 
@@ -126,21 +126,20 @@ public class ProductDB {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (IOException e) {
-            e.printStackTrace();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            System.out.println("loadProperties() method caused IOException");
+        } catch (SQLException e) {
+            System.out.println("SQLException caught");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Class.forName method caused ClassNotFoundException");
         }
     }
 
     private static Properties loadProperties() throws IOException {
-        try (InputStream is = ProductDB.class.getClassLoader().getResourceAsStream((DATABASE_CONFIG_PATH))) {
+            InputStream is = ProductDB.class.getClassLoader().getResourceAsStream((DATABASE_CONFIG_PATH));
             LOGGER.info("InputStream is: " + is);
             properties = new Properties();
             properties.load(is);
             return properties;
-        }
     }
 
     private static Connection connectToDb(Properties properties) throws ClassNotFoundException, SQLException {
