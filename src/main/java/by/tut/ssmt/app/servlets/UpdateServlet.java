@@ -1,6 +1,7 @@
 package by.tut.ssmt.app.servlets;
 
-import by.tut.ssmt.DAO.ProductDB;
+import by.tut.ssmt.DAO.DBConnector;
+import by.tut.ssmt.DAO.ProductDao;
 import by.tut.ssmt.repository.entities.Product;
 import by.tut.ssmt.services.Validator;
 import by.tut.ssmt.services.dataProcessors.AcidsProportionListImpl;
@@ -26,20 +27,22 @@ public class UpdateServlet extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(AddServlet.class.getName()) ;
     private ArrayList<Product> products;
     final Validator validator = new Validator();
+    DBConnector dbConnector = new DBConnector();
+    ProductDao productDao = new ProductDao(dbConnector);
     final DataProcessorList dataProcessorList = new AcidsProportionListImpl();
     final FormDataCollector dataCollector = new ProductFormDataCollector();
     private boolean productDoesntExist;
 
     public void init() {
         LOGGER.info("Call to init()");
-        products = ProductDB.select();
+        products = productDao.select();
         validator.isNotNull(products);
     }
 
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final String id = req.getParameter("id");
-        final Product product = ProductDB.selectOne(Integer.parseInt(id));
+        final Product product = productDao.selectOne(Integer.parseInt(id));
         validator.isNotNull(product);
         req.setAttribute("product", product);
         req.getRequestDispatcher("/WEB-INF/update.jsp").forward(req, resp);
@@ -69,7 +72,7 @@ public class UpdateServlet extends HttpServlet {
     }
 
     private void assignAttribute() {
-        products = ProductDB.select();
+        products = productDao.select();
         validator.isNotNull(products);
         getServletContext().setAttribute("productsAttribute", products);
     }
@@ -84,7 +87,7 @@ public class UpdateServlet extends HttpServlet {
     private void resetData(HttpServletRequest req) throws NullOrEmptyException {
         Product product = getProduct(req);
         verifyIfExist (product);
-        ProductDB.update(product);
+        productDao.update(product);
         assignAttribute(getServletContext());
     }
 
@@ -98,7 +101,8 @@ public class UpdateServlet extends HttpServlet {
     }
 
     private void assignAttribute(ServletContext servletContext) {
-        products = ProductDB.select();
+        products = productDao.select();
+//        products = ProductDao.select();
         validator.isNotNull(products);
         servletContext.setAttribute("productsAttribute", products);
     }

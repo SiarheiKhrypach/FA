@@ -1,6 +1,7 @@
 package by.tut.ssmt.app.servlets;
 
-import by.tut.ssmt.DAO.ProductDB;
+import by.tut.ssmt.DAO.DBConnector;
+import by.tut.ssmt.DAO.ProductDao;
 import by.tut.ssmt.repository.entities.Product;
 import by.tut.ssmt.services.Validator;
 import by.tut.ssmt.services.dataProcessors.AcidsProportionListImpl;
@@ -23,13 +24,15 @@ public class AddServlet extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(AddServlet.class.getName());
     private ArrayList<Product> products;
     final Validator validator = new Validator();
+    DBConnector dbConnector = new DBConnector();
+    ProductDao productDao = new ProductDao(dbConnector);
     final DataProcessorList dataProcessorList = new AcidsProportionListImpl();
     final ProductFormDataCollector dataCollector = new ProductFormDataCollector();
     private boolean productDoesntExist;
 
     public void init() {
         LOGGER.info("Call to init()");
-        products = ProductDB.select();
+        products = productDao.select();
         validator.isNotNull(products);
     }
 
@@ -39,7 +42,7 @@ public class AddServlet extends HttpServlet {
         try {
             final Product product = dataCollector.collectFormData(req);
             verify (product);
-            if (productDoesntExist) {ProductDB.insert(product);}
+            if (productDoesntExist) {productDao.insert(product);}
             assignAttributes();
             postToMainPage(req, resp);
 
@@ -76,7 +79,7 @@ public class AddServlet extends HttpServlet {
     }
 
     private void collectProductDataForContext() {
-        products = ProductDB.select();
+        products = productDao.select();
         validator.isNotNull(products);
         LOGGER.info("Content of products, call to init(): " + products);
         getServletContext().setAttribute("productsAttribute", products);

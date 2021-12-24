@@ -1,10 +1,11 @@
 package by.tut.ssmt.app.servlets;
 
-import by.tut.ssmt.DAO.ProductDB;
+import by.tut.ssmt.DAO.DBConnector;
+import by.tut.ssmt.DAO.ProductDao;
 import by.tut.ssmt.repository.entities.Product;
+import by.tut.ssmt.services.Validator;
 import by.tut.ssmt.services.dataProcessors.AcidsProportionListImpl;
 import by.tut.ssmt.services.dataProcessors.DataProcessorList;
-import by.tut.ssmt.services.Validator;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -22,17 +23,19 @@ public class DeleteServlet extends HttpServlet {
     private ArrayList<Product> products;
     final DataProcessorList dataProcessorList = new AcidsProportionListImpl();
     final Validator validator = new Validator();
+    DBConnector dbConnector = new DBConnector();
+    ProductDao productDao = new ProductDao(dbConnector);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        ProductDB.delete(Integer.parseInt(req.getParameter("id")));
+        productDao.delete(Integer.parseInt(req.getParameter("id")));
         assignAttribute(getServletContext());
         collectProportionForContext(getServletContext());
         req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
 
     private void assignAttribute(ServletContext servletContext) {
-        products = ProductDB.select();
+        products = productDao.select();
         validator.isNotNull(products);
         servletContext.setAttribute("productsAttribute", products);
     }

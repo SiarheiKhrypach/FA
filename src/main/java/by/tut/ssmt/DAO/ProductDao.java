@@ -9,23 +9,20 @@ import java.util.ArrayList;
 import java.util.Properties;
 import java.util.logging.Logger;
 
-public class ProductDB {
+public class ProductDao {
 
-    private static final Logger LOGGER = Logger.getLogger(ProductDB.class.getName());
-    private static final String DATABASE_CONFIG_PATH = "db.properties";
-    private static final String
-            URL = "database.url",
-            USERNAME = "database.username",
-            PASSWORD = "database.password",
-            DRIVER = "database.driver";
+    DBConnector dbConnector;
+    Properties properties;
 
-    private static Properties properties;
+    public ProductDao(DBConnector dbConnector) {
+        this.dbConnector = dbConnector;
+    }
 
-    public static ArrayList<Product> select() {
+    public ArrayList<Product> select() {
         ArrayList<Product> products = new ArrayList<Product>();
         try {
-            Properties properties = loadProperties();
-            Connection conn = connectToDb(properties);
+            properties = dbConnector.loadProperties();
+            Connection conn = dbConnector.connectToDb(properties);
             Statement statement = conn.createStatement();
             ResultSet resultSet = statement.executeQuery("SELECT * FROM products");
             while (resultSet.next()) {
@@ -47,12 +44,11 @@ public class ProductDB {
         return products;
     }
 
-    public static Product selectOne(int id) {
+    public Product selectOne(int id) {
         Product product = null;
-//        Properties properties = null;
         try {
-            properties = loadProperties();
-            Connection conn = connectToDb(properties);
+            properties = dbConnector.loadProperties();
+            Connection conn = dbConnector.connectToDb(properties);
             String sql = "SELECT * FROM products WHERE id=?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setInt(1, id);
@@ -75,10 +71,10 @@ public class ProductDB {
         return product;
     }
 
-    public static void insert(Product product) {
+    public void insert(Product product) {
         try {
-            Properties properties = loadProperties();
-            Connection conn = connectToDb(properties);
+            properties = dbConnector.loadProperties();
+            Connection conn = dbConnector.connectToDb(properties);
             String sql = "INSERT INTO products (product_name, omega_three, omega_six, portion) Values (?, ?, ?, ?)";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, product.getProductName());
@@ -96,10 +92,10 @@ public class ProductDB {
         }
     }
 
-    public static void update(Product product) {
+    public void update(Product product) {
         try {
-            Properties properties = loadProperties();
-            Connection conn = connectToDb(properties);
+            properties = dbConnector.loadProperties();
+            Connection conn = dbConnector.connectToDb(properties);
             String sql = "UPDATE products SET product_name = ?, omega_three = ?, omega_six = ?, portion = ? WHERE id = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, product.getProductName());
@@ -117,10 +113,10 @@ public class ProductDB {
         }
     }
 
-    public static void delete(int id) {
+    public void delete(int id) {
         try {
-            Properties properties = loadProperties();
-            Connection conn = connectToDb(properties);
+            properties = dbConnector.loadProperties();
+            Connection conn = dbConnector.connectToDb(properties);
             String sql = "DELETE FROM products WHERE id = ?";
             PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setInt(1, id);
@@ -132,23 +128,5 @@ public class ProductDB {
         } catch (ClassNotFoundException e) {
             System.out.println("Class.forName method caused ClassNotFoundException");
         }
-    }
-
-    private static Properties loadProperties() throws IOException {
-            InputStream is = ProductDB.class.getClassLoader().getResourceAsStream((DATABASE_CONFIG_PATH));
-            LOGGER.info("InputStream is: " + is);
-            properties = new Properties();
-            properties.load(is);
-            return properties;
-    }
-
-    private static Connection connectToDb(Properties properties) throws ClassNotFoundException, SQLException {
-        String driverClass = properties.getProperty(DRIVER);
-        String url = properties.getProperty(URL);
-        String username = properties.getProperty(USERNAME);
-        String password = properties.getProperty(PASSWORD);
-        Class.forName(driverClass);
-        Connection connection = DriverManager.getConnection(url, username, password);
-        return connection;
     }
 }

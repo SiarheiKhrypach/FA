@@ -1,6 +1,7 @@
 package by.tut.ssmt.app.servlets;
 
-import by.tut.ssmt.DAO.UserDB;
+import by.tut.ssmt.DAO.DBConnector;
+import by.tut.ssmt.DAO.UserDao;
 import by.tut.ssmt.repository.entities.User;
 import by.tut.ssmt.services.Validator;
 import by.tut.ssmt.services.exceptions.NullOrEmptyException;
@@ -18,6 +19,8 @@ import java.util.logging.Logger;
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
     final Validator validator = new Validator();
+    DBConnector dbConnector = new DBConnector();
+    UserDao userDao = new UserDao(dbConnector);
     boolean loginAndPassAreNotTaken = true;
     private ArrayList<User> users;
     private static final Logger LOGGER = Logger.getLogger(RegisterServlet.class.getName());
@@ -26,7 +29,7 @@ public class RegisterServlet extends HttpServlet {
 
     public void init() {
         LOGGER.info("Call to init - loginAndPassAreNotTaken - " + loginAndPassAreNotTaken);
-        users = UserDB.select();
+        users = userDao.select();
         validator.isNotNull(users);
     }
 
@@ -40,7 +43,7 @@ public class RegisterServlet extends HttpServlet {
         try {
             User user = dataCollector.collectFormData(req);
             verify (user);
-            if (loginAndPassAreNotTaken) {UserDB.insert(user);}
+            if (loginAndPassAreNotTaken) {userDao.insert(user);}
             postToMainPage(req, resp);
         } catch (NullOrEmptyException e) {
             req.setAttribute("message", "Please fill out the form");

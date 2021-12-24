@@ -1,12 +1,13 @@
 package by.tut.ssmt.app.servlets;
 
-import by.tut.ssmt.DAO.ProductDB;
-import by.tut.ssmt.DAO.UserDB;
+import by.tut.ssmt.DAO.DBConnector;
+import by.tut.ssmt.DAO.ProductDao;
+import by.tut.ssmt.DAO.UserDao;
 import by.tut.ssmt.repository.entities.Product;
 import by.tut.ssmt.repository.entities.User;
+import by.tut.ssmt.services.Validator;
 import by.tut.ssmt.services.dataProcessors.AcidsProportionListImpl;
 import by.tut.ssmt.services.dataProcessors.DataProcessorList;
-import by.tut.ssmt.services.Validator;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
@@ -23,6 +24,9 @@ public class ContextListener implements ServletContextListener {
     final DataProcessorList dataProcessorList = new AcidsProportionListImpl();
     private static final Logger LOGGER = Logger.getLogger(StartServlet.class.getName());
     Validator validator = new Validator();
+    DBConnector dbConnector = new DBConnector();
+    ProductDao productDao = new ProductDao(dbConnector);
+    UserDao userDao = new UserDao(dbConnector);
 
 
     public void contextInitialized(ServletContextEvent servletContextEvent) {
@@ -33,13 +37,13 @@ public class ContextListener implements ServletContextListener {
     }
 
     private void setUserInitialData(ServletContext servletContext) {
-        users = UserDB.select();
+        users = userDao.select();
         validator.isNotNull(users);
         servletContext.setAttribute("usersInContext", users);
     }
 
     private void setProductInitialData(ServletContext servletContext) {
-        products = ProductDB.select();
+        products = productDao.select();
         validator.isNotNull(products);
         servletContext.setAttribute("productsAttribute", products);
     }

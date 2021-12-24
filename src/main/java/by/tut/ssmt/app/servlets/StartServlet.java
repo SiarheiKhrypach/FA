@@ -1,6 +1,8 @@
 package by.tut.ssmt.app.servlets;
 
-import by.tut.ssmt.DAO.ProductDB;
+import by.tut.ssmt.DAO.DBConnector;
+import by.tut.ssmt.DAO.ProductDao;
+import by.tut.ssmt.DAO.PropertiesLoader;
 import by.tut.ssmt.repository.entities.Product;
 import by.tut.ssmt.services.Validator;
 
@@ -18,10 +20,12 @@ public class StartServlet extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(StartServlet.class.getName());
     private ArrayList<Product> products;
     Validator validator = new Validator();
+    DBConnector dbConnector = new DBConnector();
+    ProductDao productDao = new ProductDao(dbConnector);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        products = ProductDB.select();
+        products = productDao.select();
         validator.isNotNull(products);
         req.setAttribute("productsAttribute", products);
         LOGGER.info("Call to doGet() , Attribute productsAttribute:" + req.getAttribute("productsAttribute"));

@@ -1,6 +1,7 @@
 package by.tut.ssmt.app.servlets;
 
-import by.tut.ssmt.DAO.UserDB;
+import by.tut.ssmt.DAO.DBConnector;
+import by.tut.ssmt.DAO.UserDao;
 import by.tut.ssmt.repository.entities.User;
 import by.tut.ssmt.services.Validator;
 import by.tut.ssmt.services.exceptions.NullOrEmptyException;
@@ -22,10 +23,12 @@ public class LoginServlet extends HttpServlet {
     private ArrayList<User> users;
     private static final Logger LOGGER = Logger.getLogger(LoginServlet.class.getName());
     final Validator validator = new Validator();
+    DBConnector dbConnector = new DBConnector();
+    UserDao userDao = new UserDao(dbConnector);
     final UserFormDataCollector dataCollector = new UserFormDataCollector();
 
     public void init() throws ServletException {
-        users = UserDB.select();
+        users = userDao.select();
         validator.isNotNull(users);
     }
 
