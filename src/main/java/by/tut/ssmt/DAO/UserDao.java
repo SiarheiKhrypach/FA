@@ -9,8 +9,8 @@ import java.util.Properties;
 
 public class UserDao {
 
-    DBConnector dbConnector;
-    Properties properties;
+    private DBConnector dbConnector;
+    private Properties properties;
 
     public UserDao(DBConnector dbConnector) {
         this.dbConnector = dbConnector;

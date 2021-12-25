@@ -17,10 +17,10 @@ import java.util.logging.Logger;
 @WebServlet("/")
 public class StartServlet extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(StartServlet.class.getName());
-    private ArrayList<Product> products;
-    Validator validator = new Validator();
-    DBConnector dbConnector = new DBConnector();
-    ProductDao productDao = new ProductDao(dbConnector);
+    ArrayList<Product> products;
+    final Validator validator = new Validator();
+    final DBConnector dbConnector = new DBConnector();
+    final ProductDao productDao = new ProductDao(dbConnector);
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

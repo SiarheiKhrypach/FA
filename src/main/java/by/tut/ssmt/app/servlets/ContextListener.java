@@ -23,10 +23,10 @@ public class ContextListener implements ServletContextListener {
     private ArrayList<User> users;
     final DataProcessorList dataProcessorList = new AcidsProportionListImpl();
     private static final Logger LOGGER = Logger.getLogger(StartServlet.class.getName());
-    Validator validator = new Validator();
-    DBConnector dbConnector = new DBConnector();
-    ProductDao productDao = new ProductDao(dbConnector);
-    UserDao userDao = new UserDao(dbConnector);
+    final Validator validator = new Validator();
+    final DBConnector dbConnector = new DBConnector();
+    final ProductDao productDao = new ProductDao(dbConnector);
+    final UserDao userDao = new UserDao(dbConnector);
 
 
     public void contextInitialized(ServletContextEvent servletContextEvent) {

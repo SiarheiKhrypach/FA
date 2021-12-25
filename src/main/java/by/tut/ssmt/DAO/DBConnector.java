@@ -18,7 +18,7 @@ public class DBConnector {
             PASSWORD = "database.password",
             DRIVER = "database.driver";
 
-    Properties properties;
+    private Properties properties;
 
 
     public Properties loadProperties() throws IOException {

@@ -11,8 +11,8 @@ import java.util.logging.Logger;
 
 public class ProductDao {
 
-    DBConnector dbConnector;
-    Properties properties;
+    private DBConnector dbConnector;
+    private Properties properties;
 
     public ProductDao(DBConnector dbConnector) {
         this.dbConnector = dbConnector;

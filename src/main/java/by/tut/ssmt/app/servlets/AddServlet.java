@@ -24,8 +24,8 @@ public class AddServlet extends HttpServlet {
     private static final Logger LOGGER = Logger.getLogger(AddServlet.class.getName());
     private ArrayList<Product> products;
     final Validator validator = new Validator();
-    DBConnector dbConnector = new DBConnector();
-    ProductDao productDao = new ProductDao(dbConnector);
+    final DBConnector dbConnector = new DBConnector();
+    final ProductDao productDao = new ProductDao(dbConnector);
     final DataProcessorList dataProcessorList = new AcidsProportionListImpl();
     final ProductFormDataCollector dataCollector = new ProductFormDataCollector();
     private boolean productDoesntExist;

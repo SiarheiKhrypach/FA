@@ -19,8 +19,8 @@ import java.util.logging.Logger;
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
     final Validator validator = new Validator();
-    DBConnector dbConnector = new DBConnector();
-    UserDao userDao = new UserDao(dbConnector);
+    final DBConnector dbConnector = new DBConnector();
+    final UserDao userDao = new UserDao(dbConnector);
     boolean loginAndPassAreNotTaken = true;
     private ArrayList<User> users;
     private static final Logger LOGGER = Logger.getLogger(RegisterServlet.class.getName());

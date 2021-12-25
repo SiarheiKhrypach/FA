@@ -1,8 +1,8 @@
 package by.tut.ssmt.repository.entities;
 
 public class User {
-    String userName;
-    String password;
+    private String userName;
+    private String password;
 
     public User() {
     }

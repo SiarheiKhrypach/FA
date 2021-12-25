@@ -23,8 +23,8 @@ public class LoginServlet extends HttpServlet {
     private ArrayList<User> users;
     private static final Logger LOGGER = Logger.getLogger(LoginServlet.class.getName());
     final Validator validator = new Validator();
-    DBConnector dbConnector = new DBConnector();
-    UserDao userDao = new UserDao(dbConnector);
+    final DBConnector dbConnector = new DBConnector();
+    final UserDao userDao = new UserDao(dbConnector);
     final UserFormDataCollector dataCollector = new UserFormDataCollector();
 
     public void init() throws ServletException {

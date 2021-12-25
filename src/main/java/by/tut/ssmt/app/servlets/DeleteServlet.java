@@ -23,8 +23,8 @@ public class DeleteServlet extends HttpServlet {
     private ArrayList<Product> products;
     final DataProcessorList dataProcessorList = new AcidsProportionListImpl();
     final Validator validator = new Validator();
-    DBConnector dbConnector = new DBConnector();
-    ProductDao productDao = new ProductDao(dbConnector);
+    final DBConnector dbConnector = new DBConnector();
+    final ProductDao productDao = new ProductDao(dbConnector);
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
