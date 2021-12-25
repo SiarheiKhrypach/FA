@@ -31,12 +31,11 @@ public class UserDao {
                 users.add(user);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("loadProperties() method caused IOException");
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            System.out.println("SQLException caught");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+            System.out.println("Class.forName method caused ClassNotFoundException");        }
         return users;
     }
 
@@ -57,11 +56,11 @@ public class UserDao {
                 user = new User(name, password);
             }
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("loadProperties() method caused IOException");
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            System.out.println("SQLException caught");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Class.forName method caused ClassNotFoundException");
         }
         return user;
     }
@@ -78,11 +77,11 @@ public class UserDao {
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.executeUpdate();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("loadProperties() method caused IOException");
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            System.out.println("SQLException caught");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Class.forName method caused ClassNotFoundException");
         }
     }
 
@@ -97,11 +96,11 @@ public class UserDao {
             preparedStatement.setString(2, user.getUserName());
             preparedStatement.executeUpdate();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("loadProperties() method caused IOException");
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            System.out.println("SQLException caught");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Class.forName method caused ClassNotFoundException");
         }
     }
 
@@ -117,11 +116,11 @@ public class UserDao {
             preparedStatement.setString(1, userName);
             preparedStatement.executeUpdate();
         } catch (IOException e) {
-            e.printStackTrace();
+            System.out.println("loadProperties() method caused IOException");
         } catch (SQLException throwables) {
-            throwables.printStackTrace();
+            System.out.println("SQLException caught");
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            System.out.println("Class.forName method caused ClassNotFoundException");
         }
     }
 }
