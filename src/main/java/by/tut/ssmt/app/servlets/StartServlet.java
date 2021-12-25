@@ -2,7 +2,6 @@ package by.tut.ssmt.app.servlets;
 
 import by.tut.ssmt.DAO.DBConnector;
 import by.tut.ssmt.DAO.ProductDao;
-import by.tut.ssmt.DAO.PropertiesLoader;
 import by.tut.ssmt.repository.entities.Product;
 import by.tut.ssmt.services.Validator;
 
