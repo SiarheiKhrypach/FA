@@ -58,6 +58,7 @@ public class RegisterServlet extends HttpServlet {
                 loginAndPassAreNotTaken = false;
             }
         }
+        LOGGER.info("loginAndPassAreNotTaken boolean - " + loginAndPassAreNotTaken);
     }
 
     private void postToMainPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

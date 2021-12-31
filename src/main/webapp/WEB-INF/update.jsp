@@ -18,7 +18,7 @@
 <br>
 <form class="w3-container w3-light-grey" method="post" action="<c:url value='/update'/>">
 
-    <input type="number" hidden name="id" value="${product.id}" />
+    <input type="number" hidden name="productId" value="${product.productId}" />
 
     <label>Product Name:</label>
     <input class="w3-input w3-border-0" type="text" class="register-input" name="productName" value="${product.productName}" placeholder="${product.productName}">

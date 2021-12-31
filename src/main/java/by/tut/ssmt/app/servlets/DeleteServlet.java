@@ -28,7 +28,7 @@ public class DeleteServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        productDao.delete(Integer.parseInt(req.getParameter("id")));
+        productDao.delete(Integer.parseInt(req.getParameter("productId")));
         assignAttribute(getServletContext());
         collectProportionForContext(getServletContext());
         req.getRequestDispatcher("index.jsp").forward(req, resp);

@@ -2,131 +2,118 @@ package by.tut.ssmt.DAO;
 
 import by.tut.ssmt.repository.entities.Product;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Properties;
-import java.util.logging.Logger;
 
-public class ProductDao {
+public class ProductDao extends AbstractDao {
 
-    private DBConnector dbConnector;
-    private Properties properties;
+    private static final String SELECT_FROM_TABLE = "SELECT * FROM products";
+    private static final String SELECT_FROM_TABLE_WHERE = "SELECT * FROM products WHERE product_id=?";
+    private static final String INSERT_INTO_TABLE = "INSERT INTO products (product_name, omega_three, omega_six, portion) Values (?, ?, ?, ?)";
+    private static final String UPDATE_TABLE = "UPDATE products SET product_name = ?, omega_three = ?, omega_six = ?, portion = ? WHERE product_id = ?";
+    private static final String DELETE_FROM_TABLE = "DELETE FROM products WHERE product_id = ?";
 
     public ProductDao(DBConnector dbConnector) {
-        this.dbConnector = dbConnector;
+        super(dbConnector);
     }
 
     public ArrayList<Product> select() {
         ArrayList<Product> products = new ArrayList<Product>();
-        try {
-            properties = dbConnector.loadProperties();
-            Connection conn = dbConnector.connectToDb(properties);
-            Statement statement = conn.createStatement();
-            ResultSet resultSet = statement.executeQuery("SELECT * FROM products");
-            while (resultSet.next()) {
-                int id = resultSet.getInt(1);
-                String productName = resultSet.getString(2);
-                double omegaThree = resultSet.getDouble(3);
-                double omegaSix = resultSet.getDouble(4);
-                int portion = resultSet.getInt(5);
-                Product product = new Product(id, productName, omegaThree, omegaSix, portion);
+        ResultSet resultSet = selectToResultSet(SELECT_FROM_TABLE);
+
+        while (true) {
+            try {
+                if (!resultSet.next()) break;
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            int productId = 0;
+            try {
+                productId = resultSet.getInt(1);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            String productName = null;
+            try {
+                productName = resultSet.getString(2);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            double omegaThree = 0;
+            try {
+                omegaThree = resultSet.getDouble(3);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            double omegaSix = 0;
+            try {
+                omegaSix = resultSet.getDouble(4);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            int portion = 0;
+            try {
+                portion = resultSet.getInt(5);
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            Product product = new Product(productId, productName, omegaThree, omegaSix, portion);
+
                 products.add(product);
             }
-        } catch (IOException e) {
-            System.out.println("loadProperties() method caused IOException");
-        } catch (SQLException e) {
-            System.out.println("SQLException caught");
-        } catch (ClassNotFoundException e) {
-            System.out.println("Class.forName method caused ClassNotFoundException");
-        }
         return products;
     }
 
-    public Product selectOne(int id) {
+    public Product selectOne(int productId) {
         Product product = null;
+        ResultSet resultSet = selectToResultSetWhere(SELECT_FROM_TABLE_WHERE, productId);
         try {
-            properties = dbConnector.loadProperties();
-            Connection conn = dbConnector.connectToDb(properties);
-            String sql = "SELECT * FROM products WHERE id=?";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
-            ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
-                int productId = resultSet.getInt(1);
+                int productID = resultSet.getInt(1);
                 String productName = resultSet.getString(2);
                 double omegaThree = resultSet.getDouble(3);
                 double omegaSix = resultSet.getDouble(4);
                 int portion = resultSet.getInt(5);
-                product = new Product(productId, productName, omegaThree, omegaSix, portion);
+                product = new Product(productID, productName, omegaThree, omegaSix, portion);
             }
-        } catch (IOException e) {
-            System.out.println("loadProperties() method caused IOException");
         } catch (SQLException e) {
             System.out.println("SQLException caught");
-        } catch (ClassNotFoundException e) {
-            System.out.println("Class.forName method caused ClassNotFoundException");
         }
         return product;
     }
 
     public void insert(Product product) {
+            PreparedStatement preparedStatement = prepareStatement(INSERT_INTO_TABLE);
+
         try {
-            properties = dbConnector.loadProperties();
-            Connection conn = dbConnector.connectToDb(properties);
-            String sql = "INSERT INTO products (product_name, omega_three, omega_six, portion) Values (?, ?, ?, ?)";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, product.getProductName());
             preparedStatement.setDouble(2, product.getOmegaThree());
             preparedStatement.setDouble(3, product.getOmegaSix());
             preparedStatement.setInt(4, product.getPortion());
             preparedStatement.executeUpdate();
-
-        } catch (IOException e) {
-            System.out.println("loadProperties() method caused IOException");
         } catch (SQLException e) {
             System.out.println("SQLException caught");
-        } catch (ClassNotFoundException e) {
-            System.out.println("Class.forName method caused ClassNotFoundException");
         }
     }
 
     public void update(Product product) {
+        PreparedStatement preparedStatement = prepareStatement(UPDATE_TABLE);
+
         try {
-            properties = dbConnector.loadProperties();
-            Connection conn = dbConnector.connectToDb(properties);
-            String sql = "UPDATE products SET product_name = ?, omega_three = ?, omega_six = ?, portion = ? WHERE id = ?";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
             preparedStatement.setString(1, product.getProductName());
             preparedStatement.setDouble(2, product.getOmegaThree());
             preparedStatement.setDouble(3, product.getOmegaSix());
             preparedStatement.setInt(4, product.getPortion());
-            preparedStatement.setLong(5, product.getId());
+            preparedStatement.setInt(5, product.getProductId());
             preparedStatement.executeUpdate();
-        } catch (IOException e) {
-            System.out.println("loadProperties() method caused IOException");
         } catch (SQLException e) {
             System.out.println("SQLException caught");
-        } catch (ClassNotFoundException e) {
-            System.out.println("Class.forName method caused ClassNotFoundException");
         }
     }
 
-    public void delete(int id) {
-        try {
-            properties = dbConnector.loadProperties();
-            Connection conn = dbConnector.connectToDb(properties);
-            String sql = "DELETE FROM products WHERE id = ?";
-            PreparedStatement preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setInt(1, id);
-            preparedStatement.executeUpdate();
-        } catch (IOException e) {
-            System.out.println("loadProperties() method caused IOException");
-        } catch (SQLException e) {
-            System.out.println("SQLException caught");
-        } catch (ClassNotFoundException e) {
-            System.out.println("Class.forName method caused ClassNotFoundException");
-        }
+    public void delete(int productId) {
+        super.delete(DELETE_FROM_TABLE, productId);
     }
 }

@@ -1,6 +1,7 @@
 package by.tut.ssmt.repository.entities;
 
 public class User {
+    private int UserId;
     private String userName;
     private String password;
 
@@ -10,6 +11,20 @@ public class User {
     public User(String userName, String password) {
         this.userName = userName;
         this.password = password;
+    }
+
+    public User(int UserId, String userName, String password) {
+        this.UserId = UserId;
+        this.userName = userName;
+        this.password = password;
+    }
+
+    public long getUserId() {
+        return UserId;
+    }
+
+    public void setUserId(int UserId) {
+        this.UserId = UserId;
     }
 
     public String getUserName() {

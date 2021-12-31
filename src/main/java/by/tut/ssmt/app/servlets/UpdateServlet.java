@@ -41,8 +41,8 @@ public class UpdateServlet extends HttpServlet {
 
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        final String id = req.getParameter("id");
-        final Product product = productDao.selectOne(Integer.parseInt(id));
+        final String productId = req.getParameter("productId");
+        final Product product = productDao.selectOne(Integer.parseInt(productId));
         validator.isNotNull(product);
         req.setAttribute("product", product);
         req.getRequestDispatcher("/WEB-INF/update.jsp").forward(req, resp);
@@ -94,7 +94,7 @@ public class UpdateServlet extends HttpServlet {
     private void verifyIfExist(Product product) {
         productDoesntExist = true;
         for (int i = 0; i < products.size(); i++) {
-            if (product.getProductName().equals(products.get(i).getProductName()) && product.getId() != products.get(i).getId()) {
+            if (product.getProductName().equals(products.get(i).getProductName()) && product.getProductId() != products.get(i).getProductId()) {
                 productDoesntExist = false;
             }
         }
@@ -108,10 +108,10 @@ public class UpdateServlet extends HttpServlet {
     }
 
     private Product getProduct(HttpServletRequest req) throws NullOrEmptyException {
-        final String id = req.getParameter("id");
-        validator.isNotNullOrEmpty(id);
+        final String productId = req.getParameter("productId");
+        validator.isNotNullOrEmpty(productId);
         final Product product = (Product) dataCollector.collectFormData(req);
-        product.setId(Long.parseLong(id));
+        product.setProductId(Integer.parseInt(productId));
         return product;
     }
 }

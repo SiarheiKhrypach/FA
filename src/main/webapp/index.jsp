@@ -67,14 +67,14 @@ Welcome to the Fatty Acids! <br>
 
                     <td>
                         <form method="post" action="<c:url value='/delete'/>">
-                            <input type="number" hidden name="id" value="${product.id}" />
+                            <input type="number" hidden name="productId" value="${product.productId}" />
                             <input type="submit" name="Delete" value="Delete"/>
                         </form>
                     </td>
 
                     <td>
                         <form method="get" action="<c:url value='/update'/>">
-                            <input type="number" hidden name="id" value="${product.id}" />
+                            <input type="number" hidden name="productId" value="${product.productId}" />
                             <input type="submit" name="Edit" value="Edit"/>
                         </form>
                     </td>

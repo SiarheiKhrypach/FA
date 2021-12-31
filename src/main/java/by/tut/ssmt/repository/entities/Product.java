@@ -2,7 +2,7 @@ package by.tut.ssmt.repository.entities;
 
 public class Product {
 
-    private long id;
+    private int productID;
     private String productName;
     private double omegaThree;
     private double omegaSix;
@@ -15,20 +15,20 @@ public class Product {
         this.portion = portion;
     }
 
-    public Product(int id, String productName, double omegaThree, double omegaSix, int portion) {
-        this.id = id;
+    public Product(int productID, String productName, double omegaThree, double omegaSix, int portion) {
+        this.productID = productID;
         this.productName = productName;
         this.omegaThree = omegaThree;
         this.omegaSix = omegaSix;
         this.portion = portion;
     }
 
-    public long getId() {
-        return id;
+    public int getProductId() {
+        return productID;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setProductId(int productID) {
+        this.productID = productID;
     }
 
     public String getProductName() {
@@ -70,7 +70,7 @@ public class Product {
 
         Product product = (Product) o;
 
-        if (id != product.id) return false;
+        if (productID != product.productID) return false;
         if (Double.compare(product.omegaThree, omegaThree) != 0) return false;
         if (Double.compare(product.omegaSix, omegaSix) != 0) return false;
         if (portion != product.portion) return false;
@@ -81,7 +81,7 @@ public class Product {
     public int hashCode() {
         int result;
         long temp;
-        result = (int) (id ^ (id >>> 32));
+        result = (int) (productID ^ (productID >>> 32));
         result = 31 * result + productName.hashCode();
         temp = Double.doubleToLongBits(omegaThree);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
@@ -94,7 +94,7 @@ public class Product {
     @Override
     public String toString() {
         return "Product{" +
-                "id=" + id +
+                "id=" + productID +
                 ", productName='" + productName + '\'' +
                 ", omegaThree=" + omegaThree +
                 ", omegaSix=" + omegaSix +
