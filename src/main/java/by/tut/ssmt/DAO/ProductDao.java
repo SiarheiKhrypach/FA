@@ -34,13 +34,23 @@ public class ProductDao extends AbstractDao {
             }
         } catch (SQLException | IOException | ClassNotFoundException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (conn != null)
+                    LOGGER.info("connection before closing: " + conn);
+                conn.close();
+                LOGGER.info("connection after closing: " + conn);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
+
         return products;
     }
 
     public Product selectOne(int productId) {
         Product product = null;
-        try (ResultSet resultSet = selectToResultSetWhere(SELECT_FROM_TABLE_WHERE, productId)){
+        try (ResultSet resultSet = selectToResultSetWhere(SELECT_FROM_TABLE_WHERE, productId)) {
             if (resultSet.next()) {
                 int productID = resultSet.getInt(1);
                 String productName = resultSet.getString(2);
@@ -51,6 +61,13 @@ public class ProductDao extends AbstractDao {
             }
         } catch (SQLException | IOException | ClassNotFoundException e) {
             System.out.println("SQLException caught");
+        } finally {
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
         return product;
     }
@@ -65,12 +82,19 @@ public class ProductDao extends AbstractDao {
             preparedStatement.executeUpdate();
         } catch (SQLException | IOException | ClassNotFoundException e) {
             System.out.println("SQLException caught");
+        } finally {
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
     public void update(Product product) {
 
-        try (PreparedStatement preparedStatement = prepareStatement(UPDATE_TABLE)){
+        try (PreparedStatement preparedStatement = prepareStatement(UPDATE_TABLE)) {
             preparedStatement.setString(1, product.getProductName());
             preparedStatement.setDouble(2, product.getOmegaThree());
             preparedStatement.setDouble(3, product.getOmegaSix());
@@ -79,6 +103,13 @@ public class ProductDao extends AbstractDao {
             preparedStatement.executeUpdate();
         } catch (SQLException | IOException | ClassNotFoundException e) {
             System.out.println("SQLException caught");
+        } finally {
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -87,6 +118,13 @@ public class ProductDao extends AbstractDao {
             super.delete(DELETE_FROM_TABLE, productId);
         } catch (SQLException | IOException | ClassNotFoundException e) {
             e.printStackTrace();
+        } finally {
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

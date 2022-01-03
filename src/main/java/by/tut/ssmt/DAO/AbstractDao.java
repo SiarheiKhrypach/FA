@@ -8,6 +8,7 @@ import java.util.logging.Logger;
 public class AbstractDao {
 
     DBConnector dbConnector;
+    Connection conn;
     private static final Logger LOGGER = Logger.getLogger(AbstractDao.class.getName());
 
     AbstractDao(DBConnector dbConnector) {
@@ -16,12 +17,13 @@ public class AbstractDao {
 
     Connection getConnection() throws IOException, SQLException, ClassNotFoundException {
         Properties properties = dbConnector.loadProperties();
-        Connection connection = dbConnector.connectToDb(properties);
-        return connection;
+        Connection conn = dbConnector.connectToDb(properties);
+        return conn;
     }
 
     ResultSet selectToResultSet(String sqlCommand) throws SQLException, IOException, ClassNotFoundException {
-        Connection conn = getConnection();
+        conn = getConnection();
+        LOGGER.info("connection - " + conn);
         Statement statement = conn.createStatement();
         ResultSet resultSet = statement.executeQuery(sqlCommand);
         return resultSet;
