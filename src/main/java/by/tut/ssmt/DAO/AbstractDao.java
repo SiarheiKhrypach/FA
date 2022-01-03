@@ -3,76 +3,45 @@ package by.tut.ssmt.DAO;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 public class AbstractDao {
 
     DBConnector dbConnector;
-//    static String SELECT_FROM_TABLE;
-
+    private static final Logger LOGGER = Logger.getLogger(AbstractDao.class.getName());
 
     AbstractDao(DBConnector dbConnector) {
         this.dbConnector = dbConnector;
     }
 
-    Connection getConnection() {
-        Properties properties = null;
-        try {
-            properties = dbConnector.loadProperties();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        Connection connection = null;
-        try {
-            connection = dbConnector.connectToDb(properties);
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+    Connection getConnection() throws IOException, SQLException, ClassNotFoundException {
+        Properties properties = dbConnector.loadProperties();
+        Connection connection = dbConnector.connectToDb(properties);
         return connection;
     }
 
-    ResultSet selectToResultSet(String sqlCommand) {
-//        try {
+    ResultSet selectToResultSet(String sqlCommand) throws SQLException, IOException, ClassNotFoundException {
         Connection conn = getConnection();
-        Statement statement = null;
-        try {
-            statement = conn.createStatement();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        ResultSet resultSet = null;
-        try {
-            resultSet = statement.executeQuery(sqlCommand);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
+        Statement statement = conn.createStatement();
+        ResultSet resultSet = statement.executeQuery(sqlCommand);
         return resultSet;
     }
 
-    ResultSet selectToResultSetWhere(String sqlCommand, int id) {
+    ResultSet selectToResultSetWhere(String sqlCommand, int id) throws SQLException, IOException, ClassNotFoundException {
         Connection conn = getConnection();
-        PreparedStatement preparedStatement = null;
+        PreparedStatement preparedStatement;
         ResultSet resultSet = null;
         try {
             preparedStatement = conn.prepareStatement(sqlCommand);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        try {
             preparedStatement.setInt(1, id);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        try {
             resultSet = preparedStatement.executeQuery();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
         return resultSet;
     }
 
-    PreparedStatement prepareStatement (String sqlCommand) {
+    PreparedStatement prepareStatement(String sqlCommand) throws SQLException, IOException, ClassNotFoundException {
         Connection conn = getConnection();
         PreparedStatement preparedStatement = null;
         try {
@@ -83,17 +52,13 @@ public class AbstractDao {
         return preparedStatement;
     }
 
-    void delete (String sqlCommand, int id) {
-            PreparedStatement preparedStatement = prepareStatement(sqlCommand);
+    void delete(String sqlCommand, int id) throws SQLException, IOException, ClassNotFoundException {
+        PreparedStatement preparedStatement = prepareStatement(sqlCommand);
         try {
             preparedStatement.setInt(1, id);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-        try {
             preparedStatement.executeUpdate();
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 }

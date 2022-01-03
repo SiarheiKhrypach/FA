@@ -2,9 +2,8 @@ package by.tut.ssmt.DAO;
 
 import by.tut.ssmt.repository.entities.User;
 
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.io.IOException;
+import java.sql.*;
 import java.util.ArrayList;
 import java.util.logging.Logger;
 
@@ -23,78 +22,61 @@ public class UserDao extends AbstractDao {
 
     public ArrayList<User> select() {
         ArrayList<User> users = new ArrayList<>();
-        ResultSet resultSet = selectToResultSet(SELECT_FROM_TABLE);
-
-        while (true) {
-            try {
-                if (!resultSet.next()) break;
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
+        try (ResultSet resultSet = selectToResultSet(SELECT_FROM_TABLE)) {
+            while (resultSet.next()) {
+                int userId = resultSet.getInt(1);
+                String userName = resultSet.getString(2);
+                String password = resultSet.getString(3);
+                User user = new User(userId, userName, password);
+                users.add(user);
             }
-            int userId = 0;
-            try {
-                userId = resultSet.getInt(1);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-            String userName = null;
-            try {
-                userName = resultSet.getString(2);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-            String password = null;
-            try {
-                password = resultSet.getString(3);
-            } catch (SQLException throwables) {
-                throwables.printStackTrace();
-            }
-            User user = new User(userId, userName, password);
-            users.add(user);
+        } catch (SQLException | IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
         return users;
     }
 
     public User selectOne(int userId) {
         User user = null;
-        ResultSet resultSet = selectToResultSetWhere(SELECT_FROM_TABLE_WHERE, userId);
-        try {
+        try (ResultSet resultSet = selectToResultSetWhere(SELECT_FROM_TABLE_WHERE, userId)) {
             if (resultSet.next()) {
                 int productId = resultSet.getInt(1);
                 String name = resultSet.getString(2);
                 String password = resultSet.getString(3);
                 user = new User(productId, name, password);
             }
-        } catch (SQLException throwables) {
+        } catch (SQLException | IOException | ClassNotFoundException throwables) {
             System.out.println("SQLException caught");
         }
         return user;
     }
 
     public void insert(User user) {
-        PreparedStatement preparedStatement = prepareStatement(INSERT_INTO_TABLE);
-        try {
+        try (PreparedStatement preparedStatement = prepareStatement(INSERT_INTO_TABLE)) {
             preparedStatement.setString(1, user.getUserName());
             preparedStatement.setString(2, user.getPassword());
             LOGGER.info("username - " + user.getUserName());
             preparedStatement.executeUpdate();
-        } catch (SQLException throwables) {
+        } catch (SQLException | IOException | ClassNotFoundException throwables) {
             throwables.printStackTrace();
         }
     }
 
     public void update(User user) {
-        PreparedStatement preparedStatement = prepareStatement(UPDATE_TABLE);
-        try {
+        try (PreparedStatement preparedStatement = prepareStatement(UPDATE_TABLE)) {
             preparedStatement.setString(1, user.getPassword());
             preparedStatement.setString(2, user.getUserName());
             preparedStatement.executeUpdate();
-        } catch (SQLException throwables) {
+        } catch (SQLException | IOException | ClassNotFoundException throwables) {
             System.out.println("SQLException caught");
         }
     }
 
     public void delete(int userId) {
-        super.delete(DELETE_FROM_TABLE, userId);
+        try {
+            super.delete(DELETE_FROM_TABLE, userId);
+        } catch (SQLException | IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
     }
 }
