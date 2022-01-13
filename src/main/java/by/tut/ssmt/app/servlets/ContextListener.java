@@ -14,7 +14,6 @@ import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 @WebListener
 public class ContextListener implements ServletContextListener {
@@ -22,7 +21,6 @@ public class ContextListener implements ServletContextListener {
     private ArrayList<Product> products;
     private ArrayList<User> users;
     final DataProcessorList dataProcessorList = new AcidsProportionListImpl();
-    private static final Logger LOGGER = Logger.getLogger(StartServlet.class.getName());
     final Validator validator = new Validator();
     final DBConnector dbConnector = new DBConnector();
     final ProductDao productDao = new ProductDao(dbConnector);
@@ -51,7 +49,6 @@ public class ContextListener implements ServletContextListener {
     private void collectProportionForContext(ServletContext servletContext) {
         String formattedProportion = dataProcessorList.calculate(products);
         validator.isNotNull(formattedProportion);
-        LOGGER.info("proportion: " + formattedProportion);
         servletContext.setAttribute("proportion", formattedProportion);
     }
 

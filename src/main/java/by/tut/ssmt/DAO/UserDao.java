@@ -3,9 +3,10 @@ package by.tut.ssmt.DAO;
 import by.tut.ssmt.repository.entities.User;
 
 import java.io.IOException;
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 public class UserDao extends AbstractDao {
 
@@ -14,7 +15,6 @@ public class UserDao extends AbstractDao {
     private static final String INSERT_INTO_TABLE = "INSERT INTO users (user_name, password) VALUES (?, ?)";
     private static final String UPDATE_TABLE = "UPDATE users SET password = ?, WHERE user_name = ?";
     private static final String DELETE_FROM_TABLE = "DELETE FROM users WHERE user_name = ?";
-    private static final Logger LOGGER = Logger.getLogger(UserDao.class.getName());
 
     public UserDao(DBConnector dbConnector) {
         super(dbConnector);
@@ -55,7 +55,6 @@ public class UserDao extends AbstractDao {
         try (PreparedStatement preparedStatement = prepareStatement(INSERT_INTO_TABLE)) {
             preparedStatement.setString(1, user.getUserName());
             preparedStatement.setString(2, user.getPassword());
-            LOGGER.info("username - " + user.getUserName());
             preparedStatement.executeUpdate();
         } catch (SQLException | IOException | ClassNotFoundException throwables) {
             throwables.printStackTrace();

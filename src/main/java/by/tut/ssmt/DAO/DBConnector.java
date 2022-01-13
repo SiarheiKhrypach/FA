@@ -6,11 +6,9 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
-import java.util.logging.Logger;
 
 public class DBConnector {
 
-    private static final Logger LOGGER = Logger.getLogger(ProductDao.class.getName());
     private static final String
             DATABASE_CONFIG_PATH = "db.properties",
             URL = "database.url",
@@ -21,14 +19,14 @@ public class DBConnector {
     private Properties properties;
 
 
-    public Properties loadProperties() throws IOException {
+    final public Properties loadProperties() throws IOException {
         InputStream is = ProductDao.class.getClassLoader().getResourceAsStream((DATABASE_CONFIG_PATH));
         properties = new Properties();
         properties.load(is);
         return properties;
     }
 
-    public Connection connectToDb(Properties properties) throws ClassNotFoundException, SQLException {
+    final public Connection connectToDb(Properties properties) throws ClassNotFoundException, SQLException {
         String driverClass = properties.getProperty(DRIVER);
         String url = properties.getProperty(URL);
         String username = properties.getProperty(USERNAME);

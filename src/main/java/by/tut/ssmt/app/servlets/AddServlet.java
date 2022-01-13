@@ -8,6 +8,7 @@ import by.tut.ssmt.services.dataProcessors.AcidsProportionListImpl;
 import by.tut.ssmt.services.dataProcessors.DataProcessorList;
 import by.tut.ssmt.services.exceptions.NullOrEmptyException;
 import by.tut.ssmt.services.formDataCollectors.ProductFormDataCollector;
+import org.apache.log4j.spi.RootLogger;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -16,12 +17,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Logger;
+
 
 @WebServlet("/add")
 public class AddServlet extends HttpServlet {
 
-    private static final Logger LOGGER = Logger.getLogger(AddServlet.class.getName());
     private ArrayList<Product> products;
     final Validator validator = new Validator();
     final DBConnector dbConnector = new DBConnector();
@@ -31,7 +31,6 @@ public class AddServlet extends HttpServlet {
     private boolean productDoesntExist;
 
     public void init() {
-        LOGGER.info("Call to init()");
         products = productDao.select();
         validator.isNotNull(products);
     }
@@ -41,8 +40,12 @@ public class AddServlet extends HttpServlet {
 
         try {
             final Product product = dataCollector.collectFormData(req);
-            verify (product);
-            if (productDoesntExist) {productDao.insert(product);}
+            RootLogger log = (RootLogger) getServletContext().getAttribute("log4");
+            log.info("Log Test");
+            verify(product);
+            if (productDoesntExist) {
+                productDao.insert(product);
+            }
             assignAttributes();
             postToMainPage(req, resp);
 
@@ -72,7 +75,6 @@ public class AddServlet extends HttpServlet {
         }
     }
 
-
     private void assignAttributes() {
         collectProductDataForContext();
         collectProportionForContext();
@@ -81,7 +83,6 @@ public class AddServlet extends HttpServlet {
     private void collectProductDataForContext() {
         products = productDao.select();
         validator.isNotNull(products);
-        LOGGER.info("Content of products, call to init(): " + products);
         getServletContext().setAttribute("productsAttribute", products);
     }
 

@@ -9,8 +9,6 @@ import by.tut.ssmt.services.dataProcessors.DataProcessorList;
 import by.tut.ssmt.services.exceptions.NullOrEmptyException;
 import by.tut.ssmt.services.formDataCollectors.FormDataCollector;
 import by.tut.ssmt.services.formDataCollectors.ProductFormDataCollector;
-import java.util.logging.Logger;
-
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -20,6 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 @WebServlet("/update")
 public class UpdateServlet extends HttpServlet {
@@ -39,14 +38,12 @@ public class UpdateServlet extends HttpServlet {
         validator.isNotNull(products);
     }
 
-
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         final String productId = req.getParameter("productId");
         final Product product = productDao.selectOne(Integer.parseInt(productId));
         validator.isNotNull(product);
         req.setAttribute("product", product);
         req.getRequestDispatcher("/WEB-INF/update.jsp").forward(req, resp);
-
     }
 
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -77,7 +74,6 @@ public class UpdateServlet extends HttpServlet {
         getServletContext().setAttribute("productsAttribute", products);
     }
 
-
     private void collectProportionForContext(ServletContext servletContext) {
         final String formattedProportion = dataProcessorList.calculate(products);
         validator.isNotNull(formattedProportion);
@@ -102,7 +98,6 @@ public class UpdateServlet extends HttpServlet {
 
     private void assignAttribute(ServletContext servletContext) {
         products = productDao.select();
-//        products = ProductDao.select();
         validator.isNotNull(products);
         servletContext.setAttribute("productsAttribute", products);
     }

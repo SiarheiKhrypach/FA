@@ -3,33 +3,30 @@ package by.tut.ssmt.DAO;
 import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
-import java.util.logging.Logger;
 
 public class AbstractDao {
 
     DBConnector dbConnector;
     Connection conn;
-    private static final Logger LOGGER = Logger.getLogger(AbstractDao.class.getName());
 
     AbstractDao(DBConnector dbConnector) {
         this.dbConnector = dbConnector;
     }
 
-    Connection getConnection() throws IOException, SQLException, ClassNotFoundException {
+    final Connection getConnection() throws IOException, SQLException, ClassNotFoundException {
         Properties properties = dbConnector.loadProperties();
         Connection conn = dbConnector.connectToDb(properties);
         return conn;
     }
 
-    ResultSet selectToResultSet(String sqlCommand) throws SQLException, IOException, ClassNotFoundException {
+     final ResultSet selectToResultSet(String sqlCommand) throws SQLException, IOException, ClassNotFoundException {
         conn = getConnection();
-        LOGGER.info("connection - " + conn);
         Statement statement = conn.createStatement();
         ResultSet resultSet = statement.executeQuery(sqlCommand);
         return resultSet;
     }
 
-    ResultSet selectToResultSetWhere(String sqlCommand, int id) throws SQLException, IOException, ClassNotFoundException {
+    final ResultSet selectToResultSetWhere(String sqlCommand, int id) throws SQLException, IOException, ClassNotFoundException {
         Connection conn = getConnection();
         PreparedStatement preparedStatement;
         ResultSet resultSet = null;
@@ -43,7 +40,7 @@ public class AbstractDao {
         return resultSet;
     }
 
-    PreparedStatement prepareStatement(String sqlCommand) throws SQLException, IOException, ClassNotFoundException {
+    final PreparedStatement prepareStatement(String sqlCommand) throws SQLException, IOException, ClassNotFoundException {
         Connection conn = getConnection();
         PreparedStatement preparedStatement = null;
         try {

@@ -4,13 +4,10 @@ import by.tut.ssmt.repository.entities.Product;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 public class AcidsProportionListImpl implements DataProcessorList {
-    private static final Logger LOGGER = Logger.getLogger(AcidsProportionListImpl.class.getName());
 
     public String calculate(ArrayList <Product> products) {
-        LOGGER.info("Products: " + products);
 
         double totalOmegaThree = 0;
         double totalOmegaSix = 0;

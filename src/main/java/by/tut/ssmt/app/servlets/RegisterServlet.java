@@ -14,7 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 @WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
@@ -23,12 +22,10 @@ public class RegisterServlet extends HttpServlet {
     final UserDao userDao = new UserDao(dbConnector);
     boolean loginAndPassAreNotTaken = true;
     private ArrayList<User> users;
-    private static final Logger LOGGER = Logger.getLogger(RegisterServlet.class.getName());
     final UserFormDataCollector dataCollector = new UserFormDataCollector();
 
 
     public void init() {
-        LOGGER.info("Call to init - loginAndPassAreNotTaken - " + loginAndPassAreNotTaken);
         users = userDao.select();
         validator.isNotNull(users);
     }
@@ -58,7 +55,6 @@ public class RegisterServlet extends HttpServlet {
                 loginAndPassAreNotTaken = false;
             }
         }
-        LOGGER.info("loginAndPassAreNotTaken boolean - " + loginAndPassAreNotTaken);
     }
 
     private void postToMainPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

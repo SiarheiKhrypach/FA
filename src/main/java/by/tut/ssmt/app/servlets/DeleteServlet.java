@@ -15,11 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 @WebServlet("/delete")
 public class DeleteServlet extends HttpServlet {
-    private static final Logger LOGGER = Logger.getLogger(DeleteServlet.class.getName());
     private ArrayList<Product> products;
     final DataProcessorList dataProcessorList = new AcidsProportionListImpl();
     final Validator validator = new Validator();

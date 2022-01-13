@@ -1,11 +1,14 @@
 package by.tut.ssmt.DAO;
 
 import by.tut.ssmt.repository.entities.Product;
+import org.apache.log4j.Logger;
+import org.apache.log4j.PropertyConfigurator;
 
 import java.io.IOException;
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
 public class ProductDao extends AbstractDao {
 
@@ -18,10 +21,12 @@ public class ProductDao extends AbstractDao {
     public ProductDao(DBConnector dbConnector) {
         super(dbConnector);
     }
-    private static final Logger LOGGER = Logger.getLogger(ProductDao.class.getName());
 
     public ArrayList<Product> select() {
         ArrayList<Product> products = new ArrayList<>();
+        PropertyConfigurator.configure("C:\\Users\\ssmt\\IdeaProjects\\FA\\src\\main\\resources\\log4j.properties");
+        Logger LOG = Logger.getRootLogger();
+        LOG.info("!!!!!");
         try (ResultSet resultSet = selectToResultSet(SELECT_FROM_TABLE)) {
             while (resultSet.next()) {
                 int productId = resultSet.getInt(1);
@@ -32,14 +37,14 @@ public class ProductDao extends AbstractDao {
                 Product product = new Product(productId, productName, omegaThree, omegaSix, portion);
                 products.add(product);
             }
-        } catch (SQLException | IOException | ClassNotFoundException e) {
+        } catch (SQLException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }catch (IOException e) {
             e.printStackTrace();
         } finally {
             try {
                 if (conn != null)
-                    LOGGER.info("connection before closing: " + conn);
                 conn.close();
-                LOGGER.info("connection after closing: " + conn);
             } catch (SQLException e) {
                 e.printStackTrace();
             }
@@ -48,7 +53,7 @@ public class ProductDao extends AbstractDao {
         return products;
     }
 
-    public Product selectOne(int productId) {
+     public Product selectOne(int productId) {
         Product product = null;
         try (ResultSet resultSet = selectToResultSetWhere(SELECT_FROM_TABLE_WHERE, productId)) {
             if (resultSet.next()) {
