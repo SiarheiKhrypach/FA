@@ -6,6 +6,7 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+import java.util.logging.Logger;
 
 public class DBConnector {
 
@@ -18,10 +19,13 @@ public class DBConnector {
 
     private Properties properties;
 
+    Logger logger = Logger.getLogger("INFO");
+
 
     final public Properties loadProperties() throws IOException {
         InputStream is = ProductDao.class.getClassLoader().getResourceAsStream((DATABASE_CONFIG_PATH));
         properties = new Properties();
+        logger.info("!!!!!!!!!!!!!!!Properties information here");
         properties.load(is);
         return properties;
     }

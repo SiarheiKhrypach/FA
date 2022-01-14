@@ -1,8 +1,6 @@
 package by.tut.ssmt.DAO;
 
 import by.tut.ssmt.repository.entities.Product;
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -24,9 +22,6 @@ public class ProductDao extends AbstractDao {
 
     public ArrayList<Product> select() {
         ArrayList<Product> products = new ArrayList<>();
-        PropertyConfigurator.configure("C:\\Users\\ssmt\\IdeaProjects\\FA\\src\\main\\resources\\log4j.properties");
-        Logger LOG = Logger.getRootLogger();
-        LOG.info("!!!!!");
         try (ResultSet resultSet = selectToResultSet(SELECT_FROM_TABLE)) {
             while (resultSet.next()) {
                 int productId = resultSet.getInt(1);
