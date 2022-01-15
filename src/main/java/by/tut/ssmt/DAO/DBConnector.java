@@ -20,12 +20,12 @@ public class DBConnector {
 
     private Properties properties;
 
-    Logger logger = Logger.getLogger(DBConnector.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(DBConnector.class.getName());
 
     final public Properties loadProperties() throws IOException {
         InputStream is = ProductDao.class.getClassLoader().getResourceAsStream((DATABASE_CONFIG_PATH));
         properties = new Properties();
-        logger.info("!!!!!!!!!!!!!!!Properties information can be here");
+        LOGGER.info("!!!!!!!!!!!!!!!Properties information can be here");
         properties.load(is);
         return properties;
     }
