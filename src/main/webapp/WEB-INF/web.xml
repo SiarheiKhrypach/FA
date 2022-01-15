@@ -48,21 +48,19 @@
 <!--        <url-pattern>/update</url-pattern>-->
 <!--    </servlet-mapping>-->
     
-    <servlet>
-        <servlet-name>Log4jInit</servlet-name>
-        <servlet-class>by.tut.ssmt.app.servlets.Log4jInit</servlet-class>
-        <init-param>
-            <param-name>logfile</param-name>
-            <param-value>WEB-INF\classes\log4j.properties</param-value>
-        </init-param>
-        <load-on-startup>1</load-on-startup>
-    </servlet>
+<!--    <servlet>-->
+<!--        <servlet-name>Log4jInit</servlet-name>-->
+<!--        <servlet-class>by.tut.ssmt.app.servlets.Log4jInit</servlet-class>-->
+<!--        <init-param>-->
+<!--            <param-name>logfile</param-name>-->
+<!--            <param-value>WEB-INF\classes\log4j.properties</param-value>-->
+<!--        </init-param>-->
+<!--        <load-on-startup>1</load-on-startup>-->
+<!--    </servlet>-->
 
-    <servlet-mapping>
-        <servlet-name>Log4jInit</servlet-name>
-        <url-pattern>/Log4jInit</url-pattern>
-    </servlet-mapping>
-
-
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>Log4jInit</servlet-name>-->
+<!--        <url-pattern>/Log4jInit</url-pattern>-->
+<!--    </servlet-mapping>-->
 
 </web-app>
