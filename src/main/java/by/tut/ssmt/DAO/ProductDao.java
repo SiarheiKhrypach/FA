@@ -1,6 +1,7 @@
 package by.tut.ssmt.DAO;
 
 import by.tut.ssmt.repository.entities.Product;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -16,6 +17,7 @@ public class ProductDao extends AbstractDao {
     private static final String UPDATE_TABLE = "UPDATE products SET product_name = ?, omega_three = ?, omega_six = ?, portion = ? WHERE product_id = ?";
     private static final String DELETE_FROM_TABLE = "DELETE FROM products WHERE product_id = ?";
 
+    private static final Logger LOGGER = Logger.getLogger(ProductDao.class.getName());
     public ProductDao(DBConnector dbConnector) {
         super(dbConnector);
     }
@@ -33,15 +35,18 @@ public class ProductDao extends AbstractDao {
                 products.add(product);
             }
         } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.error("Error: ", e);
+            e.printStackTrace();//todo remove
         }catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Error: ", e);
+            e.printStackTrace();//todo remove
         } finally {
             try {
                 if (conn != null)
                 conn.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error("Error: ", e);
+                e.printStackTrace();//todo remove
             }
         }
 
@@ -60,13 +65,15 @@ public class ProductDao extends AbstractDao {
                 product = new Product(productID, productName, omegaThree, omegaSix, portion);
             }
         } catch (SQLException | IOException | ClassNotFoundException e) {
-            System.out.println("SQLException caught");
+            System.out.println("SQLException caught");//todo remove
+            LOGGER.error("Error: ", e);
         } finally {
             try {
                 if (conn != null)
                     conn.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error("Error: ", e);
+                e.printStackTrace();//todo remove
             }
         }
         return product;
@@ -81,13 +88,14 @@ public class ProductDao extends AbstractDao {
             preparedStatement.setInt(4, product.getPortion());
             preparedStatement.executeUpdate();
         } catch (SQLException | IOException | ClassNotFoundException e) {
-            System.out.println("SQLException caught");
+            System.out.println("SQLException caught");//todo remove
         } finally {
             try {
                 if (conn != null)
                     conn.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error("Error: ", e);
+                e.printStackTrace();//todo remove
             }
         }
     }
@@ -108,7 +116,8 @@ public class ProductDao extends AbstractDao {
                 if (conn != null)
                     conn.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error("Error: ", e);
+                e.printStackTrace();//todo remove
             }
         }
     }
@@ -123,7 +132,8 @@ public class ProductDao extends AbstractDao {
                 if (conn != null)
                     conn.close();
             } catch (SQLException e) {
-                e.printStackTrace();
+                LOGGER.error("Error: ", e);
+                e.printStackTrace(); //todo remove
             }
         }
     }

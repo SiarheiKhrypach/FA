@@ -1,5 +1,7 @@
 package by.tut.ssmt.DAO;
 
+import org.apache.log4j.Logger;
+
 import java.io.IOException;
 import java.sql.*;
 import java.util.Properties;
@@ -8,6 +10,7 @@ public class AbstractDao {
 
     DBConnector dbConnector;
     Connection conn;
+    private static final Logger LOGGER = Logger.getLogger(AbstractDao.class.getName());
 
     AbstractDao(DBConnector dbConnector) {
         this.dbConnector = dbConnector;
@@ -35,7 +38,8 @@ public class AbstractDao {
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error("SQLException", e);
+            e.printStackTrace(); //todo remove
         }
         return resultSet;
     }
@@ -57,7 +61,8 @@ public class AbstractDao {
             preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.error("SQLException", e);
+            e.printStackTrace(); //todo
         }
     }
 }

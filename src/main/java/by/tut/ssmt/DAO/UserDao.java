@@ -1,6 +1,7 @@
 package by.tut.ssmt.DAO;
 
 import by.tut.ssmt.repository.entities.User;
+import org.apache.log4j.Logger;
 
 import java.io.IOException;
 import java.sql.PreparedStatement;
@@ -20,6 +21,8 @@ public class UserDao extends AbstractDao {
         super(dbConnector);
     }
 
+    private static final Logger LOGGER = Logger.getLogger(UserDao.class.getName());
+
     public ArrayList<User> select() {
         ArrayList<User> users = new ArrayList<>();
         try (ResultSet resultSet = selectToResultSet(SELECT_FROM_TABLE)) {
@@ -31,7 +34,8 @@ public class UserDao extends AbstractDao {
                 users.add(user);
             }
         } catch (SQLException | IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.error("Error:", e);
+            e.printStackTrace(); //todo remove
         }
         return users;
     }
@@ -45,8 +49,8 @@ public class UserDao extends AbstractDao {
                 String password = resultSet.getString(3);
                 user = new User(productId, name, password);
             }
-        } catch (SQLException | IOException | ClassNotFoundException throwables) {
-            System.out.println("SQLException caught");
+        } catch (SQLException | IOException | ClassNotFoundException e) {
+            LOGGER.error("Error: ", e);
         }
         return user;
     }
@@ -56,8 +60,9 @@ public class UserDao extends AbstractDao {
             preparedStatement.setString(1, user.getUserName());
             preparedStatement.setString(2, user.getPassword());
             preparedStatement.executeUpdate();
-        } catch (SQLException | IOException | ClassNotFoundException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException | IOException | ClassNotFoundException e) {
+            LOGGER.error("Error: ", e);
+            e.printStackTrace(); //todo remove
         }
     }
 
@@ -66,8 +71,8 @@ public class UserDao extends AbstractDao {
             preparedStatement.setString(1, user.getPassword());
             preparedStatement.setString(2, user.getUserName());
             preparedStatement.executeUpdate();
-        } catch (SQLException | IOException | ClassNotFoundException throwables) {
-            System.out.println("SQLException caught");
+        } catch (SQLException | IOException | ClassNotFoundException e) {
+            LOGGER.error("Error: ", e);
         }
     }
 
@@ -75,7 +80,8 @@ public class UserDao extends AbstractDao {
         try {
             super.delete(DELETE_FROM_TABLE, userId);
         } catch (SQLException | IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.error("Error: ", e);
+            e.printStackTrace(); //todo remove
         }
     }
 }
