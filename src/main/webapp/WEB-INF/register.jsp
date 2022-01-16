@@ -20,10 +20,10 @@
 
     <form method="post">
         <label>Name:
-            <input type="text" name="name" maxlength="30"><br/>
+            <input type="text" name="name" maxlength="30" required><br/>
         </label>
         <label>Password:
-            <input type="password" name="pass" maxlength="30"><br/>
+            <input type="password" name="pass" maxlength="30" required><br/>
         </label>
         <button type="submit">Sumbit</button>
     </form>

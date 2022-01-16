@@ -29,16 +29,16 @@ Welcome to the Fatty Acids! <br>
 <form class="w3-container w3-light-grey" method="post" action="<c:url value='/add'/>">
 
     <label>Product Name:</label>
-    <input class="w3-input w3-border-0" type="text" class="register-input" name="productName">
+    <input class="w3-input w3-border-0" type="text" class="register-input" name="productName" required>
 
     <label>Omega-3 content, mg:</label>
-    <input class="w3-input w3-border-0" type="number" class="register-input" name="omegaThree" min="0" step="0.1">
+    <input class="w3-input w3-border-0" type="number" class="register-input" name="omegaThree" min="0" step="0.1" required>
 
     <label>Omega-6 content, mg:</label>
-    <input class="w3-input w3-border-0" type="number" class="register-input" name="omegaSix" min="0" step="0.1">
+    <input class="w3-input w3-border-0" type="number" class="register-input" name="omegaSix" min="0" step="0.1" required>
 
     <label>Number of portions (1pt = 28g):</label>
-    <input class="w3-input w3-border-0" type="number" class="register-input" name="portions" min="1">
+    <input class="w3-input w3-border-0" type="number" class="register-input" name="portions" min="1" required>
 
     <input type="submit" value="Add" name="Add">
 
