@@ -29,8 +29,8 @@ public class Validator {
 
 
     public void isNotNullOrEmpty(String s) throws NullOrEmptyException {
-        if (isNull(s) || "".equals(s)) {
-            throw new   NullOrEmptyException("The incoming string is null");
+        if (isNull(s) || "".equals(s.trim())) {
+            throw new   NullOrEmptyException("The incoming string is null or empty");
         }
     }
 }
