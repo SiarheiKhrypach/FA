@@ -8,7 +8,8 @@ import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
-@WebServlet (
+@WebServlet
+        (
         name = "Log4jInit",
         urlPatterns = "/Log4jInit",
         initParams = {@WebInitParam(name = "logfile", value = "WEB-INF\\classes\\log4j.properties")},
@@ -25,5 +26,6 @@ public class Log4jInit extends HttpServlet {
         getServletContext().setAttribute("log4", globalLog);
         getServletContext().setAttribute("logfilename", logFileName);
         globalLog.info("Log4jInit Servlet");
+
     }
 }

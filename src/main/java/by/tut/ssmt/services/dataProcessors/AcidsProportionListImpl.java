@@ -23,6 +23,4 @@ public class AcidsProportionListImpl implements DataProcessorList {
         }
         return proportion;
     }
-
-
 }

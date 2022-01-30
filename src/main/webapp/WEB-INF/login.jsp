@@ -20,8 +20,10 @@
             <h2>Log in</h2>
         </div>
 
-        <form method="post">
-            <label>Name:
+        <form method="post" action="<c:url value='/'/>">
+            <input type="hidden" name="command" value="login"/>
+
+        <label>Name:
                 <input type="text" name="name" maxlength="30" required><br />
             </label>
             <label>Password:

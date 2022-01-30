@@ -29,6 +29,7 @@ public class ContextListener implements ServletContextListener {
 
     public void contextInitialized(ServletContextEvent servletContextEvent) {
         ServletContext servletContext = servletContextEvent.getServletContext();
+        servletContext.setAttribute("command", "default");
         setUserInitialData(servletContext);
         setProductInitialData(servletContext);
         collectProportionForContext(servletContext);

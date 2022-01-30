@@ -18,7 +18,8 @@
     <h2>Registration</h2>
 </div>
 
-    <form method="post">
+    <form method="post" action="<c:url value='/'/>">
+        <input type="hidden" name="command" value="register"/>
         <label>Name:
             <input type="text" name="name" maxlength="30" required><br/>
         </label>

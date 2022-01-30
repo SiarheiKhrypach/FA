@@ -1,7 +1,8 @@
-package by.tut.ssmt.app.servlets;
+package by.tut.ssmt.command.impl;
 
 import by.tut.ssmt.DAO.DBConnector;
 import by.tut.ssmt.DAO.ProductDao;
+import by.tut.ssmt.command.Command;
 import by.tut.ssmt.repository.entities.Product;
 import by.tut.ssmt.services.Validator;
 import by.tut.ssmt.services.dataProcessors.AcidsProportionListImpl;
@@ -9,21 +10,17 @@ import by.tut.ssmt.services.dataProcessors.DataProcessorList;
 import by.tut.ssmt.services.exceptions.NullOrEmptyException;
 import by.tut.ssmt.services.formDataCollectors.FormDataCollector;
 import by.tut.ssmt.services.formDataCollectors.ProductFormDataCollector;
+import org.apache.log4j.Logger;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.logging.Logger;
 
-@WebServlet("/update")
-public class UpdateServlet extends HttpServlet {
-
-    private static final Logger LOGGER = Logger.getLogger(AddServlet.class.getName()) ;
+public class EditCommand implements Command {
+    private static final Logger LOGGER = Logger.getLogger(EditCommand.class.getName()) ;
     private ArrayList<Product> products;
     final Validator validator = new Validator();
     final DBConnector dbConnector = new DBConnector();
@@ -32,31 +29,22 @@ public class UpdateServlet extends HttpServlet {
     final FormDataCollector dataCollector = new ProductFormDataCollector();
     private boolean productDoesntExist;
 
-    public void init() {
-        LOGGER.info("Call to init()");
+
+    @Override
+    public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         products = productDao.select();
         validator.isNotNull(products);
-    }
 
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        final String productId = req.getParameter("productId");
-        final Product product = productDao.selectOne(Integer.parseInt(productId));
-        validator.isNotNull(product);
-        req.setAttribute("product", product);
-        req.getRequestDispatcher("/WEB-INF/update.jsp").forward(req, resp);
-    }
-
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         try {
             resetData(req);
-            collectProportionForContext(getServletContext());
+            collectProportionForContext(req);
             postToMainPage(req, resp);
 
         } catch (NullOrEmptyException e) {
-            assignAttribute();
+            assignAttribute(req);
             req.setAttribute("message", "Please enter a valid name");
             req.setAttribute("products", products);
-            collectProportionForContext(getServletContext());
+            collectProportionForContext(req);
             req.getRequestDispatcher("index.jsp").forward(req, resp);
         }
     }
@@ -68,23 +56,23 @@ public class UpdateServlet extends HttpServlet {
         req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
 
-    private void assignAttribute() {
+    private void assignAttribute(HttpServletRequest req) {
         products = productDao.select();
         validator.isNotNull(products);
-        getServletContext().setAttribute("productsAttribute", products);
+        req.setAttribute("productsAttribute", products);
     }
 
-    private void collectProportionForContext(ServletContext servletContext) {
+    private void collectProportionForContext(HttpServletRequest req) {
         final String formattedProportion = dataProcessorList.calculate(products);
         validator.isNotNull(formattedProportion);
-        servletContext.setAttribute("proportion", formattedProportion);
+        req.setAttribute("proportion", formattedProportion);
     }
 
     private void resetData(HttpServletRequest req) throws NullOrEmptyException {
         Product product = getProduct(req);
         verifyIfExist (product);
         productDao.update(product);
-        assignAttribute(getServletContext());
+        assignAttribute(req);
     }
 
     private void verifyIfExist(Product product) {

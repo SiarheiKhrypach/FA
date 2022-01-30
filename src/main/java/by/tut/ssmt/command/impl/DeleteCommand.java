@@ -1,23 +1,21 @@
-package by.tut.ssmt.app.servlets;
+package by.tut.ssmt.command.impl;
 
 import by.tut.ssmt.DAO.DBConnector;
 import by.tut.ssmt.DAO.ProductDao;
+import by.tut.ssmt.command.Command;
 import by.tut.ssmt.repository.entities.Product;
 import by.tut.ssmt.services.Validator;
 import by.tut.ssmt.services.dataProcessors.AcidsProportionListImpl;
 import by.tut.ssmt.services.dataProcessors.DataProcessorList;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
-import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
 
-@WebServlet("/delete")
-public class DeleteServlet extends HttpServlet {
+public class DeleteCommand implements Command {
+
     private ArrayList<Product> products;
     final DataProcessorList dataProcessorList = new AcidsProportionListImpl();
     final Validator validator = new Validator();
@@ -25,26 +23,22 @@ public class DeleteServlet extends HttpServlet {
     final ProductDao productDao = new ProductDao(dbConnector);
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        productDao.delete(Integer.parseInt(req.getParameter("productId")));
-        assignAttribute(getServletContext());
-        collectProportionForContext(getServletContext());
-        req.getRequestDispatcher("index.jsp").forward(req, resp);
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        productDao.delete(Integer.parseInt(request.getParameter("productId")));
+        assignAttribute(request);
+        collectProportionForContext(request);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
-    private void assignAttribute(ServletContext servletContext) {
+    private void assignAttribute(HttpServletRequest request) {
         products = productDao.select();
         validator.isNotNull(products);
-        servletContext.setAttribute("productsAttribute", products);
+        request.setAttribute("productsAttribute", products);
     }
 
-    private void collectProportionForContext(ServletContext servletContext) {
+    private void collectProportionForContext(HttpServletRequest request) {
         final String formattedProportion = dataProcessorList.calculate(products);
         validator.isNotNull(formattedProportion);
-        servletContext.setAttribute("proportion", formattedProportion);
-    }
-
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        request.setAttribute("proportion", formattedProportion);
     }
 }

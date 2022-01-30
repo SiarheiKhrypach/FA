@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 public class ProductFormDataCollector extends FormDataCollector {
 
     public Product collectFormData (HttpServletRequest req) throws NullOrEmptyException {
-        final String productName = req.getParameter("productName");
+        final String productName = req.getParameter("productName").trim();
         validator.isNotNullOrEmpty(productName);
         final String omegaThree = req.getParameter("omegaThree");
         validator.isNotNullOrEmpty(omegaThree);
