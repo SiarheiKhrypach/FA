@@ -23,22 +23,22 @@ public class DeleteCommand implements Command {
     final ProductDao productDao = new ProductDao(dbConnector);
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        productDao.delete(Integer.parseInt(request.getParameter("productId")));
-        assignAttribute(request);
-        collectProportionForContext(request);
-        request.getRequestDispatcher("index.jsp").forward(request, response);
+    public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        productDao.delete(Integer.parseInt(req.getParameter("productId")));
+        assignAttribute(req);
+        collectProportionForContext(req);
+        req.getRequestDispatcher("index.jsp").forward(req, resp);
     }
 
-    private void assignAttribute(HttpServletRequest request) {
+    private void assignAttribute(HttpServletRequest req) {
         products = productDao.select();
         validator.isNotNull(products);
-        request.setAttribute("productsAttribute", products);
+        req.setAttribute("productsAttribute", products);
     }
 
-    private void collectProportionForContext(HttpServletRequest request) {
+    private void collectProportionForContext(HttpServletRequest req) {
         final String formattedProportion = dataProcessorList.calculate(products);
         validator.isNotNull(formattedProportion);
-        request.setAttribute("proportion", formattedProportion);
+        req.setAttribute("proportion", formattedProportion);
     }
 }
