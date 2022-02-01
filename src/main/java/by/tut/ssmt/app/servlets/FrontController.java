@@ -20,7 +20,7 @@ import static java.util.Objects.isNull;
 @WebServlet
   (
           name = "FrontController",
-          urlPatterns = {""},
+          urlPatterns = {"", "/update", "/register", "/login"},
           initParams = {@WebInitParam(name = "command", value = "default")}
         )
 public class FrontController extends HttpServlet {
@@ -41,12 +41,10 @@ public class FrontController extends HttpServlet {
         commands.put("add", new AddCommand());
         commands.put("default", new DefaultCommand());
         commands.put("delete", new DeleteCommand());
-        commands.put("editform", new EditFormCommand());
         commands.put("edit", new EditCommand());
+        commands.put("form", new FormsAccessCommand());
         commands.put("login", new LoginCommand());
-        commands.put("loginform", new LoginFormCommand());
         commands.put("register", new RegisterCommand());
-        commands.put("registerform", new RegisterFormCommand());
     }
 
 

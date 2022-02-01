@@ -18,15 +18,15 @@ Welcome to the Fatty Acids! <br>
 
 <div>
     <div>
-        <form id="login" method="get" action="/" >
-            <input type="hidden" name="command" value="loginform"/>
+        <form id="login" method="get" action="/login" >
+            <input type="hidden" name="command" value="form"/>
             <button form="login" type="submit">Log in</button>
         </form>
     </div>
 
     <div>
-        <form id="register" method="get" action="/" >
-            <input type="hidden" name="command" value="registerform"/>
+        <form id="register" method="get" action="/register" >
+            <input type="hidden" name="command" value="form"/>
             <button form="register" type="submit">Register</button>
         </form>
     </div>
@@ -87,9 +87,9 @@ Welcome to the Fatty Acids! <br>
                     </td>
 
                     <td>
-                            <form method="get" action="<c:url value='/'/>">
+                            <form method="get" action="/update">
                             <input type="number" hidden name="productId" value="${product.productId}" />
-                            <input type="hidden" name="command" value="editform" />
+                            <input type="hidden" name="command" value="form" />
                             <input type="submit" name="Edit" value="Edit"/>
                         </form>
                     </td>

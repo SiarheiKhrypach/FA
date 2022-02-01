@@ -9,5 +9,4 @@ import java.io.IOException;
 
 public interface Command {
 void execute (final HttpServletRequest request, final HttpServletResponse response) throws ControllerException, ServletException, IOException;
-//void execute (final HttpServletRequest request, final HttpServletResponse response) throws ControllerException, ServletException, IOException;
 }
