@@ -22,11 +22,11 @@ public class DefaultCommand implements Command {
     public static final Logger LOGGER = Logger.getLogger(DefaultCommand.class.getName());
 
     @Override
-    public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         products = productDao.select();
         validator.isNotNull(products);
-        req.setAttribute("productsAttribute", products);
+        request.setAttribute("productsAttribute", products);
         LOGGER.info("Enter to Servlet");
-        req.getRequestDispatcher("index.jsp").forward(req, resp);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 }

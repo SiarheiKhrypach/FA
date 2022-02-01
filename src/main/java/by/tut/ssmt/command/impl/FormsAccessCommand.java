@@ -11,9 +11,9 @@ import java.io.IOException;
 public class FormsAccessCommand implements Command {
 
     @Override
-    public void execute(HttpServletRequest req, HttpServletResponse resp) throws ControllerException, ServletException, IOException {
-        String uri = req.getRequestURI().replace("/", "");
-        req.getRequestDispatcher("/WEB-INF/" + uri + ".jsp").forward(req, resp);
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException, ServletException, IOException {
+        String uri = request.getRequestURI().replace("/", "");
+        request.getRequestDispatcher("/WEB-INF/" + uri + ".jsp").forward(request, response);
     }
 }
 

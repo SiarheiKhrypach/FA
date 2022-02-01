@@ -24,17 +24,17 @@ public class RegisterCommand implements Command {
     final UserFormDataCollector dataCollector = new UserFormDataCollector();
 
     @Override
-    public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         users = userDao.select();
         validator.isNotNull(users);
         try {
-            User user = dataCollector.collectFormData(req);
+            User user = dataCollector.collectFormData(request);
             verify (user);
             if (loginAndPassAreNotTaken) {userDao.insert(user);}
-            postToMainPage(req, resp);
+            postToMainPage(request, response);
         } catch (NullOrEmptyException | ServletException | IOException e) {
-            req.setAttribute("message", "Please fill out the form");
-            req.getRequestDispatcher("/WEB-INF/register.jsp").forward(req, resp);
+            request.setAttribute("message", "Please fill out the form");
+            request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
         }
     }
 
@@ -47,12 +47,12 @@ public class RegisterCommand implements Command {
         }
     }
 
-    private void postToMainPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void postToMainPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (loginAndPassAreNotTaken) {
-            req.getRequestDispatcher("index.jsp").forward(req, resp);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {
-            req.setAttribute("message", "User name or/and password are already in use, try one more time");
-            req.getRequestDispatcher("/WEB-INF/register.jsp").forward(req, resp);
+            request.setAttribute("message", "User name or/and password are already in use, try one more time");
+            request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
         }
     }
     }

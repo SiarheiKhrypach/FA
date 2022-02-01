@@ -31,48 +31,48 @@ public class EditCommand implements Command {
 
 
     @Override
-    public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         products = productDao.select();
         validator.isNotNull(products);
 
         try {
-            resetData(req);
-            collectProportionForContext(req);
-            postToMainPage(req, resp);
+            resetData(request);
+            collectProportionForContext(request);
+            postToMainPage(request, response);
 
         } catch (NullOrEmptyException e) {
-            assignAttribute(req);
-            req.setAttribute("message", "Please enter a valid name");
-            req.setAttribute("products", products);
-            collectProportionForContext(req);
-            req.getRequestDispatcher("index.jsp").forward(req, resp);
+            assignAttribute(request);
+            request.setAttribute("message", "Please enter a valid name");
+            request.setAttribute("products", products);
+            collectProportionForContext(request);
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
 
-    private void postToMainPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void postToMainPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (!productDoesntExist) {
-            req.setAttribute("message", "The list already has product with such name");
+            request.setAttribute("message", "The list already has product with such name");
         }
-        req.getRequestDispatcher("index.jsp").forward(req, resp);
+        request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
-    private void assignAttribute(HttpServletRequest req) {
+    private void assignAttribute(HttpServletRequest request) {
         products = productDao.select();
         validator.isNotNull(products);
-        req.setAttribute("productsAttribute", products);
+        request.setAttribute("productsAttribute", products);
     }
 
-    private void collectProportionForContext(HttpServletRequest req) {
+    private void collectProportionForContext(HttpServletRequest request) {
         final String formattedProportion = dataProcessorList.calculate(products);
         validator.isNotNull(formattedProportion);
-        req.setAttribute("proportion", formattedProportion);
+        request.setAttribute("proportion", formattedProportion);
     }
 
-    private void resetData(HttpServletRequest req) throws NullOrEmptyException {
-        Product product = getProduct(req);
+    private void resetData(HttpServletRequest request) throws NullOrEmptyException {
+        Product product = getProduct(request);
         verifyIfExist (product);
         productDao.update(product);
-        assignAttribute(req);
+        assignAttribute(request);
     }
 
     private void verifyIfExist(Product product) {
@@ -90,10 +90,10 @@ public class EditCommand implements Command {
         servletContext.setAttribute("productsAttribute", products);
     }
 
-    private Product getProduct(HttpServletRequest req) throws NullOrEmptyException {
-        final String productId = req.getParameter("productId");
+    private Product getProduct(HttpServletRequest request) throws NullOrEmptyException {
+        final String productId = request.getParameter("productId");
         validator.isNotNullOrEmpty(productId);
-        final Product product = (Product) dataCollector.collectFormData(req);
+        final Product product = (Product) dataCollector.collectFormData(request);
         product.setProductId(Integer.parseInt(productId));
         return product;
     }

@@ -20,11 +20,11 @@ public class EditFormCommand extends FormsAccessCommand {
     final ProductDao productDao = new ProductDao(dbConnector);
 
     @Override
-    public void execute(HttpServletRequest req, HttpServletResponse resp) throws ControllerException, ServletException, IOException {
-        final String productId = req.getParameter("productId");
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException, ServletException, IOException {
+        final String productId = request.getParameter("productId");
         final Product product = productDao.selectOne(Integer.parseInt(productId));
         validator.isNotNull(product);
-        req.setAttribute("product", product);
-        super.execute(req, resp);
+        request.setAttribute("product", product);
+        super.execute(request, response);
     }
 }

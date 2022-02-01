@@ -50,27 +50,27 @@ public class FrontController extends HttpServlet {
 
 
     @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doExecute(req, resp);
+    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doExecute(request, response);
     }
 
     @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        doExecute(req, resp);
+    protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        doExecute(request, response);
     }
 
-    private void doExecute(HttpServletRequest req, HttpServletResponse resp) {
+    private void doExecute(HttpServletRequest request, HttpServletResponse response) {
         RootLogger log = (RootLogger) getServletContext().getAttribute("log4");
         try {
-            final String command = getCommand(req);
-            commands.get(command).execute(req, resp);
+            final String command = getCommand(request);
+            commands.get(command).execute(request, response);
         } catch (ControllerException | ServletException | IOException e) {
             log.error("Error: ", e);
         }
     }
 
-    private String getCommand(HttpServletRequest req) {
-        String commandNameParam = req.getParameter("command");
+    private String getCommand(HttpServletRequest request) {
+        String commandNameParam = request.getParameter("command");
         if (isNull(commandNameParam)) {
             commandNameParam = "default";
         }

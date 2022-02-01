@@ -29,22 +29,22 @@ public class AddCommand implements Command {
 
 
     @Override
-    public void execute(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         products = productDao.select();
         validator.isNotNull(products);
         try {
-            final Product product = dataCollector.collectFormData(req);
+            final Product product = dataCollector.collectFormData(request);
             verify(product);
             if (productDoesntExist) {
                 productDao.insert(product);
             }
-            assignAttributes(req);
-            postToMainPage(req, resp);
+            assignAttributes(request);
+            postToMainPage(request, response);
 
         } catch (NullOrEmptyException e) {
-            assignAttributes(req);
-            req.setAttribute("message", "Please enter valid data");
-            req.getRequestDispatcher("index.jsp").forward(req, resp);
+            assignAttributes(request);
+            request.setAttribute("message", "Please enter valid data");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
 
     }
@@ -58,17 +58,17 @@ public class AddCommand implements Command {
         }
     }
 
-    private void postToMainPage(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    private void postToMainPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (productDoesntExist) {
-            resp.sendRedirect(req.getContextPath() + "/");
+            response.sendRedirect(request.getContextPath() + "/");
         } else {
-            req.setAttribute("message", "The list already has product with such name");
-            req.getRequestDispatcher("index.jsp").forward(req, resp);
+            request.setAttribute("message", "The list already has product with such name");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
 
-    private void assignAttributes(HttpServletRequest req) {
-        HttpSession session = req.getSession();
+    private void assignAttributes(HttpServletRequest request) {
+        HttpSession session = request.getSession();
         collectProductData(session);
         collectProportion(session);
     }
