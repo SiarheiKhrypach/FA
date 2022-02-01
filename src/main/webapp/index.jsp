@@ -89,7 +89,7 @@ Welcome to the Fatty Acids! <br>
                     <td>
                             <form method="get" action="/update">
                             <input type="number" hidden name="productId" value="${product.productId}" />
-                            <input type="hidden" name="command" value="form" />
+                            <input type="hidden" name="command" value="editform" />
                             <input type="submit" name="Edit" value="Edit"/>
                         </form>
                     </td>

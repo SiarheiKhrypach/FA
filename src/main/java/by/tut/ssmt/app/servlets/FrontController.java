@@ -42,6 +42,7 @@ public class FrontController extends HttpServlet {
         commands.put("default", new DefaultCommand());
         commands.put("delete", new DeleteCommand());
         commands.put("edit", new EditCommand());
+        commands.put("editform", new EditFormCommand());
         commands.put("form", new FormsAccessCommand());
         commands.put("login", new LoginCommand());
         commands.put("register", new RegisterCommand());
