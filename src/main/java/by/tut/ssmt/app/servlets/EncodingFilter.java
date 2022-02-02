@@ -2,15 +2,7 @@ package by.tut.ssmt.app.servlets;
 
 
 import javax.servlet.*;
-import javax.servlet.annotation.WebFilter;
-import javax.servlet.annotation.WebInitParam;
 import java.io.IOException;
-
-@WebFilter(
-        urlPatterns = "/*",
-        initParams = {@WebInitParam(name = "encoding", value = "UTF-8")},
-        filterName = "EncodingFilter"
-)
 
 public class EncodingFilter implements Filter {
 
