@@ -9,7 +9,7 @@
 <html>
 <head>
     <title>Page not found</title>
-</head>
+</head>,
 <body>
 <h3>Page not found</h3>
 </body>
