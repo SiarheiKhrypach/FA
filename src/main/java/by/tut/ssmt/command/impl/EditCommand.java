@@ -42,7 +42,7 @@ public class EditCommand implements Command {
 
         } catch (NullOrEmptyException e) {
             assignAttribute(request);
-            request.setAttribute("message", "Please enter a valid name");
+            request.setAttribute("message", "Please enter valid data");
             request.setAttribute("products", products);
             collectProportionForContext(request);
             request.getRequestDispatcher("index.jsp").forward(request, response);

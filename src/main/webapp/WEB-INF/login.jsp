@@ -1,4 +1,3 @@
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: ssmt
@@ -7,29 +6,52 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<head>
-    <title>Login</title>
-</head>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+<html>
+<link rel="stylesheet" href="w3.css"/>
+
+<fmt:setLocale value="${sessionScope.locale}"/>
+<fmt:setBundle basename="localization.local" var="loc"/>
+<fmt:message bundle="${loc}" key="local.text.login" var="login"/>
+<fmt:message bundle="${loc}" key="local.form.name" var="name"/>
+<fmt:message bundle="${loc}" key="local.form.password" var="password"/>
+<fmt:message bundle="${loc}" key="local.button.submit" var="submit"/>
+<fmt:message bundle="${loc}" key="local.button.back" var="back"/>
+<fmt:message bundle="${loc}" key="local.message.fill_the_form" var="fill_the_form"/>
+<fmt:message bundle="${loc}" key="local.message.invalid_credentials" var="invalid_credentials"/>
+
+<head>
+    <title>
+        <c:out value="${login}"/>
+    </title>
+</head>
 
 <body>
 
     <div>
         <div>
-            <h2>Log in</h2>
+            <h2>
+                <c:out value="${login}"/>
+            </h2>
         </div>
 
         <form method="post" action="<c:url value='/'/>">
             <input type="hidden" name="command" value="login"/>
 
-        <label>Name:
+        <label><c:out value="${name}"/>
                 <input type="text" name="name" maxlength="30" required><br />
             </label>
-            <label>Password:
+            <label><c:out value="${password}"/>
                 <input type="password" name="pass" maxlength="30" required><br />
             </label>
-            <button type="submit">Submit</button>
+            <button type="submit">
+                <c:out value="${submit}"/>
+            </button>
         </form>
     </div>
 
@@ -37,9 +59,17 @@
 </body>
 
 <div>
-<button onclick="location.href='..'">Back to main </button>
+<button onclick="location.href='..'">
+    <c:out value="${back}"/>
+</button>
 </div>
 
-<p><c:out value="${message}" default="" /></p>
+<c:if test="${fn:contains(message, 'Please fill out the form')}">
+    <c:out value="${fill_the_form}"/>
+</c:if>
+
+<c:if test="${fn:contains(message, 'User name or/and password are not valid' )}">
+    <c:out value="${invalid_credentials}"/>
+</c:if>
 
 </html>

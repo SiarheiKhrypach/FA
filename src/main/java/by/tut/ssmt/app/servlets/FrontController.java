@@ -18,10 +18,10 @@ import java.util.Map;
 import static java.util.Objects.isNull;
 
 @WebServlet
-  (
-          name = "FrontController",
-          urlPatterns = {"", "/update", "/register", "/login"},
-          initParams = {@WebInitParam(name = "command", value = "default")}
+        (
+                name = "FrontController",
+                urlPatterns = {"", "/update", "/register", "/login"},
+                initParams = {@WebInitParam(name = "command", value = "default")}
         )
 public class FrontController extends HttpServlet {
 
@@ -59,14 +59,31 @@ public class FrontController extends HttpServlet {
         doExecute(request, response);
     }
 
-    private void doExecute(HttpServletRequest request, HttpServletResponse response) {
+    private void doExecute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        boolean isRequiredForward = true;
         RootLogger log = (RootLogger) getServletContext().getAttribute("log4");
-        try {
-            final String command = getCommand(request);
-            commands.get(command).execute(request, response);
-        } catch (ControllerException | ServletException | IOException e) {
-            log.error("Error: ", e);
+        isRequiredForward = processLocale(request, response);
+        if (isRequiredForward) {
+            try {
+                final String command = getCommand(request);
+                commands.get(command).execute(request, response);
+            } catch (ControllerException | ServletException | IOException e) {
+                log.error("Error: ", e);
+            }
         }
+    }
+
+    private boolean processLocale(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        boolean isRequiredForward = true;
+        String command = request.getParameter("command");
+        if ("locale".equals(command)) {
+            request.setAttribute("command", "default");
+            String locale = request.getParameter("locale");
+            request.getSession().setAttribute("locale", locale);
+            isRequiredForward = false;
+            response.sendRedirect("/");
+        }
+        return isRequiredForward;
     }
 
     private String getCommand(HttpServletRequest request) {
