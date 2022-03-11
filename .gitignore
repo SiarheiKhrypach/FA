@@ -1,7 +1,7 @@
 .gradle
 .classpath
 .project
-.idea
+controller/src/main/java/by.tut.ssmt/.idea
 *.iml
 target
 bin
