@@ -1,8 +1,5 @@
 package by.tut.ssmt.service;
 
-import by.tut.ssmt.dao.DAO.DBConnector;
-import by.tut.ssmt.dao.DAO.ProductDaoImpl;
-import by.tut.ssmt.dao.DAO.UserDaoImpl;
 import by.tut.ssmt.service.dataProcessors.AcidsProportionListImpl;
 import by.tut.ssmt.service.dataProcessors.DataProcessorList;
 import by.tut.ssmt.service.impl.ProductServiceImpl;
@@ -17,10 +14,10 @@ public class ServiceFactory {
 
     private final DataProcessorList dataProcessorList = new AcidsProportionListImpl();
     private final Validator validator = new Validator();
-    private final DBConnector dbConnector = new DBConnector();
-    private final ProductDaoImpl productDaoImpl = new ProductDaoImpl(dbConnector);
+//    private final DBConnector dbConnector = new DBConnector();
+//    private final ProductDaoImpl productDaoImpl = new ProductDaoImpl(dbConnector);
     private final ProductService productService = new ProductServiceImpl();
-    private final UserDaoImpl userDaoImpl = new UserDaoImpl(dbConnector);
+//    private final UserDaoImpl userDaoImpl = new UserDaoImpl(dbConnector);
     private final UserService userService = new UserServiceImpl();
 
     private ServiceFactory() {
@@ -42,13 +39,13 @@ public class ServiceFactory {
 //        return dbConnector;
 //    }
 
-    public ProductDaoImpl getProductDaoImpl() {
-        return productDaoImpl;
-    }
+//    public ProductDaoImpl getProductDaoImpl() {
+//        return productDaoImpl;
+//    }
 
-    public UserDaoImpl getUserDaoImpl() {
-        return userDaoImpl;
-    }
+//    public UserDaoImpl getUserDaoImpl() {
+//        return userDaoImpl;
+//    }
 
     public ProductService getProductService() {
         return productService;

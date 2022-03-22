@@ -1,5 +1,6 @@
 package by.tut.ssmt.dao.DAO;
 
+import by.tut.ssmt.dao.exception.DaoException;
 import by.tut.ssmt.dao.repository.entities.User;
 import org.apache.log4j.Logger;
 
@@ -23,7 +24,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao{
 
     private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class.getName());
 
-    public ArrayList<User> select() {
+    public ArrayList<User> select() throws DaoException {
         ArrayList<User> users = new ArrayList<>();
         try (ResultSet resultSet = selectToResultSet(SELECT_FROM_TABLE)) {
             while (resultSet.next()) {
@@ -35,8 +36,9 @@ public class UserDaoImpl extends AbstractDao implements UserDao{
                 users.add(user);
             }
         } catch (SQLException | IOException | ClassNotFoundException e) {
-            LOGGER.error("Error:", e);
-            e.printStackTrace(); //todo remove
+//            LOGGER.error("Error:", e);
+//            e.printStackTrace(); //todo remove
+            throw new DaoException("Error in UserDao", e);
         }
         return users;
     }

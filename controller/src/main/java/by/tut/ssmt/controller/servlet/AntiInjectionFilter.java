@@ -26,6 +26,7 @@ public class AntiInjectionFilter implements Filter {
         if (sb.toString().trim().matches(DOES_NOT_CONTAIN)) {
             filterChain.doFilter(request, response);
         } else {
+            servletRequest.setAttribute("message", "Attempt of injection!");
             servletRequest.getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
         }
     }

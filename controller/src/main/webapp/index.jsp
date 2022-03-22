@@ -161,6 +161,7 @@
     </thead>
     <tbody>
     <c:forEach var="product" items="${productsAttribute}">
+<%--    <c:forEach var="product" items="${requestScope.productsAttribute}">--%>
 
         <tr>
             <td><c:out value="${product.productName}"/></td>
@@ -204,6 +205,8 @@
 <c:if test="${fn:contains(message, 'Welcome, ' )}">
     <p><c:out value="${hello}${name}"/></p>
 </c:if>
+
+<%--<p><%=request.getSession().getAttribute("productsAttribute")%></p>--%>
 
 </body>
 </html>

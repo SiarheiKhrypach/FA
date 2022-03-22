@@ -1,10 +1,12 @@
 package by.tut.ssmt.controller.command.impl;
 
-import by.tut.ssmt.dao.DAO.DBConnector;
-import by.tut.ssmt.dao.DAO.ProductDaoImpl;
 import by.tut.ssmt.controller.command.Command;
+import by.tut.ssmt.controller.exception.ControllerException;
 import by.tut.ssmt.controller.services.formDataCollectors.FormDataCollector;
 import by.tut.ssmt.controller.services.formDataCollectors.ProductFormDataCollector;
+import by.tut.ssmt.dao.DAO.DBConnector;
+import by.tut.ssmt.dao.DAO.ProductDaoImpl;
+import by.tut.ssmt.dao.exception.DaoException;
 import by.tut.ssmt.dao.repository.entities.Product;
 import by.tut.ssmt.service.Validator;
 import by.tut.ssmt.service.dataProcessors.AcidsProportionListImpl;
@@ -12,7 +14,6 @@ import by.tut.ssmt.service.dataProcessors.DataProcessorList;
 import by.tut.ssmt.service.exceptions.NullOrEmptyException;
 import org.apache.log4j.Logger;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,21 +32,24 @@ public class EditCommand implements Command {
 
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ControllerException {
+        try {
         products = productDaoImpl.select();
         validator.isNotNull(products);
 
-        try {
             resetData(request);
             collectProportionForContext(request);
             postToMainPage(request, response);
 
         } catch (NullOrEmptyException e) {
-            assignAttribute(request);
+//            assignAttribute(request);
             request.setAttribute("message", "Please enter valid data");
             request.setAttribute("products", products);
-            collectProportionForContext(request);
+//            collectProportionForContext(request);
             request.getRequestDispatcher("index.jsp").forward(request, response);
+        } catch (DaoException e) {
+            e.printStackTrace(); //todo delete
+            throw new ControllerException(e);
         }
     }
 
@@ -56,7 +60,7 @@ public class EditCommand implements Command {
         request.getRequestDispatcher("index.jsp").forward(request, response);
     }
 
-    private void assignAttribute(HttpServletRequest request) {
+    private void assignAttribute(HttpServletRequest request) throws DaoException {
         products = productDaoImpl.select();
         validator.isNotNull(products);
         request.setAttribute("productsAttribute", products);
@@ -68,7 +72,7 @@ public class EditCommand implements Command {
         request.setAttribute("proportion", formattedProportion);
     }
 
-    private void resetData(HttpServletRequest request) throws NullOrEmptyException {
+    private void resetData(HttpServletRequest request) throws NullOrEmptyException, DaoException {
         Product product = getProduct(request);
         verifyIfExist (product);
         productDaoImpl.update(product);
@@ -84,11 +88,11 @@ public class EditCommand implements Command {
         }
     }
 
-    private void assignAttribute(ServletContext servletContext) {
-        products = productDaoImpl.select();
-        validator.isNotNull(products);
-        servletContext.setAttribute("productsAttribute", products);
-    }
+//    private void assignAttribute(ServletContext servletContext) {
+//        products = productDaoImpl.select();
+//        validator.isNotNull(products);
+//        servletContext.setAttribute("productsAttribute", products);
+//    }
 
     private Product getProduct(HttpServletRequest request) throws NullOrEmptyException {
         final String productId = request.getParameter("productId").trim();

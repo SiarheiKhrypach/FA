@@ -1,12 +1,13 @@
 package by.tut.ssmt.service;
 
 import by.tut.ssmt.dao.repository.entities.User;
+import by.tut.ssmt.service.exceptions.ServiceException;
 
 import java.util.ArrayList;
 
 public interface UserService {
 
-    public ArrayList<User> selectService();
+    public ArrayList<User> selectService() throws ServiceException;
 
     public User selectOneService(int userId);
 

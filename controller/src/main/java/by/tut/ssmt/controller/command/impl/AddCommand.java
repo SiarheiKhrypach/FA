@@ -2,6 +2,7 @@ package by.tut.ssmt.controller.command.impl;
 
 import by.tut.ssmt.controller.command.Command;
 import by.tut.ssmt.controller.services.formDataCollectors.ProductFormDataCollector;
+import by.tut.ssmt.controller.exception.ControllerException;
 import by.tut.ssmt.dao.repository.entities.Product;
 import by.tut.ssmt.service.ProductService;
 import by.tut.ssmt.service.ServiceFactory;
@@ -9,6 +10,7 @@ import by.tut.ssmt.service.Validator;
 import by.tut.ssmt.service.dataProcessors.AcidsProportionListImpl;
 import by.tut.ssmt.service.dataProcessors.DataProcessorList;
 import by.tut.ssmt.service.exceptions.NullOrEmptyException;
+import by.tut.ssmt.service.exceptions.ServiceException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -32,7 +34,7 @@ private ProductService productService = serviceFactory.getProductService();
 
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ControllerException {
 
 
         try {
@@ -52,6 +54,8 @@ private ProductService productService = serviceFactory.getProductService();
         } catch (NullOrEmptyException e) {
             request.setAttribute("message", "Please enter valid data"); //controller
             request.getRequestDispatcher("index.jsp").forward(request, response); //controller
+        } catch (ServiceException e) {
+            throw new ControllerException(e);
         }
 
     }
@@ -81,11 +85,11 @@ private ProductService productService = serviceFactory.getProductService();
         setProportion(session);
     }
 
-    private void collectProductData(HttpSession session) {
-        products = (ArrayList<Product>) productService.selectAllService();
-        validator.isNotNull(products);
-        session.setAttribute("productsAttribute", products);
-    }
+//    private void collectProductData(HttpSession session) {
+//        products = (ArrayList<Product>) productService.selectAllService();
+//        validator.isNotNull(products);
+//        session.setAttribute("productsAttribute", products);
+//    }
 
     private void setProportion(HttpSession session) {
 //        products = (ArrayList<Product>) productService.selectAllService();

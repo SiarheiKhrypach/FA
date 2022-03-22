@@ -1,6 +1,6 @@
 package by.tut.ssmt.controller.command;
 
-import by.tut.ssmt.service.exceptions.ControllerException;
+import by.tut.ssmt.controller.exception.ControllerException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

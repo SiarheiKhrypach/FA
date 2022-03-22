@@ -38,7 +38,8 @@
     </h2>
 </div>
 
-    <form method="post" action="<c:url value='productId'/>">
+    <form method="post" action="<c:url value="/main"/>">
+<%--    <form method="post" action="<c:url value="productId'/>">--%>
         <input type="hidden" name="command" value="register"/>
         <label><c:out value="${name}"/>
             <input type="text" name="name" maxlength="30" required><br/>

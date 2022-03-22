@@ -2,7 +2,6 @@ package by.tut.ssmt.controller.command.impl;
 
 import by.tut.ssmt.dao.DAO.DBConnector;
 import by.tut.ssmt.dao.DAO.ProductDaoImpl;
-import by.tut.ssmt.service.exceptions.ControllerException;
 import by.tut.ssmt.dao.repository.entities.Product;
 import by.tut.ssmt.service.Validator;
 import org.apache.log4j.Logger;
@@ -20,7 +19,7 @@ public class EditFormCommand extends FormsAccessCommand {
     final ProductDaoImpl productDaoImpl = new ProductDaoImpl(dbConnector);
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException, ServletException, IOException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         final String productId = request.getParameter("productId");
         final Product product = productDaoImpl.selectOne(Integer.parseInt(productId));
         validator.isNotNull(product);

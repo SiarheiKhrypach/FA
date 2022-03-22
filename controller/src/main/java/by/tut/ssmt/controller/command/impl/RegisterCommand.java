@@ -1,8 +1,10 @@
 package by.tut.ssmt.controller.command.impl;
 
+import by.tut.ssmt.controller.exception.ControllerException;
 import by.tut.ssmt.dao.DAO.DBConnector;
 import by.tut.ssmt.dao.DAO.UserDaoImpl;
 import by.tut.ssmt.controller.command.Command;
+import by.tut.ssmt.dao.exception.DaoException;
 import by.tut.ssmt.dao.repository.entities.User;
 import by.tut.ssmt.service.Validator;
 import by.tut.ssmt.service.exceptions.NullOrEmptyException;
@@ -24,18 +26,21 @@ public class RegisterCommand implements Command {
     final UserFormDataCollector dataCollector = new UserFormDataCollector();
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        users = userDaoImpl.select();
-        validator.isNotNull(users);
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ControllerException {
         try {
+            users = userDaoImpl.select();
+            validator.isNotNull(users);
             User user = dataCollector.collectFormData(request);
-            verify (user);
+            verify(user);
             if (loginAndPassAreNotTaken) {
-                userDaoImpl.insert(user);}
+                userDaoImpl.insert(user);
+            }
             postToMainPage(request, response);
-        } catch (NullOrEmptyException | ServletException | IOException e) {
+        } catch (NullOrEmptyException e) {
             request.setAttribute("message", "Please fill out the form");
             request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+        } catch (ServletException | IOException | DaoException e) {
+            throw new ControllerException(e);
         }
     }
 
@@ -58,5 +63,5 @@ public class RegisterCommand implements Command {
             request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
         }
     }
-    }
+}
 

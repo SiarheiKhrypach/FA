@@ -1,5 +1,6 @@
 package by.tut.ssmt.dao.DAO;
 
+import by.tut.ssmt.dao.exception.DaoException;
 import by.tut.ssmt.dao.repository.entities.Product;
 import org.apache.log4j.Logger;
 
@@ -23,7 +24,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao{
         super(dbConnector);
     }
 
-    public ArrayList<Product> select() {
+    public ArrayList<Product> select() throws DaoException {
         ArrayList<Product> products = new ArrayList<>();
         try (ResultSet resultSet = selectToResultSet(SELECT_FROM_TABLE)) {
             while (resultSet.next()) {
@@ -35,13 +36,16 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao{
                 Product product = new Product(productId, productName, omegaThree, omegaSix, portion);
                 products.add(product);
             }
-        } catch (SQLException | ClassNotFoundException e) {
-            LOGGER.error("Error: ", e);
-            e.printStackTrace();//todo remove
-        }catch (IOException e) {
-            LOGGER.error("Error: ", e);
-            e.printStackTrace();//todo remove
-        } finally {
+        } catch (SQLException | ClassNotFoundException | IOException e) {
+//            LOGGER.error("Error: ", e);
+//            e.printStackTrace();//todo remove
+            throw new DaoException("Error in ProductDAO", e);
+        }
+//        catch (IOException e) {
+//            LOGGER.error("Error: ", e);
+//            e.printStackTrace();//todo remove
+//        }
+        finally {
             try {
                 if (conn != null)
                 conn.close();

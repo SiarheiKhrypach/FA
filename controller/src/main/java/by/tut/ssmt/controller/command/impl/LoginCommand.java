@@ -1,9 +1,11 @@
 package by.tut.ssmt.controller.command.impl;
 
+import by.tut.ssmt.controller.exception.ControllerException;
 import by.tut.ssmt.dao.DAO.DBConnector;
 import by.tut.ssmt.dao.DAO.UserDaoImpl;
 import by.tut.ssmt.controller.command.Command;
 import by.tut.ssmt.controller.services.formDataCollectors.UserFormDataCollector;
+import by.tut.ssmt.dao.exception.DaoException;
 import by.tut.ssmt.dao.repository.entities.User;
 import by.tut.ssmt.service.Validator;
 import by.tut.ssmt.service.exceptions.NullOrEmptyException;
@@ -21,22 +23,25 @@ public class LoginCommand implements Command {
     final Validator validator = new Validator();
     final DBConnector dbConnector = new DBConnector();
     final UserDaoImpl userDaoImpl = new UserDaoImpl(dbConnector);
+
     final UserFormDataCollector dataCollector = new UserFormDataCollector();
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        users = userDaoImpl.select();
-        validator.isNotNull(users);
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ControllerException {
         passwordVerified = false;
-        User user;
         try {
-            user = dataCollector.collectFormData(request);
+//        users = userService.selectService();
+            users = userDaoImpl.select();
+            validator.isNotNull(users);
+            User user = dataCollector.collectFormData(request);
             verify(user);
             request.setAttribute("name", user.getUserName());
             postToMainPage(request, response);
-        } catch (NullOrEmptyException | ServletException | IOException e) {
+        } catch (NullOrEmptyException e) {
             request.setAttribute("message", "Please fill out the form");
             request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
+        } catch (ServletException | IOException | DaoException e) {
+            throw new ControllerException(e);
         }
     }
 
