@@ -127,20 +127,22 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao{
         }
     }
 
-    public void delete(String productName) {
+    public void delete(String productName) throws DaoException {
 //    public void delete(int productId) {
         try {
             super.delete(DELETE_FROM_TABLE, productName);
 //            super.delete(DELETE_FROM_TABLE, productId);
         } catch (SQLException | IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+//            e.printStackTrace();
+            throw new DaoException();
         } finally {
             try {
                 if (conn != null)
                     conn.close();
             } catch (SQLException e) {
-                LOGGER.error("Error: ", e);
-                e.printStackTrace(); //todo remove
+//                LOGGER.error("Error: ", e);
+//                e.printStackTrace(); //todo remove
+                throw new DaoException();
             }
         }
     }

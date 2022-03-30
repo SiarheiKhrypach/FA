@@ -15,7 +15,7 @@ public interface ProductService {
 
     void updateService(Product product);
 
-    void deleteService(String productName);
+    void deleteService(String productName) throws ServiceException;
 //    void deleteService(int productId);
 
 

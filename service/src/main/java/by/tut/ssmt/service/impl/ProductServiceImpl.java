@@ -41,9 +41,15 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteService(String productName) {
-//    public void deleteService(int productId) {
-        productDao.delete(productName);
-//        productDao.delete(productId);
+    public void deleteService(String productName) throws ServiceException {
+////    public void deleteService(int productId) {
+//        productDao.delete(productName);
+////        productDao.delete(productId);
+        try {
+            productDao.delete(productName);
+        } catch (DaoException e) {
+            throw new ServiceException (e);
+        }
+
     }
 }

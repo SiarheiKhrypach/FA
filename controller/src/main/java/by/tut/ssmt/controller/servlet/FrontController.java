@@ -16,7 +16,6 @@ import org.apache.log4j.spi.RootLogger;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -31,17 +30,15 @@ import static java.util.Objects.isNull;
 @WebServlet
         (
                 name = "FrontController",
-                urlPatterns = {"", "/", "/update", "/register", "/login", "/main"},
-                initParams = {@WebInitParam(name = "command", value = "default")},
+                urlPatterns = {"", "/", "/update", "/register", "/login", "/main", "/add", "/front"},
+//                initParams = {@WebInitParam(name = "command", value = "default")},
                 loadOnStartup = 0
         )
 public class FrontController extends HttpServlet {
 
-
+    ArrayList<Product> products;
     private Map<String, Command> commands;
 
-
-    private ArrayList<Product> products;
     private ArrayList<User> users;
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
     final DataProcessorList dataProcessorList = serviceFactory.getDataProcessorList();
@@ -53,24 +50,26 @@ public class FrontController extends HttpServlet {
 
     @Override
     public void init() throws ServletException {
+
         initCommandsMap();
 
         ServletContext servletContext = getServletContext();
-        servletContext.setAttribute("command", "default"); //
+//        servletContext.setAttribute("command", "default"); //
         servletContext.setAttribute("message", "default");
+        LOGGER.info("init");
         try {
             setUserInitialData(servletContext);
             setProductInitialData(servletContext);
 
         } catch (ControllerException e) {
 //            e.printStackTrace();
-            servletContext.setAttribute("message", "error");
+//            servletContext.setAttribute("message", "error");
             LOGGER.error("Error: ", e);
 //            e.printStackTrace();//todo remove
 
 //            throw new RuntimeException(e);
 //                throw new ServletException(e);
-//                servletContext.getRequestDispatcher("/WEB-INF/error.jsp");
+                servletContext.getRequestDispatcher("/WEB-INF/error.jsp");
         }
         setProportion(servletContext);
 
@@ -88,6 +87,7 @@ public class FrontController extends HttpServlet {
     }
 
     private void setProductInitialData(ServletContext servletContext) throws ControllerException {
+
         try {
             products = (ArrayList<Product>) productService.selectAllService();
         } catch (ServiceException e) {
@@ -95,6 +95,7 @@ public class FrontController extends HttpServlet {
         }
         validator.isNotNull(products);
         servletContext.setAttribute("productsAttribute", products);
+        LOGGER.info("message from FrontController init()");
     }
 
     private void setProportion(ServletContext servletContext) {
@@ -121,11 +122,11 @@ public class FrontController extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (request.getServletContext().getAttribute("message").equals("error")) {
-            response.sendRedirect("/");
-//            response.sendRedirect(request.getContextPath() + "/");   //controller
-
-        }
+//        if (request.getServletContext().getAttribute("message").equals("error")) {
+//            response.sendRedirect("/");
+////            response.sendRedirect(request.getContextPath() + "/");   //controller
+//
+//        }
         doExecute(request, response);
     }
 
@@ -141,6 +142,7 @@ public class FrontController extends HttpServlet {
         if (isRequiredForward) {
             try {
                 final String command = getCommand(request);
+                LOGGER.info("Command - " + command);
                 commands.get(command).execute(request, response);
             } catch (ControllerException | ServletException | IOException e) {
                 log.error("Error: ", e);
@@ -166,6 +168,7 @@ public class FrontController extends HttpServlet {
 
     private String getCommand(HttpServletRequest request) {
         String commandNameParam = request.getParameter("command");
+        LOGGER.info("getCommand commandNameParam - " + commandNameParam);
         if (isNull(commandNameParam)) {
             commandNameParam = "default";
         }

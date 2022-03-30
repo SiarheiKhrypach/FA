@@ -15,7 +15,7 @@ public interface ProductDao {
 
     void update(Product product);
 
-    void delete(String productName);
+    void delete(String productName) throws DaoException;
 //    void delete(int productId);
 
 }
