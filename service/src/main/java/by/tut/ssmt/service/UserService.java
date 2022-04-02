@@ -7,11 +7,13 @@ import java.util.ArrayList;
 
 public interface UserService {
 
-    public ArrayList<User> selectService() throws ServiceException;
+    public ArrayList<User> selectAllService() throws ServiceException;
+
+    boolean loginService(User user) throws ServiceException;
 
     public User selectOneService(int userId);
 
-    public void insertService(User user);
+    public void insertService(User user) throws ServiceException;
 
     public void updateService(User user);
 

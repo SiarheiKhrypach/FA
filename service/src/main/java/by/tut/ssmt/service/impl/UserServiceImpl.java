@@ -17,9 +17,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ArrayList<User> selectService() throws ServiceException {
+    public ArrayList<User> selectAllService() throws ServiceException {
         try {
             return userDao.select();
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public boolean loginService(User user) throws ServiceException {
+        try {
+            user = userDao.find(user);
+            return user != null;
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
@@ -31,8 +41,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void insertService(User user) {
-        userDao.insert(user);
+    public void insertService(User user) throws ServiceException {
+        try {
+            userDao.insert(user);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override

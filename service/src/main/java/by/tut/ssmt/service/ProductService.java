@@ -9,11 +9,11 @@ public interface ProductService {
 
     List<Product> selectAllService() throws ServiceException;
 
-    Product selectOneService(int productId);
+    Product selectOneService(int productId) throws ServiceException;
 
-    void addService(Product product);
+    void addService(Product product) throws ServiceException;
 
-    void updateService(Product product);
+    void updateService(Product product) throws ServiceException;
 
     void deleteService(String productName) throws ServiceException;
 //    void deleteService(int productId);

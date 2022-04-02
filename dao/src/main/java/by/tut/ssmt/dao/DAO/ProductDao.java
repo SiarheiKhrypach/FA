@@ -9,11 +9,11 @@ public interface ProductDao {
 
     ArrayList<Product> select() throws DaoException;
 
-    Product selectOne(int productId);
+    Product selectOne(int productId) throws DaoException;
 
-    void insert(Product product);
+    void insert(Product product) throws DaoException;
 
-    void update(Product product);
+    void update(Product product) throws DaoException;
 
     void delete(String productName) throws DaoException;
 //    void delete(int productId);

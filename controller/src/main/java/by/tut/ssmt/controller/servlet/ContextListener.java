@@ -38,7 +38,7 @@ public class ContextListener implements ServletContextListener {
     }
 
 //        private void setUserInitialData(ServletContext servletContext) {
-//            users = userService.selectService();
+//            users = userService.selectAllService();
 //            validator.isNotNull(users);
 //            servletContext.setAttribute("usersInContext", users);
 //        }

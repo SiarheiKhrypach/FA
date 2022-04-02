@@ -54,8 +54,8 @@
 
 <div>
 
-    <form action="/" method="post">
-<%--    <form action="/main" method="post">--%>
+<%--    <form action="/" method="post">--%>
+    <form action="/main" method="post">
         <input type="hidden" name="command" value="locale"/>
         <input type="hidden" name="locale" value="en">
         <button type="submit">
@@ -63,8 +63,8 @@
         </button>
     </form>
 
-    <form action="/" method="post">
-<%--    <form action="/main" method="post">--%>
+<%--    <form action="/" method="post">--%>
+    <form action="/main" method="post">
         <input type="hidden" name="command" value="locale"/>
         <input type="hidden" name="locale" value="be">
         <button type="submit">
@@ -72,8 +72,8 @@
         </button>
     </form>
 
-    <form action="/" method="post">
-<%--    <form action="/main" method="post">--%>
+<%--    <form action="/" method="post">--%>
+    <form action="/main" method="post">
         <input type="hidden" name="command" value="locale"/>
         <input type="hidden" name="locale" value="ru">
         <button type="submit">
@@ -85,7 +85,9 @@
 
 <div>
     <div>
+<%--        <form id="login" method="get" action="main">--%>
         <form id="login" method="get" action="/login">
+<%--        <form id="login" method="get" action="/login">--%>
             <input type="hidden" name="command" value="form"/>
             <button form="login" type="submit">
                 <c:out value="${login_btn}"/>
@@ -94,7 +96,9 @@
     </div>
 
     <div>
+<%--        <form id="register" method="get" action="main">--%>
         <form id="register" method="get" action="/register">
+<%--        <form id="register" method="get" action="/register">--%>
             <input type="hidden" name="command" value="form"/>
             <button form="register" type="submit">
                 <c:out value="${register_btn}"/>
@@ -112,7 +116,8 @@
 <%--<form class="w3-container w3-light-grey" method="post" action="/">--%>
 
 <%--<form class="w3-container w3-light-grey" method="post" action="<c:url value='add'/>">--%>
-<form class="w3-container w3-light-grey" method="post" action="add">
+<form class="w3-container w3-light-grey" method="post" action="/main">
+<%--<form class="w3-container w3-light-grey" method="post" action="add">--%>
 
     <label>
         <c:out value="${product_name}"/>
@@ -178,7 +183,8 @@
             <td>
 <%--                <form method="get" action="<c:url value='/'/>">--%>
 <%--                <form method="get" action="<c:url value='/main'/>">--%>
-                <form method="get" action="front">
+                <form method="get" action="/main">
+<%--                <form method="get" action="front">--%>
                     <input type="hidden" name="productName" value="${product.productName}"/>
 <%--                    <input type="hidden" name="productId" value="${product.productId}"/>--%>
                     <input type="hidden" name="command" value="delete"/>
@@ -187,7 +193,9 @@
             </td>
 
             <td>
+<%--                <form method="get" action="main">--%>
                 <form method="get" action="/update">
+<%--                <form method="get" action="/update">--%>
                     <input type="hidden" name="productId" value="${product.productId}"/>
                     <input type="hidden" name="command" value="editform"/>
                     <input type="submit" name="Edit" value="${edit_btn}"/>

@@ -58,7 +58,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao{
         return products;
     }
 
-     public Product selectOne(int productId) {
+     public Product selectOne(int productId) throws DaoException {
         Product product = null;
         try (ResultSet resultSet = selectToResultSetWhere(SELECT_FROM_TABLE_WHERE, productId)) {
             if (resultSet.next()) {
@@ -72,6 +72,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao{
         } catch (SQLException | IOException | ClassNotFoundException e) {
             System.out.println("SQLException caught");//todo remove
             LOGGER.error("Error: ", e);
+            throw new DaoException("Error in ProductDAO", e);
         } finally {
             try {
                 if (conn != null)
@@ -84,7 +85,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao{
         return product;
     }
 
-    public void insert(Product product) {
+    public void insert(Product product) throws DaoException {
 
         try (PreparedStatement preparedStatement = prepareStatement(INSERT_INTO_TABLE)) {
             preparedStatement.setString(1, product.getProductName());
@@ -93,7 +94,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao{
             preparedStatement.setInt(4, product.getPortion());
             preparedStatement.executeUpdate();
         } catch (SQLException | IOException | ClassNotFoundException e) {
-            System.out.println("SQLException caught");//todo remove
+            throw new DaoException ("Error in ProductDAO", e);
         } finally {
             try {
                 if (conn != null)
@@ -105,7 +106,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao{
         }
     }
 
-    public void update(Product product) {
+    public void update(Product product) throws DaoException {
 
         try (PreparedStatement preparedStatement = prepareStatement(UPDATE_TABLE)) {
             preparedStatement.setString(1, product.getProductName());
@@ -115,7 +116,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao{
             preparedStatement.setInt(5, product.getProductId());
             preparedStatement.executeUpdate();
         } catch (SQLException | IOException | ClassNotFoundException e) {
-            System.out.println("SQLException caught");
+            throw new DaoException("Error in ProductDAO", e);
         } finally {
             try {
                 if (conn != null)

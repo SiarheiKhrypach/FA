@@ -7,14 +7,16 @@ import java.util.ArrayList;
 
 public interface UserDao {
 
-    public ArrayList<User> select() throws DaoException;
+    ArrayList<User> select() throws DaoException;
 
-    public User selectOne(int userId);
+    User find (User user) throws DaoException;
 
-    public void insert(User user);
+    User selectOne(int userId);
 
-    public void update(User user);
+    void insert(User user) throws DaoException;
 
-    public void delete(String userName);
+    void update(User user);
+
+    void delete(String userName);
 //    public void delete(int userId);
 }

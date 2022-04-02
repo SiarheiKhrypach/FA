@@ -43,10 +43,10 @@ public class AddCommand implements Command {
 
             final Product product = dataCollector.collectFormData(request); //controller
 
-            verify(product); //move
-            if (productDoesntExist) {
+//            boolean productDoesntExist = verify(product); //move
+            if (productDoesntExist = verify(product)) {
                 productService.addService(product); //move
-                products.add(product);
+//                products.add(product);
             }
 //            assignAttributes(request);
             postToMainPage(request, response); //controller
@@ -60,13 +60,16 @@ public class AddCommand implements Command {
 
     }
 
-    private void verify(Product product) {
-        productDoesntExist = true;
+//    private void verify(Product product) {
+    private boolean verify(Product product) {
+//        productDoesntExist = true;
         for (int i = 0; i < products.size(); i++) {
             if (product.getProductName().equals(products.get(i).getProductName())) {
-                productDoesntExist = false; //move
+//                productDoesntExist = false; //move
+                return false;
             }
         }
+        return true;
     }
 
     private void postToMainPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

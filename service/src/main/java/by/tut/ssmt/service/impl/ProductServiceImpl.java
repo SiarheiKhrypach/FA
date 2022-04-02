@@ -21,23 +21,35 @@ public class ProductServiceImpl implements ProductService {
         try {
             return productDao.select();
         } catch (DaoException e) {
-            throw new ServiceException (e);
+            throw new ServiceException(e);
         }
     }
 
     @Override
-    public Product selectOneService(int productId) {
-        return productDao.selectOne(productId);
+    public Product selectOneService(int productId) throws ServiceException {
+        try {
+            return productDao.selectOne(productId);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
-    public void addService(Product product) {
-        productDao.insert(product);
+    public void addService(Product product) throws ServiceException {
+        try {
+            productDao.insert(product);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
-    public void updateService(Product product) {
-        productDao.update(product);
+    public void updateService(Product product) throws ServiceException {
+        try {
+            productDao.update(product);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
@@ -48,7 +60,7 @@ public class ProductServiceImpl implements ProductService {
         try {
             productDao.delete(productName);
         } catch (DaoException e) {
-            throw new ServiceException (e);
+            throw new ServiceException(e);
         }
 
     }

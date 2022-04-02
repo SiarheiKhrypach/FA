@@ -30,7 +30,9 @@ import static java.util.Objects.isNull;
 @WebServlet
         (
                 name = "FrontController",
-                urlPatterns = {"", "/", "/update", "/register", "/login", "/main", "/add", "/front"},
+//                urlPatterns = {"update", "register", "login", "main", "add"},
+                urlPatterns = {"/update", "/register", "/login", "/main", "/add"},
+//                urlPatterns = {"", "/", "/update", "/register", "/login", "/main", "/add", "/front"},
 //                initParams = {@WebInitParam(name = "command", value = "default")},
                 loadOnStartup = 0
         )
@@ -78,7 +80,7 @@ public class FrontController extends HttpServlet {
 
     private void setUserInitialData(ServletContext servletContext) throws ControllerException {
         try {
-            users = userService.selectService();
+            users = userService.selectAllService();
         } catch (ServiceException e) {
             throw new ControllerException(e);
         }

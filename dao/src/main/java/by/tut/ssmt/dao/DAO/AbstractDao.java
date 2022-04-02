@@ -33,14 +33,14 @@ public class AbstractDao {
         Connection conn = getConnection();
         PreparedStatement preparedStatement;
         ResultSet resultSet = null;
-        try {
+//        try {
             preparedStatement = conn.prepareStatement(sqlCommand);
             preparedStatement.setInt(1, id);
             resultSet = preparedStatement.executeQuery();
-        } catch (SQLException e) {
-            LOGGER.error("SQLException", e);
-            e.printStackTrace(); //todo remove
-        }
+//        } catch (SQLException e) {
+//            LOGGER.error("SQLException", e);
+//            e.printStackTrace(); //todo remove
+//        }
         return resultSet;
     }
 
@@ -58,13 +58,13 @@ public class AbstractDao {
     void delete(String sqlCommand, String name) throws SQLException, IOException, ClassNotFoundException {
 //    void delete(String sqlCommand, int id) throws SQLException, IOException, ClassNotFoundException {
         PreparedStatement preparedStatement = prepareStatement(sqlCommand);
-        try {
+//        try {
             preparedStatement.setString(1, name);
 //            preparedStatement.setInt(1, id);
             preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            LOGGER.error("SQLException", e);
-            e.printStackTrace(); //todo
-        }
+//        } catch (SQLException e) {
+//            LOGGER.error("SQLException", e);
+//            e.printStackTrace(); //todo
+//        }
     }
 }
