@@ -13,7 +13,7 @@ public interface UserService {
 
     public User selectOneService(int userId);
 
-    public void insertService(User user) throws ServiceException;
+    public boolean insertService(User user) throws ServiceException;
 
     public void updateService(User user);
 

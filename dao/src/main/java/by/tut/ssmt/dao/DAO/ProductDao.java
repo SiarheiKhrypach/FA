@@ -11,9 +11,9 @@ public interface ProductDao {
 
     Product selectOne(int productId) throws DaoException;
 
-    void insert(Product product) throws DaoException;
+    boolean insert(Product product) throws DaoException;
 
-    void update(Product product) throws DaoException;
+    boolean update(Product product) throws DaoException;
 
     void delete(String productName) throws DaoException;
 //    void delete(int productId);

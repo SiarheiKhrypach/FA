@@ -41,9 +41,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void insertService(User user) throws ServiceException {
+    public boolean insertService(User user) throws ServiceException {
         try {
-            userDao.insert(user);
+            return userDao.insert(user);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

@@ -35,18 +35,18 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void addService(Product product) throws ServiceException {
+    public boolean addService(Product product) throws ServiceException {
         try {
-            productDao.insert(product);
+            return productDao.insert(product);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
     }
 
     @Override
-    public void updateService(Product product) throws ServiceException {
+    public boolean updateService(Product product) throws ServiceException {
         try {
-            productDao.update(product);
+            return productDao.update(product);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

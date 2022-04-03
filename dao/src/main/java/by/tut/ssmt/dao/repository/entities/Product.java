@@ -8,6 +8,8 @@ public class Product {
     private double omegaSix;
     private int portion;
 
+    public Product(){}
+
     public Product(String productName, double omegaThree, double omegaSix, int portion) {
         this.productName = productName;
         this.omegaThree = omegaThree;

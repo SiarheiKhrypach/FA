@@ -16,28 +16,24 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class EditCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(EditCommand.class.getName());
+    private boolean productUpdated;
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final ProductService productService = serviceFactory.getProductService();
-    private ArrayList<Product> products;
     final Validator validator = new Validator();
     final FormDataCollector dataCollector = new ProductFormDataCollector();
-    private boolean productDoesntExist;
 
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ControllerException {
         try {
-            products = (ArrayList<Product>) productService.selectAllService();
-            validator.isNotNull(products);
-            resetData(request);
+            Product product = getProduct(request);
+            productUpdated = productService.updateService(product);
             postToMainPage(request, response);
         } catch (NullOrEmptyException e) {
             request.setAttribute("message", "Please enter valid data");
-            request.setAttribute("products", products);
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } catch (ServiceException e) {
             throw new ControllerException(e);
@@ -45,24 +41,11 @@ public class EditCommand implements Command {
     }
 
     private void postToMainPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (!productDoesntExist) {
+        if (productUpdated) {
+            response.sendRedirect("/main");
+        } else {
             request.setAttribute("message", "The list already has product with such name");
-        }
-        response.sendRedirect("/main");
-    }
-
-    private void resetData(HttpServletRequest request) throws NullOrEmptyException, ServiceException {
-        Product product = getProduct(request);
-        verifyIfExist(product);
-        productService.updateService(product);
-    }
-
-    private void verifyIfExist(Product product) {
-        productDoesntExist = true;
-        for (int i = 0; i < products.size(); i++) {
-            if (product.getProductName().equals(products.get(i).getProductName()) && product.getProductId() != products.get(i).getProductId()) {
-                productDoesntExist = false;
-            }
+            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
 

@@ -15,6 +15,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao{
 
     private static final String SELECT_FROM_TABLE = "SELECT * FROM users";
     private static final String FIND_USER_BY_LOGIN_AND_PASSWORD = "SELECT * FROM users WHERE user_name = ? AND password = ?";
+    private static final String FIND_USER_BY_LOGIN = "SELECT * FROM users WHERE user_name = ?";
     private static final String SELECT_FROM_TABLE_WHERE = "SELECT * FROM users WHERE user_id = ?";
     private static final String INSERT_INTO_TABLE = "INSERT INTO users (user_name, password) VALUES (?, ?)";
     private static final String UPDATE_TABLE = "UPDATE users SET password = ?, WHERE user_name = ?";
@@ -33,54 +34,56 @@ public class UserDaoImpl extends AbstractDao implements UserDao{
                 int userId = resultSet.getInt(1);
                 String userName = resultSet.getString(2);
                 String password = resultSet.getString(3);
-//                User user = new User(userId, userName, password.toCharArray());
                 User user = new User(userId, userName, password);
                 users.add(user);
             }
         } catch (SQLException | IOException | ClassNotFoundException e) {
-//            LOGGER.error("Error:", e);
-//            e.printStackTrace(); //todo remove
             throw new DaoException("Error in UserDao", e);
+        }
+        finally {
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException e) {
+                LOGGER.error("Error: ", e);
+                e.printStackTrace();//todo remove
+            }
         }
         return users;
     }
 
     public User find (User user) throws DaoException {
         User userFound = null;
-//        ResultSet resultSet = null;
-//        try (PreparedStatement preparedStatement = prepareStatement(FIND_USER_BY_LOGIN_AND_PASSWORD)) {
         try (ResultSet resultSet = selectToResultSetWhere(FIND_USER_BY_LOGIN_AND_PASSWORD, user.getUserName(), user.getPassword())) {
-//            PreparedStatement preparedStatement = prepareStatement(FIND_USER_BY_LOGIN_AND_PASSWORD)
-//            preparedStatement.setString(1, user.getUserName());
-//            preparedStatement.setString(2, user.getPassword());
-//            resultSet = preparedStatement.executeQuery();
         if (resultSet.next()) {
             int userId = resultSet.getInt(1);
             String userName = resultSet.getString(2);
             String password = resultSet.getString(3);
-//                User user = new User(userId, userName, password.toCharArray());
             userFound = new User(userId, userName, password);
         }
         } catch (SQLException | IOException | ClassNotFoundException e) {
             LOGGER.error("Error: ", e);
             throw new DaoException("Error in UserDao", e);
         }
+        finally {
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException e) {
+                LOGGER.error("Error: ", e);
+                e.printStackTrace();//todo remove
+            }
+        }
         return userFound;
     }
 
     final ResultSet selectToResultSetWhere (String sqlCommand, String userName, String password) throws SQLException, IOException, ClassNotFoundException {
         Connection conn = getConnection();
-//        PreparedStatement preparedStatement;
         ResultSet resultSet = null;
-//        try {
             PreparedStatement preparedStatement = prepareStatement(FIND_USER_BY_LOGIN_AND_PASSWORD);
             preparedStatement.setString(1, userName);
             preparedStatement.setString(2, password);
             resultSet = preparedStatement.executeQuery();
-//        } catch (SQLException e) {
-//            LOGGER.error("SQLException", e);
-//            e.printStackTrace(); //todo remove
-//        }
         return resultSet;
     }
 
@@ -91,47 +94,91 @@ public class UserDaoImpl extends AbstractDao implements UserDao{
                 int id = resultSet.getInt(1);
                 String name = resultSet.getString(2);
                 String password = resultSet.getString(3);
-//                user = new User(productId, name, password.toCharArray());
                 user = new User(id, name, password);
             }
         } catch (SQLException | IOException | ClassNotFoundException e) {
             LOGGER.error("Error: ", e);
         }
+        finally {
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException e) {
+                LOGGER.error("Error: ", e);
+                e.printStackTrace();//todo remove
+            }
+        }
         return user;
     }
 
-    public void insert(User user) throws DaoException {
-        try (PreparedStatement preparedStatement = prepareStatement(INSERT_INTO_TABLE)) {
+    public boolean insert(User user) throws DaoException {
+        PreparedStatement preparedStatement;
+        try (Connection conn = getConnection()) {
+            int result = 0;
+            preparedStatement = conn.prepareStatement(FIND_USER_BY_LOGIN);
             preparedStatement.setString(1, user.getUserName());
-//            preparedStatement.setString(2, user.getPassword().toString());
-            preparedStatement.setString(2, user.getPassword());
-            preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.executeQuery();
+            User userMatch = new User();
+            while (resultSet.next()){
+                userMatch.setUserId(resultSet.getInt(1));
+                userMatch.setName(resultSet.getString(2));
+                userMatch.setPassword(resultSet.getString(3));
+            }
+            if (userMatch.getUserName() == null) {
+                preparedStatement = prepareStatement(INSERT_INTO_TABLE);
+                preparedStatement.setString(1, user.getUserName());
+                preparedStatement.setString(2, user.getPassword());
+                result = preparedStatement.executeUpdate();
+            }
+            return (result != 0);
         } catch (SQLException | IOException | ClassNotFoundException e) {
-            LOGGER.error("Error: ", e);
-            e.printStackTrace(); //todo remove
             throw new DaoException("Error in UserDao", e);
+        }
+        finally {
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException e) {
+                LOGGER.error("Error: ", e);
+                e.printStackTrace();//todo remove
+            }
         }
     }
 
     public void update(User user) {
         try (PreparedStatement preparedStatement = prepareStatement(UPDATE_TABLE)) {
-//            preparedStatement.setString(1, user.getPassword().toString());
             preparedStatement.setString(1, user.getPassword());
             preparedStatement.setString(2, user.getUserName());
             preparedStatement.executeUpdate();
         } catch (SQLException | IOException | ClassNotFoundException e) {
             LOGGER.error("Error: ", e);
         }
+        finally {
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException e) {
+                LOGGER.error("Error: ", e);
+                e.printStackTrace();//todo remove
+            }
+        }
     }
 
     public void delete(String userName) {
-//    public void delete(int userId) {
         try {
             super.delete(DELETE_FROM_TABLE, userName);
-//            super.delete(DELETE_FROM_TABLE, userId);
         } catch (SQLException | IOException | ClassNotFoundException e) {
             LOGGER.error("Error: ", e);
             e.printStackTrace(); //todo remove
+        }
+        finally {
+            try {
+                if (conn != null)
+                    conn.close();
+            } catch (SQLException e) {
+                LOGGER.error("Error: ", e);
+                e.printStackTrace();//todo remove
+            }
         }
     }
 }

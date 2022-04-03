@@ -13,7 +13,7 @@ public interface UserDao {
 
     User selectOne(int userId);
 
-    void insert(User user) throws DaoException;
+    boolean insert(User user) throws DaoException;
 
     void update(User user);
 

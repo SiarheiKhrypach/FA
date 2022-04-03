@@ -30,10 +30,7 @@ import static java.util.Objects.isNull;
 @WebServlet
         (
                 name = "FrontController",
-//                urlPatterns = {"update", "register", "login", "main", "add"},
                 urlPatterns = {"/update", "/register", "/login", "/main", "/add"},
-//                urlPatterns = {"", "/", "/update", "/register", "/login", "/main", "/add", "/front"},
-//                initParams = {@WebInitParam(name = "command", value = "default")},
                 loadOnStartup = 0
         )
 public class FrontController extends HttpServlet {
@@ -56,7 +53,6 @@ public class FrontController extends HttpServlet {
         initCommandsMap();
 
         ServletContext servletContext = getServletContext();
-//        servletContext.setAttribute("command", "default"); //
         servletContext.setAttribute("message", "default");
         LOGGER.info("init");
         try {
@@ -64,14 +60,8 @@ public class FrontController extends HttpServlet {
             setProductInitialData(servletContext);
 
         } catch (ControllerException e) {
-//            e.printStackTrace();
-//            servletContext.setAttribute("message", "error");
             LOGGER.error("Error: ", e);
-//            e.printStackTrace();//todo remove
-
-//            throw new RuntimeException(e);
-//                throw new ServletException(e);
-                servletContext.getRequestDispatcher("/WEB-INF/error.jsp");
+            servletContext.getRequestDispatcher("/WEB-INF/error.jsp");
         }
         setProportion(servletContext);
 
@@ -106,7 +96,6 @@ public class FrontController extends HttpServlet {
         servletContext.setAttribute("proportion", formattedProportion);
     }
 
-
     private void initCommandsMap() {
         if (isNull(commands)) {
             commands = new HashMap<>();
@@ -121,14 +110,8 @@ public class FrontController extends HttpServlet {
         commands.put("register", new RegisterCommand());
     }
 
-
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        if (request.getServletContext().getAttribute("message").equals("error")) {
-//            response.sendRedirect("/");
-////            response.sendRedirect(request.getContextPath() + "/");   //controller
-//
-//        }
         doExecute(request, response);
     }
 
@@ -148,8 +131,6 @@ public class FrontController extends HttpServlet {
                 commands.get(command).execute(request, response);
             } catch (ControllerException | ServletException | IOException e) {
                 log.error("Error: ", e);
-//                request.setAttribute("message", "");
-//                getServletContext().getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
                 request.getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
             }
         }

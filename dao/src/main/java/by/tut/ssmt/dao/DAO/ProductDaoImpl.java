@@ -5,21 +5,25 @@ import by.tut.ssmt.dao.repository.entities.Product;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class ProductDaoImpl extends AbstractDao implements ProductDao{
+public class ProductDaoImpl extends AbstractDao implements ProductDao {
 
     private static final String SELECT_FROM_TABLE = "SELECT * FROM products";
     private static final String SELECT_FROM_TABLE_WHERE = "SELECT * FROM products WHERE product_id=?";
     private static final String INSERT_INTO_TABLE = "INSERT INTO products (product_name, omega_three, omega_six, portion) Values (?, ?, ?, ?)";
     private static final String UPDATE_TABLE = "UPDATE products SET product_name = ?, omega_three = ?, omega_six = ?, portion = ? WHERE product_id = ?";
-//    private static final String DELETE_FROM_TABLE = "DELETE FROM products WHERE product_id = ?";
+    //    private static final String DELETE_FROM_TABLE = "DELETE FROM products WHERE product_id = ?";
     private static final String DELETE_FROM_TABLE = "DELETE FROM products WHERE product_name = ?";
+    private static final String FIND_PRODUCT_BY_NAME = "SELECT * FROM products WHERE product_name=?";
+    private static final String FIND_PRODUCT_BY_NAME_WITH_DIFFERENT_ID = "SELECT * FROM products WHERE product_name=? AND NOT product_id=?";
 
     private static final Logger LOGGER = Logger.getLogger(ProductDaoImpl.class.getName());
+
     public ProductDaoImpl(DBConnector dbConnector) {
         super(dbConnector);
     }
@@ -37,18 +41,12 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao{
                 products.add(product);
             }
         } catch (SQLException | ClassNotFoundException | IOException e) {
-//            LOGGER.error("Error: ", e);
-//            e.printStackTrace();//todo remove
             throw new DaoException("Error in ProductDAO", e);
         }
-//        catch (IOException e) {
-//            LOGGER.error("Error: ", e);
-//            e.printStackTrace();//todo remove
-//        }
         finally {
             try {
                 if (conn != null)
-                conn.close();
+                    conn.close();
             } catch (SQLException e) {
                 LOGGER.error("Error: ", e);
                 e.printStackTrace();//todo remove
@@ -58,7 +56,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao{
         return products;
     }
 
-     public Product selectOne(int productId) throws DaoException {
+    public Product selectOne(int productId) throws DaoException {
         Product product = null;
         try (ResultSet resultSet = selectToResultSetWhere(SELECT_FROM_TABLE_WHERE, productId)) {
             if (resultSet.next()) {
@@ -85,17 +83,35 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao{
         return product;
     }
 
-    public void insert(Product product) throws DaoException {
-
-        try (PreparedStatement preparedStatement = prepareStatement(INSERT_INTO_TABLE)) {
+    public boolean insert(Product product) throws DaoException {
+        PreparedStatement preparedStatement;
+        try (Connection conn = getConnection()) {
+            int result = 0;
+            preparedStatement = conn.prepareStatement(FIND_PRODUCT_BY_NAME);
             preparedStatement.setString(1, product.getProductName());
-            preparedStatement.setDouble(2, product.getOmegaThree());
-            preparedStatement.setDouble(3, product.getOmegaSix());
-            preparedStatement.setInt(4, product.getPortion());
-            preparedStatement.executeUpdate();
+            ResultSet resultSet = preparedStatement.executeQuery();
+            Product productMatch = new Product();
+            while (resultSet.next()) {
+                productMatch.setProductId(resultSet.getInt(1));
+                productMatch.setProductName(resultSet.getString(2));
+                productMatch.setOmegaThree(resultSet.getInt(3));
+                productMatch.setOmegaSix(resultSet.getInt(4));
+                productMatch.setPortion(resultSet.getInt(5));
+            }
+
+            if (productMatch.getProductName() == null) {
+                preparedStatement = prepareStatement(INSERT_INTO_TABLE);
+                preparedStatement.setString(1, product.getProductName());
+                preparedStatement.setDouble(2, product.getOmegaThree());
+                preparedStatement.setDouble(3, product.getOmegaSix());
+                preparedStatement.setInt(4, product.getPortion());
+                result = preparedStatement.executeUpdate();
+            }
+            return (result != 0);
         } catch (SQLException | IOException | ClassNotFoundException e) {
-            throw new DaoException ("Error in ProductDAO", e);
-        } finally {
+            throw new DaoException("Error in ProductDAO", e);
+        }
+         finally {
             try {
                 if (conn != null)
                     conn.close();
@@ -106,15 +122,32 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao{
         }
     }
 
-    public void update(Product product) throws DaoException {
-
-        try (PreparedStatement preparedStatement = prepareStatement(UPDATE_TABLE)) {
+    public boolean update(Product product) throws DaoException {
+        PreparedStatement preparedStatement;
+        try(Connection conn = getConnection()) {
+            int result = 0;
+            preparedStatement = conn.prepareStatement(FIND_PRODUCT_BY_NAME_WITH_DIFFERENT_ID);
             preparedStatement.setString(1, product.getProductName());
-            preparedStatement.setDouble(2, product.getOmegaThree());
-            preparedStatement.setDouble(3, product.getOmegaSix());
-            preparedStatement.setInt(4, product.getPortion());
-            preparedStatement.setInt(5, product.getProductId());
-            preparedStatement.executeUpdate();
+            preparedStatement.setInt(2, product.getProductId());
+            ResultSet resultSet = preparedStatement.executeQuery();
+            Product productMatch = new Product();
+            while (resultSet.next()){
+                productMatch.setProductId(resultSet.getInt(1));
+                productMatch.setProductName(resultSet.getString(2));
+                productMatch.setOmegaThree(resultSet.getInt(3));
+                productMatch.setOmegaSix(resultSet.getInt(4));
+                productMatch.setPortion(resultSet.getInt(5));
+            }
+            if (productMatch.getProductName() == null) {
+                preparedStatement = prepareStatement(UPDATE_TABLE);
+                preparedStatement.setString(1, product.getProductName());
+                preparedStatement.setDouble(2, product.getOmegaThree());
+                preparedStatement.setDouble(3, product.getOmegaSix());
+                preparedStatement.setInt(4, product.getPortion());
+                preparedStatement.setInt(5, product.getProductId());
+                result = preparedStatement.executeUpdate();
+            }
+            return (result != 0);
         } catch (SQLException | IOException | ClassNotFoundException e) {
             throw new DaoException("Error in ProductDAO", e);
         } finally {
@@ -129,20 +162,15 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao{
     }
 
     public void delete(String productName) throws DaoException {
-//    public void delete(int productId) {
         try {
             super.delete(DELETE_FROM_TABLE, productName);
-//            super.delete(DELETE_FROM_TABLE, productId);
         } catch (SQLException | IOException | ClassNotFoundException e) {
-//            e.printStackTrace();
             throw new DaoException();
         } finally {
             try {
                 if (conn != null)
                     conn.close();
             } catch (SQLException e) {
-//                LOGGER.error("Error: ", e);
-//                e.printStackTrace(); //todo remove
                 throw new DaoException();
             }
         }

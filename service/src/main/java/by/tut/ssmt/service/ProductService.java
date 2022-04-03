@@ -11,9 +11,9 @@ public interface ProductService {
 
     Product selectOneService(int productId) throws ServiceException;
 
-    void addService(Product product) throws ServiceException;
+    boolean addService(Product product) throws ServiceException;
 
-    void updateService(Product product) throws ServiceException;
+    boolean updateService(Product product) throws ServiceException;
 
     void deleteService(String productName) throws ServiceException;
 //    void deleteService(int productId);
