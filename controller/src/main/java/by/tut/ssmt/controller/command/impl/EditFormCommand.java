@@ -1,11 +1,11 @@
 package by.tut.ssmt.controller.command.impl;
 
 import by.tut.ssmt.controller.exception.ControllerException;
-import by.tut.ssmt.dao.repository.entities.Product;
+import by.tut.ssmt.dao.domain.Product;
 import by.tut.ssmt.service.ProductService;
 import by.tut.ssmt.service.ServiceFactory;
-import by.tut.ssmt.service.Validator;
-import by.tut.ssmt.service.exceptions.ServiceException;
+import by.tut.ssmt.service.ServiceValidator;
+import by.tut.ssmt.service.exception.ServiceException;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -19,18 +19,18 @@ public class EditFormCommand extends FormsAccessCommand {
 
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final ProductService productService = serviceFactory.getProductService();
-    final Validator validator = new Validator();
+    private final ServiceValidator serviceValidator = serviceFactory.getServiceValidator();
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ControllerException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ControllerException  {
         try {
             final String productId = request.getParameter("productId");
             final Product product;
             product = productService.selectOneService(Integer.parseInt(productId));
-            validator.isNotNull(product);
+            serviceValidator.isNotNull(product);
             request.setAttribute("product", product);
             super.execute(request, response);
-        } catch (ServiceException e) {
+        } catch (ServiceException | NullPointerException e) {
             throw new ControllerException(e);
         }
     }

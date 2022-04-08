@@ -1,4 +1,4 @@
-package by.tut.ssmt.service.exceptions;
+package by.tut.ssmt.service.exception;
 
 public class ServiceException extends Exception {
 

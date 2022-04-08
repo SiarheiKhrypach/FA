@@ -1,17 +1,17 @@
 package by.tut.ssmt.dao.DAO;
 
 import by.tut.ssmt.dao.exception.DaoException;
-import by.tut.ssmt.dao.repository.entities.User;
+import by.tut.ssmt.dao.domain.User;
 
 import java.util.ArrayList;
 
 public interface UserDao {
 
-    ArrayList<User> select() throws DaoException;
+    ArrayList<User> selectDao() throws DaoException;
 
     User find (User user) throws DaoException;
 
-    User selectOne(int userId);
+    User selectOneDao(int userId);
 
     boolean insert(User user) throws DaoException;
 

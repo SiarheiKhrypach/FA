@@ -1,13 +1,13 @@
 package by.tut.ssmt.service.impl;
 
+import by.tut.ssmt.service.ProductService;
 import by.tut.ssmt.dao.DAO.DaoFactory;
 import by.tut.ssmt.dao.DAO.ProductDao;
 import by.tut.ssmt.dao.exception.DaoException;
-import by.tut.ssmt.dao.repository.entities.Product;
-import by.tut.ssmt.service.ProductService;
-import by.tut.ssmt.service.exceptions.ServiceException;
+import by.tut.ssmt.dao.domain.Product;
+import by.tut.ssmt.service.exception.ServiceException;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public class ProductServiceImpl implements ProductService {
 
@@ -17,9 +17,9 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> selectAllService() throws ServiceException {
+    public ArrayList<Product> selectAllService() throws ServiceException {
         try {
-            return productDao.select();
+            return productDao.selectDao();
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
@@ -28,7 +28,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product selectOneService(int productId) throws ServiceException {
         try {
-            return productDao.selectOne(productId);
+            return productDao.selectOneDao(productId);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
@@ -37,7 +37,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public boolean addService(Product product) throws ServiceException {
         try {
-            return productDao.insert(product);
+            return productDao.insertDao(product);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
@@ -46,7 +46,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public boolean updateService(Product product) throws ServiceException {
         try {
-            return productDao.update(product);
+            return productDao.updateDao(product);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
@@ -58,7 +58,7 @@ public class ProductServiceImpl implements ProductService {
 //        productDao.delete(productName);
 ////        productDao.delete(productId);
         try {
-            productDao.delete(productName);
+            productDao.deleteDao(productName);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

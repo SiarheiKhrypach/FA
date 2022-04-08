@@ -1,5 +1,8 @@
 package by.tut.ssmt.dao.DAO;
 
+import by.tut.ssmt.dao.DAO.impl.ProductDaoImpl;
+import by.tut.ssmt.dao.DAO.impl.UserDaoImpl;
+
 public class DaoFactory {
 
     private static final DaoFactory INSTANCE = new DaoFactory();

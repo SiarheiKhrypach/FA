@@ -1,13 +1,14 @@
 package by.tut.ssmt.controller.command.impl;
 
+import by.tut.ssmt.controller.ControllerFactory;
 import by.tut.ssmt.controller.command.Command;
 import by.tut.ssmt.controller.exception.ControllerException;
-import by.tut.ssmt.controller.services.formDataCollectors.ProductFormDataCollector;
-import by.tut.ssmt.dao.repository.entities.Product;
+import by.tut.ssmt.controller.formDataCollector.FormDataCollector;
+import by.tut.ssmt.dao.domain.Product;
 import by.tut.ssmt.service.ProductService;
 import by.tut.ssmt.service.ServiceFactory;
-import by.tut.ssmt.service.exceptions.NullOrEmptyException;
-import by.tut.ssmt.service.exceptions.ServiceException;
+import by.tut.ssmt.service.exception.NullOrEmptyException;
+import by.tut.ssmt.service.exception.ServiceException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +19,8 @@ public class AddCommand implements Command {
 
     private boolean productAdded;
 
-    private final ProductFormDataCollector dataCollector = new ProductFormDataCollector();
+    private final ControllerFactory controllerFactory = ControllerFactory.getInstance();
+    private final FormDataCollector dataCollector = controllerFactory.getProductFormDataCollector();
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final ProductService productService = serviceFactory.getProductService();
 
@@ -26,7 +28,7 @@ public class AddCommand implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ControllerException {
 
         try {
-            final Product product = dataCollector.collectFormData(request);
+            final Product product = (Product) dataCollector.collectFormData(request);
             productAdded = productService.addService(product);
             postToMainPage(request, response);
         } catch (NullOrEmptyException e) {

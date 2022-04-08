@@ -1,13 +1,13 @@
 package by.tut.ssmt.service;
 
-import by.tut.ssmt.dao.repository.entities.Product;
-import by.tut.ssmt.service.exceptions.ServiceException;
+import by.tut.ssmt.dao.domain.Product;
+import by.tut.ssmt.service.exception.ServiceException;
 
-import java.util.List;
+import java.util.ArrayList;
 
 public interface ProductService {
 
-    List<Product> selectAllService() throws ServiceException;
+    ArrayList<Product> selectAllService() throws ServiceException;
 
     Product selectOneService(int productId) throws ServiceException;
 

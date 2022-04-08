@@ -3,14 +3,14 @@ package by.tut.ssmt.controller.servlet;
 import by.tut.ssmt.controller.command.Command;
 import by.tut.ssmt.controller.command.impl.*;
 import by.tut.ssmt.controller.exception.ControllerException;
-import by.tut.ssmt.dao.repository.entities.Product;
-import by.tut.ssmt.dao.repository.entities.User;
+import by.tut.ssmt.dao.domain.Product;
+import by.tut.ssmt.dao.domain.User;
 import by.tut.ssmt.service.ProductService;
 import by.tut.ssmt.service.ServiceFactory;
 import by.tut.ssmt.service.UserService;
-import by.tut.ssmt.service.Validator;
-import by.tut.ssmt.service.dataProcessors.DataProcessorList;
-import by.tut.ssmt.service.exceptions.ServiceException;
+import by.tut.ssmt.service.ServiceValidator;
+import by.tut.ssmt.service.dataProcessor.DataProcessorList;
+import by.tut.ssmt.service.exception.ServiceException;
 import org.apache.log4j.Logger;
 import org.apache.log4j.spi.RootLogger;
 
@@ -41,7 +41,7 @@ public class FrontController extends HttpServlet {
     private ArrayList<User> users;
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
     final DataProcessorList dataProcessorList = serviceFactory.getDataProcessorList();
-    final Validator validator = serviceFactory.getValidator();
+    final ServiceValidator serviceValidator = serviceFactory.getServiceValidator();
     final ProductService productService = serviceFactory.getProductService();
     final UserService userService = serviceFactory.getUserService();
     public static final Logger LOGGER = Logger.getLogger(FrontController.class.getName());
@@ -67,32 +67,31 @@ public class FrontController extends HttpServlet {
 
     }
 
-
     private void setUserInitialData(ServletContext servletContext) throws ControllerException {
         try {
             users = userService.selectAllService();
-        } catch (ServiceException e) {
+            serviceValidator.isNotNull(users);
+            servletContext.setAttribute("usersInContext", users);
+        } catch (ServiceException | NullPointerException e) {
             throw new ControllerException(e);
         }
-        validator.isNotNull(users);
-        servletContext.setAttribute("usersInContext", users);
     }
 
     private void setProductInitialData(ServletContext servletContext) throws ControllerException {
 
         try {
-            products = (ArrayList<Product>) productService.selectAllService();
-        } catch (ServiceException e) {
+            products = productService.selectAllService();
+            serviceValidator.isNotNull(products);
+            servletContext.setAttribute("productsAttribute", products);
+            LOGGER.info("message from FrontController init()");
+        } catch (ServiceException | NullPointerException e) {
             throw new ControllerException(e);
         }
-        validator.isNotNull(products);
-        servletContext.setAttribute("productsAttribute", products);
-        LOGGER.info("message from FrontController init()");
     }
 
-    private void setProportion(ServletContext servletContext) {
+    private void setProportion(ServletContext servletContext) throws NullPointerException {
         String formattedProportion = dataProcessorList.calculate(products);
-        validator.isNotNull(formattedProportion);
+        serviceValidator.isNotNull(formattedProportion);
         servletContext.setAttribute("proportion", formattedProportion);
     }
 

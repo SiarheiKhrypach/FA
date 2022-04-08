@@ -1,4 +1,4 @@
-package by.tut.ssmt.dao.repository.entities;
+package by.tut.ssmt.dao.domain;
 
 public class User {
     private int UserId;

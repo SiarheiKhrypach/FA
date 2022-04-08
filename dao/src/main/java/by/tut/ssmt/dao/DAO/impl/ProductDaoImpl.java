@@ -1,7 +1,10 @@
-package by.tut.ssmt.dao.DAO;
+package by.tut.ssmt.dao.DAO.impl;
 
+import by.tut.ssmt.dao.DAO.AbstractDao;
+import by.tut.ssmt.dao.DAO.DBConnector;
+import by.tut.ssmt.dao.DAO.ProductDao;
 import by.tut.ssmt.dao.exception.DaoException;
-import by.tut.ssmt.dao.repository.entities.Product;
+import by.tut.ssmt.dao.domain.Product;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -28,7 +31,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
         super(dbConnector);
     }
 
-    public ArrayList<Product> select() throws DaoException {
+    public ArrayList<Product> selectDao() throws DaoException {
         ArrayList<Product> products = new ArrayList<>();
         try (ResultSet resultSet = selectToResultSet(SELECT_FROM_TABLE)) {
             while (resultSet.next()) {
@@ -56,7 +59,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
         return products;
     }
 
-    public Product selectOne(int productId) throws DaoException {
+    public Product selectOneDao(int productId) throws DaoException {
         Product product = null;
         try (ResultSet resultSet = selectToResultSetWhere(SELECT_FROM_TABLE_WHERE, productId)) {
             if (resultSet.next()) {
@@ -83,7 +86,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
         return product;
     }
 
-    public boolean insert(Product product) throws DaoException {
+    public boolean insertDao(Product product) throws DaoException {
         PreparedStatement preparedStatement;
         try (Connection conn = getConnection()) {
             int result = 0;
@@ -122,7 +125,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
         }
     }
 
-    public boolean update(Product product) throws DaoException {
+    public boolean updateDao(Product product) throws DaoException {
         PreparedStatement preparedStatement;
         try(Connection conn = getConnection()) {
             int result = 0;
@@ -161,7 +164,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
         }
     }
 
-    public void delete(String productName) throws DaoException {
+    public void deleteDao(String productName) throws DaoException {
         try {
             super.delete(DELETE_FROM_TABLE, productName);
         } catch (SQLException | IOException | ClassNotFoundException e) {

@@ -1,4 +1,4 @@
-//package by.tut.ssmt.service.exceptions;
+//package by.tut.ssmt.controller.service.exceptions;
 //
 //public class ControllerException extends Exception {
 //    public ControllerException(Exception e) {

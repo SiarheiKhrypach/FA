@@ -1,6 +1,6 @@
-package by.tut.ssmt.service.dataProcessors;
+package by.tut.ssmt.service.dataProcessor;
 
-import by.tut.ssmt.dao.repository.entities.Product;
+import by.tut.ssmt.dao.domain.Product;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;

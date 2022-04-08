@@ -1,5 +1,6 @@
 package by.tut.ssmt.dao.DAO;
 
+import by.tut.ssmt.dao.DAO.impl.ProductDaoImpl;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;

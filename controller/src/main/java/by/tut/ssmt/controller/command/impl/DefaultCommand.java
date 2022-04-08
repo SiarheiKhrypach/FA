@@ -2,12 +2,12 @@ package by.tut.ssmt.controller.command.impl;
 
 import by.tut.ssmt.controller.command.Command;
 import by.tut.ssmt.controller.exception.ControllerException;
-import by.tut.ssmt.dao.repository.entities.Product;
+import by.tut.ssmt.dao.domain.Product;
 import by.tut.ssmt.service.ProductService;
 import by.tut.ssmt.service.ServiceFactory;
-import by.tut.ssmt.service.Validator;
-import by.tut.ssmt.service.dataProcessors.DataProcessorList;
-import by.tut.ssmt.service.exceptions.ServiceException;
+import by.tut.ssmt.service.ServiceValidator;
+import by.tut.ssmt.service.dataProcessor.DataProcessorList;
+import by.tut.ssmt.service.exception.ServiceException;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletContext;
@@ -23,7 +23,7 @@ public class DefaultCommand implements Command {
 
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final ProductService productService = serviceFactory.getProductService();
-    private final Validator validator = serviceFactory.getValidator();
+    private final ServiceValidator serviceValidator = serviceFactory.getServiceValidator();
     private final DataProcessorList dataProcessorList = serviceFactory.getDataProcessorList();
 
     public static final Logger LOGGER = Logger.getLogger(DefaultCommand.class.getName());
@@ -32,23 +32,23 @@ public class DefaultCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ControllerException {
         try {
-            products = (ArrayList<Product>) productService.selectAllService();
+            products = productService.selectAllService();
             LOGGER.info("products - " + products);
-            validator.isNotNull(products);
+            serviceValidator.isNotNull(products);
             ServletContext servletContext = request.getServletContext();
             servletContext.setAttribute("productsAttribute", products);
             setProportion(request);
             LOGGER.info("products from context - " + request.getServletContext().getAttribute("productsAttribute"));
             servletContext.getRequestDispatcher("/index.jsp").forward(request, response);
-        } catch (ServiceException e) {
+        } catch (ServiceException | NullPointerException e) {
             e.printStackTrace(); //todo delete
             throw new ControllerException(e);
         }
     }
 
-    private void setProportion(HttpServletRequest request) {
+    private void setProportion(HttpServletRequest request) throws NullPointerException {
         final String formattedProportion = dataProcessorList.calculate(products);
-        validator.isNotNull(formattedProportion);
+        serviceValidator.isNotNull(formattedProportion);
         request.setAttribute("proportion", formattedProportion);
     }
 }

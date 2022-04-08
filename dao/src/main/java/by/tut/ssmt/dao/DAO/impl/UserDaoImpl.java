@@ -1,7 +1,10 @@
-package by.tut.ssmt.dao.DAO;
+package by.tut.ssmt.dao.DAO.impl;
 
+import by.tut.ssmt.dao.DAO.AbstractDao;
+import by.tut.ssmt.dao.DAO.DBConnector;
+import by.tut.ssmt.dao.DAO.UserDao;
 import by.tut.ssmt.dao.exception.DaoException;
-import by.tut.ssmt.dao.repository.entities.User;
+import by.tut.ssmt.dao.domain.User;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -11,7 +14,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-public class UserDaoImpl extends AbstractDao implements UserDao{
+public class UserDaoImpl extends AbstractDao implements UserDao {
 
     private static final String SELECT_FROM_TABLE = "SELECT * FROM users";
     private static final String FIND_USER_BY_LOGIN_AND_PASSWORD = "SELECT * FROM users WHERE user_name = ? AND password = ?";
@@ -27,7 +30,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao{
 
     private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class.getName());
 
-    public ArrayList<User> select() throws DaoException {
+    public ArrayList<User> selectDao() throws DaoException {
         ArrayList<User> users = new ArrayList<>();
         try (ResultSet resultSet = selectToResultSet(SELECT_FROM_TABLE)) {
             while (resultSet.next()) {
@@ -87,7 +90,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao{
         return resultSet;
     }
 
-    public User selectOne(int userId) {
+    public User selectOneDao(int userId) {
         User user = null;
         try (ResultSet resultSet = selectToResultSetWhere(SELECT_FROM_TABLE_WHERE, userId)) {
             if (resultSet.next()) {

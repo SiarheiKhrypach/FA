@@ -1,8 +1,8 @@
 package by.tut.ssmt.service;
 
-import by.tut.ssmt.service.dataProcessors.AcidsProportionListImpl;
-import by.tut.ssmt.service.dataProcessors.DataProcessorList;
+import by.tut.ssmt.service.dataProcessor.AcidsProportionListImpl;
 import by.tut.ssmt.service.impl.ProductServiceImpl;
+import by.tut.ssmt.service.dataProcessor.DataProcessorList;
 import by.tut.ssmt.service.impl.UserServiceImpl;
 
 public class ServiceFactory {
@@ -13,7 +13,7 @@ public class ServiceFactory {
 //    private final ProductService productService = newProductService();
 
     private final DataProcessorList dataProcessorList = new AcidsProportionListImpl();
-    private final Validator validator = new Validator();
+    private final ServiceValidator serviceValidator = new ServiceValidator();
 //    private final DBConnector dbConnector = new DBConnector();
 //    private final ProductDaoImpl productDaoImpl = new ProductDaoImpl(dbConnector);
     private final ProductService productService = new ProductServiceImpl();
@@ -31,8 +31,8 @@ public class ServiceFactory {
         return dataProcessorList;
     }
 
-    public Validator getValidator() {
-        return validator;
+    public ServiceValidator getServiceValidator() {
+        return serviceValidator;
     }
 
 //    public DBConnector getDbConnector() {

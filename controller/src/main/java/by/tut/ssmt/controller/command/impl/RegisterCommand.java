@@ -2,12 +2,12 @@ package by.tut.ssmt.controller.command.impl;
 
 import by.tut.ssmt.controller.command.Command;
 import by.tut.ssmt.controller.exception.ControllerException;
-import by.tut.ssmt.controller.services.formDataCollectors.UserFormDataCollector;
-import by.tut.ssmt.dao.repository.entities.User;
+import by.tut.ssmt.controller.formDataCollector.UserFormDataCollector;
+import by.tut.ssmt.dao.domain.User;
 import by.tut.ssmt.service.ServiceFactory;
 import by.tut.ssmt.service.UserService;
-import by.tut.ssmt.service.exceptions.NullOrEmptyException;
-import by.tut.ssmt.service.exceptions.ServiceException;
+import by.tut.ssmt.service.exception.NullOrEmptyException;
+import by.tut.ssmt.service.exception.ServiceException;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;

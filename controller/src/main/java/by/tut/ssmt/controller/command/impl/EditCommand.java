@@ -1,15 +1,15 @@
 package by.tut.ssmt.controller.command.impl;
 
+import by.tut.ssmt.controller.ControllerFactory;
+import by.tut.ssmt.controller.ControllerValidator;
 import by.tut.ssmt.controller.command.Command;
 import by.tut.ssmt.controller.exception.ControllerException;
-import by.tut.ssmt.controller.services.formDataCollectors.FormDataCollector;
-import by.tut.ssmt.controller.services.formDataCollectors.ProductFormDataCollector;
-import by.tut.ssmt.dao.repository.entities.Product;
+import by.tut.ssmt.controller.formDataCollector.FormDataCollector;
+import by.tut.ssmt.dao.domain.Product;
 import by.tut.ssmt.service.ProductService;
 import by.tut.ssmt.service.ServiceFactory;
-import by.tut.ssmt.service.Validator;
-import by.tut.ssmt.service.exceptions.NullOrEmptyException;
-import by.tut.ssmt.service.exceptions.ServiceException;
+import by.tut.ssmt.service.exception.NullOrEmptyException;
+import by.tut.ssmt.service.exception.ServiceException;
 import org.apache.log4j.Logger;
 
 import javax.servlet.ServletException;
@@ -20,11 +20,11 @@ import java.io.IOException;
 public class EditCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(EditCommand.class.getName());
     private boolean productUpdated;
+    private final ControllerFactory controllerFactory = ControllerFactory.getInstance();
+    private final FormDataCollector dataCollector = controllerFactory.getProductFormDataCollector();
+    ControllerValidator controllerValidator = controllerFactory.getControllerValidator();
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final ProductService productService = serviceFactory.getProductService();
-    final Validator validator = new Validator();
-    final FormDataCollector dataCollector = new ProductFormDataCollector();
-
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ControllerException {
@@ -52,7 +52,7 @@ public class EditCommand implements Command {
     private Product getProduct(HttpServletRequest request) throws NullOrEmptyException {
         final String productId = request.getParameter("productId").trim();
         LOGGER.info("productID - " + productId);
-        validator.isNotNullOrEmpty(productId);
+        controllerValidator.isNotNullOrEmpty(productId);
         final Product product = (Product) dataCollector.collectFormData(request);
         product.setProductId(Integer.parseInt(productId));
         LOGGER.info("product - " + product);

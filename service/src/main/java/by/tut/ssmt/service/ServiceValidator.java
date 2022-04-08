@@ -1,17 +1,18 @@
 package by.tut.ssmt.service;
 
-import by.tut.ssmt.dao.repository.entities.Product;
-import by.tut.ssmt.service.exceptions.NullOrEmptyException;
+import by.tut.ssmt.dao.domain.Product;
+import by.tut.ssmt.service.exception.NullOrEmptyException;
 
 import java.util.ArrayList;
 
 import static java.util.Objects.isNull;
 
-public class Validator {
+public class ServiceValidator {
 
     public void isNotNull(final String str) {
         if (isNull(str)) {
             throw new NullPointerException("The incoming string is null");
+//            throw new ControllerException ("The incoming string is null");
         }
     }
 
@@ -30,7 +31,7 @@ public class Validator {
 
     public void isNotNullOrEmpty(String s) throws NullOrEmptyException {
         if (isNull(s) || "".equals(s.trim())) {
-            throw new   NullOrEmptyException("The incoming string is null or empty");
+            throw new NullOrEmptyException("The incoming string is null or empty");
         }
     }
 
