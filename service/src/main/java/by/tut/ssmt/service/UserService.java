@@ -7,16 +7,33 @@ import java.util.ArrayList;
 
 public interface UserService {
 
-    public ArrayList<User> selectAllService() throws ServiceException;
+    /**
+     * Service to select all users
+     * @return ArrayList<User>
+     * @throws ServiceException is a module exception
+     */
+    ArrayList<User> selectAllService() throws ServiceException;
 
+    /**
+     * login service
+     * @param user - user credentials, received from UI
+     * @return true if successful, otherwise false
+     * @throws ServiceException is a module exception
+     */
     boolean loginService(User user) throws ServiceException;
 
-    public User selectOneDaoService(int userId);
+    User selectOneDaoService(int userId);
 
-    public boolean insertService(User user) throws ServiceException;
+    /**
+     * Service to add users
+     * @param user - user credentials, received from UI
+     * @return true if successful, otherwise false
+     * @throws ServiceException is a module exception
+     */
+    boolean insertService(User user) throws ServiceException;
 
-    public void updateService(User user);
+    void updateService(User user);
 
-    public void deleteService(String userName);
+    void deleteService(String userName);
 //    public void deleteService(int userId);
 }
