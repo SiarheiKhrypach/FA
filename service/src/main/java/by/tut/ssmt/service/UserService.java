@@ -22,7 +22,7 @@ public interface UserService {
      */
     boolean loginService(User user) throws ServiceException;
 
-    User selectOneDaoService(int userId);
+    User selectOneDaoService(int userId) throws ServiceException;
 
     /**
      * Service to add users
@@ -32,8 +32,8 @@ public interface UserService {
      */
     boolean insertService(User user) throws ServiceException;
 
-    void updateService(User user);
+    boolean updateService(User user) throws ServiceException;
 
-    void deleteService(String userName);
+    void deleteService(String userName) throws ServiceException;
 //    public void deleteService(int userId);
 }

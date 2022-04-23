@@ -32,8 +32,14 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
     }
 
     public ArrayList<Product> selectDao() throws DaoException {
-        ArrayList<Product> products = new ArrayList<>();
-        try (ResultSet resultSet = selectToResultSet(SELECT_FROM_TABLE)) {
+        Connection conn = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            ArrayList<Product> products = new ArrayList<>();
+            conn = getConnection();
+            preparedStatement = conn.prepareStatement(SELECT_FROM_TABLE);
+            resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int productId = resultSet.getInt(1);
                 String productName = resultSet.getString(2);
@@ -43,26 +49,32 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
                 Product product = new Product(productId, productName, omegaThree, omegaSix, portion);
                 products.add(product);
             }
+            return products;
         } catch (SQLException | ClassNotFoundException | IOException e) {
             throw new DaoException("Error in ProductDAO", e);
-        }
-        finally {
+        } finally {
+            close(resultSet, preparedStatement);
             try {
-                if (conn != null)
+                if (conn != null) {
                     conn.close();
+                }
             } catch (SQLException e) {
-                LOGGER.error("Error: ", e);
-                e.printStackTrace();//todo remove
+                throw new DaoException("Error closing connection", e);
             }
         }
-
-        return products;
     }
 
     public Product selectOneDao(int productId) throws DaoException {
+        Connection conn = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
         Product product = null;
-        try (ResultSet resultSet = selectToResultSetWhere(SELECT_FROM_TABLE_WHERE, productId)) {
-            if (resultSet.next()) {
+        try {
+            conn = getConnection();
+            preparedStatement = conn.prepareStatement(SELECT_FROM_TABLE_WHERE);
+            preparedStatement.setInt(1, productId);
+            resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
                 int productID = resultSet.getInt(1);
                 String productName = resultSet.getString(2);
                 double omegaThree = resultSet.getDouble(3);
@@ -70,29 +82,31 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
                 int portion = resultSet.getInt(5);
                 product = new Product(productID, productName, omegaThree, omegaSix, portion);
             }
+            return product;
         } catch (SQLException | IOException | ClassNotFoundException e) {
-            System.out.println("SQLException caught");//todo remove
-            LOGGER.error("Error: ", e);
             throw new DaoException("Error in ProductDAO", e);
         } finally {
+            close(resultSet, preparedStatement);
             try {
                 if (conn != null)
                     conn.close();
             } catch (SQLException e) {
-                LOGGER.error("Error: ", e);
-                e.printStackTrace();//todo remove
+                throw new DaoException("Error closing connection", e);
             }
         }
-        return product;
     }
 
     public boolean insertDao(Product product) throws DaoException {
-        PreparedStatement preparedStatement;
-        try (Connection conn = getConnection()) {
+        Connection conn = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
             int result = 0;
+            conn = getConnection();
+            conn.setAutoCommit(false);
             preparedStatement = conn.prepareStatement(FIND_PRODUCT_BY_NAME);
             preparedStatement.setString(1, product.getProductName());
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
             Product productMatch = new Product();
             while (resultSet.next()) {
                 productMatch.setProductId(resultSet.getInt(1));
@@ -103,38 +117,47 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
             }
 
             if (productMatch.getProductName() == null) {
-                preparedStatement = prepareStatement(INSERT_INTO_TABLE);
+                preparedStatement = conn.prepareStatement(INSERT_INTO_TABLE);
                 preparedStatement.setString(1, product.getProductName());
                 preparedStatement.setDouble(2, product.getOmegaThree());
                 preparedStatement.setDouble(3, product.getOmegaSix());
                 preparedStatement.setInt(4, product.getPortion());
                 result = preparedStatement.executeUpdate();
             }
+            conn.commit();
             return (result != 0);
         } catch (SQLException | IOException | ClassNotFoundException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                throw new DaoException("Error rolling back", ex);
+            }
             throw new DaoException("Error in ProductDAO", e);
-        }
-         finally {
+        } finally {
+            close(resultSet, preparedStatement);
             try {
                 if (conn != null)
                     conn.close();
             } catch (SQLException e) {
-                LOGGER.error("Error: ", e);
-                e.printStackTrace();//todo remove
+                throw new DaoException("Error closing connection", e);
             }
         }
     }
 
     public boolean updateDao(Product product) throws DaoException {
-        PreparedStatement preparedStatement;
-        try(Connection conn = getConnection()) {
+        Connection conn = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
             int result = 0;
+            conn = getConnection();
+            conn.setAutoCommit(false);
             preparedStatement = conn.prepareStatement(FIND_PRODUCT_BY_NAME_WITH_DIFFERENT_ID);
             preparedStatement.setString(1, product.getProductName());
             preparedStatement.setInt(2, product.getProductId());
-            ResultSet resultSet = preparedStatement.executeQuery();
+            resultSet = preparedStatement.executeQuery();
             Product productMatch = new Product();
-            while (resultSet.next()){
+            while (resultSet.next()) {
                 productMatch.setProductId(resultSet.getInt(1));
                 productMatch.setProductName(resultSet.getString(2));
                 productMatch.setOmegaThree(resultSet.getInt(3));
@@ -142,7 +165,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
                 productMatch.setPortion(resultSet.getInt(5));
             }
             if (productMatch.getProductName() == null) {
-                preparedStatement = prepareStatement(UPDATE_TABLE);
+                preparedStatement = conn.prepareStatement(UPDATE_TABLE);
                 preparedStatement.setString(1, product.getProductName());
                 preparedStatement.setDouble(2, product.getOmegaThree());
                 preparedStatement.setDouble(3, product.getOmegaSix());
@@ -150,31 +173,50 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
                 preparedStatement.setInt(5, product.getProductId());
                 result = preparedStatement.executeUpdate();
             }
+            conn.commit();
             return (result != 0);
         } catch (SQLException | IOException | ClassNotFoundException e) {
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                throw new DaoException("Error rolling back", ex);
+            }
             throw new DaoException("Error in ProductDAO", e);
         } finally {
+            close(resultSet, preparedStatement);
             try {
                 if (conn != null)
                     conn.close();
             } catch (SQLException e) {
-                LOGGER.error("Error: ", e);
-                e.printStackTrace();//todo remove
+                throw new DaoException("Error closing connection", e);
             }
         }
     }
 
     public void deleteDao(String productName) throws DaoException {
+        Connection conn = null;
+        PreparedStatement preparedStatement = null;
         try {
-            super.delete(DELETE_FROM_TABLE, productName);
+            conn = getConnection();
+            conn.setAutoCommit(false);
+            preparedStatement = conn.prepareStatement(DELETE_FROM_TABLE);
+            preparedStatement.setString(1, productName);
+            preparedStatement.executeUpdate();
+            conn.commit();
         } catch (SQLException | IOException | ClassNotFoundException e) {
-            throw new DaoException();
+            try {
+                conn.rollback();
+            } catch (SQLException ex) {
+                throw new DaoException("Error rolling back", ex);
+            }
+            throw new DaoException("Error in ProductDao", e);
         } finally {
+            close(null, preparedStatement);
             try {
                 if (conn != null)
                     conn.close();
             } catch (SQLException e) {
-                throw new DaoException();
+                throw new DaoException("Error closing connection", e);
             }
         }
     }

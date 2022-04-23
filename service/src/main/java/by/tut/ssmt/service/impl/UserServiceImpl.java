@@ -36,8 +36,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User selectOneDaoService(int userId) {
-        return userDao.selectOneDao(userId);
+    public User selectOneDaoService(int userId) throws ServiceException {
+        try {
+            return userDao.selectOneDao(userId);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
@@ -50,14 +54,22 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void updateService(User user) {
-        userDao.update(user);
+    public boolean updateService(User user) throws ServiceException {
+        try {
+            return userDao.update(user);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
     }
 
     @Override
-    public void deleteService(String userName) {
+    public void deleteService(String userName) throws ServiceException {
 //    public void deleteService(int userId) {
 //        userDao.delete(userId);
-        userDao.delete(userName);
+        try {
+            userDao.delete(userName);
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
     }
 }

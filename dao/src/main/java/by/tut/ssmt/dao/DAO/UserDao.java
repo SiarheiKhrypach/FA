@@ -27,7 +27,7 @@ public interface UserDao {
      * @param userId
      * @return
      */
-    User selectOneDao(int userId);
+    User selectOneDao(int userId) throws DaoException;
 
     /**
      * inserts users
@@ -40,13 +40,14 @@ public interface UserDao {
     /**
      *
      * @param user
+     * @return
      */
-    void update(User user);
+    boolean update(User user) throws DaoException;
 
     /**
      *
      * @param userName
      */
-    void delete(String userName);
+    void delete(String userName) throws DaoException;
 //    public void delete(int userId);
 }
