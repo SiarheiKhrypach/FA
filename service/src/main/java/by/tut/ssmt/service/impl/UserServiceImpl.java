@@ -1,13 +1,13 @@
 package by.tut.ssmt.service.impl;
 
-import by.tut.ssmt.service.exception.ServiceException;
 import by.tut.ssmt.dao.DAO.DaoFactory;
 import by.tut.ssmt.dao.DAO.UserDao;
-import by.tut.ssmt.dao.exception.DaoException;
 import by.tut.ssmt.dao.domain.User;
+import by.tut.ssmt.dao.exception.DaoException;
 import by.tut.ssmt.service.UserService;
+import by.tut.ssmt.service.exception.ServiceException;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class UserServiceImpl implements UserService {
 
@@ -17,7 +17,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public ArrayList<User> selectAllService() throws ServiceException {
+    public List<User> selectAllService() throws ServiceException {
         try {
             return userDao.selectDao();
         } catch (DaoException e) {

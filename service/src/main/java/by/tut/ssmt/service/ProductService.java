@@ -3,17 +3,17 @@ package by.tut.ssmt.service;
 import by.tut.ssmt.dao.domain.Product;
 import by.tut.ssmt.service.exception.ServiceException;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface ProductService {
 
 
     /**
      * Service to show all products
-     * @return ArrayList<Product>
+     * @return List<Product>
      * @throws ServiceException is module exception
      */
-    ArrayList<Product> selectAllService() throws ServiceException;
+    List<Product> selectAllService() throws ServiceException;
 
     /**
      * Service to select one product by id provided

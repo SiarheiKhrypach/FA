@@ -7,8 +7,8 @@ import by.tut.ssmt.dao.domain.Product;
 import by.tut.ssmt.dao.domain.User;
 import by.tut.ssmt.service.ProductService;
 import by.tut.ssmt.service.ServiceFactory;
-import by.tut.ssmt.service.UserService;
 import by.tut.ssmt.service.ServiceValidator;
+import by.tut.ssmt.service.UserService;
 import by.tut.ssmt.service.dataProcessor.DataProcessorList;
 import by.tut.ssmt.service.exception.ServiceException;
 import org.apache.log4j.Logger;
@@ -21,8 +21,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static java.util.Objects.isNull;
@@ -35,10 +35,10 @@ import static java.util.Objects.isNull;
         )
 public class FrontController extends HttpServlet {
 
-    ArrayList<Product> products;
+    List<Product> products;
     private Map<String, Command> commands;
 
-    private ArrayList<User> users;
+    private List<User> users;
     private ServiceFactory serviceFactory = ServiceFactory.getInstance();
     final DataProcessorList dataProcessorList = serviceFactory.getDataProcessorList();
     final ServiceValidator serviceValidator = serviceFactory.getServiceValidator();

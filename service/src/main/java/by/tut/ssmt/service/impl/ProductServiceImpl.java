@@ -1,13 +1,13 @@
 package by.tut.ssmt.service.impl;
 
-import by.tut.ssmt.service.ProductService;
 import by.tut.ssmt.dao.DAO.DaoFactory;
 import by.tut.ssmt.dao.DAO.ProductDao;
-import by.tut.ssmt.dao.exception.DaoException;
 import by.tut.ssmt.dao.domain.Product;
+import by.tut.ssmt.dao.exception.DaoException;
+import by.tut.ssmt.service.ProductService;
 import by.tut.ssmt.service.exception.ServiceException;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public class ProductServiceImpl implements ProductService {
 
@@ -17,7 +17,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public ArrayList<Product> selectAllService() throws ServiceException {
+    public List<Product> selectAllService() throws ServiceException {
         try {
             return productDao.selectDao();
         } catch (DaoException e) {

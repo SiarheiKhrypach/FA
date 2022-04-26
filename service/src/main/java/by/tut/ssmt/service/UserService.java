@@ -1,18 +1,18 @@
 package by.tut.ssmt.service;
 
-import by.tut.ssmt.service.exception.ServiceException;
 import by.tut.ssmt.dao.domain.User;
+import by.tut.ssmt.service.exception.ServiceException;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface UserService {
 
     /**
      * Service to select all users
-     * @return ArrayList<User>
+     * @return List<User>
      * @throws ServiceException is a module exception
      */
-    ArrayList<User> selectAllService() throws ServiceException;
+    List<User> selectAllService() throws ServiceException;
 
     /**
      * login service

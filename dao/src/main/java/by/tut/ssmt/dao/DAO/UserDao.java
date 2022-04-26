@@ -1,18 +1,18 @@
 package by.tut.ssmt.dao.DAO;
 
-import by.tut.ssmt.dao.exception.DaoException;
 import by.tut.ssmt.dao.domain.User;
+import by.tut.ssmt.dao.exception.DaoException;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface UserDao {
 
     /**
      * selects all users
-     * @return ArrayList<User>
+     * @return List<User>
      * @throws DaoException is a module exception
      */
-    ArrayList<User> selectDao() throws DaoException;
+    List<User> selectDao() throws DaoException;
 
     /**
      * finds user

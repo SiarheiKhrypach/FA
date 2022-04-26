@@ -2,9 +2,9 @@ package by.tut.ssmt.service.dataProcessor;
 
 import by.tut.ssmt.dao.domain.Product;
 
-import java.util.ArrayList;
+import java.util.List;
 
 
 public interface DataProcessorList {
-    String calculate(ArrayList<Product> products);
+    String calculate(List<Product> products);
 }

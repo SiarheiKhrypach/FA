@@ -1,18 +1,18 @@
 package by.tut.ssmt.dao.DAO;
 
-import by.tut.ssmt.dao.exception.DaoException;
 import by.tut.ssmt.dao.domain.Product;
+import by.tut.ssmt.dao.exception.DaoException;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface ProductDao {
 
     /**
      * selects all products
-     * @return ArrayList<Product>
+     * @return List<Product>
      * @throws DaoException
      */
-    ArrayList<Product> selectDao() throws DaoException;
+    List<Product> selectDao() throws DaoException;
 
     /**
      * selects one product by id provided

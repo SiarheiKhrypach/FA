@@ -3,8 +3,8 @@ package by.tut.ssmt.dao.DAO.impl;
 import by.tut.ssmt.dao.DAO.AbstractDao;
 import by.tut.ssmt.dao.DAO.DBConnector;
 import by.tut.ssmt.dao.DAO.UserDao;
-import by.tut.ssmt.dao.exception.DaoException;
 import by.tut.ssmt.dao.domain.User;
+import by.tut.ssmt.dao.exception.DaoException;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class UserDaoImpl extends AbstractDao implements UserDao {
 
@@ -30,12 +31,12 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
     private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class.getName());
 
-    public ArrayList<User> selectDao() throws DaoException {
+    public List<User> selectDao() throws DaoException {
         Connection conn = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
-            ArrayList<User> users = new ArrayList<>();
+            List<User> users = new ArrayList<>();
             conn = getConnection();
             preparedStatement = conn.prepareStatement(SELECT_FROM_TABLE);
             resultSet = preparedStatement.executeQuery();

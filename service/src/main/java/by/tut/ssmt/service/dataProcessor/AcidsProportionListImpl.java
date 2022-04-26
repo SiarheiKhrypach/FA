@@ -3,11 +3,11 @@ package by.tut.ssmt.service.dataProcessor;
 import by.tut.ssmt.dao.domain.Product;
 
 import java.text.DecimalFormat;
-import java.util.ArrayList;
+import java.util.List;
 
 public class AcidsProportionListImpl implements DataProcessorList {
 
-    public String calculate(ArrayList <Product> products) {
+    public String calculate(List<Product> products) {
 
         double totalOmegaThree = 0;
         double totalOmegaSix = 0;

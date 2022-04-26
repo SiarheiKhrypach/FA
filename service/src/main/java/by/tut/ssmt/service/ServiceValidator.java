@@ -3,7 +3,7 @@ package by.tut.ssmt.service;
 import by.tut.ssmt.dao.domain.Product;
 import by.tut.ssmt.service.exception.NullOrEmptyException;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import static java.util.Objects.isNull;
 
@@ -16,7 +16,7 @@ public class ServiceValidator {
         }
     }
 
-    public void isNotNull(final ArrayList list) {
+    public void isNotNull(final List list) {
         if (isNull(list)) {
             throw new NullPointerException("The incoming list is null");
         }

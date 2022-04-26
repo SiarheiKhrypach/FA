@@ -3,8 +3,8 @@ package by.tut.ssmt.dao.DAO.impl;
 import by.tut.ssmt.dao.DAO.AbstractDao;
 import by.tut.ssmt.dao.DAO.DBConnector;
 import by.tut.ssmt.dao.DAO.ProductDao;
-import by.tut.ssmt.dao.exception.DaoException;
 import by.tut.ssmt.dao.domain.Product;
+import by.tut.ssmt.dao.exception.DaoException;
 import org.apache.log4j.Logger;
 
 import java.io.IOException;
@@ -13,6 +13,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class ProductDaoImpl extends AbstractDao implements ProductDao {
 
@@ -31,12 +32,12 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
         super(dbConnector);
     }
 
-    public ArrayList<Product> selectDao() throws DaoException {
+    public List<Product> selectDao() throws DaoException {
         Connection conn = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
-            ArrayList<Product> products = new ArrayList<>();
+            List<Product> products = new ArrayList<>();
             conn = getConnection();
             preparedStatement = conn.prepareStatement(SELECT_FROM_TABLE);
             resultSet = preparedStatement.executeQuery();
