@@ -72,7 +72,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             preparedStatement.setString(1, user.getUserName());
             preparedStatement.setString(2, user.getPassword());
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 int userId = resultSet.getInt(1);
                 String userName = resultSet.getString(2);
                 String password = resultSet.getString(3);
@@ -103,7 +103,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             preparedStatement = conn.prepareStatement(SELECT_FROM_TABLE_WHERE);
             preparedStatement.setInt(1, userId);
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 int id = resultSet.getInt(1);
                 String name = resultSet.getString(2);
                 String password = resultSet.getString(3);
@@ -136,7 +136,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             preparedStatement.setString(1, user.getUserName());
             resultSet = preparedStatement.executeQuery();
             User userMatch = new User();
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 userMatch.setUserId(resultSet.getInt(1));
                 userMatch.setName(resultSet.getString(2));
                 userMatch.setPassword(resultSet.getString(3));
@@ -179,7 +179,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             preparedStatement.setString(1, user.getUserName());
             resultSet = preparedStatement.executeQuery();
             User userMatch = new User();
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 userMatch.setUserId(resultSet.getInt(1));
                 userMatch.setName(resultSet.getString(2));
                 userMatch.setPassword(resultSet.getString(3));

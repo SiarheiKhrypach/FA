@@ -75,7 +75,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
             preparedStatement = conn.prepareStatement(SELECT_FROM_TABLE_WHERE);
             preparedStatement.setInt(1, productId);
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 int productID = resultSet.getInt(1);
                 String productName = resultSet.getString(2);
                 double omegaThree = resultSet.getDouble(3);
@@ -109,7 +109,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
             preparedStatement.setString(1, product.getProductName());
             resultSet = preparedStatement.executeQuery();
             Product productMatch = new Product();
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 productMatch.setProductId(resultSet.getInt(1));
                 productMatch.setProductName(resultSet.getString(2));
                 productMatch.setOmegaThree(resultSet.getInt(3));
@@ -158,7 +158,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
             preparedStatement.setInt(2, product.getProductId());
             resultSet = preparedStatement.executeQuery();
             Product productMatch = new Product();
-            while (resultSet.next()) {
+            if (resultSet.next()) {
                 productMatch.setProductId(resultSet.getInt(1));
                 productMatch.setProductName(resultSet.getString(2));
                 productMatch.setOmegaThree(resultSet.getInt(3));
