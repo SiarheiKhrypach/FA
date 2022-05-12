@@ -11,6 +11,12 @@
         </jsp-property-group>
     </jsp-config>
 
+    <welcome-file-list>
+<!--        <welcome-file>index.jsp</welcome-file>-->
+        <welcome-file>default.jsp</welcome-file>
+    </welcome-file-list>
+
+
     <filter>
         <filter-name>encodingFilter</filter-name>
         <filter-class>by.tut.ssmt.controller.servlet.EncodingFilter</filter-class>

@@ -58,12 +58,11 @@ public class FrontController extends HttpServlet {
         try {
             setUserInitialData(servletContext);
             setProductInitialData(servletContext);
-
+            setProportion(servletContext);
         } catch (ControllerException e) {
             LOGGER.error("Error: ", e);
-            servletContext.getRequestDispatcher("/WEB-INF/error.jsp");
+            servletContext.setAttribute("message", "error");
         }
-        setProportion(servletContext);
 
     }
 
@@ -72,7 +71,7 @@ public class FrontController extends HttpServlet {
             users = userService.selectAllService();
             serviceValidator.isNotNull(users);
             servletContext.setAttribute("usersInContext", users);
-        } catch (ServiceException | NullPointerException e) {
+        } catch (NullPointerException | ServiceException e) {
             throw new ControllerException(e);
         }
     }
@@ -120,7 +119,7 @@ public class FrontController extends HttpServlet {
     }
 
     private void doExecute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        boolean isRequiredForward = true;
+        boolean isRequiredForward;
         RootLogger log = (RootLogger) getServletContext().getAttribute("log4");
         isRequiredForward = processLocale(request, response);
         if (isRequiredForward) {
@@ -128,7 +127,7 @@ public class FrontController extends HttpServlet {
                 final String command = getCommand(request);
                 LOGGER.info("Command - " + command);
                 commands.get(command).execute(request, response);
-            } catch (ControllerException | ServletException | IOException e) {
+            } catch (ServletException | IOException | ControllerException e) {
                 log.error("Error: ", e);
                 request.getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
             }
