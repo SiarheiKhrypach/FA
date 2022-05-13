@@ -12,7 +12,7 @@ public class FormsAccessCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ControllerException {
-        String uri = request.getRequestURI().replace("/", "");
+        final String uri = request.getRequestURI().replace("/", "");
         request.getRequestDispatcher("/WEB-INF/" + uri + ".jsp").forward(request, response);
     }
 }

@@ -7,7 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 
 public abstract class FormDataCollector {
 
-    ControllerValidator controllerValidator = new ControllerValidator();
+     protected final ControllerValidator controllerValidator = new ControllerValidator();
 
     public abstract Object collectFormData (HttpServletRequest req) throws NullOrEmptyException;
 }

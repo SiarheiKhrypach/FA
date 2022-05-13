@@ -9,15 +9,9 @@ public class ServiceFactory {
 
     private static final ServiceFactory INSTANCE = new ServiceFactory();
 
-//    private final UserService userService = newUserService();
-//    private final ProductService productService = newProductService();
-
     private final DataProcessorList dataProcessorList = new AcidsProportionListImpl();
     private final ServiceValidator serviceValidator = new ServiceValidator();
-//    private final DBConnector dbConnector = new DBConnector();
-//    private final ProductDaoImpl productDaoImpl = new ProductDaoImpl(dbConnector);
     private final ProductService productService = new ProductServiceImpl();
-//    private final UserDaoImpl userDaoImpl = new UserDaoImpl(dbConnector);
     private final UserService userService = new UserServiceImpl();
 
     private ServiceFactory() {
@@ -34,18 +28,6 @@ public class ServiceFactory {
     public ServiceValidator getServiceValidator() {
         return serviceValidator;
     }
-
-//    public DBConnector getDbConnector() {
-//        return dbConnector;
-//    }
-
-//    public ProductDaoImpl getProductDaoImpl() {
-//        return productDaoImpl;
-//    }
-
-//    public UserDaoImpl getUserDaoImpl() {
-//        return userDaoImpl;
-//    }
 
     public ProductService getProductService() {
         return productService;

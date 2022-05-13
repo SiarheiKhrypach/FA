@@ -22,14 +22,14 @@ public class EditCommand implements Command {
     private boolean productUpdated;
     private final ControllerFactory controllerFactory = ControllerFactory.getInstance();
     private final FormDataCollector dataCollector = controllerFactory.getProductFormDataCollector();
-    ControllerValidator controllerValidator = controllerFactory.getControllerValidator();
+    private final ControllerValidator controllerValidator = controllerFactory.getControllerValidator();
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final ProductService productService = serviceFactory.getProductService();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ControllerException {
         try {
-            Product product = getProduct(request);
+            final Product product = getProduct(request);
             productUpdated = productService.updateService(product);
             postToMainPage(request, response);
         } catch (NullOrEmptyException e) {

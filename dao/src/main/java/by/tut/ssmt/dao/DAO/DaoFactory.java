@@ -12,13 +12,9 @@ public class DaoFactory {
 
 
     private final ProductDao productDao = new ProductDaoImpl(connectionPool);
-//    private final ProductDao productDao;
     private final UserDao userDao = new UserDaoImpl(connectionPool);
-//    private final UserDao userDao;
 
     private DaoFactory() {
-//        this.productDao = new ProductDaoImpl(connectionPool);
-//        this.userDao = new UserDaoImpl(connectionPool);
     }
 
     public ProductDao getProductDao() {

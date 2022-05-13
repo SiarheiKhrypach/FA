@@ -14,7 +14,7 @@ public class UserFormDataCollector extends FormDataCollector {
         final String password = req.getParameter("pass");
 //        char[] password = req.getParameter("pass").trim().toCharArray();
         controllerValidator.isNotNullOrEmpty(password);
-        User user = new User(userName, password);
+        final User user = new User(userName, password);
         return user;
     }
 }

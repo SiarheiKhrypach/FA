@@ -1,8 +1,9 @@
 package by.tut.ssmt.controller.command.impl;
 
+import by.tut.ssmt.controller.ControllerFactory;
 import by.tut.ssmt.controller.command.Command;
 import by.tut.ssmt.controller.exception.ControllerException;
-import by.tut.ssmt.controller.formDataCollector.UserFormDataCollector;
+import by.tut.ssmt.controller.formDataCollector.FormDataCollector;
 import by.tut.ssmt.dao.domain.User;
 import by.tut.ssmt.service.ServiceFactory;
 import by.tut.ssmt.service.UserService;
@@ -16,15 +17,17 @@ import java.io.IOException;
 
 public class RegisterCommand implements Command {
 
-    boolean userAdded;
+    private boolean userAdded;
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final UserService userService = serviceFactory.getUserService();
-    final UserFormDataCollector dataCollector = new UserFormDataCollector();
+    private final ControllerFactory controllerFactory = ControllerFactory.getInstance();
+    private final FormDataCollector dataCollector = controllerFactory.getUserFormDataCollector();
+
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ControllerException {
         try {
-            User user = dataCollector.collectFormData(request);
+            final User user = (User) dataCollector.collectFormData(request);
             userAdded = userService.insertService(user);
             postToMainPage(request, response);
         } catch (NullOrEmptyException e) {

@@ -1,8 +1,9 @@
 package by.tut.ssmt.controller.command.impl;
 
+import by.tut.ssmt.controller.ControllerFactory;
 import by.tut.ssmt.controller.command.Command;
 import by.tut.ssmt.controller.exception.ControllerException;
-import by.tut.ssmt.controller.formDataCollector.UserFormDataCollector;
+import by.tut.ssmt.controller.formDataCollector.FormDataCollector;
 import by.tut.ssmt.dao.domain.User;
 import by.tut.ssmt.service.ServiceFactory;
 import by.tut.ssmt.service.UserService;
@@ -18,14 +19,15 @@ import java.io.IOException;
 public class LoginCommand implements Command {
     boolean passwordVerified;
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
-    UserService userService = serviceFactory.getUserService();
-    final UserFormDataCollector dataCollector = new UserFormDataCollector();
+    private final UserService userService = serviceFactory.getUserService();
+    private final ControllerFactory controllerFactory = ControllerFactory.getInstance();
+    private final FormDataCollector dataCollector = controllerFactory.getUserFormDataCollector();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ControllerException {
         passwordVerified = false;
         try {
-            User user = dataCollector.collectFormData(request);
+            final User user = (User) dataCollector.collectFormData(request);
             passwordVerified = userService.loginService(user);
             request.setAttribute("name", user.getUserName());
             postToMainPage(request, response);

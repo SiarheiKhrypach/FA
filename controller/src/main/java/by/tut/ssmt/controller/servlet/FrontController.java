@@ -35,15 +35,14 @@ import static java.util.Objects.isNull;
         )
 public class FrontController extends HttpServlet {
 
-    List<Product> products;
-    private Map<String, Command> commands;
-
+    private List<Product> products;
     private List<User> users;
-    private ServiceFactory serviceFactory = ServiceFactory.getInstance();
-    final DataProcessorList dataProcessorList = serviceFactory.getDataProcessorList();
-    final ServiceValidator serviceValidator = serviceFactory.getServiceValidator();
-    final ProductService productService = serviceFactory.getProductService();
-    final UserService userService = serviceFactory.getUserService();
+    private Map<String, Command> commands;
+    private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
+    private final DataProcessorList dataProcessorList = serviceFactory.getDataProcessorList();
+    private final ServiceValidator serviceValidator = serviceFactory.getServiceValidator();
+    private final ProductService productService = serviceFactory.getProductService();
+    private final UserService userService = serviceFactory.getUserService();
     public static final Logger LOGGER = Logger.getLogger(FrontController.class.getName());
 
 
