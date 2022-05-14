@@ -138,7 +138,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             try {
                 conn.rollback();
             } catch (SQLException ex) {
-                throw new DaoException("Error during rollback", ex);
+                throw new DaoException("Error while rolling back", ex);
             }
             throw new DaoException("Error in UserDao", e);
         } finally {
@@ -177,7 +177,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             try {
                 conn.rollback();
             } catch (SQLException ex) {
-                throw new DaoException("Error during rollback", ex);
+                throw new DaoException("Error while rolling back", ex);
             }
             throw new DaoException("Error in UserDao", e);
         } finally {
@@ -200,7 +200,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             try {
                 conn.rollback();
             } catch (SQLException ex) {
-                throw new DaoException("Error rolling back", ex);
+                throw new DaoException("Error while rolling back", ex);
             }
             throw new DaoException("Error in UserDao", e);
         } finally {

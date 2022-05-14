@@ -34,7 +34,7 @@ public class AbstractDao {
                 resultSet.close();
             }
         } catch (SQLException e) {
-            throw new DaoException("Error closing Resultset", e);
+            throw new DaoException("Error while closing Resultset", e);
         }
 
         try {
@@ -42,7 +42,7 @@ public class AbstractDao {
                 preparedStatement.close();
             }
         } catch (SQLException e) {
-            throw new DaoException("Error closing PrepareStatement", e);
+            throw new DaoException("Error while closing PrepareStatement", e);
         }
     }
 }

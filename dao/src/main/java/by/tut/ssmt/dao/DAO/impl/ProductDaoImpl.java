@@ -120,7 +120,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
             try {
                 conn.rollback();
             } catch (SQLException ex) {
-                throw new DaoException("Error rolling back", ex);
+                throw new DaoException("Error while rolling back", ex);
             }
             throw new DaoException("Error in ProductDAO", e);
         } finally {
@@ -164,7 +164,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
             try {
                 conn.rollback();
             } catch (SQLException ex) {
-                throw new DaoException("Error rolling back", ex);
+                throw new DaoException("Error while rolling back", ex);
             }
             throw new DaoException("Error in ProductDAO", e);
         } finally {
@@ -187,7 +187,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
             try {
                 conn.rollback();
             } catch (SQLException ex) {
-                throw new DaoException("Error rolling back", ex);
+                throw new DaoException("Error while rolling back", ex);
             }
             throw new DaoException("Error in ProductDao", e);
         } finally {

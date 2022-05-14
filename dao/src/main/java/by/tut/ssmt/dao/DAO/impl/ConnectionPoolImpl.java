@@ -39,7 +39,7 @@ public class ConnectionPoolImpl implements ConnectionPool {
                 pool.add(dbConnector.connectToDb());
             }
         } catch (ClassNotFoundException | SQLException e) {
-            throw new DaoException("Error starting Connection Pool", e);
+            throw new DaoException("Error while starting Connection Pool", e);
         }
     }
 
@@ -50,7 +50,7 @@ public class ConnectionPoolImpl implements ConnectionPool {
         try {
             connection = pool.take();
         } catch (InterruptedException e) {
-            throw new DaoException("Error performing take()", e);
+            throw new DaoException("Error while performing take()", e);
         }
         takenConnections.add(connection);
         return connection;
