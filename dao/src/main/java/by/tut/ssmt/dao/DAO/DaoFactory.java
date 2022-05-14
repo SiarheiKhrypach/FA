@@ -1,12 +1,13 @@
 package by.tut.ssmt.dao.DAO;
 
 import by.tut.ssmt.dao.DAO.impl.ConnectionPoolImpl;
+import by.tut.ssmt.dao.DAO.impl.DBConnectorImpl;
 import by.tut.ssmt.dao.DAO.impl.ProductDaoImpl;
 import by.tut.ssmt.dao.DAO.impl.UserDaoImpl;
 
 public class DaoFactory {
 
-    private static final DBConnector dbConnector = new DBConnector();
+    private static final DBConnector dbConnector = new DBConnectorImpl();
     private static final ConnectionPool connectionPool = new ConnectionPoolImpl(dbConnector);
     private static final DaoFactory INSTANCE = new DaoFactory();
 
