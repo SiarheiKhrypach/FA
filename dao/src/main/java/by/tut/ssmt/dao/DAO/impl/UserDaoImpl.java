@@ -111,15 +111,16 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
     public boolean insert(User user) throws DaoException {
         Connection conn = null;
-        PreparedStatement preparedStatement = null;
+        PreparedStatement preparedStatement1 = null;
+        PreparedStatement preparedStatement2 = null;
         ResultSet resultSet = null;
         try {
             int result = 0;
             conn = getConnection(false);
             conn.setAutoCommit(false);
-            preparedStatement = conn.prepareStatement(FIND_USER_BY_LOGIN);
-            preparedStatement.setString(1, user.getUserName());
-            resultSet = preparedStatement.executeQuery();
+            preparedStatement1 = conn.prepareStatement(FIND_USER_BY_LOGIN);
+            preparedStatement1.setString(1, user.getUserName());
+            resultSet = preparedStatement1.executeQuery();
             User userMatch = new User();
             if (resultSet.next()) {
                 userMatch.setUserId(resultSet.getInt(1));
@@ -127,10 +128,10 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 userMatch.setPassword(resultSet.getString(3));
             }
             if (userMatch.getUserName() == null) {
-                preparedStatement = conn.prepareStatement(INSERT_INTO_TABLE);
-                preparedStatement.setString(1, user.getUserName());
-                preparedStatement.setString(2, user.getPassword());
-                result = preparedStatement.executeUpdate();
+                preparedStatement2 = conn.prepareStatement(INSERT_INTO_TABLE);
+                preparedStatement2.setString(1, user.getUserName());
+                preparedStatement2.setString(2, user.getPassword());
+                result = preparedStatement2.executeUpdate();
             }
             conn.commit();
             return (result != 0);
@@ -142,22 +143,24 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             }
             throw new DaoException("Error in UserDao", e);
         } finally {
-            close(resultSet, preparedStatement);
+            close(resultSet);
+            close(preparedStatement1, preparedStatement2);
             retrieve(conn);
         }
     }
 
     public boolean update(User user) throws DaoException {
         Connection conn = null;
-        PreparedStatement preparedStatement = null;
+        PreparedStatement preparedStatement1 = null;
+        PreparedStatement preparedStatement2 = null;
         ResultSet resultSet = null;
         try {
             int result = 0;
             conn = getConnection(false);
             conn.setAutoCommit(false);
-            preparedStatement = conn.prepareStatement(FIND_USER_BY_LOGIN);
-            preparedStatement.setString(1, user.getUserName());
-            resultSet = preparedStatement.executeQuery();
+            preparedStatement1 = conn.prepareStatement(FIND_USER_BY_LOGIN);
+            preparedStatement1.setString(1, user.getUserName());
+            resultSet = preparedStatement1.executeQuery();
             User userMatch = new User();
             if (resultSet.next()) {
                 userMatch.setUserId(resultSet.getInt(1));
@@ -165,10 +168,10 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 userMatch.setPassword(resultSet.getString(3));
             }
             if (userMatch.getUserName() == null) {
-                preparedStatement = conn.prepareStatement(UPDATE_TABLE);
-                preparedStatement.setString(1, user.getPassword());
-                preparedStatement.setString(2, user.getUserName());
-                result = preparedStatement.executeUpdate();
+                preparedStatement2 = conn.prepareStatement(UPDATE_TABLE);
+                preparedStatement2.setString(1, user.getPassword());
+                preparedStatement2.setString(2, user.getUserName());
+                result = preparedStatement2.executeUpdate();
             }
             conn.commit();
             return (result != 0);
@@ -181,7 +184,8 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             }
             throw new DaoException("Error in UserDao", e);
         } finally {
-            close(resultSet, preparedStatement);
+            close(resultSet);
+            close(preparedStatement1, preparedStatement2);
             retrieve(conn);
         }
     }

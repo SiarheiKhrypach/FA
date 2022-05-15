@@ -88,15 +88,16 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
 
     public boolean insertDao(Product product) throws DaoException {
         Connection conn = null;
-        PreparedStatement preparedStatement = null;
+        PreparedStatement preparedStatement1 = null;
+        PreparedStatement preparedStatement2 = null;
         ResultSet resultSet = null;
         try {
             int result = 0;
             conn = getConnection(false);
             conn.setAutoCommit(false);
-            preparedStatement = conn.prepareStatement(FIND_PRODUCT_BY_NAME);
-            preparedStatement.setString(1, product.getProductName());
-            resultSet = preparedStatement.executeQuery();
+            preparedStatement1 = conn.prepareStatement(FIND_PRODUCT_BY_NAME);
+            preparedStatement1.setString(1, product.getProductName());
+            resultSet = preparedStatement1.executeQuery();
             Product productMatch = new Product();
             if (resultSet.next()) {
                 productMatch.setProductId(resultSet.getInt(1));
@@ -107,12 +108,12 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
             }
 
             if (productMatch.getProductName() == null) {
-                preparedStatement = conn.prepareStatement(INSERT_INTO_TABLE);
-                preparedStatement.setString(1, product.getProductName());
-                preparedStatement.setDouble(2, product.getOmegaThree());
-                preparedStatement.setDouble(3, product.getOmegaSix());
-                preparedStatement.setInt(4, product.getPortion());
-                result = preparedStatement.executeUpdate();
+                preparedStatement2 = conn.prepareStatement(INSERT_INTO_TABLE);
+                preparedStatement2.setString(1, product.getProductName());
+                preparedStatement2.setDouble(2, product.getOmegaThree());
+                preparedStatement2.setDouble(3, product.getOmegaSix());
+                preparedStatement2.setInt(4, product.getPortion());
+                result = preparedStatement2.executeUpdate();
             }
             conn.commit();
             return (result != 0);
@@ -124,23 +125,25 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
             }
             throw new DaoException("Error in ProductDAO", e);
         } finally {
-            close(resultSet, preparedStatement);
+            close(resultSet);
+            close(preparedStatement1, preparedStatement2);
             retrieve(conn);
         }
     }
 
     public boolean updateDao(Product product) throws DaoException {
         Connection conn = null;
-        PreparedStatement preparedStatement = null;
+        PreparedStatement preparedStatement1 = null;
+        PreparedStatement preparedStatement2 = null;
         ResultSet resultSet = null;
         try {
             int result = 0;
             conn = getConnection(false);
             conn.setAutoCommit(false);
-            preparedStatement = conn.prepareStatement(FIND_PRODUCT_BY_NAME_WITH_DIFFERENT_ID);
-            preparedStatement.setString(1, product.getProductName());
-            preparedStatement.setInt(2, product.getProductId());
-            resultSet = preparedStatement.executeQuery();
+            preparedStatement1 = conn.prepareStatement(FIND_PRODUCT_BY_NAME_WITH_DIFFERENT_ID);
+            preparedStatement1.setString(1, product.getProductName());
+            preparedStatement1.setInt(2, product.getProductId());
+            resultSet = preparedStatement1.executeQuery();
             Product productMatch = new Product();
             if (resultSet.next()) {
                 productMatch.setProductId(resultSet.getInt(1));
@@ -150,13 +153,13 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
                 productMatch.setPortion(resultSet.getInt(5));
             }
             if (productMatch.getProductName() == null) {
-                preparedStatement = conn.prepareStatement(UPDATE_TABLE);
-                preparedStatement.setString(1, product.getProductName());
-                preparedStatement.setDouble(2, product.getOmegaThree());
-                preparedStatement.setDouble(3, product.getOmegaSix());
-                preparedStatement.setInt(4, product.getPortion());
-                preparedStatement.setInt(5, product.getProductId());
-                result = preparedStatement.executeUpdate();
+                preparedStatement2 = conn.prepareStatement(UPDATE_TABLE);
+                preparedStatement2.setString(1, product.getProductName());
+                preparedStatement2.setDouble(2, product.getOmegaThree());
+                preparedStatement2.setDouble(3, product.getOmegaSix());
+                preparedStatement2.setInt(4, product.getPortion());
+                preparedStatement2.setInt(5, product.getProductId());
+                result = preparedStatement2.executeUpdate();
             }
             conn.commit();
             return (result != 0);
@@ -168,7 +171,8 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
             }
             throw new DaoException("Error in ProductDAO", e);
         } finally {
-            close(resultSet, preparedStatement);
+            close(resultSet);
+            close(preparedStatement1, preparedStatement2);
             retrieve(conn);
         }
     }

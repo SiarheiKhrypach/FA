@@ -9,6 +9,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import static java.util.Objects.nonNull;
+
 public class AbstractDao {
 
     private final ConnectionPool connectionPool;
@@ -40,6 +42,34 @@ public class AbstractDao {
         try {
             if (preparedStatement != null) {
                 preparedStatement.close();
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Error while closing PrepareStatement", e);
+        }
+    }
+
+    protected void close(ResultSet... resultsets) throws DaoException {
+        try {
+            if (nonNull(resultsets)) {
+                for (final ResultSet resultSet : resultsets) {
+                    if (nonNull(resultSet)) {
+                        resultSet.close();
+                    }
+                }
+            }
+        } catch (SQLException e) {
+            throw new DaoException("Error while closing ResultSet", e);
+        }
+    }
+
+    protected void close(PreparedStatement... preparedStatements) throws DaoException {
+        try {
+            if (nonNull(preparedStatements)) {
+                for (final PreparedStatement preparedStatement : preparedStatements) {
+                    if (nonNull(preparedStatement)) {
+                        preparedStatement.close();
+                    }
+                }
             }
         } catch (SQLException e) {
             throw new DaoException("Error while closing PrepareStatement", e);
