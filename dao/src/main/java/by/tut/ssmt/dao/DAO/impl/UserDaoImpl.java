@@ -51,7 +51,8 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         } catch (SQLException | IOException | ClassNotFoundException e) {
             throw new DaoException("Error in UserDao", e);
         } finally {
-            close(resultSet, preparedStatement);
+            close(resultSet);
+            close(preparedStatement);
             retrieve(conn);
         }
     }
@@ -78,7 +79,8 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             LOGGER.error("Error: ", e);
             throw new DaoException("Error in UserDao", e);
         } finally {
-            close(resultSet, preparedStatement);
+            close(resultSet);
+            close(preparedStatement);
             retrieve(conn);
         }
     }
@@ -104,7 +106,8 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             LOGGER.error("Error: ", e);
             throw new DaoException("Error in UserDao", e);
         } finally {
-            close(resultSet, preparedStatement);
+            close(resultSet);
+            close(preparedStatement);
             retrieve(conn);
         }
     }

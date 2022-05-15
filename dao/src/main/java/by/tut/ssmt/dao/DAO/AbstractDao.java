@@ -30,23 +30,6 @@ public class AbstractDao {
         connectionPool.retrieve(connection);
     }
 
-    protected void close(ResultSet resultSet, PreparedStatement preparedStatement) throws DaoException {
-        try {
-            if (resultSet != null) {
-                resultSet.close();
-            }
-        } catch (SQLException e) {
-            throw new DaoException("Error while closing Resultset", e);
-        }
-
-        try {
-            if (preparedStatement != null) {
-                preparedStatement.close();
-            }
-        } catch (SQLException e) {
-            throw new DaoException("Error while closing PrepareStatement", e);
-        }
-    }
 
     protected void close(ResultSet... resultsets) throws DaoException {
         try {

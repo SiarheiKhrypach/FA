@@ -54,7 +54,8 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
         } catch (SQLException | ClassNotFoundException | IOException e) {
             throw new DaoException("Error in ProductDAO", e);
         } finally {
-            close(resultSet, preparedStatement);
+            close(resultSet);
+            close(preparedStatement);
             retrieve(conn);
         }
     }
@@ -81,7 +82,8 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
         } catch (SQLException | IOException | ClassNotFoundException e) {
             throw new DaoException("Error in ProductDAO", e);
         } finally {
-            close(resultSet, preparedStatement);
+            close(resultSet);
+            close(preparedStatement);
             retrieve(conn);
         }
     }
