@@ -7,7 +7,6 @@ import by.tut.ssmt.dao.domain.User;
 import by.tut.ssmt.dao.exception.DaoException;
 import org.apache.log4j.Logger;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -32,13 +31,13 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class.getName());
 
     public List<User> selectDao() throws DaoException {
-        Connection conn = null;
+        Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
             List<User> users = new ArrayList<>();
-            conn = getConnection(true);
-            preparedStatement = conn.prepareStatement(SELECT_FROM_TABLE);
+            connection = getConnection(true);
+            preparedStatement = connection.prepareStatement(SELECT_FROM_TABLE);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int userId = resultSet.getInt(1);
@@ -48,23 +47,23 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 users.add(user);
             }
             return users;
-        } catch (SQLException | IOException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             throw new DaoException("Error in UserDao", e);
         } finally {
             close(resultSet);
             close(preparedStatement);
-            retrieve(conn);
+            retrieve(connection);
         }
     }
 
     public User find(User user) throws DaoException {
         User userFound = null;
-        Connection conn = null;
+        Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
-            conn = getConnection(true);
-            preparedStatement = conn.prepareStatement(FIND_USER_BY_LOGIN_AND_PASSWORD);
+            connection = getConnection(true);
+            preparedStatement = connection.prepareStatement(FIND_USER_BY_LOGIN_AND_PASSWORD);
             preparedStatement.setString(1, user.getUserName());
             preparedStatement.setString(2, user.getPassword());
             resultSet = preparedStatement.executeQuery();
@@ -75,24 +74,24 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 userFound = new User(userId, userName, password);
             }
             return userFound;
-        } catch (SQLException | IOException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             LOGGER.error("Error: ", e);
             throw new DaoException("Error in UserDao", e);
         } finally {
             close(resultSet);
             close(preparedStatement);
-            retrieve(conn);
+            retrieve(connection);
         }
     }
 
     public User selectOneDao(int userId) throws DaoException {
         User user = null;
-        Connection conn = null;
+        Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
-            conn = getConnection(false);
-            preparedStatement = conn.prepareStatement(SELECT_FROM_TABLE_WHERE);
+            connection = getConnection(false);
+            preparedStatement = connection.prepareStatement(SELECT_FROM_TABLE_WHERE);
             preparedStatement.setInt(1, userId);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
@@ -102,26 +101,26 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 user = new User(id, name, password);
             }
             return user;
-        } catch (SQLException | IOException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             LOGGER.error("Error: ", e);
             throw new DaoException("Error in UserDao", e);
         } finally {
             close(resultSet);
             close(preparedStatement);
-            retrieve(conn);
+            retrieve(connection);
         }
     }
 
     public boolean insert(User user) throws DaoException {
-        Connection conn = null;
+        Connection connection = null;
         PreparedStatement preparedStatement1 = null;
         PreparedStatement preparedStatement2 = null;
         ResultSet resultSet = null;
         try {
             int result = 0;
-            conn = getConnection(false);
-            conn.setAutoCommit(false);
-            preparedStatement1 = conn.prepareStatement(FIND_USER_BY_LOGIN);
+            connection = getConnection(false);
+            connection.setAutoCommit(false);
+            preparedStatement1 = connection.prepareStatement(FIND_USER_BY_LOGIN);
             preparedStatement1.setString(1, user.getUserName());
             resultSet = preparedStatement1.executeQuery();
             User userMatch = new User();
@@ -131,16 +130,16 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 userMatch.setPassword(resultSet.getString(3));
             }
             if (userMatch.getUserName() == null) {
-                preparedStatement2 = conn.prepareStatement(INSERT_INTO_TABLE);
+                preparedStatement2 = connection.prepareStatement(INSERT_INTO_TABLE);
                 preparedStatement2.setString(1, user.getUserName());
                 preparedStatement2.setString(2, user.getPassword());
                 result = preparedStatement2.executeUpdate();
             }
-            conn.commit();
+            connection.commit();
             return (result != 0);
-        } catch (SQLException | IOException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             try {
-                conn.rollback();
+                connection.rollback();
             } catch (SQLException ex) {
                 throw new DaoException("Error while rolling back", ex);
             }
@@ -148,20 +147,20 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         } finally {
             close(resultSet);
             close(preparedStatement1, preparedStatement2);
-            retrieve(conn);
+            retrieve(connection);
         }
     }
 
     public boolean update(User user) throws DaoException {
-        Connection conn = null;
+        Connection connection = null;
         PreparedStatement preparedStatement1 = null;
         PreparedStatement preparedStatement2 = null;
         ResultSet resultSet = null;
         try {
             int result = 0;
-            conn = getConnection(false);
-            conn.setAutoCommit(false);
-            preparedStatement1 = conn.prepareStatement(FIND_USER_BY_LOGIN);
+            connection = getConnection(false);
+            connection.setAutoCommit(false);
+            preparedStatement1 = connection.prepareStatement(FIND_USER_BY_LOGIN);
             preparedStatement1.setString(1, user.getUserName());
             resultSet = preparedStatement1.executeQuery();
             User userMatch = new User();
@@ -171,17 +170,17 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 userMatch.setPassword(resultSet.getString(3));
             }
             if (userMatch.getUserName() == null) {
-                preparedStatement2 = conn.prepareStatement(UPDATE_TABLE);
+                preparedStatement2 = connection.prepareStatement(UPDATE_TABLE);
                 preparedStatement2.setString(1, user.getPassword());
                 preparedStatement2.setString(2, user.getUserName());
                 result = preparedStatement2.executeUpdate();
             }
-            conn.commit();
+            connection.commit();
             return (result != 0);
 
-        } catch (SQLException | IOException | ClassNotFoundException e) {
+        } catch (SQLException e) {
             try {
-                conn.rollback();
+                connection.rollback();
             } catch (SQLException ex) {
                 throw new DaoException("Error while rolling back", ex);
             }
@@ -189,30 +188,30 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         } finally {
             close(resultSet);
             close(preparedStatement1, preparedStatement2);
-            retrieve(conn);
+            retrieve(connection);
         }
     }
 
     public void delete(String userName) throws DaoException {
-        Connection conn = null;
+        Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
-            conn = getConnection(false);
-            conn.setAutoCommit(false);
-            preparedStatement = conn.prepareStatement(DELETE_FROM_TABLE);
+            connection = getConnection(false);
+            connection.setAutoCommit(false);
+            preparedStatement = connection.prepareStatement(DELETE_FROM_TABLE);
             preparedStatement.setString(1, userName);
             preparedStatement.executeUpdate();
-            conn.commit();
-        } catch (SQLException | IOException | ClassNotFoundException e) {
+            connection.commit();
+        } catch (SQLException e) {
             try {
-                conn.rollback();
+                connection.rollback();
             } catch (SQLException ex) {
                 throw new DaoException("Error while rolling back", ex);
             }
             throw new DaoException("Error in UserDao", e);
         } finally {
             close(null, preparedStatement);
-            retrieve(conn);
+            retrieve(connection);
         }
     }
 }

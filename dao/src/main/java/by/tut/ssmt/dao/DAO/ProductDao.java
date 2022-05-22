@@ -1,5 +1,6 @@
 package by.tut.ssmt.dao.DAO;
 
+import by.tut.ssmt.dao.domain.Page;
 import by.tut.ssmt.dao.domain.Product;
 import by.tut.ssmt.dao.exception.DaoException;
 
@@ -14,12 +15,21 @@ public interface ProductDao {
      */
     List<Product> selectDao() throws DaoException;
 
+
     /**
-     * selects one product by id provided
-     * @param productId - provided id, received from UI
-     * @return Product corresponding to given id
-     * @throws DaoException is a module exception
+     * selects page of products
+     * @param productPaged - Page request frame
+     * @return Page<Product>
      */
+    Page<Product> findPageDao(Page<Product> productPaged) throws DaoException;
+
+
+    /**
+         * selects one product by id provided
+         * @param productId - provided id, received from UI
+         * @return Product corresponding to given id
+         * @throws DaoException is a module exception
+         */
     Product selectOneDao(int productId) throws DaoException;
 
     /**
@@ -44,6 +54,5 @@ public interface ProductDao {
      * @throws DaoException - is a module exception
      */
     void deleteDao(String productName) throws DaoException;
-//    void delete(int productId);
 
 }

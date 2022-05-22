@@ -1,5 +1,6 @@
 package by.tut.ssmt.service;
 
+import by.tut.ssmt.dao.domain.Page;
 import by.tut.ssmt.dao.domain.Product;
 import by.tut.ssmt.service.exception.ServiceException;
 
@@ -14,6 +15,13 @@ public interface ProductService {
      * @throws ServiceException is module exception
      */
     List<Product> selectAllService() throws ServiceException;
+
+    /**
+     * Service to show page of products
+     * @param productPagedRequest - paged form of request
+     * @return Page<Product>
+     */
+    Page<Product> findPageService(Page<Product> productPagedRequest) throws ServiceException;
 
     /**
      * Service to select one product by id provided

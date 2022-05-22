@@ -54,7 +54,6 @@
 
 <div>
 
-<%--    <form action="/" method="post">--%>
     <form action="/main" method="post">
         <input type="hidden" name="command" value="locale"/>
         <input type="hidden" name="locale" value="en">
@@ -63,8 +62,7 @@
         </button>
     </form>
 
-<%--    <form action="/" method="post">--%>
-    <form action="/main" method="post">
+    <form id="show_products" action="/main" method="post">
         <input type="hidden" name="command" value="locale"/>
         <input type="hidden" name="locale" value="be">
         <button type="submit">
@@ -72,7 +70,6 @@
         </button>
     </form>
 
-<%--    <form action="/" method="post">--%>
     <form action="/main" method="post">
         <input type="hidden" name="command" value="locale"/>
         <input type="hidden" name="locale" value="ru">
@@ -85,9 +82,7 @@
 
 <div>
     <div>
-<%--        <form id="login" method="get" action="main">--%>
         <form id="login" method="get" action="/login">
-<%--        <form id="login" method="get" action="/login">--%>
             <input type="hidden" name="command" value="form"/>
             <button form="login" type="submit">
                 <c:out value="${login_btn}"/>
@@ -96,9 +91,7 @@
     </div>
 
     <div>
-<%--        <form id="register" method="get" action="main">--%>
         <form id="register" method="get" action="/register">
-<%--        <form id="register" method="get" action="/register">--%>
             <input type="hidden" name="command" value="form"/>
             <button form="register" type="submit">
                 <c:out value="${register_btn}"/>
@@ -113,11 +106,7 @@
 </p>
 
 
-<%--<form class="w3-container w3-light-grey" method="post" action="/">--%>
-
-<%--<form class="w3-container w3-light-grey" method="post" action="<c:url value='add'/>">--%>
 <form class="w3-container w3-light-grey" method="post" action="/main">
-<%--<form class="w3-container w3-light-grey" method="post" action="add">--%>
 
     <label>
         <c:out value="${product_name}"/>
@@ -171,8 +160,7 @@
     </tr>
     </thead>
     <tbody>
-    <c:forEach var="product" items="${productsAttribute}">
-<%--    <c:forEach var="product" items="${requestScope.productsAttribute}">--%>
+    <c:forEach var="product" items="${productsPagedAttribute.elements}">
 
         <tr>
             <td><c:out value="${product.productName}"/></td>
@@ -181,21 +169,15 @@
             <td><c:out value="${product.portion}"/></td>
 
             <td>
-<%--                <form method="get" action="<c:url value='/'/>">--%>
-<%--                <form method="get" action="<c:url value='/main'/>">--%>
                 <form method="get" action="/main">
-<%--                <form method="get" action="front">--%>
                     <input type="hidden" name="productName" value="${product.productName}"/>
-<%--                    <input type="hidden" name="productId" value="${product.productId}"/>--%>
                     <input type="hidden" name="command" value="delete"/>
                     <input type="submit" name="Delete" value="${delete_btn}"/>
                 </form>
             </td>
 
             <td>
-<%--                <form method="get" action="main">--%>
                 <form method="get" action="/update">
-<%--                <form method="get" action="/update">--%>
                     <input type="hidden" name="productId" value="${product.productId}"/>
                     <input type="hidden" name="command" value="editform"/>
                     <input type="submit" name="Edit" value="${edit_btn}"/>
@@ -205,6 +187,28 @@
     </c:forEach>
     </tbody>
 </table>
+
+<div>
+    <c:forEach var="i" begin="1"
+               end="${Math.ceil(productsPagedAttribute.totalElements / productsPagedAttribute.limit)}">
+        <c:if test="${i == productsPagedAttribute.pageNumber}">
+            <form form="show_products">
+                <input type="hidden" name="currentPage" value="${i}">
+                <button style="color:red" type="submit" name="currentPage">
+                        ${i}
+                </button>
+            </form>
+        </c:if>
+        <c:if test="${i != productsPagedAttribute.pageNumber}">
+            <form form="show_products">
+                <input type="hidden" name="currentPage" value="${i}">
+                <button type="submit" name="currentPage">
+                        ${i}
+                </button>
+            </form>
+        </c:if>
+    </c:forEach>
+</div>
 
 <p><c:out value="${proportion_line} ${proportion}" default=""/></p>
 <c:out value="${optimum}"/>
@@ -222,7 +226,8 @@
     <p><c:out value="${hello}${name}"/></p>
 </c:if>
 
-<p><%=request.getServletContext().getAttribute("productsAttribute")%></p>
+<p><%=request.getServletContext().getAttribute("productsAttribute")%>
+</p>
 
 </body>
 </html>

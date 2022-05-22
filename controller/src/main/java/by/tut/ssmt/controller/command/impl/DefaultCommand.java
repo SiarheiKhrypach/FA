@@ -2,6 +2,7 @@ package by.tut.ssmt.controller.command.impl;
 
 import by.tut.ssmt.controller.command.Command;
 import by.tut.ssmt.controller.exception.ControllerException;
+import by.tut.ssmt.dao.domain.Page;
 import by.tut.ssmt.dao.domain.Product;
 import by.tut.ssmt.service.ProductService;
 import by.tut.ssmt.service.ServiceFactory;
@@ -16,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
+
+import static by.tut.ssmt.controller.util.Util.isNullOrEmpty;
 
 public class DefaultCommand implements Command {
 
@@ -32,10 +35,28 @@ public class DefaultCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ControllerException {
         try {
+            String currentPageString = request.getParameter("currentPage");
+            if (isNullOrEmpty(currentPageString)) {
+                currentPageString = "1";
+            }
+            String currentPageLimit = request.getParameter("pageLimit");
+            if (isNullOrEmpty(currentPageLimit)) {
+                currentPageLimit = "5";
+            }
+            int currentPage = Integer.parseInt(currentPageString);
+            int pageLimit = Integer.parseInt(currentPageLimit);
+            final Page<Product> pagedRequest = new Page<>();
+            pagedRequest.setPageNumber(currentPage);
+            pagedRequest.setLimit(pageLimit);
+            Page<Product> pagedProduct = productService.findPageService(pagedRequest);
+
+            ServletContext servletContext = request.getServletContext();
+            servletContext.setAttribute("productsPagedAttribute", pagedProduct);
+
+
             products = productService.selectAllService();
             LOGGER.info("products - " + products);
             serviceValidator.isNotNull(products);
-            ServletContext servletContext = request.getServletContext();
             servletContext.setAttribute("productsAttribute", products);
             setProportion(request);
             LOGGER.info("products from context - " + request.getServletContext().getAttribute("productsAttribute"));

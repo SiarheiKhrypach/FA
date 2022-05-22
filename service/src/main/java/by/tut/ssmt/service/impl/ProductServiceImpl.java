@@ -2,6 +2,7 @@ package by.tut.ssmt.service.impl;
 
 import by.tut.ssmt.dao.DAO.DaoFactory;
 import by.tut.ssmt.dao.DAO.ProductDao;
+import by.tut.ssmt.dao.domain.Page;
 import by.tut.ssmt.dao.domain.Product;
 import by.tut.ssmt.dao.exception.DaoException;
 import by.tut.ssmt.service.ProductService;
@@ -24,6 +25,16 @@ public class ProductServiceImpl implements ProductService {
             throw new ServiceException(e);
         }
     }
+
+    @Override
+    public Page<Product> findPageService(Page<Product> productPagedRequest) throws ServiceException {
+        try {
+            return productDao.findPageDao(productPagedRequest);
+        } catch (DaoException e) {
+            throw new ServiceException(e);
+        }
+    }
+
 
     @Override
     public Product selectOneService(int productId) throws ServiceException {

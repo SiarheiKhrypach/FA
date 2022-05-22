@@ -3,7 +3,6 @@ package by.tut.ssmt.dao.DAO;
 import by.tut.ssmt.dao.exception.DaoException;
 import org.apache.log4j.Logger;
 
-import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +19,7 @@ public class AbstractDao {
         this.connectionPool = connectionPool;
     }
 
-    protected Connection getConnection(final boolean hasAutocommit) throws IOException, SQLException, ClassNotFoundException, DaoException {
+    protected Connection getConnection(final boolean hasAutocommit) throws SQLException, DaoException {
         Connection conn = connectionPool.take();
         conn.setAutoCommit(hasAutocommit);
         return conn;

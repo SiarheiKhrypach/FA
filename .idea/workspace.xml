@@ -26,6 +26,14 @@
   <component name="ChangeListManager">
     <list default="true" id="59ca0b27-6170-41d2-a1a1-ba36d40b5d8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/DefaultCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/DefaultCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/AbstractDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/AbstractDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/ProductDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/ProductDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/ProductDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/ProductDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/UserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/by/tut/ssmt/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/by/tut/ssmt/service/ProductService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/by/tut/ssmt/service/impl/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/by/tut/ssmt/service/impl/ProductServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,8 +47,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Jsp File" />
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -422,6 +430,9 @@
       <workItem from="1651563504536" duration="32480000" />
       <workItem from="1651911054634" duration="5843000" />
       <workItem from="1652003223355" duration="74740000" />
+      <workItem from="1652792833251" duration="32921000" />
+      <workItem from="1653145517870" duration="33000" />
+      <workItem from="1653146074815" duration="13476000" />
     </task>
     <servers />
   </component>
@@ -457,14 +468,14 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="486" y="293" key="#com.intellij.codeInsight.i18n.I18nizeQuickFixDialog/0.0.1600.860@0.0.1600.860" timestamp="1647130772876" />
-    <state x="254" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1648508065546">
+    <state x="254" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1653144631364">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="254" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1648508065546" />
-    <state x="669" y="260" key="#com.intellij.ide.util.MemberChooser" timestamp="1652524129790">
+    <state x="254" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1653144631364" />
+    <state x="669" y="226" key="#com.intellij.ide.util.MemberChooser" timestamp="1652914073886">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="669" y="260" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860@0.0.1600.860" timestamp="1652524129790" />
+    <state x="669" y="226" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860@0.0.1600.860" timestamp="1652914073886" />
     <state x="530" y="206" key="#com.intellij.ide.util.PackageChooserDialog" timestamp="1649266341023">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -517,54 +528,54 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="580" y="170" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1649524708399" />
-    <state width="1556" height="304" key="GridCell.Tab.0.bottom" timestamp="1652602728000">
+    <state width="1556" height="304" key="GridCell.Tab.0.bottom" timestamp="1653229226320">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1556" height="304" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1652602728000" />
-    <state width="1556" height="304" key="GridCell.Tab.0.center" timestamp="1652602727999">
+    <state width="1556" height="304" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1653229226320" />
+    <state width="1556" height="304" key="GridCell.Tab.0.center" timestamp="1653229226320">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1556" height="304" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1652602727999" />
-    <state width="1556" height="304" key="GridCell.Tab.0.left" timestamp="1652602727998">
+    <state width="1556" height="304" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1653229226320" />
+    <state width="1556" height="304" key="GridCell.Tab.0.left" timestamp="1653229226320">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1556" height="304" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1652602727998" />
-    <state width="1556" height="304" key="GridCell.Tab.0.right" timestamp="1652602727999">
+    <state width="1556" height="304" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1653229226320" />
+    <state width="1556" height="304" key="GridCell.Tab.0.right" timestamp="1653229226320">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1556" height="304" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1652602727999" />
-    <state width="1556" height="304" key="GridCell.Tab.1.bottom" timestamp="1652602728018">
+    <state width="1556" height="304" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1653229226320" />
+    <state width="1556" height="304" key="GridCell.Tab.1.bottom" timestamp="1653229226321">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1556" height="304" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1652602728018" />
-    <state width="1556" height="304" key="GridCell.Tab.1.center" timestamp="1652602728014">
+    <state width="1556" height="304" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1653229226321" />
+    <state width="1556" height="304" key="GridCell.Tab.1.center" timestamp="1653229226321">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1556" height="304" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1652602728014" />
-    <state width="1556" height="304" key="GridCell.Tab.1.left" timestamp="1652602728000">
+    <state width="1556" height="304" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1653229226321" />
+    <state width="1556" height="304" key="GridCell.Tab.1.left" timestamp="1653229226321">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1556" height="304" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1652602728000" />
-    <state width="1556" height="304" key="GridCell.Tab.1.right" timestamp="1652602728017">
+    <state width="1556" height="304" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1653229226321" />
+    <state width="1556" height="304" key="GridCell.Tab.1.right" timestamp="1653229226321">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1556" height="304" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1652602728017" />
-    <state width="1556" height="304" key="GridCell.Tab.2.bottom" timestamp="1652602728018">
+    <state width="1556" height="304" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1653229226321" />
+    <state width="1556" height="304" key="GridCell.Tab.2.bottom" timestamp="1653229226322">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1556" height="304" key="GridCell.Tab.2.bottom/0.0.1600.860@0.0.1600.860" timestamp="1652602728018" />
-    <state width="1556" height="304" key="GridCell.Tab.2.center" timestamp="1652602728018">
+    <state width="1556" height="304" key="GridCell.Tab.2.bottom/0.0.1600.860@0.0.1600.860" timestamp="1653229226322" />
+    <state width="1556" height="304" key="GridCell.Tab.2.center" timestamp="1653229226321">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1556" height="304" key="GridCell.Tab.2.center/0.0.1600.860@0.0.1600.860" timestamp="1652602728018" />
-    <state width="1556" height="304" key="GridCell.Tab.2.left" timestamp="1652602728018">
+    <state width="1556" height="304" key="GridCell.Tab.2.center/0.0.1600.860@0.0.1600.860" timestamp="1653229226321" />
+    <state width="1556" height="304" key="GridCell.Tab.2.left" timestamp="1653229226321">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1556" height="304" key="GridCell.Tab.2.left/0.0.1600.860@0.0.1600.860" timestamp="1652602728018" />
-    <state width="1556" height="304" key="GridCell.Tab.2.right" timestamp="1652602728018">
+    <state width="1556" height="304" key="GridCell.Tab.2.left/0.0.1600.860@0.0.1600.860" timestamp="1653229226321" />
+    <state width="1556" height="304" key="GridCell.Tab.2.right" timestamp="1653229226322">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1556" height="304" key="GridCell.Tab.2.right/0.0.1600.860@0.0.1600.860" timestamp="1652602728018" />
+    <state width="1556" height="304" key="GridCell.Tab.2.right/0.0.1600.860@0.0.1600.860" timestamp="1653229226322" />
     <state width="1556" height="336" key="GridCell.Tab.3.bottom" timestamp="1652358877646">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -609,10 +620,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="883" y="235" key="extract.method.dialog/0.0.1600.860@0.0.1600.860" timestamp="1648951884460" />
-    <state x="988" y="268" width="612" height="592" key="find.popup" timestamp="1652526511185">
+    <state x="988" y="268" width="612" height="592" key="find.popup" timestamp="1653140690248">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="988" y="268" width="612" height="592" key="find.popup/0.0.1600.860@0.0.1600.860" timestamp="1652526511185" />
+    <state x="988" y="268" width="612" height="592" key="find.popup/0.0.1600.860@0.0.1600.860" timestamp="1653140690248" />
     <state x="437" y="89" key="new project wizard" timestamp="1646313860975">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -636,14 +647,14 @@
         <line-breakpoint type="java-method">
           <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/AddCommand.java</url>
           <line>27</line>
-          <properties class="by.tut.ssmt.controller.command.impl.AddCommand" method="execute">
+          <properties class="by.tut.ssmt.controller.command.impl.AddCommand">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint type="java-method">
           <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/AbstractDao.java</url>
-          <line>18</line>
+          <line>17</line>
           <properties class="by.tut.ssmt.dao.DAO.AbstractDao" method="&lt;init&gt;">
             <option name="EMULATED" value="true" />
           </properties>
@@ -652,7 +663,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/servlet/FrontController.java</url>
           <line>110</line>
-          <properties class="by.tut.ssmt.controller.servlet.FrontController" method="doGet">
+          <properties class="by.tut.ssmt.controller.servlet.FrontController">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="100" />
@@ -660,14 +671,14 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/servlet/FrontController.java</url>
           <line>115</line>
-          <properties class="by.tut.ssmt.controller.servlet.FrontController" method="doPost">
+          <properties class="by.tut.ssmt.controller.servlet.FrontController">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="101" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/DefaultCommand.java</url>
-          <line>32</line>
+          <line>35</line>
           <properties class="by.tut.ssmt.controller.command.impl.DefaultCommand" method="execute">
             <option name="EMULATED" value="true" />
           </properties>
@@ -685,7 +696,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/ProductDaoImpl.java</url>
-          <line>40</line>
+          <line>43</line>
           <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -712,6 +723,11 @@
           <url>file://$PROJECT_DIR$/service/src/main/java/by/tut/ssmt/service/impl/UserServiceImpl.java</url>
           <line>13</line>
           <option name="timeStamp" value="85" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/ProductDaoImpl.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="103" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
