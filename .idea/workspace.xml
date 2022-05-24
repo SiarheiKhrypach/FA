@@ -25,15 +25,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="59ca0b27-6170-41d2-a1a1-ba36d40b5d8b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/DefaultCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/DefaultCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/webapp/index.jsp" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/AbstractDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/AbstractDao.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/ProductDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/ProductDao.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/ProductDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/ProductDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/UserDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/java/by/tut/ssmt/service/ProductService.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/by/tut/ssmt/service/ProductService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/src/main/java/by/tut/ssmt/service/impl/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/by/tut/ssmt/service/impl/ProductServiceImpl.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -433,6 +427,7 @@
       <workItem from="1652792833251" duration="32921000" />
       <workItem from="1653145517870" duration="33000" />
       <workItem from="1653146074815" duration="13476000" />
+      <workItem from="1653389625007" duration="4184000" />
     </task>
     <servers />
   </component>
@@ -616,10 +611,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="270" y="158" key="com.intellij.xdebugger.impl.breakpoints.ui.BreakpointsDialogFactory$2/0.0.1600.860@0.0.1600.860" timestamp="1652255722456" />
-    <state x="883" y="235" key="extract.method.dialog" timestamp="1648951884460">
+    <state x="994" y="244" key="extract.method.dialog" timestamp="1653396451732">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="883" y="235" key="extract.method.dialog/0.0.1600.860@0.0.1600.860" timestamp="1648951884460" />
+    <state x="994" y="244" key="extract.method.dialog/0.0.1600.860@0.0.1600.860" timestamp="1653396451732" />
     <state x="988" y="268" width="612" height="592" key="find.popup" timestamp="1653140690248">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -726,7 +721,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/ProductDaoImpl.java</url>
-          <line>58</line>
+          <line>50</line>
           <option name="timeStamp" value="103" />
         </line-breakpoint>
       </breakpoints>

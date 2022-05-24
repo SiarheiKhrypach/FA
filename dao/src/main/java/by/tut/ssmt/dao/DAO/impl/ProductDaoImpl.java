@@ -40,19 +40,11 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
-            List<Product> products = new ArrayList<>();
+//            List<Product> products = new ArrayList<>();
             connection = getConnection(true);
             preparedStatement = connection.prepareStatement(SELECT_FROM_TABLE);
             resultSet = preparedStatement.executeQuery();
-            while (resultSet.next()) {
-                int productId = resultSet.getInt(1);
-                String productName = resultSet.getString(2);
-                double omegaThree = resultSet.getDouble(3);
-                double omegaSix = resultSet.getDouble(4);
-                int portion = resultSet.getInt(5);
-                Product product = new Product(productId, productName, omegaThree, omegaSix, portion);
-                products.add(product);
-            }
+            final List <Product> products = addProductsFromResultSet(resultSet);
             return products;
         } catch (SQLException e) {
             throw new DaoException("Error in ProductDAO", e);
@@ -61,6 +53,21 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
             close(preparedStatement);
             retrieve(connection);
         }
+    }
+
+    private List addProductsFromResultSet(ResultSet resultSet) throws SQLException {
+//    private void addProductsFromResultSet(ResultSet resultSet, List<Product> products) throws SQLException {
+        List<Product> products = new ArrayList<>();
+        while (resultSet.next()) {
+            int productId = resultSet.getInt(1);
+            String productName = resultSet.getString(2);
+            double omegaThree = resultSet.getDouble(3);
+            double omegaSix = resultSet.getDouble(4);
+            int portion = resultSet.getInt(5);
+            Product product = new Product(productId, productName, omegaThree, omegaSix, portion);
+            products.add(product);
+        }
+        return products;
     }
 
     public Page<Product> findPageDao(Page<Product> productPagedRequest) throws DaoException {
@@ -97,16 +104,8 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
         if (resultSet1.next()) {
             totalElements = resultSet1.getLong(1);
         }
-        final List<Product> rows = new ArrayList<>();
-        while (resultSet2.next()) {
-            int productId = resultSet2.getInt(1);
-            String productName = resultSet2.getString(2);
-            double omegaThree = resultSet2.getDouble(3);
-            double omegaSix = resultSet2.getDouble(4);
-            int portion = resultSet2.getInt(5);
-            Product product = new Product(productId, productName, omegaThree, omegaSix, portion);
-            rows.add(product);
-        }
+//        final List<Product> rows = new ArrayList<>();
+        final List<Product> rows = addProductsFromResultSet(resultSet2);
         productPaged.setPageNumber(productPagedRequest.getPageNumber());
         productPaged.setLimit(productPagedRequest.getLimit());
         productPaged.setTotalElements(totalElements);
