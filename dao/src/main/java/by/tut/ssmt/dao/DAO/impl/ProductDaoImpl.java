@@ -13,6 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class ProductDaoImpl extends AbstractDao implements ProductDao {
@@ -34,17 +36,18 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
         super(connectionPool);
     }
 
+
     @Override
     public List<Product> selectDao() throws DaoException {
+        List<Object> parameters = Collections.emptyList();
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
-//            List<Product> products = new ArrayList<>();
             connection = getConnection(true);
-            preparedStatement = connection.prepareStatement(SELECT_FROM_TABLE);
+            preparedStatement = getPreparedStatement(SELECT_FROM_TABLE, connection, parameters);
             resultSet = preparedStatement.executeQuery();
-            final List <Product> products = addProductsFromResultSet(resultSet);
+            final List<Product> products = addProductsFromResultSet(resultSet);
             return products;
         } catch (SQLException e) {
             throw new DaoException("Error in ProductDAO", e);
@@ -56,7 +59,6 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
     }
 
     private List addProductsFromResultSet(ResultSet resultSet) throws SQLException {
-//    private void addProductsFromResultSet(ResultSet resultSet, List<Product> products) throws SQLException {
         List<Product> products = new ArrayList<>();
         while (resultSet.next()) {
             int productId = resultSet.getInt(1);
@@ -71,8 +73,13 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
     }
 
     public Page<Product> findPageDao(Page<Product> productPagedRequest) throws DaoException {
-        final int offset = (productPagedRequest.getPageNumber() - 1) * productPagedRequest.getLimit();
         final int limit = productPagedRequest.getLimit();
+        final int offset = (productPagedRequest.getPageNumber() - 1) * productPagedRequest.getLimit();
+        List<Object> parameters1 = Collections.emptyList();
+        List<Object> parameters2 = Arrays.asList(
+                limit,
+                offset
+        );
         Connection connection = null;
         PreparedStatement preparedStatement1 = null;
         PreparedStatement preparedStatement2 = null;
@@ -80,10 +87,8 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
         ResultSet resultSet2 = null;
         try {
             connection = getConnection(false);
-            preparedStatement1 = connection.prepareStatement(COUNT_ALL);
-            preparedStatement2 = connection.prepareStatement(FIND_PAGE);
-            preparedStatement2.setInt(1, limit);
-            preparedStatement2.setInt(2, offset);
+            preparedStatement1 = getPreparedStatement(COUNT_ALL, connection, parameters1);
+            preparedStatement2 = getPreparedStatement(FIND_PAGE, connection, parameters2);
             resultSet1 = preparedStatement1.executeQuery();
             resultSet2 = preparedStatement2.executeQuery();
             return getProductPaged(productPagedRequest, resultSet1, resultSet2);
@@ -104,7 +109,6 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
         if (resultSet1.next()) {
             totalElements = resultSet1.getLong(1);
         }
-//        final List<Product> rows = new ArrayList<>();
         final List<Product> rows = addProductsFromResultSet(resultSet2);
         productPaged.setPageNumber(productPagedRequest.getPageNumber());
         productPaged.setLimit(productPagedRequest.getLimit());
@@ -115,14 +119,16 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
 
     @Override
     public Product selectOneDao(int productId) throws DaoException {
+        List<Object> parameters = Arrays.asList(
+                productId
+        );
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         Product product = null;
         try {
             connection = getConnection(true);
-            preparedStatement = connection.prepareStatement(SELECT_FROM_TABLE_WHERE);
-            preparedStatement.setInt(1, productId);
+            preparedStatement = getPreparedStatement(SELECT_FROM_TABLE_WHERE, connection, parameters);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 int productID = resultSet.getInt(1);
@@ -144,6 +150,13 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
 
     @Override
     public boolean insertDao(Product product) throws DaoException {
+        List<Object> parameters1 = Arrays.asList(product.getProductName());
+        List<Object> parameters2 = Arrays.asList(
+                product.getProductName(),
+                product.getOmegaThree(),
+                product.getOmegaSix(),
+                product.getPortion()
+        );
         Connection connection = null;
         PreparedStatement preparedStatement1 = null;
         PreparedStatement preparedStatement2 = null;
@@ -151,25 +164,11 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
         try {
             int result = 0;
             connection = getConnection(false);
-            connection.setAutoCommit(false);
-            preparedStatement1 = connection.prepareStatement(FIND_PRODUCT_BY_NAME);
-            preparedStatement1.setString(1, product.getProductName());
-            resultSet = preparedStatement1.executeQuery();
-            Product productMatch = new Product();
-            if (resultSet.next()) {
-                productMatch.setProductId(resultSet.getInt(1));
-                productMatch.setProductName(resultSet.getString(2));
-                productMatch.setOmegaThree(resultSet.getInt(3));
-                productMatch.setOmegaSix(resultSet.getInt(4));
-                productMatch.setPortion(resultSet.getInt(5));
-            }
+            preparedStatement1 = getPreparedStatement(FIND_PRODUCT_BY_NAME, connection, parameters1);
+            Product productMatch = getProduct(preparedStatement1);
 
             if (productMatch.getProductName() == null) {
-                preparedStatement2 = connection.prepareStatement(INSERT_INTO_TABLE);
-                preparedStatement2.setString(1, product.getProductName());
-                preparedStatement2.setDouble(2, product.getOmegaThree());
-                preparedStatement2.setDouble(3, product.getOmegaSix());
-                preparedStatement2.setInt(4, product.getPortion());
+                preparedStatement2 = getPreparedStatement(INSERT_INTO_TABLE, connection, parameters2);
                 result = preparedStatement2.executeUpdate();
             }
             connection.commit();
@@ -188,8 +187,32 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
         }
     }
 
+    private Product getProduct(PreparedStatement preparedStatement) throws SQLException {
+        ResultSet resultSet = preparedStatement.executeQuery();
+        Product productMatch = new Product();
+        if (resultSet.next()) {
+            productMatch.setProductId(resultSet.getInt(1));
+            productMatch.setProductName(resultSet.getString(2));
+            productMatch.setOmegaThree(resultSet.getInt(3));
+            productMatch.setOmegaSix(resultSet.getInt(4));
+            productMatch.setPortion(resultSet.getInt(5));
+        }
+        return productMatch;
+    }
+
     @Override
     public boolean updateDao(Product product) throws DaoException {
+        List<Object> parameters1 = Arrays.asList(
+                product.getProductName(),
+                product.getProductId()
+        );
+        List<Object> parameters2 = Arrays.asList(
+                product.getProductName(),
+                product.getOmegaThree(),
+                product.getOmegaSix(),
+                product.getPortion(),
+                product.getProductId()
+        );
         Connection connection = null;
         PreparedStatement preparedStatement1 = null;
         PreparedStatement preparedStatement2 = null;
@@ -197,26 +220,12 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
         try {
             int result = 0;
             connection = getConnection(false);
-            connection.setAutoCommit(false);
-            preparedStatement1 = connection.prepareStatement(FIND_PRODUCT_BY_NAME_WITH_DIFFERENT_ID);
-            preparedStatement1.setString(1, product.getProductName());
-            preparedStatement1.setInt(2, product.getProductId());
-            resultSet = preparedStatement1.executeQuery();
-            Product productMatch = new Product();
-            if (resultSet.next()) {
-                productMatch.setProductId(resultSet.getInt(1));
-                productMatch.setProductName(resultSet.getString(2));
-                productMatch.setOmegaThree(resultSet.getInt(3));
-                productMatch.setOmegaSix(resultSet.getInt(4));
-                productMatch.setPortion(resultSet.getInt(5));
-            }
+            preparedStatement1 = getPreparedStatement(FIND_PRODUCT_BY_NAME_WITH_DIFFERENT_ID, connection,
+                    parameters1);
+            Product productMatch;
+            productMatch = getProduct(preparedStatement1);
             if (productMatch.getProductName() == null) {
-                preparedStatement2 = connection.prepareStatement(UPDATE_TABLE);
-                preparedStatement2.setString(1, product.getProductName());
-                preparedStatement2.setDouble(2, product.getOmegaThree());
-                preparedStatement2.setDouble(3, product.getOmegaSix());
-                preparedStatement2.setInt(4, product.getPortion());
-                preparedStatement2.setInt(5, product.getProductId());
+                preparedStatement2 = getPreparedStatement(UPDATE_TABLE, connection, parameters2);
                 result = preparedStatement2.executeUpdate();
             }
             connection.commit();
@@ -237,13 +246,14 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
 
     @Override
     public void deleteDao(String productName) throws DaoException {
+        List<Object> parameters = Arrays.asList(
+          productName
+        );
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
             connection = getConnection(false);
-            connection.setAutoCommit(false);
-            preparedStatement = connection.prepareStatement(DELETE_FROM_TABLE);
-            preparedStatement.setString(1, productName);
+            preparedStatement = getPreparedStatement(DELETE_FROM_TABLE, connection, parameters);
             preparedStatement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {

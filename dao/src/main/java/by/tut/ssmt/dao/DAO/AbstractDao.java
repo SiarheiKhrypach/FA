@@ -7,6 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 import static java.util.Objects.nonNull;
 
@@ -30,7 +31,7 @@ public class AbstractDao {
     }
 
 
-    protected void close(ResultSet... resultsets) throws DaoException {
+    protected void close(final ResultSet... resultsets) throws DaoException {
         try {
             if (nonNull(resultsets)) {
                 for (final ResultSet resultSet : resultsets) {
@@ -44,7 +45,7 @@ public class AbstractDao {
         }
     }
 
-    protected void close(PreparedStatement... preparedStatements) throws DaoException {
+    protected void close(final PreparedStatement... preparedStatements) throws DaoException {
         try {
             if (nonNull(preparedStatements)) {
                 for (final PreparedStatement preparedStatement : preparedStatements) {
@@ -55,6 +56,34 @@ public class AbstractDao {
             }
         } catch (SQLException e) {
             throw new DaoException("Error while closing PrepareStatement", e);
+        }
+    }
+
+    protected PreparedStatement getPreparedStatement(final String query, final Connection connection,
+                                                     final List<Object> parameters) throws SQLException {
+        final PreparedStatement preparedStatement = connection.prepareStatement(query);
+        setPreparedStatementParameters(preparedStatement, parameters);
+        return preparedStatement;
+    }
+
+    private void setPreparedStatementParameters(final PreparedStatement preparedStatement,
+                                                final List<Object> parameters) throws SQLException {
+        for (int i = 0, queryParameterIndex = 1; i < parameters.size(); i++, queryParameterIndex++) {
+            final Object parameter = parameters.get(i);
+            setPreparedStatementParameters(preparedStatement, queryParameterIndex, parameter);
+        }
+    }
+
+    private void setPreparedStatementParameters(final PreparedStatement preparedStatement,
+                                                final int queryParameterIndex, Object parameter) throws SQLException {
+        if (Long.class == parameter.getClass()) {
+            preparedStatement.setLong(queryParameterIndex, (Long) parameter);
+        } else if (Integer.class == parameter.getClass()) {
+            preparedStatement.setInt(queryParameterIndex, (Integer) parameter);
+        } else if (Double.class == parameter.getClass()) {
+            preparedStatement.setDouble(queryParameterIndex, (Double) parameter);
+        } else if (String.class == parameter.getClass()) {
+            preparedStatement.setString(queryParameterIndex, (String) parameter);
         }
     }
 }

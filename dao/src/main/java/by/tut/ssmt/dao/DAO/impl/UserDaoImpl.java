@@ -12,6 +12,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class UserDaoImpl extends AbstractDao implements UserDao {
@@ -31,13 +33,14 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class.getName());
 
     public List<User> selectDao() throws DaoException {
+        List<Object> parameters = Collections.emptyList();
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
             List<User> users = new ArrayList<>();
             connection = getConnection(true);
-            preparedStatement = connection.prepareStatement(SELECT_FROM_TABLE);
+            preparedStatement = getPreparedStatement(SELECT_FROM_TABLE, connection, parameters);
             resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 int userId = resultSet.getInt(1);
@@ -57,15 +60,17 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     }
 
     public User find(User user) throws DaoException {
+        List<Object> parameters = Arrays.asList(
+                user.getUserName(),
+                user.getPassword()
+        );
         User userFound = null;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
             connection = getConnection(true);
-            preparedStatement = connection.prepareStatement(FIND_USER_BY_LOGIN_AND_PASSWORD);
-            preparedStatement.setString(1, user.getUserName());
-            preparedStatement.setString(2, user.getPassword());
+            preparedStatement = getPreparedStatement(FIND_USER_BY_LOGIN_AND_PASSWORD, connection, parameters);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 int userId = resultSet.getInt(1);
@@ -85,14 +90,16 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     }
 
     public User selectOneDao(int userId) throws DaoException {
+        List<Object> parameters = Arrays.asList(
+                userId
+        );
         User user = null;
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         try {
             connection = getConnection(false);
-            preparedStatement = connection.prepareStatement(SELECT_FROM_TABLE_WHERE);
-            preparedStatement.setInt(1, userId);
+            preparedStatement = getPreparedStatement(SELECT_FROM_TABLE_WHERE, connection, parameters);
             resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 int id = resultSet.getInt(1);
@@ -112,6 +119,13 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     }
 
     public boolean insert(User user) throws DaoException {
+        List<Object> parameters1 = Arrays.asList(
+                user.getUserName()
+        );
+        List<Object> parameters2 = Arrays.asList(
+                user.getUserName(),
+                user.getPassword()
+        );
         Connection connection = null;
         PreparedStatement preparedStatement1 = null;
         PreparedStatement preparedStatement2 = null;
@@ -119,9 +133,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         try {
             int result = 0;
             connection = getConnection(false);
-            connection.setAutoCommit(false);
-            preparedStatement1 = connection.prepareStatement(FIND_USER_BY_LOGIN);
-            preparedStatement1.setString(1, user.getUserName());
+            preparedStatement1 = getPreparedStatement(FIND_USER_BY_LOGIN, connection, parameters1);
             resultSet = preparedStatement1.executeQuery();
             User userMatch = new User();
             if (resultSet.next()) {
@@ -130,9 +142,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 userMatch.setPassword(resultSet.getString(3));
             }
             if (userMatch.getUserName() == null) {
-                preparedStatement2 = connection.prepareStatement(INSERT_INTO_TABLE);
-                preparedStatement2.setString(1, user.getUserName());
-                preparedStatement2.setString(2, user.getPassword());
+                preparedStatement2 = getPreparedStatement(INSERT_INTO_TABLE, connection, parameters2);
                 result = preparedStatement2.executeUpdate();
             }
             connection.commit();
@@ -152,6 +162,13 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     }
 
     public boolean update(User user) throws DaoException {
+        List<Object> parameters1 = Arrays.asList(
+                user.getUserName()
+        );
+        List<Object> parameters2 = Arrays.asList(
+                user.getPassword(),
+                user.getUserName()
+        );
         Connection connection = null;
         PreparedStatement preparedStatement1 = null;
         PreparedStatement preparedStatement2 = null;
@@ -159,9 +176,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         try {
             int result = 0;
             connection = getConnection(false);
-            connection.setAutoCommit(false);
-            preparedStatement1 = connection.prepareStatement(FIND_USER_BY_LOGIN);
-            preparedStatement1.setString(1, user.getUserName());
+            preparedStatement1 = getPreparedStatement(FIND_USER_BY_LOGIN, connection, parameters1);
             resultSet = preparedStatement1.executeQuery();
             User userMatch = new User();
             if (resultSet.next()) {
@@ -170,9 +185,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 userMatch.setPassword(resultSet.getString(3));
             }
             if (userMatch.getUserName() == null) {
-                preparedStatement2 = connection.prepareStatement(UPDATE_TABLE);
-                preparedStatement2.setString(1, user.getPassword());
-                preparedStatement2.setString(2, user.getUserName());
+                preparedStatement2 = getPreparedStatement(UPDATE_TABLE, connection, parameters2);
                 result = preparedStatement2.executeUpdate();
             }
             connection.commit();
@@ -193,13 +206,14 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     }
 
     public void delete(String userName) throws DaoException {
+        List<Object> parameters = Arrays.asList(
+                userName
+        );
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
             connection = getConnection(false);
-            connection.setAutoCommit(false);
-            preparedStatement = connection.prepareStatement(DELETE_FROM_TABLE);
-            preparedStatement.setString(1, userName);
+            preparedStatement = getPreparedStatement(DELETE_FROM_TABLE, connection, parameters);
             preparedStatement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
