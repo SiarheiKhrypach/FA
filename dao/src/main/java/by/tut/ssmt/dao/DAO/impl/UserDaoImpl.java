@@ -119,49 +119,14 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     }
 
     public boolean insert(User user) throws DaoException {
-        List<Object> parameters1 = Arrays.asList(
-                user.getUserName()
-        );
-        List<Object> parameters2 = Arrays.asList(
-                user.getUserName(),
-                user.getPassword()
-        );
-        Connection connection = null;
-        PreparedStatement preparedStatement1 = null;
-        PreparedStatement preparedStatement2 = null;
-        ResultSet resultSet = null;
-        try {
-            int result = 0;
-            connection = getConnection(false);
-            preparedStatement1 = getPreparedStatement(FIND_USER_BY_LOGIN, connection, parameters1);
-            resultSet = preparedStatement1.executeQuery();
-            User userMatch = new User();
-            if (resultSet.next()) {
-                userMatch.setUserId(resultSet.getInt(1));
-                userMatch.setName(resultSet.getString(2));
-                userMatch.setPassword(resultSet.getString(3));
-            }
-            if (userMatch.getUserName() == null) {
-                preparedStatement2 = getPreparedStatement(INSERT_INTO_TABLE, connection, parameters2);
-                result = preparedStatement2.executeUpdate();
-            }
-            connection.commit();
-            return (result != 0);
-        } catch (SQLException e) {
-            try {
-                connection.rollback();
-            } catch (SQLException ex) {
-                throw new DaoException("Error while rolling back", ex);
-            }
-            throw new DaoException("Error in UserDao", e);
-        } finally {
-            close(resultSet);
-            close(preparedStatement1, preparedStatement2);
-            retrieve(connection);
-        }
+        return edit(user, INSERT_INTO_TABLE);
     }
 
     public boolean update(User user) throws DaoException {
+        return edit (user, UPDATE_TABLE);
+    }
+
+    public boolean edit(User user, String query) throws DaoException {
         List<Object> parameters1 = Arrays.asList(
                 user.getUserName()
         );
@@ -185,7 +150,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 userMatch.setPassword(resultSet.getString(3));
             }
             if (userMatch.getUserName() == null) {
-                preparedStatement2 = getPreparedStatement(UPDATE_TABLE, connection, parameters2);
+                preparedStatement2 = getPreparedStatement(query, connection, parameters2);
                 result = preparedStatement2.executeUpdate();
             }
             connection.commit();
@@ -204,6 +169,49 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             retrieve(connection);
         }
     }
+//    public boolean update(User user) throws DaoException {
+//        List<Object> parameters1 = Arrays.asList(
+//                user.getUserName()
+//        );
+//        List<Object> parameters2 = Arrays.asList(
+//                user.getPassword(),
+//                user.getUserName()
+//        );
+//        Connection connection = null;
+//        PreparedStatement preparedStatement1 = null;
+//        PreparedStatement preparedStatement2 = null;
+//        ResultSet resultSet = null;
+//        try {
+//            int result = 0;
+//            connection = getConnection(false);
+//            preparedStatement1 = getPreparedStatement(FIND_USER_BY_LOGIN, connection, parameters1);
+//            resultSet = preparedStatement1.executeQuery();
+//            User userMatch = new User();
+//            if (resultSet.next()) {
+//                userMatch.setUserId(resultSet.getInt(1));
+//                userMatch.setName(resultSet.getString(2));
+//                userMatch.setPassword(resultSet.getString(3));
+//            }
+//            if (userMatch.getUserName() == null) {
+//                preparedStatement2 = getPreparedStatement(UPDATE_TABLE, connection, parameters2);
+//                result = preparedStatement2.executeUpdate();
+//            }
+//            connection.commit();
+//            return (result != 0);
+//
+//        } catch (SQLException e) {
+//            try {
+//                connection.rollback();
+//            } catch (SQLException ex) {
+//                throw new DaoException("Error while rolling back", ex);
+//            }
+//            throw new DaoException("Error in UserDao", e);
+//        } finally {
+//            close(resultSet);
+//            close(preparedStatement1, preparedStatement2);
+//            retrieve(connection);
+//        }
+//    }
 
     public void delete(String userName) throws DaoException {
         List<Object> parameters = Arrays.asList(

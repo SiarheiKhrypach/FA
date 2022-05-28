@@ -222,9 +222,8 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
             connection = getConnection(false);
             preparedStatement1 = getPreparedStatement(FIND_PRODUCT_BY_NAME_WITH_DIFFERENT_ID, connection,
                     parameters1);
-            Product productMatch;
             resultSet = preparedStatement1.executeQuery();
-            productMatch = getProduct(resultSet);
+            Product productMatch = getProduct(resultSet);
             if (productMatch.getProductName() == null) {
                 preparedStatement2 = getPreparedStatement(UPDATE_TABLE, connection, parameters2);
                 result = preparedStatement2.executeUpdate();
