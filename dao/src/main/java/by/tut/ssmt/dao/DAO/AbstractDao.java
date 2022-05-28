@@ -31,10 +31,10 @@ public class AbstractDao {
     }
 
 
-    protected void close(final ResultSet... resultsets) throws DaoException {
+    protected void close(final ResultSet... resultSets) throws DaoException {
         try {
-            if (nonNull(resultsets)) {
-                for (final ResultSet resultSet : resultsets) {
+            if (nonNull(resultSets)) {
+                for (final ResultSet resultSet : resultSets) {
                     if (nonNull(resultSet)) {
                         resultSet.close();
                     }

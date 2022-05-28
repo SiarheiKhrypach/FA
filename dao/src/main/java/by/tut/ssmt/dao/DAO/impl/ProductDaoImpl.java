@@ -165,7 +165,8 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
             int result = 0;
             connection = getConnection(false);
             preparedStatement1 = getPreparedStatement(FIND_PRODUCT_BY_NAME, connection, parameters1);
-            Product productMatch = getProduct(preparedStatement1);
+            resultSet = preparedStatement1.executeQuery();
+            Product productMatch = getProduct(resultSet);
 
             if (productMatch.getProductName() == null) {
                 preparedStatement2 = getPreparedStatement(INSERT_INTO_TABLE, connection, parameters2);
@@ -187,8 +188,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
         }
     }
 
-    private Product getProduct(PreparedStatement preparedStatement) throws SQLException {
-        ResultSet resultSet = preparedStatement.executeQuery();
+    private Product getProduct(ResultSet resultSet) throws SQLException {
         Product productMatch = new Product();
         if (resultSet.next()) {
             productMatch.setProductId(resultSet.getInt(1));
@@ -223,7 +223,8 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
             preparedStatement1 = getPreparedStatement(FIND_PRODUCT_BY_NAME_WITH_DIFFERENT_ID, connection,
                     parameters1);
             Product productMatch;
-            productMatch = getProduct(preparedStatement1);
+            resultSet = preparedStatement1.executeQuery();
+            productMatch = getProduct(resultSet);
             if (productMatch.getProductName() == null) {
                 preparedStatement2 = getPreparedStatement(UPDATE_TABLE, connection, parameters2);
                 result = preparedStatement2.executeUpdate();
