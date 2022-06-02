@@ -65,6 +65,7 @@
 </button>
 </div>
 
+<div>
 <c:if test="${fn:contains(message, 'Please fill out the form')}">
     <c:out value="${fill_the_form}"/>
 </c:if>
@@ -72,5 +73,6 @@
 <c:if test="${fn:contains(message, 'User name or/and password are not valid' )}">
     <c:out value="${invalid_credentials}"/>
 </c:if>
+</div>
 
 </html>

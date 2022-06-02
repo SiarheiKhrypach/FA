@@ -24,10 +24,14 @@
 <head>
     <title>Error</title>
 </head>
+
 <body>
+
+<div>
 <h3>
 <c:out value="${error}"/>
 </h3>
+</div>
 
 <div>
 <c:if test="${fn:contains(message, 'Attempt of injection!' )}">

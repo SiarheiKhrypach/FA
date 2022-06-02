@@ -52,6 +52,7 @@
 </head>
 <body>
 
+<div class="content">
 <div>
 
     <form action="/main" method="post">
@@ -209,7 +210,9 @@
         </c:if>
     </c:forEach>
 </div>
+</div>
 
+<div class="footer">
 <p><c:out value="${proportion_line} ${proportion}" default=""/></p>
 <c:out value="${optimum}"/>
 
@@ -228,6 +231,7 @@
 
 <p><%=request.getServletContext().getAttribute("productsAttribute")%>
 </p>
+</div>
 
 </body>
 </html>

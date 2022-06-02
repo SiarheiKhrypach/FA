@@ -36,6 +36,8 @@
     <c:out value="${enter_new_data}"/>
 </div>
 <br>
+
+<div>
 <form class="w3-container w3-light-grey" method="post" action="/main">
 <%--<form class="w3-container w3-light-grey" method="post" action="<c:url value='/main'/>">--%>
     <input type="hidden" name="command" value="edit"/>
@@ -68,6 +70,7 @@
     <input type="submit" value="${edit_btn}" name="Edit">
 
 </form>
+</div>
 
 </body>
 </html>

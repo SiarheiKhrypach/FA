@@ -63,7 +63,7 @@
     </button>
 </div>
 
-
+<div>
 <c:if test="${fn:contains(message, 'Please fill out the form' )}">
     <p><c:out value="${fill_the_form}"/></p>
 </c:if>
@@ -71,5 +71,6 @@
 <c:if test="${fn:contains(message, 'User name or/and password are already in use, try one more time' )}">
     <p><c:out value="${user_exist}"/></p>
 </c:if>
+</div>
 
 </html>
