@@ -7,7 +7,8 @@ import static java.util.Objects.isNull;
 public class ControllerValidator {
 
     public void isNotNullOrEmpty(String s) throws NullOrEmptyException {
-        if (isNull(s) || "".equals(s.trim())) {
+        if (isNull(s) || (s.trim()).isEmpty()) {
+//        if (isNull(s) || "".equals(s.trim())) {
             throw new   NullOrEmptyException("The incoming string is null or empty");
         }
     }

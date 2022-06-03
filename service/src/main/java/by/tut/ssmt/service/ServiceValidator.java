@@ -30,14 +30,14 @@ public class ServiceValidator {
 
 
     public void isNotNullOrEmpty(String s) throws NullOrEmptyException {
-        if (isNull(s) || "".equals(s.trim())) {
+        if (isNull(s) || (s.trim()).isEmpty()) {
+//        if (isNull(s) || "".equals(s.trim())) {
             throw new NullOrEmptyException("The incoming string is null or empty");
         }
     }
 
     public void isNotNullOrEmpty(char[] ch) throws NullOrEmptyException {
         if (isNull(ch) || ch.length == 0) {
-//        if (isNull(ch) || "".equals(ch[0])) {
             throw new NullOrEmptyException("The incoming string is null or empty");
         }
     }
