@@ -11,7 +11,6 @@ import by.tut.ssmt.service.ServiceValidator;
 import by.tut.ssmt.service.UserService;
 import by.tut.ssmt.service.dataProcessor.DataProcessorList;
 import by.tut.ssmt.service.exception.ServiceException;
-import org.apache.log4j.Logger;
 import org.apache.log4j.spi.RootLogger;
 
 import javax.servlet.ServletContext;
@@ -26,6 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 
 @WebServlet
         (
@@ -43,26 +43,33 @@ public class FrontController extends HttpServlet {
     private final ServiceValidator serviceValidator = serviceFactory.getServiceValidator();
     private final ProductService productService = serviceFactory.getProductService();
     private final UserService userService = serviceFactory.getUserService();
-    public static final Logger LOGGER = Logger.getLogger(FrontController.class.getName());
 
 
     @Override
     public void init() throws ServletException {
 
         initCommandsMap();
+        RootLogger log = (RootLogger) getServletContext().getAttribute("log4");
 
         ServletContext servletContext = getServletContext();
         servletContext.setAttribute("message", "default");
-        LOGGER.info("init");
         try {
             setUserInitialData(servletContext);
             setProductInitialData(servletContext);
             setProportion(servletContext);
         } catch (ControllerException e) {
-            LOGGER.error("Error: ", e);
+            Throwable cause = getCause(e);
+            log.error(cause);
             servletContext.setAttribute("message", "error");
         }
 
+    }
+
+    private Throwable getCause(Throwable cause) {
+        if (nonNull(cause.getCause())) {
+            cause = getCause(cause.getCause());
+        }
+        return cause;
     }
 
     private void setUserInitialData(ServletContext servletContext) throws ControllerException {
@@ -81,7 +88,6 @@ public class FrontController extends HttpServlet {
             products = productService.selectAllService();
             serviceValidator.isNotNull(products);
             servletContext.setAttribute("productsAttribute", products);
-            LOGGER.info("message from FrontController init()");
         } catch (ServiceException | NullPointerException e) {
             throw new ControllerException(e);
         }
@@ -124,10 +130,10 @@ public class FrontController extends HttpServlet {
         if (isRequiredForward) {
             try {
                 final String command = getCommand(request);
-                LOGGER.info("Command - " + command);
                 commands.get(command).execute(request, response);
             } catch (ServletException | IOException | ControllerException e) {
-                log.error("Error: ", e);
+                Throwable cause = getCause(e);
+                log.error(cause);
                 request.getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
             }
         }
@@ -148,7 +154,6 @@ public class FrontController extends HttpServlet {
 
     private String getCommand(HttpServletRequest request) {
         String commandNameParam = request.getParameter("command");
-        LOGGER.info("getCommand commandNameParam - " + commandNameParam);
         if (isNull(commandNameParam)) {
             commandNameParam = "default";
         }

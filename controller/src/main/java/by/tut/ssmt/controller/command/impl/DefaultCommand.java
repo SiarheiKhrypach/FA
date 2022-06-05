@@ -62,7 +62,7 @@ public class DefaultCommand implements Command {
             LOGGER.info("products from context - " + request.getServletContext().getAttribute("productsAttribute"));
             servletContext.getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (ServiceException | NullPointerException e) {
-            e.printStackTrace(); //todo delete
+//            e.printStackTrace(); //todo delete
             throw new ControllerException(e);
         }
     }
