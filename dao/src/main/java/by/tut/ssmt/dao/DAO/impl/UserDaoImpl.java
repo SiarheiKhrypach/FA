@@ -80,7 +80,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             }
             return userFound;
         } catch (SQLException e) {
-            LOGGER.error("Error: ", e);
             throw new DaoException("Error in UserDao", e);
         } finally {
             close(resultSet);
@@ -109,7 +108,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             }
             return user;
         } catch (SQLException e) {
-            LOGGER.error("Error: ", e);
             throw new DaoException("Error in UserDao", e);
         } finally {
             close(resultSet);

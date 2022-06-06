@@ -51,11 +51,9 @@ public class EditCommand implements Command {
 
     private Product getProduct(HttpServletRequest request) throws NullOrEmptyException {
         final String productId = request.getParameter("productId").trim();
-        LOGGER.info("productID - " + productId);
         controllerValidator.isNotNullOrEmpty(productId);
         final Product product = (Product) dataCollector.collectFormData(request);
         product.setProductId(Integer.parseInt(productId));
-        LOGGER.info("product - " + product);
         return product;
     }
 }

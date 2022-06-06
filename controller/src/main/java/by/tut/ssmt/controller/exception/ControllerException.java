@@ -1,6 +1,15 @@
 package by.tut.ssmt.controller.exception;
 
-public class ControllerException extends Exception {
+import static java.util.Objects.nonNull;
+
+ public  class ControllerException extends Exception {
+
+    public static Throwable getCause(Throwable cause) {
+        if (nonNull(cause.getCause())) {
+            cause = getCause(cause.getCause());
+        }
+        return cause;
+    }
 
     public ControllerException() {
         super();

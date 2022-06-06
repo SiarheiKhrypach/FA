@@ -11,7 +11,7 @@ import java.util.List;
 
 import static java.util.Objects.nonNull;
 
-public class AbstractDao {
+public abstract class AbstractDao {
 
     private final ConnectionPool connectionPool;
     private static final Logger LOGGER = Logger.getLogger(AbstractDao.class.getName());

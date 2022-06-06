@@ -27,9 +27,8 @@ public class ConnectionPoolImpl implements ConnectionPool {
         takenConnections = new ArrayBlockingQueue<>(CONNECTIONS_AMOUNT);
         try {
             initConnectionPool();
-            LOGGER.info("Pool: " + pool);
         } catch (DaoException e) {
-            LOGGER.error("Error: " + e);
+            LOGGER.error(DaoException.getCause(e));
         }
     }
 
@@ -42,7 +41,6 @@ public class ConnectionPoolImpl implements ConnectionPool {
             throw new DaoException("Error while starting Connection Pool", e);
         }
     }
-
 
     @Override
     public Connection take() throws DaoException {

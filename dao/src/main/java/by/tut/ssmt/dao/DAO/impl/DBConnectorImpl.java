@@ -28,14 +28,13 @@ public class DBConnectorImpl implements DBConnector {
         try {
             loadProperties();
         } catch (DaoException e) {
-            LOGGER.error("Error:" + e);
+            LOGGER.error(DaoException.getCause(e));
         }
     }
 
     public void loadProperties() throws DaoException {
         try (InputStream is = DBConnectorImpl.class.getClassLoader().getResourceAsStream((DATABASE_CONFIG_PATH))) {
         properties = new Properties();
-        LOGGER.info("!!!!!!!!!!!!!!!Properties information can be here");
             properties.load(is);
         } catch (IOException e) {
             throw new DaoException("Error while loading properties", e);

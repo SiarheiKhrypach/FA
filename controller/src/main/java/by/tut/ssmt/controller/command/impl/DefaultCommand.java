@@ -59,10 +59,8 @@ public class DefaultCommand implements Command {
             serviceValidator.isNotNull(products);
             servletContext.setAttribute("productsAttribute", products);
             setProportion(request);
-            LOGGER.info("products from context - " + request.getServletContext().getAttribute("productsAttribute"));
             servletContext.getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (ServiceException | NullPointerException e) {
-//            e.printStackTrace(); //todo delete
             throw new ControllerException(e);
         }
     }
