@@ -25,6 +25,7 @@
 <fmt:message bundle="${loc}" key="local.locbutton.name.ru" var="ru_btn"/>
 <fmt:message bundle="${loc}" key="local.button.add" var="add_btn"/>
 <fmt:message bundle="${loc}" key="local.button.login" var="login_btn"/>
+<fmt:message bundle="${loc}" key="local.button.logout" var="logout_btn"/>
 <fmt:message bundle="${loc}" key="local.button.register" var="register_btn"/>
 
 <fmt:message bundle="${loc}" key="local.text.welcome" var="welcome"/>
@@ -87,6 +88,15 @@
             <input type="hidden" name="command" value="form"/>
             <button form="login" type="submit">
                 <c:out value="${login_btn}"/>
+            </button>
+        </form>
+    </div>
+
+    <div>
+        <form id="logout" method="get" action="/main">
+            <input type="hidden" name="command" value="logout"/>
+            <button form="logout" type="submit">
+                <c:out value="${logout_btn}"/>
             </button>
         </form>
     </div>

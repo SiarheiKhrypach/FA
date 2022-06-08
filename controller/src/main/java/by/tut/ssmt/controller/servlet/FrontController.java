@@ -25,7 +25,6 @@ import java.util.List;
 import java.util.Map;
 
 import static java.util.Objects.isNull;
-import static java.util.Objects.nonNull;
 
 @WebServlet
         (
@@ -102,6 +101,7 @@ public class FrontController extends HttpServlet {
         commands.put("editform", new EditFormCommand());
         commands.put("form", new FormsAccessCommand());
         commands.put("login", new LoginCommand());
+        commands.put("logout", new LogoutCommand());
         commands.put("register", new RegisterCommand());
     }
 
