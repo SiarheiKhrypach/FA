@@ -30,7 +30,7 @@ public interface UserService {
      * @return true if successful, otherwise false
      * @throws ServiceException is a module exception
      */
-    boolean insertService(User user) throws ServiceException;
+    boolean registerService(User user) throws ServiceException;
 
     boolean updateService(User user) throws ServiceException;
 
