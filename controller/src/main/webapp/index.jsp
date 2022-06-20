@@ -229,16 +229,17 @@
     <p><c:out value="${proportion_line} ${proportion}" default=""/></p>
     <c:out value="${optimum}"/>
 
-    <c:if test="${fn:contains(message, 'The list already has product with such name' )}">
-        <p><c:out value="${already_present}"/></p>
+    <c:if test="${requestScope.message == 'The list already has product with such name'}">
+    <p><c:out value="${already_present}"/></p>
     </c:if>
 
 
-    <c:if test="${fn:contains(message, 'Please enter valid data' )}">
+    <c:if test="${requestScope.message == 'Please enter valid data'}">
         <p><c:out value="${invalid_data}"/></p>
     </c:if>
 
-    <c:if test="${fn:contains(message, 'Welcome, ' )}">
+<%--    <c:if test="${fn:contains(message, 'Welcome, ' )}">--%>
+    <c:if test="${sessionScope.message == 'Welcome, '}">
         <p><c:out value="${hello}${name}"/></p>
     </c:if>
 
