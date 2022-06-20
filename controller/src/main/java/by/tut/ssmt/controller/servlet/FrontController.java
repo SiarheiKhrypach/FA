@@ -29,7 +29,7 @@ import static java.util.Objects.isNull;
 @WebServlet
         (
                 name = "FrontController",
-                urlPatterns = {"/update", "/register", "/login", "/main", "/add"},
+//                urlPatterns = {"/update", "/register", "/login", "/main", "/add"},
                 loadOnStartup = 0
         )
 public class FrontController extends HttpServlet {

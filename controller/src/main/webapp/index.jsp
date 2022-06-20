@@ -43,7 +43,8 @@
 <fmt:message bundle="${loc}" key="local.button.delete" var="delete_btn"/>
 <fmt:message bundle="${loc}" key="local.button.edit" var="edit_btn"/>
 <fmt:message bundle="${loc}" key="local.message.already" var="already_present"/>
-<fmt:message bundle="${loc}" key="local.message.invalid" var="invalid_data"/>
+<fmt:message bundle="${loc}" key="local.message.invalid_data" var="invalid_data"/>
+<fmt:message bundle="${loc}" key="local.message.invalid_operation" var="invalid_operation"/>
 <fmt:message bundle="${loc}" key="local.message.hello" var="hello"/>
 
 <head>
@@ -54,193 +55,196 @@
 <body>
 
 <div class="content">
-<div>
-
-    <form action="/main" method="post">
-        <input type="hidden" name="command" value="locale"/>
-        <input type="hidden" name="locale" value="en">
-        <button type="submit">
-            <c:out value="${en_btn}"/>
-        </button>
-    </form>
-
-    <form id="show_products" action="/main" method="post">
-        <input type="hidden" name="command" value="locale"/>
-        <input type="hidden" name="locale" value="be">
-        <button type="submit">
-            <c:out value="${be_btn}"/>
-        </button>
-    </form>
-
-    <form action="/main" method="post">
-        <input type="hidden" name="command" value="locale"/>
-        <input type="hidden" name="locale" value="ru">
-        <button type="submit">
-            <c:out value="${ru_btn}"/>
-        </button>
-    </form>
-
-</div>
-
-<div>
     <div>
-        <form id="login" method="get" action="/login">
-            <input type="hidden" name="command" value="form"/>
-            <button form="login" type="submit">
-                <c:out value="${login_btn}"/>
+
+        <form action="/main" method="post">
+            <input type="hidden" name="command" value="locale"/>
+            <input type="hidden" name="locale" value="en">
+            <button type="submit">
+                <c:out value="${en_btn}"/>
             </button>
         </form>
+
+        <form id="show_products" action="/main" method="post">
+            <input type="hidden" name="command" value="locale"/>
+            <input type="hidden" name="locale" value="be">
+            <button type="submit">
+                <c:out value="${be_btn}"/>
+            </button>
+        </form>
+
+        <form action="/main" method="post">
+            <input type="hidden" name="command" value="locale"/>
+            <input type="hidden" name="locale" value="ru">
+            <button type="submit">
+                <c:out value="${ru_btn}"/>
+            </button>
+        </form>
+
     </div>
 
     <div>
-        <form id="logout" method="get" action="/main">
-            <input type="hidden" name="command" value="logout"/>
-            <button form="logout" type="submit">
-                <c:out value="${logout_btn}"/>
-            </button>
-        </form>
+        <div>
+            <form id="login" method="get" action="/login">
+                <input type="hidden" name="command" value="form"/>
+                <button form="login" type="submit">
+                    <c:out value="${login_btn}"/>
+                </button>
+            </form>
+        </div>
+
+        <div>
+            <form id="logout" method="get" action="/main">
+                <input type="hidden" name="command" value="logout"/>
+                <button form="logout" type="submit">
+                    <c:out value="${logout_btn}"/>
+                </button>
+            </form>
+        </div>
+
+        <div>
+            <form id="register" method="get" action="/register">
+                <input type="hidden" name="command" value="form"/>
+                <button form="register" type="submit">
+                    <c:out value="${register_btn}"/>
+                </button>
+            </form>
+        </div>
+
     </div>
 
-    <div>
-        <form id="register" method="get" action="/register">
-            <input type="hidden" name="command" value="form"/>
-            <button form="register" type="submit">
-                <c:out value="${register_btn}"/>
-            </button>
-        </form>
-    </div>
-
-</div>
-
-<p>
-    <c:out value="${form}"/>
-</p>
+    <p>
+        <c:out value="${form}"/>
+    </p>
 
 
-<form class="w3-container w3-light-grey" method="post" action="/main">
+    <form class="w3-container w3-light-grey" method="post" action="/add">
+<%--    <form class="w3-container w3-light-grey" method="post" action="/main">--%>
 
-    <label>
-        <c:out value="${product_name}"/>
-    </label>
-    <input class="w3-input w3-border-0" type="text" class="register-input" name="productName" required>
-
-    <label>
-        <c:out value="${omega3}"/>
-    </label>
-    <input class="w3-input w3-border-0" type="number" class="register-input" name="omegaThree" min="0" step="0.1"
-           required>
-
-    <label>
-        <c:out value="${omega6}"/>
-    </label>
-    <input class="w3-input w3-border-0" type="number" class="register-input" name="omegaSix" min="0" step="0.1"
-           required>
-
-    <label>
-        <c:out value="${portions}"/>
-    </label>
-    <input class="w3-input w3-border-0" type="number" class="register-input" name="portions" min="1" required>
-
-    <input type="hidden" name="command" value="add"/>
-    <input type="submit" name="Add" value="${add_btn}">
-
-</form>
-
-
-<table class="w3-table w3-striped">
-    <thead>
-    <tr>
-        <th>
+        <label>
             <c:out value="${product_name}"/>
-        </th>
-        <th>
+        </label>
+        <input class="w3-input w3-border-0" type="text" class="register-input" name="productName" required>
+
+        <label>
             <c:out value="${omega3}"/>
-        </th>
-        <th>
+        </label>
+        <input class="w3-input w3-border-0" type="number" class="register-input" name="omegaThree" min="0" step="0.1"
+               required>
+
+        <label>
             <c:out value="${omega6}"/>
-        </th>
-        <th>
+        </label>
+        <input class="w3-input w3-border-0" type="number" class="register-input" name="omegaSix" min="0" step="0.1"
+               required>
+
+        <label>
             <c:out value="${portions}"/>
-        </th>
-        <th>
-            <c:out value="${delete}"/>
-        </th>
-        <th>
-            <c:out value="${edit}"/>
-        </th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach var="product" items="${productsPagedAttribute.elements}">
+        </label>
+        <input class="w3-input w3-border-0" type="number" class="register-input" name="portions" min="1" required>
 
+        <input type="hidden" name="command" value="add"/>
+        <input type="submit" name="Add" value="${add_btn}">
+
+    </form>
+
+
+    <table class="w3-table w3-striped">
+        <thead>
         <tr>
-            <td><c:out value="${product.productName}"/></td>
-            <td><c:out value="${product.omegaThree}"/></td>
-            <td><c:out value="${product.omegaSix}"/></td>
-            <td><c:out value="${product.portion}"/></td>
-
-            <td>
-                <form method="get" action="/main">
-                    <input type="hidden" name="productName" value="${product.productName}"/>
-                    <input type="hidden" name="command" value="delete"/>
-                    <input type="submit" name="Delete" value="${delete_btn}"/>
-                </form>
-            </td>
-
-            <td>
-                <form method="get" action="/update">
-                    <input type="hidden" name="productId" value="${product.productId}"/>
-                    <input type="hidden" name="command" value="editform"/>
-                    <input type="submit" name="Edit" value="${edit_btn}"/>
-                </form>
-            </td>
+            <th>
+                <c:out value="${product_name}"/>
+            </th>
+            <th>
+                <c:out value="${omega3}"/>
+            </th>
+            <th>
+                <c:out value="${omega6}"/>
+            </th>
+            <th>
+                <c:out value="${portions}"/>
+            </th>
+            <th>
+                <c:out value="${delete}"/>
+            </th>
+            <th>
+                <c:out value="${edit}"/>
+            </th>
         </tr>
-    </c:forEach>
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+        <c:forEach var="product" items="${productsPagedAttribute.elements}">
 
-<div>
-    <c:forEach var="i" begin="1"
-               end="${Math.ceil(productsPagedAttribute.totalElements / productsPagedAttribute.limit)}">
-        <c:if test="${i == productsPagedAttribute.pageNumber}">
-            <form form="show_products">
-                <input type="hidden" name="currentPage" value="${i}">
-                <button style="color:red" type="submit" name="currentPage">
-                        ${i}
-                </button>
-            </form>
-        </c:if>
-        <c:if test="${i != productsPagedAttribute.pageNumber}">
-            <form form="show_products">
-                <input type="hidden" name="currentPage" value="${i}">
-                <button type="submit" name="currentPage">
-                        ${i}
-                </button>
-            </form>
-        </c:if>
-    </c:forEach>
-</div>
+            <tr>
+                <td><c:out value="${product.productName}"/></td>
+                <td><c:out value="${product.omegaThree}"/></td>
+                <td><c:out value="${product.omegaSix}"/></td>
+                <td><c:out value="${product.portion}"/></td>
+
+                <td>
+                    <form method="get" action="/delete">
+<%--                    <form method="get" action="/main">--%>
+                        <input type="hidden" name="productName" value="${product.productName}"/>
+                        <input type="hidden" name="command" value="delete"/>
+                        <input type="submit" name="Delete" value="${delete_btn}"/>
+                    </form>
+                </td>
+
+                <td>
+                    <form method="get" action="/update">
+                        <input type="hidden" name="productId" value="${product.productId}"/>
+                        <input type="hidden" name="command" value="editform"/>
+                        <input type="submit" name="Edit" value="${edit_btn}"/>
+                    </form>
+                </td>
+            </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+
+    <div>
+        <c:forEach var="i" begin="1"
+                   end="${Math.ceil(productsPagedAttribute.totalElements / productsPagedAttribute.limit)}">
+            <c:if test="${i == productsPagedAttribute.pageNumber}">
+                <form form="show_products">
+                    <input type="hidden" name="currentPage" value="${i}">
+                    <button style="color:red" type="submit" name="currentPage">
+                            ${i}
+                    </button>
+                </form>
+            </c:if>
+            <c:if test="${i != productsPagedAttribute.pageNumber}">
+                <form form="show_products">
+                    <input type="hidden" name="currentPage" value="${i}">
+                    <button type="submit" name="currentPage">
+                            ${i}
+                    </button>
+                </form>
+            </c:if>
+        </c:forEach>
+    </div>
 </div>
 
 <div class="footer">
-<p><c:out value="${proportion_line} ${proportion}" default=""/></p>
-<c:out value="${optimum}"/>
+    <p><c:out value="${proportion_line} ${proportion}" default=""/></p>
+    <c:out value="${optimum}"/>
 
-<c:if test="${fn:contains(message, 'The list already has product with such name' )}">
-    <p><c:out value="${already_present}"/></p>
-</c:if>
+    <c:if test="${fn:contains(message, 'The list already has product with such name' )}">
+        <p><c:out value="${already_present}"/></p>
+    </c:if>
 
 
-<c:if test="${fn:contains(message, 'Please enter valid data' )}">
-    <p><c:out value="${invalid_data}"/></p>
-</c:if>
+    <c:if test="${fn:contains(message, 'Please enter valid data' )}">
+        <p><c:out value="${invalid_data}"/></p>
+    </c:if>
 
-<c:if test="${fn:contains(message, 'Welcome, ' )}">
-    <p><c:out value="${hello}${name}"/></p>
-</c:if>
+    <c:if test="${fn:contains(message, 'Welcome, ' )}">
+        <p><c:out value="${hello}${name}"/></p>
+    </c:if>
 
-<p><%=request.getServletContext().getAttribute("productsAttribute")%>
-</p>
+        <c:if test="${param.Operation_is_not_allowed==true}">
+    <p><c:out value="${invalid_operation}"/></p>
+            </c:if>
 </div>
 
 </body>

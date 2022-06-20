@@ -43,6 +43,7 @@ public class LoginCommand implements Command {
         if (passwordVerified) {
             HttpSession session = request.getSession();
             session.setAttribute("message", "Welcome, ");
+            session.setAttribute("role", "admin");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {
             request.setAttribute("message", "User name or/and password are not valid");
