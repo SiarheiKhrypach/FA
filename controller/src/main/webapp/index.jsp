@@ -27,6 +27,9 @@
 <fmt:message bundle="${loc}" key="local.button.login" var="login_btn"/>
 <fmt:message bundle="${loc}" key="local.button.logout" var="logout_btn"/>
 <fmt:message bundle="${loc}" key="local.button.register" var="register_btn"/>
+<fmt:message bundle="${loc}" key="local.button.delete" var="delete_btn"/>
+<fmt:message bundle="${loc}" key="local.button.edit" var="edit_btn"/>
+<fmt:message bundle="${loc}" key="local.button.calculate" var="calculate_btn"/>
 
 <fmt:message bundle="${loc}" key="local.text.welcome" var="welcome"/>
 <fmt:message bundle="${loc}" key="local.text.fill_form" var="form"/>
@@ -40,8 +43,6 @@
 <fmt:message bundle="${loc}" key="local.form.deleting" var="delete"/>
 <fmt:message bundle="${loc}" key="local.form.editing" var="edit"/>
 
-<fmt:message bundle="${loc}" key="local.button.delete" var="delete_btn"/>
-<fmt:message bundle="${loc}" key="local.button.edit" var="edit_btn"/>
 <fmt:message bundle="${loc}" key="local.message.already" var="already_present"/>
 <fmt:message bundle="${loc}" key="local.message.invalid_data" var="invalid_data"/>
 <fmt:message bundle="${loc}" key="local.message.invalid_operation" var="invalid_operation"/>
@@ -65,7 +66,8 @@
             </button>
         </form>
 
-        <form id="show_products" action="/main" method="post">
+        <%--        id="show_products"--%>
+        <form action="/main" method="post">
             <input type="hidden" name="command" value="locale"/>
             <input type="hidden" name="locale" value="be">
             <button type="submit">
@@ -113,42 +115,45 @@
 
     </div>
 
-    <p>
-        <c:out value="${form}"/>
-    </p>
+    <c:if test="${sessionScope.role != null}">
+        <p>
+            <c:out value="${form}"/>
+        </p>
 
+        <form class="w3-container w3-light-grey" method="post" action="/add">
+                <%--    <form class="w3-container w3-light-grey" method="post" action="/main">--%>
 
-    <form class="w3-container w3-light-grey" method="post" action="/add">
-<%--    <form class="w3-container w3-light-grey" method="post" action="/main">--%>
+            <label>
+                <c:out value="${product_name}"/>
+            </label>
+            <input class="w3-input w3-border-0" type="text" class="register-input" name="productName" required>
 
-        <label>
-            <c:out value="${product_name}"/>
-        </label>
-        <input class="w3-input w3-border-0" type="text" class="register-input" name="productName" required>
+            <label>
+                <c:out value="${omega3}"/>
+            </label>
+            <input class="w3-input w3-border-0" type="number" class="register-input" name="omegaThree" min="0"
+                   step="0.1"
+                   required>
 
-        <label>
-            <c:out value="${omega3}"/>
-        </label>
-        <input class="w3-input w3-border-0" type="number" class="register-input" name="omegaThree" min="0" step="0.1"
-               required>
+            <label>
+                <c:out value="${omega6}"/>
+            </label>
+            <input class="w3-input w3-border-0" type="number" class="register-input" name="omegaSix" min="0" step="0.1"
+                   required>
 
-        <label>
-            <c:out value="${omega6}"/>
-        </label>
-        <input class="w3-input w3-border-0" type="number" class="register-input" name="omegaSix" min="0" step="0.1"
-               required>
+            <label>
+                <c:out value="${portions}"/>
+            </label>
+            <input class="w3-input w3-border-0" type="number" class="register-input" name="portions" min="1" required>
 
-        <label>
-            <c:out value="${portions}"/>
-        </label>
-        <input class="w3-input w3-border-0" type="number" class="register-input" name="portions" min="1" required>
+            <input type="hidden" name="command" value="add"/>
+            <input type="submit" name="Add" value="${add_btn}">
 
-        <input type="hidden" name="command" value="add"/>
-        <input type="submit" name="Add" value="${add_btn}">
+        </form>
 
-    </form>
+    </c:if>
 
-
+    <%--    <form form="calc" method="post" action="/calculate">--%>
     <table class="w3-table w3-striped">
         <thead>
         <tr>
@@ -161,15 +166,17 @@
             <th>
                 <c:out value="${omega6}"/>
             </th>
-            <th>
-                <c:out value="${portions}"/>
-            </th>
-            <th>
-                <c:out value="${delete}"/>
-            </th>
-            <th>
-                <c:out value="${edit}"/>
-            </th>
+<%--<th> //todo move to the basket --%>
+<%--<c:out value="${portions}"/>--%>
+<%--</th>--%>
+            <c:if test="${sessionScope.role != null}">
+                <th>
+                    <c:out value="${delete}"/>
+                </th>
+                <th>
+                    <c:out value="${edit}"/>
+                </th>
+            </c:if>
         </tr>
         </thead>
         <tbody>
@@ -179,24 +186,29 @@
                 <td><c:out value="${product.productName}"/></td>
                 <td><c:out value="${product.omegaThree}"/></td>
                 <td><c:out value="${product.omegaSix}"/></td>
-                <td><c:out value="${product.portion}"/></td>
+<%--                <td> //todo move to the basket--%>
+<%--                    <input form="calc" class="w3-input w3-border-0" type="number" class="register-input"--%>
+<%--                           name="${product.productName}" value="${product.portion}" min="0" step="1"--%>
+<%--                           required>--%>
+<%--                </td>--%>
+                <c:if test="${sessionScope.role != null}">
+                    <td>
+                        <form method="get" action="/delete">
+                                <%--                    <form method="get" action="/main">--%>
+                            <input type="hidden" name="productName" value="${product.productName}"/>
+                            <input type="hidden" name="command" value="delete"/>
+                            <input type="submit" name="Delete" value="${delete_btn}"/>
+                        </form>
+                    </td>
 
-                <td>
-                    <form method="get" action="/delete">
-<%--                    <form method="get" action="/main">--%>
-                        <input type="hidden" name="productName" value="${product.productName}"/>
-                        <input type="hidden" name="command" value="delete"/>
-                        <input type="submit" name="Delete" value="${delete_btn}"/>
-                    </form>
-                </td>
-
-                <td>
-                    <form method="get" action="/update">
-                        <input type="hidden" name="productId" value="${product.productId}"/>
-                        <input type="hidden" name="command" value="editform"/>
-                        <input type="submit" name="Edit" value="${edit_btn}"/>
-                    </form>
-                </td>
+                    <td>
+                        <form method="get" action="/update">
+                            <input type="hidden" name="productId" value="${product.productId}"/>
+                            <input type="hidden" name="command" value="editform"/>
+                            <input type="submit" name="Edit" value="${edit_btn}"/>
+                        </form>
+                    </td>
+                </c:if>
             </tr>
         </c:forEach>
         </tbody>
@@ -205,32 +217,40 @@
     <div>
         <c:forEach var="i" begin="1"
                    end="${Math.ceil(productsPagedAttribute.totalElements / productsPagedAttribute.limit)}">
-            <c:if test="${i == productsPagedAttribute.pageNumber}">
-                <form form="show_products">
-                    <input type="hidden" name="currentPage" value="${i}">
-                    <button style="color:red" type="submit" name="currentPage">
-                            ${i}
-                    </button>
-                </form>
+        <c:if test="${i == productsPagedAttribute.pageNumber}">
+        <form>
+            <form form="show_products">
+                <input type="hidden" name="currentPage" value="${i}">
+                <button style="color:red" type="submit" name="currentPage">
+                        ${i}
+                </button>
+            </form>
             </c:if>
             <c:if test="${i != productsPagedAttribute.pageNumber}">
+            <form>
                 <form form="show_products">
                     <input type="hidden" name="currentPage" value="${i}">
                     <button type="submit" name="currentPage">
                             ${i}
                     </button>
                 </form>
-            </c:if>
-        </c:forEach>
+                </c:if>
+                </c:forEach>
     </div>
 </div>
 
+<%--<form id=calc method="post" action="/calculate"> //todo move to the basket--%>
+<%--    <input type="hidden" name="command" value="calculate"/>--%>
+<%--    &lt;%&ndash;<form method="post" action="/calculate">&ndash;%&gt;--%>
+<%--    <input type="submit" name="Calculate" value="${calculate_btn}"/>--%>
+<%--</form>--%>
+
 <div class="footer">
-    <p><c:out value="${proportion_line} ${proportion}" default=""/></p>
-    <c:out value="${optimum}"/>
+<%--    <p><c:out value="${proportion_line} ${proportion}" default=""/></p> //todo move to the basket--%>
+<%--    <c:out value="${optimum}"/>--%>
 
     <c:if test="${requestScope.message == 'The list already has product with such name'}">
-    <p><c:out value="${already_present}"/></p>
+        <p><c:out value="${already_present}"/></p>
     </c:if>
 
 
@@ -238,15 +258,19 @@
         <p><c:out value="${invalid_data}"/></p>
     </c:if>
 
-<%--    <c:if test="${fn:contains(message, 'Welcome, ' )}">--%>
     <c:if test="${sessionScope.message == 'Welcome, '}">
         <p><c:out value="${hello}${name}"/></p>
     </c:if>
 
-        <c:if test="${param.Operation_is_not_allowed==true}">
-    <p><c:out value="${invalid_operation}"/></p>
-            </c:if>
+    <c:if test="${param.Operation_is_not_allowed==true}">
+        <p><c:out value="${invalid_operation}"/></p>
+    </c:if>
+
+<%--    <p><c:out value="${data}"/></p> //todo move to the basket--%>
+
+
 </div>
+
 
 </body>
 </html>
