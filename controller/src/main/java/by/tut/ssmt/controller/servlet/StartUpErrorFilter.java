@@ -16,7 +16,6 @@ public class StartUpErrorFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         String message = (String) request.getServletContext().getAttribute("message");
-        LOGGER.info("message - " + message);
         if (message.equals("error")) {
             request.getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
         }

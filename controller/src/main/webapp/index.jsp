@@ -29,7 +29,9 @@
 <fmt:message bundle="${loc}" key="local.button.register" var="register_btn"/>
 <fmt:message bundle="${loc}" key="local.button.delete" var="delete_btn"/>
 <fmt:message bundle="${loc}" key="local.button.edit" var="edit_btn"/>
+<fmt:message bundle="${loc}" key="local.button.add_to_the_menu_btn" var="add_to_the_menu_btn"/>
 <fmt:message bundle="${loc}" key="local.button.calculate" var="calculate_btn"/>
+<fmt:message bundle="${loc}" key="local.button.menu" var="menu_btn"/>
 
 <fmt:message bundle="${loc}" key="local.text.welcome" var="welcome"/>
 <fmt:message bundle="${loc}" key="local.text.fill_form" var="form"/>
@@ -42,6 +44,7 @@
 <fmt:message bundle="${loc}" key="local.form.portions" var="portions"/>
 <fmt:message bundle="${loc}" key="local.form.deleting" var="delete"/>
 <fmt:message bundle="${loc}" key="local.form.editing" var="edit"/>
+<fmt:message bundle="${loc}" key="local.form.add_to_the_menu" var="add_to_the_menu"/>
 
 <fmt:message bundle="${loc}" key="local.message.already" var="already_present"/>
 <fmt:message bundle="${loc}" key="local.message.invalid_data" var="invalid_data"/>
@@ -115,7 +118,7 @@
 
     </div>
 
-    <c:if test="${sessionScope.role != null}">
+    <c:if test="${sessionScope.role == 'admin'}">
         <p>
             <c:out value="${form}"/>
         </p>
@@ -166,15 +169,20 @@
             <th>
                 <c:out value="${omega6}"/>
             </th>
-<%--<th> //todo move to the basket --%>
-<%--<c:out value="${portions}"/>--%>
-<%--</th>--%>
-            <c:if test="${sessionScope.role != null}">
+            <%--<th> //todo move to the basket --%>
+            <%--<c:out value="${portions}"/>--%>
+            <%--</th>--%>
+            <c:if test="${sessionScope.role == 'admin'}">
                 <th>
                     <c:out value="${delete}"/>
                 </th>
                 <th>
                     <c:out value="${edit}"/>
+                </th>
+            </c:if>
+            <c:if test="${sessionScope.role != null}">
+                <th>
+                    <c:out value="${add_to_the_menu}"/>
                 </th>
             </c:if>
         </tr>
@@ -186,12 +194,12 @@
                 <td><c:out value="${product.productName}"/></td>
                 <td><c:out value="${product.omegaThree}"/></td>
                 <td><c:out value="${product.omegaSix}"/></td>
-<%--                <td> //todo move to the basket--%>
-<%--                    <input form="calc" class="w3-input w3-border-0" type="number" class="register-input"--%>
-<%--                           name="${product.productName}" value="${product.portion}" min="0" step="1"--%>
-<%--                           required>--%>
-<%--                </td>--%>
-                <c:if test="${sessionScope.role != null}">
+                    <%--                <td> //todo move to the basket--%>
+                    <%--                    <input form="calc" class="w3-input w3-border-0" type="number" class="register-input"--%>
+                    <%--                           name="${product.productName}" value="${product.portion}" min="0" step="1"--%>
+                    <%--                           required>--%>
+                    <%--                </td>--%>
+                <c:if test="${sessionScope.role == 'admin'}">
                     <td>
                         <form method="get" action="/delete">
                                 <%--                    <form method="get" action="/main">--%>
@@ -206,6 +214,16 @@
                             <input type="hidden" name="productId" value="${product.productId}"/>
                             <input type="hidden" name="command" value="editform"/>
                             <input type="submit" name="Edit" value="${edit_btn}"/>
+                        </form>
+                    </td>
+                </c:if>
+
+                <c:if test="${sessionScope.role != null}">
+                    <td>
+                        <form method="get" action="/addPortion">
+                            <input type="hidden" name="productId" value="${product.productId}"/>
+                            <input type="hidden" name="command" value="addPortion"/>
+                            <input type="submit" name="AddPortion" value="${add_to_the_menu_btn}">
                         </form>
                     </td>
                 </c:if>
@@ -246,8 +264,8 @@
 <%--</form>--%>
 
 <div class="footer">
-<%--    <p><c:out value="${proportion_line} ${proportion}" default=""/></p> //todo move to the basket--%>
-<%--    <c:out value="${optimum}"/>--%>
+    <%--    <p><c:out value="${proportion_line} ${proportion}" default=""/></p> //todo move to the basket--%>
+    <%--    <c:out value="${optimum}"/>--%>
 
     <c:if test="${requestScope.message == 'The list already has product with such name'}">
         <p><c:out value="${already_present}"/></p>
@@ -266,7 +284,19 @@
         <p><c:out value="${invalid_operation}"/></p>
     </c:if>
 
-<%--    <p><c:out value="${data}"/></p> //todo move to the basket--%>
+
+    <c:if test="${sessionScope.role != null}">
+        <div>
+            <form id="menu" method="get" action="/menu">
+                <input type="hidden" name="command" value="menu"/>
+                <button form="menu" type="submit">
+                    <c:out value="${menu_btn}"></c:out>
+                </button>
+            </form>
+        </div>
+    </c:if>
+
+    <%--    <p><c:out value="${data}"/></p> //todo move to the basket--%>
 
 
 </div>

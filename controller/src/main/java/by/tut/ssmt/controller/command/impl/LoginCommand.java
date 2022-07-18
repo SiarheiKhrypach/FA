@@ -40,10 +40,15 @@ public class LoginCommand implements Command {
     }
 
     private void postToMainPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (passwordVerified) {
+        if (passwordVerified && request.getAttribute("name").equals("admin")) {
             HttpSession session = request.getSession();
             session.setAttribute("message", "Welcome, ");
             session.setAttribute("role", "admin");
+            request.getRequestDispatcher("index.jsp").forward(request, response);
+        } else if (passwordVerified && !request.getAttribute("name").equals("admin")) {
+            HttpSession session = request.getSession();
+            session.setAttribute("message", "Welcome, ");
+            session.setAttribute("role", "user");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {
             request.setAttribute("message", "User name or/and password are not valid");
