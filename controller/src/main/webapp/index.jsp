@@ -88,6 +88,7 @@
 
     </div>
 
+    <c:if test="${sessionScope.role == null}">
     <div>
         <div>
             <form id="login" method="get" action="/login">
@@ -98,6 +99,7 @@
             </form>
         </div>
 
+        </c:if>
         <div>
             <form id="logout" method="get" action="/main">
                 <input type="hidden" name="command" value="logout"/>
@@ -107,6 +109,7 @@
             </form>
         </div>
 
+        <c:if test="${sessionScope.role == null}">
         <div>
             <form id="register" method="get" action="/register">
                 <input type="hidden" name="command" value="form"/>
@@ -115,6 +118,7 @@
                 </button>
             </form>
         </div>
+        </c:if>
 
     </div>
 
