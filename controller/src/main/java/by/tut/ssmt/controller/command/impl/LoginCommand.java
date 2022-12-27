@@ -30,6 +30,7 @@ public class LoginCommand implements Command {
             final User user = (User) dataCollector.collectFormData(request);
             passwordVerified = userService.loginService(user);
             request.setAttribute("name", user.getUserName());
+//            request.setAttribute("userId", user.getUserId());
             postToMainPage(request, response);
         } catch (NullOrEmptyException e) {
             request.setAttribute("message", "Please fill out the form");
@@ -44,11 +45,13 @@ public class LoginCommand implements Command {
             HttpSession session = request.getSession();
             session.setAttribute("message", "Welcome, ");
             session.setAttribute("role", "admin");
+            session.setAttribute("userName", request.getAttribute("name"));
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else if (passwordVerified && !request.getAttribute("name").equals("admin")) {
             HttpSession session = request.getSession();
             session.setAttribute("message", "Welcome, ");
             session.setAttribute("role", "user");
+            session.setAttribute("name", request.getAttribute("name"));
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {
             request.setAttribute("message", "User name or/and password are not valid");

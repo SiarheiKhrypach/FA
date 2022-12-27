@@ -39,7 +39,6 @@
 
 <div>
 <form class="w3-container w3-light-grey" method="post" action="/main">
-<%--<form class="w3-container w3-light-grey" method="post" action="<c:url value='/main'/>">--%>
     <input type="hidden" name="command" value="edit"/>
     <input type="hidden" name="productId" value="${product.productId}"/>
 
@@ -64,8 +63,8 @@
     <label>
         <c:out value="${portions}"/>
     </label>
-    <input class="w3-input w3-border-0" type="number" class="register-input" name="portions" value="${product.portion}"
-           placeholder="${product.portion}" min="1">
+    <input class="w3-input w3-border-0" type="number" class="register-input" name="portions" value="${product.portions}"
+           placeholder="${product.portions}" min="1">
 
     <input type="submit" value="${edit_btn}" name="Edit">
 

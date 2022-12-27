@@ -110,14 +110,14 @@
         </div>
 
         <c:if test="${sessionScope.role == null}">
-        <div>
-            <form id="register" method="get" action="/register">
-                <input type="hidden" name="command" value="form"/>
-                <button form="register" type="submit">
-                    <c:out value="${register_btn}"/>
-                </button>
-            </form>
-        </div>
+            <div>
+                <form id="register" method="get" action="/register">
+                    <input type="hidden" name="command" value="form"/>
+                    <button form="register" type="submit">
+                        <c:out value="${register_btn}"/>
+                    </button>
+                </form>
+            </div>
         </c:if>
 
     </div>
@@ -186,7 +186,8 @@
             </c:if>
             <c:if test="${sessionScope.role != null}">
                 <th>
-                    <c:out value="${add_to_the_menu}"/>
+                    <c:out value="${portions}"/>
+                        <%--                    <c:out value="${add_to_the_menu}"/>--%>
                 </th>
             </c:if>
         </tr>
@@ -200,7 +201,7 @@
                 <td><c:out value="${product.omegaSix}"/></td>
                     <%--                <td> //todo move to the basket--%>
                     <%--                    <input form="calc" class="w3-input w3-border-0" type="number" class="register-input"--%>
-                    <%--                           name="${product.productName}" value="${product.portion}" min="0" step="1"--%>
+                    <%--                           name="${product.productName}" value="${product.portions}" min="0" step="1"--%>
                     <%--                           required>--%>
                     <%--                </td>--%>
                 <c:if test="${sessionScope.role == 'admin'}">
@@ -216,19 +217,23 @@
                     <td>
                         <form method="get" action="/update">
                             <input type="hidden" name="productId" value="${product.productId}"/>
-                            <input type="hidden" name="command" value="editform"/>
+                            <input type="hidden" name="command" value="editForm"/>
                             <input type="submit" name="Edit" value="${edit_btn}"/>
                         </form>
                     </td>
                 </c:if>
 
                 <c:if test="${sessionScope.role != null}">
+
                     <td>
-                        <form method="get" action="/addPortion">
+                        <form class="w3-container w3-light-grey" method="post" action="/addPortions">
+                            <input class="w3-input w3-border-0" type="number" class="register-input"
+                                   name="portions" value="0" min="0" step="1" required>
                             <input type="hidden" name="productId" value="${product.productId}"/>
-                            <input type="hidden" name="command" value="addPortion"/>
-                            <input type="submit" name="AddPortion" value="${add_to_the_menu_btn}">
+                            <input type="hidden" name="command" value="addPortions"/>
+                            <input type="submit" name="AddPortions" value="${add_to_the_menu_btn}">
                         </form>
+
                     </td>
                 </c:if>
             </tr>
@@ -236,28 +241,34 @@
         </tbody>
     </table>
 
+    <%--Block below prevents the following block from taking action data of previous one - bug persisting--%>
+    <%--during product page browsing after logination    --%>
+    <form>
+    </form>
+
+
     <div>
         <c:forEach var="i" begin="1"
                    end="${Math.ceil(productsPagedAttribute.totalElements / productsPagedAttribute.limit)}">
-        <c:if test="${i == productsPagedAttribute.pageNumber}">
-        <form>
-            <form form="show_products">
-                <input type="hidden" name="currentPage" value="${i}">
-                <button style="color:red" type="submit" name="currentPage">
-                        ${i}
-                </button>
-            </form>
+            <c:if test="${i == productsPagedAttribute.pageNumber}">
+                <form form="show_products" method="post">
+                    <input type="hidden" name="currentPage" value="${i}">
+                    <button style="color:red" type="submit" name="currentPage">
+                            ${i}
+                    </button>
+                </form>
             </c:if>
+
             <c:if test="${i != productsPagedAttribute.pageNumber}">
-            <form>
-                <form form="show_products">
+                <%--            <form>--%>
+                <form form="show_products" method="post">
                     <input type="hidden" name="currentPage" value="${i}">
                     <button type="submit" name="currentPage">
                             ${i}
                     </button>
                 </form>
-                </c:if>
-                </c:forEach>
+            </c:if>
+        </c:forEach>
     </div>
 </div>
 

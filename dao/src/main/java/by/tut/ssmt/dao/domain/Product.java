@@ -6,23 +6,23 @@ public class Product {
     private String productName;
     private double omegaThree;
     private double omegaSix;
-    private int portion;
+    private int portions;
 
     public Product(){}
 
-    public Product(String productName, double omegaThree, double omegaSix, int portion) {
+    public Product(String productName, double omegaThree, double omegaSix, int portions) {
         this.productName = productName;
         this.omegaThree = omegaThree;
         this.omegaSix = omegaSix;
-        this.portion = portion;
+        this.portions = portions;
     }
 
-    public Product(int productID, String productName, double omegaThree, double omegaSix, int portion) {
+    public Product(int productID, String productName, double omegaThree, double omegaSix, int portions) {
         this.productID = productID;
         this.productName = productName;
         this.omegaThree = omegaThree;
         this.omegaSix = omegaSix;
-        this.portion = portion;
+        this.portions = portions;
     }
 
     public int getProductId() {
@@ -57,12 +57,12 @@ public class Product {
         this.omegaSix = omegaSix;
     }
 
-    public int getPortion() {
-        return portion;
+    public int getPortions() {
+        return portions;
     }
 
-    public void setPortion(int portion) {
-        this.portion = portion;
+    public void setPortions(int portions) {
+        this.portions = portions;
     }
 
     @Override
@@ -75,7 +75,7 @@ public class Product {
         if (productID != product.productID) return false;
         if (Double.compare(product.omegaThree, omegaThree) != 0) return false;
         if (Double.compare(product.omegaSix, omegaSix) != 0) return false;
-        if (portion != product.portion) return false;
+        if (portions != product.portions) return false;
         return productName.equals(product.productName);
     }
 
@@ -89,7 +89,7 @@ public class Product {
         result = 31 * result + (int) (temp ^ (temp >>> 32));
         temp = Double.doubleToLongBits(omegaSix);
         result = 31 * result + (int) (temp ^ (temp >>> 32));
-        result = 31 * result + portion;
+        result = 31 * result + portions;
         return result;
     }
 
@@ -100,7 +100,7 @@ public class Product {
                 ", productName='" + productName + '\'' +
                 ", omegaThree=" + omegaThree +
                 ", omegaSix=" + omegaSix +
-                ", portion=" + portion +
+                ", portions=" + portions +
                 '}';
     }
 }

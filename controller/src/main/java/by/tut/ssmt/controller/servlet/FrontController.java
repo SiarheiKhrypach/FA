@@ -95,15 +95,19 @@ public class FrontController extends HttpServlet {
             commands = new HashMap<>();
         }
         commands.put("add", new AddCommand());
+        commands.put("addPortions", new AddPortionsCommand());
+        commands.put("calculate", new CalculateCommand());
+        commands.put("changePortion", new ChangePortionCommand());
         commands.put("default", new DefaultCommand());
         commands.put("delete", new DeleteCommand());
+        commands.put("deleteFromMenu", new DeleteFromMenuCommand());
         commands.put("edit", new EditCommand());
-        commands.put("editform", new EditFormCommand());
+        commands.put("editForm", new EditFormCommand());
         commands.put("form", new FormsAccessCommand());
         commands.put("login", new LoginCommand());
         commands.put("logout", new LogoutCommand());
+        commands.put("menu", new MenuCommand());
         commands.put("register", new RegisterCommand());
-        commands.put("calculate", new CalculateCommand());
     }
 
     @Override

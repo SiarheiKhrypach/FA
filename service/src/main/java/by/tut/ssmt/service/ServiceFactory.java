@@ -1,8 +1,9 @@
 package by.tut.ssmt.service;
 
 import by.tut.ssmt.service.dataProcessor.AcidsProportionListImpl;
-import by.tut.ssmt.service.impl.ProductServiceImpl;
 import by.tut.ssmt.service.dataProcessor.DataProcessorList;
+import by.tut.ssmt.service.impl.MenuServiceImpl;
+import by.tut.ssmt.service.impl.ProductServiceImpl;
 import by.tut.ssmt.service.impl.UserServiceImpl;
 
 public class ServiceFactory {
@@ -13,6 +14,7 @@ public class ServiceFactory {
     private final ServiceValidator serviceValidator = new ServiceValidator();
     private final ProductService productService = new ProductServiceImpl();
     private final UserService userService = new UserServiceImpl();
+    private final MenuService menuService = new MenuServiceImpl();
 
     private ServiceFactory() {
     }
@@ -35,5 +37,9 @@ public class ServiceFactory {
 
     public UserService getUserService() {
         return userService;
+    }
+
+    public MenuService getMenuService() {
+        return menuService;
     }
 }

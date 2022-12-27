@@ -1,5 +1,6 @@
 package by.tut.ssmt.controller;
 
+import by.tut.ssmt.controller.formDataCollector.MenuFormDataCollector;
 import by.tut.ssmt.controller.formDataCollector.ProductFormDataCollector;
 import by.tut.ssmt.controller.formDataCollector.UserFormDataCollector;
 
@@ -10,6 +11,7 @@ public class ControllerFactory {
     private final ControllerValidator controllerValidator = new ControllerValidator();
     private final ProductFormDataCollector productFormDataCollector = new ProductFormDataCollector();
     private final UserFormDataCollector userFormDataCollector = new UserFormDataCollector();
+    private final MenuFormDataCollector menuFormDataCollector = new MenuFormDataCollector();
 
     private ControllerFactory(){}
 
@@ -23,4 +25,5 @@ public class ControllerFactory {
     public UserFormDataCollector getUserFormDataCollector() {
         return userFormDataCollector;
     }
+    public MenuFormDataCollector getMenuFormDataCollector() {return menuFormDataCollector; }
 }

@@ -13,8 +13,8 @@ public class AcidsProportionListImpl implements DataProcessorList {
         double totalOmegaSix = 0;
         String proportion = "";
         for (Product product : products) {
-            totalOmegaThree += product.getOmegaThree() * product.getPortion();
-            totalOmegaSix += product.getOmegaSix() * product.getPortion();
+            totalOmegaThree += product.getOmegaThree() * product.getPortions();
+            totalOmegaSix += product.getOmegaSix() * product.getPortions();
             if ((totalOmegaThree != 0)) {
                 proportion = String.valueOf(new DecimalFormat("#0.00").format(totalOmegaSix / totalOmegaThree));
             } else {

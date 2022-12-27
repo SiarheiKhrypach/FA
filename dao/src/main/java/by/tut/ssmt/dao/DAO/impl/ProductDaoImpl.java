@@ -23,9 +23,8 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
     private static final String COUNT_ALL = "SELECT COUNT(*) FROM products";
     private static final String FIND_PAGE = "SELECT * FROM products LIMIT ? OFFSET ?";
     private static final String SELECT_FROM_TABLE_WHERE = "SELECT * FROM products WHERE product_id=?";
-    private static final String INSERT_INTO_TABLE = "INSERT INTO products (product_name, omega_three, omega_six, portion) Values (?, ?, ?, ?)";
-    private static final String UPDATE_TABLE = "UPDATE products SET product_name = ?, omega_three = ?, omega_six = ?, portion = ? WHERE product_id = ?";
-    //    private static final String DELETE_FROM_TABLE = "DELETE FROM products WHERE product_id = ?";
+    private static final String INSERT_INTO_TABLE = "INSERT INTO products (product_name, omega_three, omega_six, portions) Values (?, ?, ?, ?)";
+    private static final String UPDATE_TABLE = "UPDATE products SET product_name = ?, omega_three = ?, omega_six = ?, portions = ? WHERE product_id = ?";
     private static final String DELETE_FROM_TABLE = "DELETE FROM products WHERE product_name = ?";
     private static final String FIND_PRODUCT_BY_NAME = "SELECT * FROM products WHERE product_name=?";
     private static final String FIND_PRODUCT_BY_NAME_WITH_DIFFERENT_ID = "SELECT * FROM products WHERE product_name=? AND NOT product_id=?";
@@ -86,7 +85,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
         ResultSet resultSet1 = null;
         ResultSet resultSet2 = null;
         try {
-            connection = getConnection(false);
+            connection = getConnection(true);
             preparedStatement1 = getPreparedStatement(COUNT_ALL, connection, parameters1);
             preparedStatement2 = getPreparedStatement(FIND_PAGE, connection, parameters2);
             resultSet1 = preparedStatement1.executeQuery();
@@ -155,7 +154,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
                 product.getProductName(),
                 product.getOmegaThree(),
                 product.getOmegaSix(),
-                product.getPortion()
+                product.getPortions()
         );
         Connection connection = null;
         PreparedStatement preparedStatement1 = null;
@@ -195,7 +194,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
             productMatch.setProductName(resultSet.getString(2));
             productMatch.setOmegaThree(resultSet.getInt(3));
             productMatch.setOmegaSix(resultSet.getInt(4));
-            productMatch.setPortion(resultSet.getInt(5));
+            productMatch.setPortions(resultSet.getInt(5));
         }
         return productMatch;
     }
@@ -210,7 +209,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
                 product.getProductName(),
                 product.getOmegaThree(),
                 product.getOmegaSix(),
-                product.getPortion(),
+                product.getPortions(),
                 product.getProductId()
         );
         Connection connection = null;

@@ -14,9 +14,9 @@ public class ProductFormDataCollector extends FormDataCollector {
         controllerValidator.isNotNullOrEmpty(omegaThree);
         final String omegaSix = req.getParameter("omegaSix");
         controllerValidator.isNotNullOrEmpty(omegaSix);
-        final String portion = req.getParameter("portions");
-        controllerValidator.isNotNullOrEmpty(portion);
-        Product product = new Product(productName, Double.parseDouble(omegaThree), Double.parseDouble(omegaSix), Integer.parseInt(portion));
+        final String portions = req.getParameter("portions");
+        controllerValidator.isNotNullOrEmpty(portions);
+        Product product = new Product(productName, Double.parseDouble(omegaThree), Double.parseDouble(omegaSix), Integer.parseInt(portions));
         return product;
     }
 }

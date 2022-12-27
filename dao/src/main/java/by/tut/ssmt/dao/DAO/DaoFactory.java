@@ -1,9 +1,6 @@
 package by.tut.ssmt.dao.DAO;
 
-import by.tut.ssmt.dao.DAO.impl.ConnectionPoolImpl;
-import by.tut.ssmt.dao.DAO.impl.DBConnectorImpl;
-import by.tut.ssmt.dao.DAO.impl.ProductDaoImpl;
-import by.tut.ssmt.dao.DAO.impl.UserDaoImpl;
+import by.tut.ssmt.dao.DAO.impl.*;
 
 public class DaoFactory {
 
@@ -14,6 +11,7 @@ public class DaoFactory {
 
     private final ProductDao productDao = new ProductDaoImpl(connectionPool);
     private final UserDao userDao = new UserDaoImpl(connectionPool);
+    private final MenuDao menuDao = new MenuDaoImpl(connectionPool);
 
     private DaoFactory() {
     }
@@ -24,6 +22,10 @@ public class DaoFactory {
 
     public UserDao getUserDao() {
         return userDao;
+    }
+
+    public MenuDao getMenuDao() {
+        return menuDao;
     }
 
     public static DaoFactory getInstance() {

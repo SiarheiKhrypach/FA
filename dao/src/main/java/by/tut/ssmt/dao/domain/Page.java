@@ -7,14 +7,16 @@ public class Page <T> {
 private int pageNumber;
 private long totalElements;
 private int limit;
+private String currentUser;
 private List<T> elements = new ArrayList<>();
 
     public Page() {}
 
-    public Page(int pageNumber, long totalElements, int limit, List<T> elements) {
+    public Page(int pageNumber, long totalElements, int limit, String currentUser, List<T> elements) {
         this.pageNumber = pageNumber;
         this.totalElements = totalElements;
         this.limit = limit;
+        this.currentUser = currentUser;
         this.elements = elements;
     }
 
@@ -42,6 +44,14 @@ private List<T> elements = new ArrayList<>();
         this.limit = limit;
     }
 
+    public String getCurrentUser() {
+        return currentUser;
+    }
+
+    public void setCurrentUser(String currentUser) {
+        this.currentUser = currentUser;
+    }
+
     public List<T> getElements() {
         return elements;
     }
@@ -60,7 +70,8 @@ private List<T> elements = new ArrayList<>();
         if (pageNumber != page.pageNumber) return false;
         if (totalElements != page.totalElements) return false;
         if (limit != page.limit) return false;
-        return elements != null ? elements.equals(page.elements) : page.elements == null;
+        if (!currentUser.equals(page.currentUser)) return false;
+        return elements.equals(page.elements);
     }
 
     @Override
@@ -68,9 +79,22 @@ private List<T> elements = new ArrayList<>();
         int result = pageNumber;
         result = 31 * result + (int) (totalElements ^ (totalElements >>> 32));
         result = 31 * result + limit;
-        result = 31 * result + (elements != null ? elements.hashCode() : 0);
+        result = 31 * result + currentUser.hashCode();
+        result = 31 * result + elements.hashCode();
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "Page{" +
+                "pageNumber=" + pageNumber +
+                ", totalElements=" + totalElements +
+                ", limit=" + limit +
+                ", currentUser='" + currentUser + '\'' +
+                ", elements=" + elements +
+                '}';
+    }
+
 }
 
 

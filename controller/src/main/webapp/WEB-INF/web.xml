@@ -73,6 +73,16 @@
         <url-pattern>/delete</url-pattern>
     </filter-mapping>
 
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/menu</url-pattern>
+    </filter-mapping>
+
+    <filter-mapping>
+        <filter-name>AuthFilter</filter-name>
+        <url-pattern>/addPortions</url-pattern>
+    </filter-mapping>
+
 
     <servlet>
         <servlet-name>FrontController</servlet-name>
@@ -83,6 +93,7 @@
         <servlet-name>FrontController</servlet-name>
         <url-pattern>/</url-pattern>
     </servlet-mapping>
+
 
 
 </web-app>
