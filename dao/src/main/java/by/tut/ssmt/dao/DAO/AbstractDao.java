@@ -1,5 +1,6 @@
 package by.tut.ssmt.dao.DAO;
 
+import by.tut.ssmt.dao.domain.Product;
 import by.tut.ssmt.dao.exception.DaoException;
 import org.apache.log4j.Logger;
 
@@ -7,6 +8,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import static java.util.Objects.nonNull;
@@ -19,6 +21,21 @@ public abstract class AbstractDao {
     protected AbstractDao(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
     }
+
+    protected List addProductsFromResultSet(ResultSet resultSet) throws SQLException {
+        List<Product> products = new ArrayList<>();
+        while (resultSet.next()) {
+            int productId = resultSet.getInt(1);
+            String productName = resultSet.getString(2);
+            double omegaThree = resultSet.getDouble(3);
+            double omegaSix = resultSet.getDouble(4);
+            int portion = resultSet.getInt(5);
+            Product product = new Product(productId, productName, omegaThree, omegaSix, portion);
+            products.add(product);
+        }
+        return products;
+    }
+
 
     protected Connection getConnection(final boolean hasAutocommit) throws SQLException, DaoException {
         Connection conn = connectionPool.take();

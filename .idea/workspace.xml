@@ -678,22 +678,22 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="583" y="298" width="433" height="272" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1600.860@0.0.1600.860" timestamp="1670681972055" />
-    <state width="1540" height="242" key="GridCell.Tab.0.bottom" timestamp="1672162113650">
+    <state width="1540" height="242" key="GridCell.Tab.0.bottom" timestamp="1672335195602">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1540" height="242" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1672162113650" />
-    <state width="1540" height="242" key="GridCell.Tab.0.center" timestamp="1672162113649">
+    <state width="1540" height="242" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1672335195602" />
+    <state width="1540" height="242" key="GridCell.Tab.0.center" timestamp="1672335195602">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1540" height="242" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1672162113649" />
-    <state width="1540" height="242" key="GridCell.Tab.0.left" timestamp="1672162113649">
+    <state width="1540" height="242" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1672335195602" />
+    <state width="1540" height="242" key="GridCell.Tab.0.left" timestamp="1672335195602">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1540" height="242" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1672162113649" />
-    <state width="1540" height="242" key="GridCell.Tab.0.right" timestamp="1672162113650">
+    <state width="1540" height="242" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1672335195602" />
+    <state width="1540" height="242" key="GridCell.Tab.0.right" timestamp="1672335195602">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1540" height="242" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1672162113650" />
+    <state width="1540" height="242" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1672335195602" />
     <state width="1540" height="242" key="GridCell.Tab.1.bottom" timestamp="1672162113650">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -776,7 +776,7 @@
         </line-breakpoint>
         <line-breakpoint type="java-method">
           <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/AbstractDao.java</url>
-          <line>18</line>
+          <line>20</line>
           <properties class="by.tut.ssmt.dao.DAO.AbstractDao" method="&lt;init&gt;">
             <option name="EMULATED" value="true" />
           </properties>
@@ -800,7 +800,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/MenuDaoImpl.java</url>
-          <line>99</line>
+          <line>98</line>
           <properties class="by.tut.ssmt.dao.DAO.impl.MenuDaoImpl" method="insertDao">
             <option name="EMULATED" value="true" />
           </properties>
@@ -823,18 +823,13 @@
           <option name="timeStamp" value="141" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/EditCommand.java</url>
-          <line>57</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/servlet/StartUpErrorFilter.java</url>
           <line>19</line>
           <option name="timeStamp" value="49" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/ProductDaoImpl.java</url>
-          <line>44</line>
+          <line>43</line>
           <option name="timeStamp" value="55" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
@@ -864,7 +859,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/ProductDaoImpl.java</url>
-          <line>50</line>
+          <line>49</line>
           <option name="timeStamp" value="103" />
         </line-breakpoint>
       </breakpoints>

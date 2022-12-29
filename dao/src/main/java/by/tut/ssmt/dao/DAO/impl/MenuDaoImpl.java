@@ -12,7 +12,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -74,26 +73,12 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
         if (resultSet1.next()) {
             totalElements = resultSet1.getLong(1);
         }
-        final List<Product> rows = addMenuItemsFromResultSet(resultSet2);
+        final List<Product> rows = addProductsFromResultSet(resultSet2);
         menuItemPaged.setPageNumber(menuItemPagedRequest.getPageNumber());
         menuItemPaged.setLimit(menuItemPagedRequest.getLimit());
         menuItemPaged.setTotalElements(totalElements);
         menuItemPaged.setElements(rows);
         return menuItemPaged;
-    }
-
-    private List addMenuItemsFromResultSet(ResultSet resultSet) throws SQLException {
-        List<Product> menuItems = new ArrayList<>();
-        while (resultSet.next()) {
-            int productId = resultSet.getInt(1);
-            String productName = resultSet.getString(2);
-            double omegaThree = resultSet.getDouble(3);
-            double omegaSix = resultSet.getDouble(4);
-            int portions = resultSet.getInt(5);
-            Product product = new Product(productId, productName, omegaThree, omegaSix, portions);
-            menuItems.add(product);
-        }
-        return menuItems;
     }
 
     @Override

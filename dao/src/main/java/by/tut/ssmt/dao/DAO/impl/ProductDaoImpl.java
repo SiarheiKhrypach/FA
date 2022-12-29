@@ -12,7 +12,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -55,20 +54,6 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
             close(preparedStatement);
             retrieve(connection);
         }
-    }
-
-    private List addProductsFromResultSet(ResultSet resultSet) throws SQLException {
-        List<Product> products = new ArrayList<>();
-        while (resultSet.next()) {
-            int productId = resultSet.getInt(1);
-            String productName = resultSet.getString(2);
-            double omegaThree = resultSet.getDouble(3);
-            double omegaSix = resultSet.getDouble(4);
-            int portion = resultSet.getInt(5);
-            Product product = new Product(productId, productName, omegaThree, omegaSix, portion);
-            products.add(product);
-        }
-        return products;
     }
 
     public Page<Product> findPageDao(Page<Product> productPagedRequest) throws DaoException {
