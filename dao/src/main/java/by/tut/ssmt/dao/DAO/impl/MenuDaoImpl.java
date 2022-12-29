@@ -57,7 +57,7 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
 
             resultSet1 = preparedStatement1.executeQuery();
             resultSet2 = preparedStatement2.executeQuery();
-            return getMenuItemPaged(menuItemPagedRequest, resultSet1, resultSet2);
+            return getProductPaged(menuItemPagedRequest, resultSet1, resultSet2);
         } catch (SQLException | DaoException e) {
             throw new DaoException("Error in MenuDao", e);
         } finally {
@@ -67,19 +67,19 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
         }
     }
 
-    private Page<Product> getMenuItemPaged(Page<Product> menuItemPagedRequest, ResultSet resultSet1, ResultSet resultSet2) throws SQLException {
-        final Page<Product> menuItemPaged = new Page<>();
-        long totalElements = 0L;
-        if (resultSet1.next()) {
-            totalElements = resultSet1.getLong(1);
-        }
-        final List<Product> rows = addProductsFromResultSet(resultSet2);
-        menuItemPaged.setPageNumber(menuItemPagedRequest.getPageNumber());
-        menuItemPaged.setLimit(menuItemPagedRequest.getLimit());
-        menuItemPaged.setTotalElements(totalElements);
-        menuItemPaged.setElements(rows);
-        return menuItemPaged;
-    }
+//    private Page<Product> getProductPaged(Page<Product> menuItemPagedRequest, ResultSet resultSet1, ResultSet resultSet2) throws SQLException {
+//        final Page<Product> menuItemPaged = new Page<>();
+//        long totalElements = 0L;
+//        if (resultSet1.next()) {
+//            totalElements = resultSet1.getLong(1);
+//        }
+//        final List<Product> rows = addProductsFromResultSet(resultSet2);
+//        menuItemPaged.setPageNumber(menuItemPagedRequest.getPageNumber());
+//        menuItemPaged.setLimit(menuItemPagedRequest.getLimit());
+//        menuItemPaged.setTotalElements(totalElements);
+//        menuItemPaged.setElements(rows);
+//        return menuItemPaged;
+//    }
 
     @Override
     public boolean insertDao(MenuItem menuItem) throws DaoException {

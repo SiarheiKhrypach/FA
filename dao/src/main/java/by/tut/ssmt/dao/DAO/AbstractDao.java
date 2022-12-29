@@ -1,5 +1,6 @@
 package by.tut.ssmt.dao.DAO;
 
+import by.tut.ssmt.dao.domain.Page;
 import by.tut.ssmt.dao.domain.Product;
 import by.tut.ssmt.dao.exception.DaoException;
 import org.apache.log4j.Logger;
@@ -36,6 +37,19 @@ public abstract class AbstractDao {
         return products;
     }
 
+    protected Page<Product> getProductPaged(Page<Product> menuItemPagedRequest, ResultSet resultSet1, ResultSet resultSet2) throws SQLException {
+        final Page<Product> menuItemPaged = new Page<>();
+        long totalElements = 0L;
+        if (resultSet1.next()) {
+            totalElements = resultSet1.getLong(1);
+        }
+        final List<Product> rows = addProductsFromResultSet(resultSet2);
+        menuItemPaged.setPageNumber(menuItemPagedRequest.getPageNumber());
+        menuItemPaged.setLimit(menuItemPagedRequest.getLimit());
+        menuItemPaged.setTotalElements(totalElements);
+        menuItemPaged.setElements(rows);
+        return menuItemPaged;
+    }
 
     protected Connection getConnection(final boolean hasAutocommit) throws SQLException, DaoException {
         Connection conn = connectionPool.take();

@@ -74,6 +74,9 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectId" id="21m8KAO2oQwG1ARzakSfUO4NYsp" />
+  <component name="ProjectReloadState">
+    <option name="STATE" value="1" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -82,6 +85,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="extract.method.default.visibility" value="private" />
@@ -678,54 +682,54 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="583" y="298" width="433" height="272" key="#com.intellij.refactoring.move.moveClassesOrPackages.MoveClassesOrPackagesDialog.classes/0.0.1600.860@0.0.1600.860" timestamp="1670681972055" />
-    <state width="1540" height="242" key="GridCell.Tab.0.bottom" timestamp="1672335195602">
+    <state width="1540" height="242" key="GridCell.Tab.0.bottom" timestamp="1672345480545">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1540" height="242" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1672335195602" />
-    <state width="1540" height="242" key="GridCell.Tab.0.center" timestamp="1672335195602">
+    <state width="1540" height="242" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1672345480545" />
+    <state width="1540" height="242" key="GridCell.Tab.0.center" timestamp="1672345480545">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1540" height="242" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1672335195602" />
-    <state width="1540" height="242" key="GridCell.Tab.0.left" timestamp="1672335195602">
+    <state width="1540" height="242" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1672345480545" />
+    <state width="1540" height="242" key="GridCell.Tab.0.left" timestamp="1672345480544">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1540" height="242" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1672335195602" />
-    <state width="1540" height="242" key="GridCell.Tab.0.right" timestamp="1672335195602">
+    <state width="1540" height="242" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1672345480544" />
+    <state width="1540" height="242" key="GridCell.Tab.0.right" timestamp="1672345480545">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1540" height="242" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1672335195602" />
-    <state width="1540" height="242" key="GridCell.Tab.1.bottom" timestamp="1672162113650">
+    <state width="1540" height="242" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1672345480545" />
+    <state width="1540" height="242" key="GridCell.Tab.1.bottom" timestamp="1672345480545">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1540" height="242" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1672162113650" />
-    <state width="1540" height="242" key="GridCell.Tab.1.center" timestamp="1672162113650">
+    <state width="1540" height="242" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1672345480545" />
+    <state width="1540" height="242" key="GridCell.Tab.1.center" timestamp="1672345480545">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1540" height="242" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1672162113650" />
-    <state width="1540" height="242" key="GridCell.Tab.1.left" timestamp="1672162113650">
+    <state width="1540" height="242" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1672345480545" />
+    <state width="1540" height="242" key="GridCell.Tab.1.left" timestamp="1672345480545">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1540" height="242" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1672162113650" />
-    <state width="1540" height="242" key="GridCell.Tab.1.right" timestamp="1672162113650">
+    <state width="1540" height="242" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1672345480545" />
+    <state width="1540" height="242" key="GridCell.Tab.1.right" timestamp="1672345480545">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1540" height="242" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1672162113650" />
-    <state width="1540" height="242" key="GridCell.Tab.2.bottom" timestamp="1672162113650">
+    <state width="1540" height="242" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1672345480545" />
+    <state width="1540" height="242" key="GridCell.Tab.2.bottom" timestamp="1672345480545">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1540" height="242" key="GridCell.Tab.2.bottom/0.0.1600.860@0.0.1600.860" timestamp="1672162113650" />
-    <state width="1540" height="242" key="GridCell.Tab.2.center" timestamp="1672162113650">
+    <state width="1540" height="242" key="GridCell.Tab.2.bottom/0.0.1600.860@0.0.1600.860" timestamp="1672345480545" />
+    <state width="1540" height="242" key="GridCell.Tab.2.center" timestamp="1672345480545">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1540" height="242" key="GridCell.Tab.2.center/0.0.1600.860@0.0.1600.860" timestamp="1672162113650" />
-    <state width="1540" height="242" key="GridCell.Tab.2.left" timestamp="1672162113650">
+    <state width="1540" height="242" key="GridCell.Tab.2.center/0.0.1600.860@0.0.1600.860" timestamp="1672345480545" />
+    <state width="1540" height="242" key="GridCell.Tab.2.left" timestamp="1672345480545">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1540" height="242" key="GridCell.Tab.2.left/0.0.1600.860@0.0.1600.860" timestamp="1672162113650" />
-    <state width="1540" height="242" key="GridCell.Tab.2.right" timestamp="1672162113650">
+    <state width="1540" height="242" key="GridCell.Tab.2.left/0.0.1600.860@0.0.1600.860" timestamp="1672345480545" />
+    <state width="1540" height="242" key="GridCell.Tab.2.right" timestamp="1672345480545">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state width="1540" height="242" key="GridCell.Tab.2.right/0.0.1600.860@0.0.1600.860" timestamp="1672162113650" />
+    <state width="1540" height="242" key="GridCell.Tab.2.right/0.0.1600.860@0.0.1600.860" timestamp="1672345480545" />
     <state width="1540" height="322" key="GridCell.Tab.3.bottom" timestamp="1672072173211">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -769,14 +773,14 @@
         <line-breakpoint type="java-method">
           <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/AddCommand.java</url>
           <line>27</line>
-          <properties class="by.tut.ssmt.controller.command.impl.AddCommand" method="execute">
+          <properties class="by.tut.ssmt.controller.command.impl.AddCommand">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
         <line-breakpoint type="java-method">
           <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/AbstractDao.java</url>
-          <line>20</line>
+          <line>21</line>
           <properties class="by.tut.ssmt.dao.DAO.AbstractDao" method="&lt;init&gt;">
             <option name="EMULATED" value="true" />
           </properties>
@@ -785,7 +789,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/UserDao.java</url>
           <line>44</line>
-          <properties class="by.tut.ssmt.dao.DAO.UserDao" method="update">
+          <properties class="by.tut.ssmt.dao.DAO.UserDao">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="104" />
@@ -793,7 +797,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/DeleteFromMenuCommand.java</url>
           <line>23</line>
-          <properties class="by.tut.ssmt.controller.command.impl.DeleteFromMenuCommand" method="execute">
+          <properties class="by.tut.ssmt.controller.command.impl.DeleteFromMenuCommand">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="136" />
@@ -801,7 +805,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/MenuDaoImpl.java</url>
           <line>98</line>
-          <properties class="by.tut.ssmt.dao.DAO.impl.MenuDaoImpl" method="insertDao">
+          <properties class="by.tut.ssmt.dao.DAO.impl.MenuDaoImpl">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="138" />
@@ -809,7 +813,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/MenuDao.java</url>
           <line>43</line>
-          <properties class="by.tut.ssmt.dao.DAO.MenuDao" method="portionChangeDao">
+          <properties class="by.tut.ssmt.dao.DAO.MenuDao">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="139" />
@@ -817,7 +821,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/ChangePortionCommand.java</url>
           <line>27</line>
-          <properties class="by.tut.ssmt.controller.command.impl.ChangePortionCommand" method="execute">
+          <properties class="by.tut.ssmt.controller.command.impl.ChangePortionCommand">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="141" />
