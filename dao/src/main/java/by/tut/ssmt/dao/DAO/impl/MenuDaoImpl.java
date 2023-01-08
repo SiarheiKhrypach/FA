@@ -183,4 +183,11 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
             retrieve(connection);
         }
     }
+
+    @Override
+    public void bulkPortionChangeDao(List <MenuItem> menuList) throws DaoException {
+        for (MenuItem menuItem : menuList) {
+            portionChangeDao(menuItem);
+        }
+    }
 }

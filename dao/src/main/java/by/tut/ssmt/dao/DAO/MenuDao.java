@@ -5,6 +5,8 @@ import by.tut.ssmt.dao.domain.Page;
 import by.tut.ssmt.dao.domain.Product;
 import by.tut.ssmt.dao.exception.DaoException;
 
+import java.util.List;
+
 public interface MenuDao {
 
 
@@ -42,4 +44,12 @@ public interface MenuDao {
      * @throws DaoException - is a module Exception
      */
     void portionChangeDao(MenuItem menuItem) throws DaoException;
+
+
+    /**
+     * change portion number of the product in a bulk
+     * @param menuList - list of products with updated portion numbers, received from UI
+     * @throws DaoException - is a module exception
+     */
+    void bulkPortionChangeDao(List <MenuItem> menuList) throws DaoException;
 }

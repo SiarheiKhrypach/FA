@@ -81,11 +81,12 @@
                 </td>
 
                 <td>
-                    <form class="w3-container w3-light-grey" method="post" action="/changePortion">
-                        <input class="w3-input w3-border-0" type="number" class="register-input"
-                               name="portions" value="${menuItem.portions}" min="0" step="1" required>
-                        <input type="hidden" name="productId" value="${menuItem.productId}"/>
-                        <input type="hidden" name="command" value="changePortion"/>
+                    <form name="portions"  class="w3-container w3-light-grey" method="post" action="/changePortion">
+                        <input class="w3-input w3-border-0" type="number" class="register-input" form="portions"
+                               name="${menuItem.productName}" value="${menuItem.portions}" min="0" step="1" required>
+<%--                               name="portions" value="${menuItem.portions}" min="0" step="1" required>--%>
+                        <input type="hidden" name="productId" value="${menuItem.productId}" form="portions" />
+<%--                        <input type="hidden" name="command" value="changePortion"/>--%>
                         <input type="submit" name="ChangePortion" value="${save_btn}">
                     </form>
                 </td>
@@ -94,6 +95,11 @@
         </c:forEach>
         </tbody>
     </table>
+
+<form id="portions" method="post" action="/bulkChangePortion">
+    <input type="hidden" name="command" value="bulkChangePortion"/>
+    <input type="submit" name="BulkChangePortions" value="${save_btn}">
+</form>
 
 
     <div>

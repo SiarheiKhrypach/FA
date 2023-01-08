@@ -43,7 +43,7 @@ public class MenuCommand extends FormsAccessCommand {
             Page<Product> pagedMenuItem = menuService.findPageService(pagedRequest);
             ServletContext servletContext = request.getServletContext();
             servletContext.setAttribute("menuItemsPagedAttribute", pagedMenuItem);
-            super.execute(request, response);
+                super.execute(request, response);
         } catch (ServiceException | NullPointerException e) {
             throw new ControllerException(e);
         }

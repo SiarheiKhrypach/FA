@@ -9,6 +9,8 @@ import by.tut.ssmt.dao.exception.DaoException;
 import by.tut.ssmt.service.MenuService;
 import by.tut.ssmt.service.exception.ServiceException;
 
+import java.util.List;
+
 public class MenuServiceImpl implements MenuService {
 
     private final MenuDao menuDao = DaoFactory.getInstance().getMenuDao();
@@ -44,6 +46,15 @@ public class MenuServiceImpl implements MenuService {
             menuDao.portionChangeDao(menuItem);
         } catch (DaoException e) {
             throw new ServiceException(e);
+        }
+    }
+
+    @Override
+    public void bulkPortionChangeService (List <MenuItem> menuList) throws ServiceException {
+        try {
+            menuDao.bulkPortionChangeDao(menuList);
+        } catch (DaoException e) {
+            throw new ServiceException();
         }
     }
 }

@@ -5,6 +5,8 @@ import by.tut.ssmt.dao.domain.Page;
 import by.tut.ssmt.dao.domain.Product;
 import by.tut.ssmt.service.exception.ServiceException;
 
+import java.util.List;
+
 public interface MenuService {
 
     /**
@@ -19,7 +21,7 @@ public interface MenuService {
      * Service to add product to the menu
      *
      * @param menuItem - product to be added, received from UI
-//     * @param menuItem - product to be added, received from UI
+     *                 //     * @param menuItem - product to be added, received from UI
      * @return true if successful, otherwise false
      * @throws ServiceException is a module exception
      */
@@ -41,4 +43,12 @@ public interface MenuService {
      * @throws ServiceException is a module exception
      */
     void portionChangeService(MenuItem menuItem) throws ServiceException;
+
+    /**
+     * Service to chane portions number of menu item in a bulk
+     *
+     * @param menuList - list of products with updated portion number, received from UI
+     * @throws ServiceException is a module exception
+     */
+    void bulkPortionChangeService(List <MenuItem> menuList) throws ServiceException;
 }
