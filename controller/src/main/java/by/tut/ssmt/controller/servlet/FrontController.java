@@ -55,7 +55,6 @@ public class FrontController extends HttpServlet {
         try {
             setUserInitialData(servletContext);
             setProductInitialData(servletContext);
-            setProportion(servletContext);
         } catch (ControllerException e) {
             log.error(ControllerException.getCause(e));
             servletContext.setAttribute("message", "error");
@@ -82,12 +81,6 @@ public class FrontController extends HttpServlet {
         } catch (ServiceException | NullPointerException e) {
             throw new ControllerException(e);
         }
-    }
-
-    private void setProportion(ServletContext servletContext) throws NullPointerException {
-        String formattedProportion = dataProcessorList.calculate(products);
-        serviceValidator.isNotNull(formattedProportion);
-        servletContext.setAttribute("proportion", formattedProportion);
     }
 
     private void initCommandsMap() {

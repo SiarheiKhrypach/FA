@@ -5,6 +5,8 @@ import by.tut.ssmt.dao.domain.Page;
 import by.tut.ssmt.dao.domain.Product;
 import by.tut.ssmt.service.MenuService;
 import by.tut.ssmt.service.ServiceFactory;
+import by.tut.ssmt.service.ServiceValidator;
+import by.tut.ssmt.service.dataProcessor.DataProcessorList;
 import by.tut.ssmt.service.exception.ServiceException;
 
 import javax.servlet.ServletContext;
@@ -12,14 +14,18 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 import static by.tut.ssmt.controller.util.Util.isNullOrEmpty;
 
 
 public class MenuCommand extends FormsAccessCommand {
 
+    List<Product> products;
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final MenuService menuService = serviceFactory.getMenuService();
+    private final DataProcessorList dataProcessorList = serviceFactory.getDataProcessorList();
+    private final ServiceValidator serviceValidator =  serviceFactory.getServiceValidator();
 
 
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ControllerException {
@@ -43,9 +49,17 @@ public class MenuCommand extends FormsAccessCommand {
             Page<Product> pagedMenuItem = menuService.findPageService(pagedRequest);
             ServletContext servletContext = request.getServletContext();
             servletContext.setAttribute("menuItemsPagedAttribute", pagedMenuItem);
+            products = menuService.selectAllFromMenuService(currentUser);
+            setProportion(request);
                 super.execute(request, response);
         } catch (ServiceException | NullPointerException e) {
             throw new ControllerException(e);
         }
+    }
+
+    private void setProportion(HttpServletRequest request) throws NullPointerException{
+        final String formattedProportion = dataProcessorList.calculate(products);
+        serviceValidator.isNotNull(formattedProportion);
+        request.getSession().setAttribute("proportion", formattedProportion);
     }
 }

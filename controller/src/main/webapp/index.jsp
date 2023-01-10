@@ -128,7 +128,6 @@
         </p>
 
         <form class="w3-container w3-light-grey" method="post" action="/add">
-                <%--    <form class="w3-container w3-light-grey" method="post" action="/main">--%>
 
             <label>
                 <c:out value="${product_name}"/>
@@ -160,7 +159,6 @@
 
     </c:if>
 
-    <%--    <form form="calc" method="post" action="/calculate">--%>
     <table class="w3-table w3-striped">
         <thead>
         <tr>
@@ -173,9 +171,6 @@
             <th>
                 <c:out value="${omega6}"/>
             </th>
-            <%--<th> //todo move to the basket --%>
-            <%--<c:out value="${portions}"/>--%>
-            <%--</th>--%>
             <c:if test="${sessionScope.role == 'admin'}">
                 <th>
                     <c:out value="${delete}"/>
@@ -187,7 +182,6 @@
             <c:if test="${sessionScope.role != null}">
                 <th>
                     <c:out value="${portions}"/>
-                        <%--                    <c:out value="${add_to_the_menu}"/>--%>
                 </th>
             </c:if>
         </tr>
@@ -199,15 +193,9 @@
                 <td><c:out value="${product.productName}"/></td>
                 <td><c:out value="${product.omegaThree}"/></td>
                 <td><c:out value="${product.omegaSix}"/></td>
-                    <%--                <td> //todo move to the basket--%>
-                    <%--                    <input form="calc" class="w3-input w3-border-0" type="number" class="register-input"--%>
-                    <%--                           name="${product.productName}" value="${product.portions}" min="0" step="1"--%>
-                    <%--                           required>--%>
-                    <%--                </td>--%>
                 <c:if test="${sessionScope.role == 'admin'}">
                     <td>
                         <form method="get" action="/delete">
-                                <%--                    <form method="get" action="/main">--%>
                             <input type="hidden" name="productName" value="${product.productName}"/>
                             <input type="hidden" name="command" value="delete"/>
                             <input type="submit" name="Delete" value="${delete_btn}"/>
@@ -272,15 +260,7 @@
     </div>
 </div>
 
-<%--<form id=calc method="post" action="/calculate"> //todo move to the basket--%>
-<%--    <input type="hidden" name="command" value="calculate"/>--%>
-<%--    &lt;%&ndash;<form method="post" action="/calculate">&ndash;%&gt;--%>
-<%--    <input type="submit" name="Calculate" value="${calculate_btn}"/>--%>
-<%--</form>--%>
-
 <div class="footer">
-    <%--    <p><c:out value="${proportion_line} ${proportion}" default=""/></p> //todo move to the basket--%>
-    <%--    <c:out value="${optimum}"/>--%>
 
     <c:if test="${requestScope.message == 'The list already has product with such name'}">
         <p><c:out value="${already_present}"/></p>
@@ -310,8 +290,6 @@
             </form>
         </div>
     </c:if>
-
-    <%--    <p><c:out value="${data}"/></p> //todo move to the basket--%>
 
 
 </div>

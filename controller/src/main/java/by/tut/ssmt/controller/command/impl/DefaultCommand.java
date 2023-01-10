@@ -57,16 +57,9 @@ public class DefaultCommand implements Command {
             products = productService.selectAllService();
 //            LOGGER.info("products - " + products);
             serviceValidator.isNotNull(products);
-            setProportion(request);
             servletContext.getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (ServiceException | NullPointerException e) {
             throw new ControllerException(e);
         }
-    }
-
-    private void setProportion(HttpServletRequest request) throws NullPointerException {
-        final String formattedProportion = dataProcessorList.calculate(products);
-        serviceValidator.isNotNull(formattedProportion);
-        request.setAttribute("proportion", formattedProportion);
     }
 }

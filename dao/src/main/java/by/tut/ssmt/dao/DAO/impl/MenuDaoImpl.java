@@ -21,6 +21,7 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
     private static final String INSERT_INTO_MENU = "INSERT INTO menu (portions, user_name, product_id) Values (?, ?, ?)";
     private static final String DELETE_FROM_MENU = "DELETE a FROM menu a INNER JOIN products b ON b.product_id = a.product_id AND b.product_name = ?";
     private static final String COUNT_ALL = "SELECT COUNT(*) FROM menu WHERE user_name = ?";
+    private static final String SELECT_FROM_MENU_TABLE = "SELECT products.product_id, products.product_name,products.omega_three, products.omega_six, menu.portions FROM menu, products WHERE menu.user_name = ? and menu.product_id = products.product_id";
     private static final String FIND_PAGE = "SELECT products.product_id, products.product_name, products.omega_three, products.omega_six, menu.portions FROM menu, products WHERE menu.user_name = ? and menu.product_id = products.product_id LIMIT ? OFFSET ?";
     private static final String ADD_PORTION = "UPDATE menu SET portions = portions + ? WHERE user_name = ? AND product_id = ?";
     private static final String CHANGE_PORTIONS = "UPDATE menu SET portions = ? WHERE user_name = ? AND product_id = ?";
@@ -29,6 +30,28 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
         super(connectionPool);
     }
 
+    @Override
+    public List<Product> selectFromMenuDao(String currentUser) throws DaoException {
+        List<Object> parameters = Arrays.asList(
+                currentUser
+        );
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = getConnection(true);
+            preparedStatement = getPreparedStatement(SELECT_FROM_MENU_TABLE, connection, parameters);
+            resultSet = preparedStatement.executeQuery();
+            final List<Product> products = addProductsFromResultSet(resultSet);
+            return products;
+        } catch (SQLException e) {
+            throw new DaoException("Error in MenuDAO", e);
+        } finally {
+            close(resultSet);
+            close(preparedStatement);
+            retrieve(connection);
+        }
+    }
 
     @Override
     public Page<Product> findPageDao(Page<Product> menuItemPagedRequest) throws DaoException {
@@ -66,20 +89,6 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
             retrieve(connection);
         }
     }
-
-//    private Page<Product> getProductPaged(Page<Product> menuItemPagedRequest, ResultSet resultSet1, ResultSet resultSet2) throws SQLException {
-//        final Page<Product> menuItemPaged = new Page<>();
-//        long totalElements = 0L;
-//        if (resultSet1.next()) {
-//            totalElements = resultSet1.getLong(1);
-//        }
-//        final List<Product> rows = addProductsFromResultSet(resultSet2);
-//        menuItemPaged.setPageNumber(menuItemPagedRequest.getPageNumber());
-//        menuItemPaged.setLimit(menuItemPagedRequest.getLimit());
-//        menuItemPaged.setTotalElements(totalElements);
-//        menuItemPaged.setElements(rows);
-//        return menuItemPaged;
-//    }
 
     @Override
     public boolean insertDao(MenuItem menuItem) throws DaoException {

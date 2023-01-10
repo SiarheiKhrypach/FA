@@ -26,6 +26,9 @@
 <fmt:message bundle="${loc}" key="local.button.save" var="save_btn"/>
 <fmt:message bundle="${loc}" key="local.button.back" var="back"/>
 
+<fmt:message bundle="${loc}" key="local.text.proportion" var="proportion_line"/>
+<fmt:message bundle="${loc}" key="local.text.optimum" var="optimum"/>
+
 <fmt:message bundle="${loc}" key="local.form.productname" var="product_name"/>
 <fmt:message bundle="${loc}" key="local.form.omega3" var="omega3"/>
 <fmt:message bundle="${loc}" key="local.form.omega6" var="omega6"/>
@@ -130,6 +133,10 @@
 
 
 <div class="footer">
+
+    <p><c:out value="${proportion_line} ${proportion}" default=""/></p>
+    <c:out value="${optimum}"/>
+
 
     <c:if test="${requestScope.message == 'Please enter valid data'}">
         <p><c:out value="${invalid_data}"/></p>

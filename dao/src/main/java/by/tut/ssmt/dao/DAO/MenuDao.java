@@ -9,6 +9,12 @@ import java.util.List;
 
 public interface MenuDao {
 
+    /**
+     * selects all menu items for current user
+     * @return List<Product>
+     * @throws DaoException
+     */
+    List<Product> selectFromMenuDao(String currentUser) throws DaoException;
 
     /**
      * selects page of menu items

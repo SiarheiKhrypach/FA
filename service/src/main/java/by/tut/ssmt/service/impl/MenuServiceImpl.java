@@ -15,6 +15,16 @@ public class MenuServiceImpl implements MenuService {
 
     private final MenuDao menuDao = DaoFactory.getInstance().getMenuDao();
 
+
+    @Override
+    public List<Product> selectAllFromMenuService(String currentUser) throws ServiceException {
+        try {
+            return menuDao.selectFromMenuDao(currentUser);
+        } catch (DaoException e) {
+            throw new ServiceException();
+        }
+    }
+
     @Override
     public Page<Product> findPageService(Page<Product> menuItemPagedRequest) throws ServiceException {
         try {

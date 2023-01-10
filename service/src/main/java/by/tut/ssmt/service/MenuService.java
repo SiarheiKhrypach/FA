@@ -9,6 +9,14 @@ import java.util.List;
 
 public interface MenuService {
 
+
+    /**
+     * Service to show all menu items for current user
+     * @return List<Product>
+     * @throws ServiceException is module exception
+     */
+    List<Product> selectAllFromMenuService(String currentUser) throws ServiceException;
+
     /**
      * Service to show page of products
      *
@@ -50,5 +58,5 @@ public interface MenuService {
      * @param menuList - list of products with updated portion number, received from UI
      * @throws ServiceException is a module exception
      */
-    void bulkPortionChangeService(List <MenuItem> menuList) throws ServiceException;
+    void bulkPortionChangeService(List<MenuItem> menuList) throws ServiceException;
 }
