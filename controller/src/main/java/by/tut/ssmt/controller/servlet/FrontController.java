@@ -91,7 +91,6 @@ public class FrontController extends HttpServlet {
         commands.put("addPortions", new AddPortionsCommand());
         commands.put("bulkChangePortion", new BulkChangePortionCommand());
         commands.put("calculate", new CalculateCommand());
-        commands.put("changePortion", new ChangePortionCommand());
         commands.put("default", new DefaultCommand());
         commands.put("delete", new DeleteCommand());
         commands.put("deleteFromMenu", new DeleteFromMenuCommand());
