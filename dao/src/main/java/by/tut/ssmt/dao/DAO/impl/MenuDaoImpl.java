@@ -146,11 +146,15 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
         List<Object> parameters = Arrays.asList(
                 productName
         );
+        executeUpdate(parameters, DELETE_FROM_MENU);
+    }
+
+    private void executeUpdate(List<Object> parameters, String command) throws DaoException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
             connection = getConnection(false);
-            preparedStatement = getPreparedStatement(DELETE_FROM_MENU, connection, parameters);
+            preparedStatement = getPreparedStatement(command, connection, parameters);
             preparedStatement.executeUpdate();
             connection.commit();
         } catch (SQLException e) {
@@ -173,24 +177,7 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
                 menuItem.getUserName(),
                 menuItem.getProductID()
         );
-        Connection connection = null;
-        PreparedStatement preparedStatement = null;
-        try {
-            connection = getConnection(false);
-            preparedStatement = getPreparedStatement(CHANGE_PORTIONS, connection, parameters);
-            preparedStatement.executeUpdate();
-            connection.commit();
-        } catch (SQLException e) {
-            try {
-                connection.rollback();
-            } catch (SQLException ex) {
-                throw new DaoException("Error while rolling back", ex);
-            }
-            throw new DaoException("Error in MenuDao", e);
-        } finally {
-            close(null, preparedStatement);
-            retrieve(connection);
-        }
+        executeUpdate(parameters, CHANGE_PORTIONS);
     }
 
     @Override
