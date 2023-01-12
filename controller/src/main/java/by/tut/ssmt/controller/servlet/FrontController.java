@@ -38,7 +38,6 @@ public class FrontController extends HttpServlet {
     private List<User> users;
     private Map<String, Command> commands;
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
-    private final DataProcessorList dataProcessorList = serviceFactory.getDataProcessorList();
     private final ServiceValidator serviceValidator = serviceFactory.getServiceValidator();
     private final ProductService productService = serviceFactory.getProductService();
     private final UserService userService = serviceFactory.getUserService();
@@ -90,7 +89,6 @@ public class FrontController extends HttpServlet {
         commands.put("add", new AddCommand());
         commands.put("addPortions", new AddPortionsCommand());
         commands.put("bulkChangePortion", new BulkChangePortionCommand());
-        commands.put("calculate", new CalculateCommand());
         commands.put("default", new DefaultCommand());
         commands.put("delete", new DeleteCommand());
         commands.put("deleteFromMenu", new DeleteFromMenuCommand());
