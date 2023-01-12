@@ -43,9 +43,9 @@ public class MenuServiceImpl implements MenuService {
         }
     }
 
-    public void deleteService(String productName) throws ServiceException {
+    public void deleteService(String productName, String userName) throws ServiceException {
         try {
-            menuDao.deleteDao(productName);
+            menuDao.deleteDao(productName, userName);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

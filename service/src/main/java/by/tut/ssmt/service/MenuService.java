@@ -37,10 +37,11 @@ public interface MenuService {
     /**
      * Service to delete product from the menu
      *
-     * @param productName - product to delete, received from UI
+     * @param productName - product to delete from menu of
+     * @param userName - user
      * @throws ServiceException is a module exception
      */
-    void deleteService(String productName) throws ServiceException;
+    void deleteService(String productName, String userName) throws ServiceException;
 
 
     /**

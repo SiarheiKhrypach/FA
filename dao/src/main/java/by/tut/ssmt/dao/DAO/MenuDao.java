@@ -36,10 +36,11 @@ public interface MenuDao {
     /**
      * deletes product
      *
-     * @param menuItemName - product to be deleted from the menu, received from UI
+     * @param menuItemName - product to be deleted from the menu of:
+     * @param userName - user
      * @throws DaoException - is a module Exception
      */
-    void deleteDao(String menuItemName) throws DaoException;
+    void deleteDao(String menuItemName, String userName) throws DaoException;
 
     /**
      * change portion number of the product

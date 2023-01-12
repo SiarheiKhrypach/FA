@@ -19,7 +19,7 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
 
     private static final String FIND_ITEM_BY_ID_AND_USER_NAME = "SELECT * FROM menu WHERE product_id = ? AND user_name = ?";
     private static final String INSERT_INTO_MENU = "INSERT INTO menu (portions, user_name, product_id) Values (?, ?, ?)";
-    private static final String DELETE_FROM_MENU = "DELETE a FROM menu a INNER JOIN products b ON b.product_id = a.product_id AND b.product_name = ?";
+    private static final String DELETE_FROM_MENU = "DELETE a FROM menu a INNER JOIN products b ON b.product_id = a.product_id AND b.product_name = ? AND a.user_name = ?";
     private static final String COUNT_ALL = "SELECT COUNT(*) FROM menu WHERE user_name = ?";
     private static final String SELECT_FROM_MENU_TABLE = "SELECT products.product_id, products.product_name,products.omega_three, products.omega_six, menu.portions FROM menu, products WHERE menu.user_name = ? and menu.product_id = products.product_id";
     private static final String FIND_PAGE = "SELECT products.product_id, products.product_name, products.omega_three, products.omega_six, menu.portions FROM menu, products WHERE menu.user_name = ? and menu.product_id = products.product_id LIMIT ? OFFSET ?";
@@ -143,9 +143,10 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
     }
 
     @Override
-    public void deleteDao(String productName) throws DaoException {
+    public void deleteDao(String productName, String userName) throws DaoException {
         List<Object> parameters = Arrays.asList(
-                productName
+                productName,
+                userName
         );
         executeUpdate(parameters, DELETE_FROM_MENU);
     }

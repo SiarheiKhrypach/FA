@@ -29,8 +29,8 @@ public class DeleteFromMenuCommand implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException, ServletException, IOException {
         try {
             final String productName = request.getParameter("productName");
-            menuService.deleteService(productName);
             String currentUser = (String) request.getSession().getAttribute("userName");
+            menuService.deleteService(productName, currentUser);
             products  = menuService.selectAllFromMenuService(currentUser);
             setProportion(request);
             String currentPageString = (String) request.getSession().getAttribute("currentPage");
