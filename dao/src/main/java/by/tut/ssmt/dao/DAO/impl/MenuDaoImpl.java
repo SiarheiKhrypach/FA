@@ -17,7 +17,7 @@ import java.util.List;
 
 public class MenuDaoImpl extends AbstractDao implements MenuDao {
 
-    private static final String FIND_ITEM_BY_ID = "SELECT * FROM menu WHERE product_id = ?";
+    private static final String FIND_ITEM_BY_ID_AND_USER_NAME = "SELECT * FROM menu WHERE product_id = ? AND user_name = ?";
     private static final String INSERT_INTO_MENU = "INSERT INTO menu (portions, user_name, product_id) Values (?, ?, ?)";
     private static final String DELETE_FROM_MENU = "DELETE a FROM menu a INNER JOIN products b ON b.product_id = a.product_id AND b.product_name = ?";
     private static final String COUNT_ALL = "SELECT COUNT(*) FROM menu WHERE user_name = ?";
@@ -92,7 +92,10 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
 
     @Override
     public void insertDao(MenuItem menuItem) throws DaoException {
-        List<Object> parameters1 = Arrays.asList(menuItem.getProductID());
+        List<Object> parameters1 = Arrays.asList(
+                menuItem.getProductID(),
+                menuItem.getUserName()
+                );
         List<Object> parameters2 = Arrays.asList(
                 menuItem.getPortions(),
                 menuItem.getUserName(),
@@ -104,7 +107,7 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
         ResultSet resultSet = null;
         try {
             connection = getConnection(false);
-            preparedStatement1 = getPreparedStatement(FIND_ITEM_BY_ID, connection, parameters1);
+            preparedStatement1 = getPreparedStatement(FIND_ITEM_BY_ID_AND_USER_NAME, connection, parameters1);
             resultSet = preparedStatement1.executeQuery();
             MenuItem itemMatch = getItem(resultSet);
 
