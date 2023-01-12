@@ -129,8 +129,8 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
                 user.getUserName()
         );
         List<Object> parameters2 = Arrays.asList(
-                user.getPassword(),
-                user.getUserName()
+                user.getUserName(),
+                user.getPassword()
         );
         Connection connection = null;
         PreparedStatement preparedStatement1 = null;
