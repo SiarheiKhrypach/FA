@@ -28,11 +28,9 @@ public interface MenuDao {
      * adds product
      *
      * @param menuItem - product to be added to the menu, received from UI
-//     * @param menuItem - product to be added to the menu, received from UI
-     * @return true if successful, otherwise false
      * @throws DaoException is a module exception
      */
-    boolean insertDao(MenuItem menuItem) throws DaoException;
+    void insertDao(MenuItem menuItem) throws DaoException;
 
 
     /**

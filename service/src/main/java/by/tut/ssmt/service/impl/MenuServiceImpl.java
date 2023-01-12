@@ -35,9 +35,9 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public boolean addService(MenuItem menuItem) throws ServiceException {
+    public void addService(MenuItem menuItem) throws ServiceException {
         try {
-            return menuDao.insertDao(menuItem);
+            menuDao.insertDao(menuItem);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

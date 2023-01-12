@@ -15,10 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
 public class AddPortionsCommand implements Command {
-
-    private boolean menuItemAdded;
 
     private final ControllerFactory controllerFactory = ControllerFactory.getInstance();
     private final FormDataCollector dataCollector = controllerFactory.getMenuFormDataCollector();
@@ -30,23 +27,13 @@ public class AddPortionsCommand implements Command {
 
         try {
             final MenuItem menuItem = (MenuItem) dataCollector.collectFormData(request);
-            menuItemAdded = menuService.addService(menuItem);
-            postToMainPage(request, response);
+            menuService.addService(menuItem);
+            response.sendRedirect("/main");
         } catch (NullOrEmptyException e) {
             request.setAttribute("message", "Please enter valid data");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } catch (ServiceException e) {
             throw new ControllerException(e);
-        }
-
-    }
-
-    private void postToMainPage(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        if (menuItemAdded) {
-            response.sendRedirect("/main");
-        } else {
-            request.setAttribute("message", "The list..."); //TODO What the message?
-            request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
 }

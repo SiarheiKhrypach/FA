@@ -30,10 +30,9 @@ public interface MenuService {
      *
      * @param menuItem - product to be added, received from UI
      *                 //     * @param menuItem - product to be added, received from UI
-     * @return true if successful, otherwise false
      * @throws ServiceException is a module exception
      */
-    boolean addService(MenuItem menuItem) throws ServiceException;
+    void addService(MenuItem menuItem) throws ServiceException;
 
     /**
      * Service to delete product from the menu

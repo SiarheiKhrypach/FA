@@ -91,7 +91,7 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
     }
 
     @Override
-    public boolean insertDao(MenuItem menuItem) throws DaoException {
+    public void insertDao(MenuItem menuItem) throws DaoException {
         List<Object> parameters1 = Arrays.asList(menuItem.getProductID());
         List<Object> parameters2 = Arrays.asList(
                 menuItem.getPortions(),
@@ -103,7 +103,6 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
         PreparedStatement preparedStatement2 = null;
         ResultSet resultSet = null;
         try {
-            int result = 0;
             connection = getConnection(false);
             preparedStatement1 = getPreparedStatement(FIND_ITEM_BY_ID, connection, parameters1);
             resultSet = preparedStatement1.executeQuery();
@@ -114,9 +113,8 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
             } else {
                 preparedStatement2 = getPreparedStatement(ADD_PORTION, connection, parameters2);
             }
-            result = preparedStatement2.executeUpdate();
+            preparedStatement2.executeUpdate();
             connection.commit();
-            return (result != 0);
         } catch (SQLException e) {
             try {
                 connection.rollback();
