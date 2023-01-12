@@ -51,7 +51,8 @@ public class LoginCommand implements Command {
             HttpSession session = request.getSession();
             session.setAttribute("message", "Welcome, ");
             session.setAttribute("role", "user");
-            session.setAttribute("name", request.getAttribute("name"));
+//            session.setAttribute("name", request.getAttribute("name"));
+            session.setAttribute("userName", request.getAttribute("name"));
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {
             request.setAttribute("message", "User name or/and password are not valid");
