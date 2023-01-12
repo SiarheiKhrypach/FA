@@ -43,15 +43,6 @@ public interface MenuService {
      */
     void deleteService(String productName, String userName) throws ServiceException;
 
-
-    /**
-     * Service to change portions number of menu item
-     *
-     * @param menuItem - product with portion number changed, received from UI
-     * @throws ServiceException is a module exception
-     */
-    void portionChangeService(MenuItem menuItem) throws ServiceException;
-
     /**
      * Service to chane portions number of menu item in a bulk
      *

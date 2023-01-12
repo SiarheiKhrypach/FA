@@ -51,14 +51,6 @@ public class MenuServiceImpl implements MenuService {
         }
     }
 
-    public void portionChangeService(MenuItem menuItem) throws ServiceException {
-        try {
-            menuDao.portionChangeDao(menuItem);
-        } catch (DaoException e) {
-            throw new ServiceException(e);
-        }
-    }
-
     @Override
     public void bulkPortionChangeService (List <MenuItem> menuList) throws ServiceException {
         try {
