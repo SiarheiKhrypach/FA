@@ -30,8 +30,8 @@
 <fmt:message bundle="${loc}" key="local.button.delete" var="delete_btn"/>
 <fmt:message bundle="${loc}" key="local.button.edit" var="edit_btn"/>
 <fmt:message bundle="${loc}" key="local.button.add_to_the_menu_btn" var="add_to_the_menu_btn"/>
-<%--<fmt:message bundle="${loc}" key="local.button.calculate" var="calculate_btn"/>--%>
 <fmt:message bundle="${loc}" key="local.button.menu" var="menu_btn"/>
+<fmt:message bundle="${loc}" key="local.button.user_list" var="user_list_btn"/>
 
 <fmt:message bundle="${loc}" key="local.text.welcome" var="welcome"/>
 <fmt:message bundle="${loc}" key="local.text.fill_form" var="form"/>
@@ -286,6 +286,17 @@
                 <input type="hidden" name="command" value="menu"/>
                 <button form="menu" type="submit">
                     <c:out value="${menu_btn}"></c:out>
+                </button>
+            </form>
+        </div>
+    </c:if>
+
+    <c:if test="${sessionScope.role == 'admin'}">
+        <div>
+            <form id="userList" method="get" action="/userList">
+                <input type="hidden" name="command" value="userList"/>
+                <button form="userList" type="submit">
+                    <c:out value="${user_list_btn}"></c:out>
                 </button>
             </form>
         </div>

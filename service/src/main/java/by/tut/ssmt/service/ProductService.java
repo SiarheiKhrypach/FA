@@ -20,6 +20,7 @@ public interface ProductService {
      * Service to show page of products
      * @param productPagedRequest - paged form of request
      * @return Page<Product>
+     * @throws ServiceException
      */
     Page<Product> findPageService(Page<Product> productPagedRequest) throws ServiceException;
 
@@ -53,7 +54,5 @@ public interface ProductService {
      * @throws ServiceException is a module exception
      */
     void deleteService(String productName) throws ServiceException;
-//    void deleteService(int productId);
-
 
 }

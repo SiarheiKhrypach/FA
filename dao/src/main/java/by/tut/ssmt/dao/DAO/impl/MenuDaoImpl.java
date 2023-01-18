@@ -55,9 +55,7 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
 
     @Override
     public Page<Product> findPageDao(Page<Product> menuItemPagedRequest) throws DaoException {
-//    public Page<MenuItem> findPageDao(Page<MenuItem> menuItemPagedRequest) throws DaoException {
         final String currentUser = menuItemPagedRequest.getCurrentUser();
-//        final int currentUser = menuItemPagedRequest.getCurrentUser();
         final int limit = menuItemPagedRequest.getLimit();
         final int offset = (menuItemPagedRequest.getPageNumber() - 1) * menuItemPagedRequest.getLimit();
         List<Object> parameters1 = Arrays.asList(

@@ -20,6 +20,7 @@ public interface ProductDao {
      * selects page of products
      * @param productPaged - Page request frame
      * @return Page<Product>
+     * @throws DaoException
      */
     Page<Product> findPageDao(Page<Product> productPaged) throws DaoException;
 

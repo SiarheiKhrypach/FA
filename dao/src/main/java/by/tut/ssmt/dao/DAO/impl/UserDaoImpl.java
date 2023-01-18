@@ -3,6 +3,7 @@ package by.tut.ssmt.dao.DAO.impl;
 import by.tut.ssmt.dao.DAO.AbstractDao;
 import by.tut.ssmt.dao.DAO.ConnectionPool;
 import by.tut.ssmt.dao.DAO.UserDao;
+import by.tut.ssmt.dao.domain.Page;
 import by.tut.ssmt.dao.domain.User;
 import by.tut.ssmt.dao.exception.DaoException;
 import org.apache.log4j.Logger;
@@ -19,6 +20,8 @@ import java.util.List;
 public class UserDaoImpl extends AbstractDao implements UserDao {
 
     private static final String SELECT_FROM_TABLE = "SELECT * FROM users";
+    private static final String COUNT_ALL_USERS = "SELECT COUNT(*) FROM users";
+    public static final String FIND_USER_PAGE = "SELECT user_name FROM users LIMIT ? OFFSET ?";
     private static final String FIND_USER_BY_LOGIN_AND_PASSWORD = "SELECT * FROM users WHERE user_name = ? AND password = ?";
     private static final String FIND_USER_BY_LOGIN = "SELECT * FROM users WHERE user_name = ?";
     private static final String SELECT_FROM_TABLE_WHERE = "SELECT * FROM users WHERE user_id = ?";
@@ -116,12 +119,65 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         }
     }
 
+    @Override
+    public Page<String> findPageDao(Page<User> usersPagedRequest) throws DaoException {
+        final int limit = usersPagedRequest.getLimit();
+        final int offset = (usersPagedRequest.getPageNumber() - 1) * usersPagedRequest.getLimit();
+        List<Object> parameters1 = Collections.emptyList();
+        List<Object> parameters2 = Arrays.asList(
+                limit,
+                offset
+        );
+        Connection connection = null;
+        PreparedStatement preparedStatement1 = null;
+        PreparedStatement preparedStatement2 = null;
+        ResultSet resultSet1 = null;
+        ResultSet resultSet2 = null;
+        try {
+            connection = getConnection(true);
+            preparedStatement1 = getPreparedStatement(COUNT_ALL_USERS, connection, parameters1);
+            preparedStatement2 = getPreparedStatement(FIND_USER_PAGE, connection, parameters2);
+            resultSet1 = preparedStatement1.executeQuery();
+            resultSet2 = preparedStatement2.executeQuery();
+            return getUserPaged(usersPagedRequest, resultSet1, resultSet2);
+        } catch (SQLException | DaoException e) {
+            throw new DaoException("Error in UserDao", e);
+        } finally {
+            close(resultSet1, resultSet2);
+            close(preparedStatement1, preparedStatement2);
+            retrieve(connection);
+        }
+    }
+
+    protected Page<String> getUserPaged(Page<User> usersPagedRequest, ResultSet resultSet1, ResultSet resultSet2) throws SQLException {
+        final Page<String> usersPaged = new Page<>();
+        long totalElements = 0L;
+        if (resultSet1.next()) {
+            totalElements = resultSet1.getLong(1);
+        }
+        final List<String> rows = addUsersFromResultSet(resultSet2);
+        usersPaged.setPageNumber(usersPagedRequest.getPageNumber());
+        usersPaged.setLimit(usersPagedRequest.getLimit());
+        usersPaged.setTotalElements(totalElements);
+        usersPaged.setElements(rows);
+        return usersPaged;
+    }
+
+    private List<String> addUsersFromResultSet(ResultSet resultSet2) throws SQLException {
+        List<String> users = new ArrayList<>();
+        while (resultSet2.next()) {
+            String userName = resultSet2.getString(1);
+            users.add(userName);
+        }
+        return users;
+    }
+
     public boolean insert(User user) throws DaoException {
         return edit(user, INSERT_INTO_TABLE);
     }
 
     public boolean update(User user) throws DaoException {
-        return edit (user, UPDATE_TABLE);
+        return edit(user, UPDATE_TABLE);
     }
 
     public boolean edit(User user, String query) throws DaoException {

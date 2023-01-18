@@ -9,7 +9,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
-<%@ taglib prefix="fmy" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <html>
 <link rel="stylesheet" href="w3.css"/>
@@ -26,6 +25,7 @@
 <fmt:message bundle="${loc}" key="local.button.save" var="save_btn"/>
 <fmt:message bundle="${loc}" key="local.button.back" var="back"/>
 
+<fmt:message bundle="${loc}" key="local.text.menu" var="menu"/>
 <fmt:message bundle="${loc}" key="local.text.proportion" var="proportion_line"/>
 <fmt:message bundle="${loc}" key="local.text.optimum" var="optimum"/>
 
@@ -35,7 +35,6 @@
 <fmt:message bundle="${loc}" key="local.form.deleting" var="delete"/>
 <fmt:message bundle="${loc}" key="local.form.portions" var="portions"/>
 
-<fmt:message bundle="${loc}" key="local.text.menu" var="menu"/>
 
 <fmt:message bundle="${loc}" key="local.message.invalid_data" var="invalid_data"/>
 

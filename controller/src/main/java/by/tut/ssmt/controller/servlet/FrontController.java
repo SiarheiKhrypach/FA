@@ -9,7 +9,6 @@ import by.tut.ssmt.service.ProductService;
 import by.tut.ssmt.service.ServiceFactory;
 import by.tut.ssmt.service.ServiceValidator;
 import by.tut.ssmt.service.UserService;
-import by.tut.ssmt.service.dataProcessor.DataProcessorList;
 import by.tut.ssmt.service.exception.ServiceException;
 import org.apache.log4j.spi.RootLogger;
 
@@ -92,6 +91,7 @@ public class FrontController extends HttpServlet {
         commands.put("default", new DefaultCommand());
         commands.put("delete", new DeleteCommand());
         commands.put("deleteFromMenu", new DeleteFromMenuCommand());
+        commands.put("deleteUser", new DeleteUserCommand());
         commands.put("edit", new EditCommand());
         commands.put("editForm", new EditFormCommand());
         commands.put("form", new FormsAccessCommand());
@@ -99,6 +99,7 @@ public class FrontController extends HttpServlet {
         commands.put("logout", new LogoutCommand());
         commands.put("menu", new MenuCommand());
         commands.put("register", new RegisterCommand());
+        commands.put("userList", new UserListCommand());
     }
 
     @Override

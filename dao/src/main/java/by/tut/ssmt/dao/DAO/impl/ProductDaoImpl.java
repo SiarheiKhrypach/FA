@@ -87,20 +87,6 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
 
     }
 
-//    private Page<Product> getProductPaged(Page<Product> productPagedRequest, ResultSet resultSet1, ResultSet resultSet2) throws SQLException {
-//        final Page<Product> productPaged = new Page<>();
-//        long totalElements = 0L;
-//        if (resultSet1.next()) {
-//            totalElements = resultSet1.getLong(1);
-//        }
-//        final List<Product> rows = addProductsFromResultSet(resultSet2);
-//        productPaged.setPageNumber(productPagedRequest.getPageNumber());
-//        productPaged.setLimit(productPagedRequest.getLimit());
-//        productPaged.setTotalElements(totalElements);
-//        productPaged.setElements(rows);
-//        return productPaged;
-//    }
-
     @Override
     public Product selectOneDao(int productId) throws DaoException {
         List<Object> parameters = Arrays.asList(
