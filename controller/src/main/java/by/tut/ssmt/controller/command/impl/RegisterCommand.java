@@ -40,7 +40,8 @@ public class RegisterCommand implements Command {
 
     private void postToMainPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (userAdded) {
-            response.sendRedirect("/main");
+            request.getSession().setAttribute("message", "Successful operation");
+            response.sendRedirect("/main?message=" + userAdded);
         } else {
             request.setAttribute("message", "User name or/and password are already in use, try one more time");
             request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);

@@ -37,6 +37,11 @@
 
 
 <fmt:message bundle="${loc}" key="local.message.invalid_data" var="invalid_data"/>
+<fmt:message bundle="${loc}" key="local.message.operation_failed" var="operation_failed"/>
+<fmt:message bundle="${loc}" key="local.message.successful_operation" var="successful_operation"/>
+<fmt:message bundle="${loc}" key="local.message.you_are_in_the_menu" var="you_are_in_the_menu"/>
+
+
 
 <head>
     <title>
@@ -83,10 +88,10 @@
                 </td>
 
                 <td>
-                    <form name="portions"  class="w3-container w3-light-grey" method="post" action="/changePortion">
+                    <form name="portions" class="w3-container w3-light-grey" method="post" action="/changePortion">
                         <input class="w3-input w3-border-0" type="number" class="register-input" form="portions"
                                name="${menuItem.productName}" value="${menuItem.portions}" min="0" step="1" required>
-                        <input type="hidden" name="productId" value="${menuItem.productId}" form="portions" />
+                        <input type="hidden" name="productId" value="${menuItem.productId}" form="portions"/>
                     </form>
                 </td>
 
@@ -95,10 +100,10 @@
         </tbody>
     </table>
 
-<form id="portions" method="post" action="/bulkChangePortion">
-    <input type="hidden" name="command" value="bulkChangePortion"/>
-    <input type="submit" name="BulkChangePortions" value="${save_btn}">
-</form>
+    <form id="portions" method="post" action="/bulkChangePortion">
+        <input type="hidden" name="command" value="bulkChangePortion"/>
+        <input type="submit" name="BulkChangePortions" value="${save_btn}">
+    </form>
 
 
     <div>
@@ -137,6 +142,23 @@
     <c:if test="${requestScope.message == 'Please enter valid data'}">
         <p><c:out value="${invalid_data}"/></p>
     </c:if>
+
+    <c:if test="${sessionScope.message == 'Delete from menu error'}">
+        <p><c:out value="${error_while_deleting}"/></p>
+    </c:if>
+
+    <c:if test="${sessionScope.message == 'Successful operation'}">
+        <p><c:out value="${successful_operation}"/></p>
+    </c:if>
+
+    <c:if test="${sessionScope.message == 'Operation failed'}">
+        <p><c:out value="${operation_failed}"/></p>
+    </c:if>
+
+    <c:if test="${sessionScope.message == 'You are in the menu now'}">
+        <p><c:out value="${you_are_in_the_menu}"/> </p>
+    </c:if>
+
 
     <div>
         <button onclick="location.href='..'">

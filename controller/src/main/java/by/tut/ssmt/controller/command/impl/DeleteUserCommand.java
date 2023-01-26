@@ -1,5 +1,6 @@
 package by.tut.ssmt.controller.command.impl;
 
+import by.tut.ssmt.controller.command.AbstractCommand;
 import by.tut.ssmt.controller.command.Command;
 import by.tut.ssmt.controller.exception.ControllerException;
 import by.tut.ssmt.service.ServiceFactory;
@@ -11,7 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class DeleteUserCommand implements Command {
+public class DeleteUserCommand extends AbstractCommand implements Command {
 
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final UserService userService = serviceFactory.getUserService();
@@ -21,9 +22,10 @@ public class DeleteUserCommand implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException, ServletException, IOException {
         try {
             final String userName = request.getParameter("userName");
-            userService.deleteService(userName);
+            boolean result = userService.deleteService(userName);
+            checkOperationForSuccess(request, result);
             String currentPageString = (String) request.getSession().getAttribute("currentPage");
-            response.sendRedirect("/userList?command=userList&currentPage=" + currentPageString);
+            response.sendRedirect("/userList?command=userList&currentPage=" + currentPageString + "&message=" + result);
         } catch (ServiceException e) {
             throw new ControllerException();
         }

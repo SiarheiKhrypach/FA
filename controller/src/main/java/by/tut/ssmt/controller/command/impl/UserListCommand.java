@@ -45,6 +45,9 @@ public class UserListCommand extends FormsAccessCommand{
             Page<String> pagedUserList = userService.findPageService(pagedRequest);
             ServletContext servletContext = request.getServletContext();
             servletContext.setAttribute("usersPagedAttribute", pagedUserList);
+            if (request.getParameter("message") == null) {
+                request.getSession().setAttribute("message", "You are in the user list now");
+            }
             super.execute(request, response);
         } catch (ServiceException | NullPointerException e) {
             throw new ControllerException(e);

@@ -57,6 +57,9 @@ public class DefaultCommand implements Command {
             products = productService.selectAllService();
 //            LOGGER.info("products - " + products);
             serviceValidator.isNotNull(products);
+            if (request.getParameter("message") == null) {
+                request.getSession().setAttribute("message", "");
+            }
             servletContext.getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (ServiceException | NullPointerException e) {
             throw new ControllerException(e);

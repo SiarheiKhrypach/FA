@@ -49,5 +49,5 @@ public interface UserService {
      * @param userName - user credential, received from Ui
      * @throws ServiceException is a module exception
      */
-    void deleteService(String userName) throws ServiceException;
+    boolean deleteService(String userName) throws ServiceException;
 }

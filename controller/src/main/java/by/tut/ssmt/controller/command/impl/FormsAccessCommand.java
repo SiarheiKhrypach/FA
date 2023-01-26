@@ -12,6 +12,9 @@ public class FormsAccessCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ControllerException {
+        if (request.getParameter("message") == null) {
+            request.getSession().setAttribute("message", "You are in the edit form now");
+        }
         final String uri = request.getRequestURI().replace("/", "");
         request.getRequestDispatcher("/WEB-INF/" + uri + ".jsp").forward(request, response);
     }

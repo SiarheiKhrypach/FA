@@ -89,11 +89,11 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
     }
 
     @Override
-    public void insertDao(MenuItem menuItem) throws DaoException {
+    public boolean insertDao(MenuItem menuItem) throws DaoException {
         List<Object> parameters1 = Arrays.asList(
                 menuItem.getProductID(),
                 menuItem.getUserName()
-                );
+        );
         List<Object> parameters2 = Arrays.asList(
                 menuItem.getPortions(),
                 menuItem.getUserName(),
@@ -114,8 +114,9 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
             } else {
                 preparedStatement2 = getPreparedStatement(ADD_PORTION, connection, parameters2);
             }
-            preparedStatement2.executeUpdate();
+            int result = preparedStatement2.executeUpdate();
             connection.commit();
+            return (result != 0);
         } catch (SQLException e) {
             try {
                 connection.rollback();
@@ -141,22 +142,23 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
     }
 
     @Override
-    public void deleteDao(String productName, String userName) throws DaoException {
+    public boolean deleteDao(String productName, String userName) throws DaoException {
         List<Object> parameters = Arrays.asList(
                 productName,
                 userName
         );
-        executeUpdate(parameters, DELETE_FROM_MENU);
+        return executeUpdate(parameters, DELETE_FROM_MENU);
     }
 
-    private void executeUpdate(List<Object> parameters, String command) throws DaoException {
+    private boolean executeUpdate(List<Object> parameters, String command) throws DaoException {
         Connection connection = null;
         PreparedStatement preparedStatement = null;
         try {
             connection = getConnection(false);
             preparedStatement = getPreparedStatement(command, connection, parameters);
-            preparedStatement.executeUpdate();
+            int result = preparedStatement.executeUpdate();
             connection.commit();
+            return (result != 0);
         } catch (SQLException e) {
             try {
                 connection.rollback();
@@ -171,19 +173,23 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
     }
 
     @Override
-    public void portionChangeDao(MenuItem menuItem) throws DaoException {
+    public boolean portionChangeDao(MenuItem menuItem) throws DaoException {
         List<Object> parameters = Arrays.asList(
                 menuItem.getPortions(),
                 menuItem.getUserName(),
                 menuItem.getProductID()
         );
-        executeUpdate(parameters, CHANGE_PORTIONS);
+        return executeUpdate(parameters, CHANGE_PORTIONS);
     }
 
     @Override
-    public void bulkPortionChangeDao(List <MenuItem> menuList) throws DaoException {
+    public boolean bulkPortionChangeDao(List<MenuItem> menuList) throws DaoException {
+        boolean success = true;
         for (MenuItem menuItem : menuList) {
-            portionChangeDao(menuItem);
+             if (!portionChangeDao(menuItem)) {
+                 success = false;
+             }
         }
+        return success;
     }
 }

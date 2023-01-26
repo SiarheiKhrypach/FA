@@ -215,7 +215,8 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
     }
 
     @Override
-    public void deleteDao(String productName) throws DaoException {
+    public boolean deleteDao(String productName) throws DaoException {
+//    public void deleteDao(String productName) throws DaoException {
         List<Object> parameters = Arrays.asList(
           productName
         );
@@ -224,8 +225,9 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
         try {
             connection = getConnection(false);
             preparedStatement = getPreparedStatement(DELETE_FROM_TABLE, connection, parameters);
-            preparedStatement.executeUpdate();
+            int result = preparedStatement.executeUpdate();
             connection.commit();
+            return (result != 0);
         } catch (SQLException e) {
             try {
                 connection.rollback();

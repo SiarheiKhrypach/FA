@@ -54,6 +54,6 @@ public interface ProductDao {
      * @param productName - name of the product to be deleted
      * @throws DaoException - is a module exception
      */
-    void deleteDao(String productName) throws DaoException;
+    boolean deleteDao(String productName) throws DaoException;
 
 }

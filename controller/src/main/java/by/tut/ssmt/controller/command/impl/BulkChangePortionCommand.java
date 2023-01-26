@@ -1,6 +1,7 @@
 package by.tut.ssmt.controller.command.impl;
 
 import by.tut.ssmt.controller.ControllerFactory;
+import by.tut.ssmt.controller.command.AbstractCommand;
 import by.tut.ssmt.controller.command.Command;
 import by.tut.ssmt.controller.exception.ControllerException;
 import by.tut.ssmt.controller.formDataCollector.FormDataCollector;
@@ -19,7 +20,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-public class BulkChangePortionCommand implements Command {
+public class BulkChangePortionCommand extends AbstractCommand implements Command {
 
     List<Product> products;
 
@@ -35,12 +36,13 @@ public class BulkChangePortionCommand implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException, ServletException, IOException {
         try {
             final List menuList = (List) dataCollector.collectFormData(request);
-            menuService.bulkPortionChangeService(menuList);
+            boolean result = menuService.bulkPortionChangeService(menuList);
+            checkOperationForSuccess(request, result);
             String currentUser = (String) request.getSession().getAttribute("userName");
             products  = menuService.selectAllFromMenuService(currentUser);
             setProportion(request);
             String currentPageString = (String) request.getSession().getAttribute("currentPage");
-            response.sendRedirect("/menu?command=menu&currentPage=" + currentPageString);
+            response.sendRedirect("/menu?command=menu&currentPage=" + currentPageString + "&message=" + result);
         } catch (ServiceException e) {
             throw new ControllerException();
         } catch (NullOrEmptyException e) {

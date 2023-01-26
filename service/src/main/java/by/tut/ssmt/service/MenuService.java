@@ -32,16 +32,17 @@ public interface MenuService {
      *                 //     * @param menuItem - product to be added, received from UI
      * @throws ServiceException is a module exception
      */
-    void addService(MenuItem menuItem) throws ServiceException;
+    boolean addService(MenuItem menuItem) throws ServiceException;
 
     /**
      * Service to delete product from the menu
      *
      * @param productName - product to delete from menu of
      * @param userName - user
+     * @return boolean
      * @throws ServiceException is a module exception
      */
-    void deleteService(String productName, String userName) throws ServiceException;
+    boolean deleteService(String productName, String userName) throws ServiceException;
 
     /**
      * Service to chane portions number of menu item in a bulk
@@ -49,5 +50,5 @@ public interface MenuService {
      * @param menuList - list of products with updated portion number, received from UI
      * @throws ServiceException is a module exception
      */
-    void bulkPortionChangeService(List<MenuItem> menuList) throws ServiceException;
+    boolean bulkPortionChangeService(List<MenuItem> menuList) throws ServiceException;
 }

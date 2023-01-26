@@ -16,13 +16,18 @@
 
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="localization.local" var="loc"/>
+
 <fmt:message bundle="${loc}" key="local.button.edit" var="edit_btn"/>
+
 <fmt:message bundle="${loc}" key="local.text.enter_new_data" var="enter_new_data"/>
+
 <fmt:message bundle="${loc}" key="local.form.editing" var="edit"/>
 <fmt:message bundle="${loc}" key="local.form.productname" var="product_name"/>
 <fmt:message bundle="${loc}" key="local.form.omega3" var="omega3"/>
 <fmt:message bundle="${loc}" key="local.form.omega6" var="omega6"/>
 <fmt:message bundle="${loc}" key="local.form.portions" var="portions"/>
+
+<fmt:message bundle="${loc}" key="local.message.you_are_in_the_edit_form" var="you_are_in_the_edit_form"/>
 
 <head>
     <title>
@@ -70,6 +75,16 @@
 
 </form>
 </div>
+
+<div class="footer">
+
+    <c:if test="${sessionScope.message == 'You are in the edit form now'}">
+        <p><c:out value="${you_are_in_the_edit_form}"></c:out></p>
+    </c:if>
+
+
+</div>
+
 
 </body>
 </html>

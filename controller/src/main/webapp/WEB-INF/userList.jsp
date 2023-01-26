@@ -29,6 +29,10 @@
 
 <fmt:message bundle="${loc}" key="local.form.deleting" var="delete"/>
 
+<fmt:message bundle="${loc}" key="local.message.operation_failed" var="operation_failed"/>
+<fmt:message bundle="${loc}" key="local.message.successful_operation" var="successful_operation"/>
+<fmt:message bundle="${loc}" key="local.message.you_are_in_the_user_list" var="you_are_in_the_user_list"/>
+
 <head>
     <title>
         <c:out value="${user_list}"/>
@@ -54,11 +58,11 @@
         <c:forEach var="user" items="${usersPagedAttribute.elements}">
             <tr>
                 <td><c:out value="${user}"/></td>
-<%--                <td><c:out value="${user.userName}"/></td>--%>
+                    <%--                <td><c:out value="${user.userName}"/></td>--%>
                 <td>
                     <form method="get" action="/deleteUser">
                         <input type="hidden" name="userName" value="${user}">
-<%--                        <input type="hidden" name="userName" value="${user.userName}">--%>
+                            <%--                        <input type="hidden" name="userName" value="${user.userName}">--%>
                         <input type="hidden" name="command" value="deleteUser">
                         <input type="submit" name="Delete" value="${delete_btn}">
                     </form>
@@ -96,9 +100,25 @@
 </div>
 
 <div class="footer">
-    <button onclick="location.href='..'">
-        <c:out value="${back}"/>
-    </button>
+
+    <c:if test="${sessionScope.message == 'Successful operation'}">
+        <p><c:out value="${successful_operation}"/></p>
+    </c:if>
+
+    <c:if test="${sessionScope.message == 'Operation failed'}">
+        <p><c:out value="${operation_failed}"/></p>
+    </c:if>
+
+    <c:if test="${sessionScope.message == 'You are in the user list now'}">
+        <p><c:out value="${you_are_in_the_user_list}"/></p>
+    </c:if>
+
+    <div>
+        <button onclick="location.href='..'">
+            <c:out value="${back}"/>
+        </button>
+    </div>
+
 </div>
 
 </body>

@@ -25,7 +25,7 @@ public class MenuCommand extends FormsAccessCommand {
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final MenuService menuService = serviceFactory.getMenuService();
     private final DataProcessorList dataProcessorList = serviceFactory.getDataProcessorList();
-    private final ServiceValidator serviceValidator =  serviceFactory.getServiceValidator();
+    private final ServiceValidator serviceValidator = serviceFactory.getServiceValidator();
 
 
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ControllerException {
@@ -51,13 +51,16 @@ public class MenuCommand extends FormsAccessCommand {
             servletContext.setAttribute("menuItemsPagedAttribute", pagedMenuItem);
             products = menuService.selectAllFromMenuService(currentUser);
             setProportion(request);
-                super.execute(request, response);
+            if (request.getParameter("message") == null) {
+                request.getSession().setAttribute("message", "You are in the menu now");
+            }
+            super.execute(request, response);
         } catch (ServiceException | NullPointerException e) {
             throw new ControllerException(e);
         }
     }
 
-    private void setProportion(HttpServletRequest request) throws NullPointerException{
+    private void setProportion(HttpServletRequest request) throws NullPointerException {
         final String formattedProportion = dataProcessorList.calculate(products);
         serviceValidator.isNotNull(formattedProportion);
         request.getSession().setAttribute("proportion", formattedProportion);

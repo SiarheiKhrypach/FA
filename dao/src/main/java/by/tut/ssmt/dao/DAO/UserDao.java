@@ -50,7 +50,7 @@ public interface UserDao {
 
     /**
      * @param user
-     * @return
+     * @return boolean
      */
     boolean update(User user) throws DaoException;
 
@@ -58,6 +58,7 @@ public interface UserDao {
      * deletes users
      * @param userName - user credentials, received from UI
      * @throws DaoException - is a module exceptions
+     * @return boolean
      */
-    void delete(String userName) throws DaoException;
+    boolean delete(String userName) throws DaoException;
 }

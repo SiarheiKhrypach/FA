@@ -64,12 +64,12 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public void deleteService(String productName) throws ServiceException {
+    public boolean deleteService(String productName) throws ServiceException {
 ////    public void deleteService(int productId) {
 //        productDao.delete(productName);
 ////        productDao.delete(productId);
         try {
-            productDao.deleteDao(productName);
+            return productDao.deleteDao(productName);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }

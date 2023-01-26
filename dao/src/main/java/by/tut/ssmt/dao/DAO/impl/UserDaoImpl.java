@@ -267,7 +267,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 //        }
 //    }
 
-    public void delete(String userName) throws DaoException {
+    public boolean delete(String userName) throws DaoException {
         List<Object> parameters = Arrays.asList(
                 userName
         );
@@ -276,8 +276,9 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         try {
             connection = getConnection(false);
             preparedStatement = getPreparedStatement(DELETE_FROM_TABLE, connection, parameters);
-            preparedStatement.executeUpdate();
+            int result = preparedStatement.executeUpdate();
             connection.commit();
+            return (result != 0);
         } catch (SQLException e) {
             try {
                 connection.rollback();

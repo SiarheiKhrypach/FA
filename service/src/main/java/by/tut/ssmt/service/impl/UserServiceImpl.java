@@ -73,9 +73,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void deleteService(String userName) throws ServiceException {
+    public boolean deleteService(String userName) throws ServiceException {
         try {
-            userDao.delete(userName);
+            return userDao.delete(userName);
         } catch (DaoException e) {
             throw new ServiceException();
         }

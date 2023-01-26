@@ -53,6 +53,6 @@ public interface ProductService {
      * @param productName - name of the product to be deleted, received form UI
      * @throws ServiceException is a module exception
      */
-    void deleteService(String productName) throws ServiceException;
+    boolean deleteService(String productName) throws ServiceException;
 
 }

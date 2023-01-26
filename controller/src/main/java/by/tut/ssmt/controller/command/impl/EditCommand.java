@@ -42,7 +42,8 @@ public class EditCommand implements Command {
 
     private void postToMainPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (productUpdated) {
-            response.sendRedirect("/main");
+            request.getSession().setAttribute("message", "Successful operation");
+            response.sendRedirect("/main?message=" + productUpdated);
         } else {
             request.setAttribute("message", "The list already has product with such name");
             request.getRequestDispatcher("index.jsp").forward(request, response);

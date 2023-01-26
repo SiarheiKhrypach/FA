@@ -41,7 +41,8 @@ public class AddCommand implements Command {
 
     private void postToMainPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (productAdded) {
-            response.sendRedirect("/main");
+            request.getSession().setAttribute("message", "Successful operation");
+            response.sendRedirect("/main?message=" + productAdded);
         } else {
             request.setAttribute("message", "The list already has product with such name");
             request.getRequestDispatcher("index.jsp").forward(request, response);

@@ -1,6 +1,7 @@
 package by.tut.ssmt.controller.command.impl;
 
 import by.tut.ssmt.controller.ControllerFactory;
+import by.tut.ssmt.controller.command.AbstractCommand;
 import by.tut.ssmt.controller.command.Command;
 import by.tut.ssmt.controller.exception.ControllerException;
 import by.tut.ssmt.controller.formDataCollector.FormDataCollector;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class AddPortionsCommand implements Command {
+public class AddPortionsCommand extends AbstractCommand implements Command {
 
     private final ControllerFactory controllerFactory = ControllerFactory.getInstance();
     private final FormDataCollector dataCollector = controllerFactory.getMenuFormDataCollector();
@@ -27,8 +28,9 @@ public class AddPortionsCommand implements Command {
 
         try {
             final MenuItem menuItem = (MenuItem) dataCollector.collectFormData(request);
-            menuService.addService(menuItem);
-            response.sendRedirect("/main");
+            boolean result = menuService.addService(menuItem);
+            checkOperationForSuccess(request, result);
+            response.sendRedirect("/main?message=" + result);
         } catch (NullOrEmptyException e) {
             request.setAttribute("message", "Please enter valid data");
             request.getRequestDispatcher("index.jsp").forward(request, response);

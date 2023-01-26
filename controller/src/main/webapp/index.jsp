@@ -50,6 +50,9 @@
 <fmt:message bundle="${loc}" key="local.message.invalid_data" var="invalid_data"/>
 <fmt:message bundle="${loc}" key="local.message.invalid_operation" var="invalid_operation"/>
 <fmt:message bundle="${loc}" key="local.message.hello" var="hello"/>
+<fmt:message bundle="${loc}" key="local.message.operation_failed" var="operation_failed"/>
+<fmt:message bundle="${loc}" key="local.message.successful_operation" var="successful_operation"/>
+
 
 <head>
     <title>
@@ -274,6 +277,15 @@
     <c:if test="${sessionScope.message == 'Welcome, '}">
         <p><c:out value="${hello}${name}"/></p>
     </c:if>
+
+    <c:if test="${sessionScope.message == 'Successful operation'}">
+        <p><c:out value="${successful_operation}"/></p>
+    </c:if>
+
+    <c:if test="${sessionScope.message == 'Operation failed'}">
+        <p><c:out value="${operation_failed}"/></p>
+    </c:if>
+
 
     <c:if test="${param.Operation_is_not_allowed==true}">
         <p><c:out value="${invalid_operation}"/></p>

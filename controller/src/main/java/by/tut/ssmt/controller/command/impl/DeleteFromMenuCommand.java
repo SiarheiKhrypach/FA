@@ -1,5 +1,6 @@
 package by.tut.ssmt.controller.command.impl;
 
+import by.tut.ssmt.controller.command.AbstractCommand;
 import by.tut.ssmt.controller.command.Command;
 import by.tut.ssmt.controller.exception.ControllerException;
 import by.tut.ssmt.dao.domain.Product;
@@ -16,7 +17,7 @@ import java.io.IOException;
 import java.util.List;
 
 
-public class DeleteFromMenuCommand implements Command {
+public class DeleteFromMenuCommand extends AbstractCommand implements Command {
 
     List<Product> products;
 
@@ -30,17 +31,18 @@ public class DeleteFromMenuCommand implements Command {
         try {
             final String productName = request.getParameter("productName");
             String currentUser = (String) request.getSession().getAttribute("userName");
-            menuService.deleteService(productName, currentUser);
-            products  = menuService.selectAllFromMenuService(currentUser);
-            setProportion(request);
+            boolean result = menuService.deleteService(productName, currentUser);
+            checkOperationForSuccess(request, result);
+            setProportion(request, currentUser);
             String currentPageString = (String) request.getSession().getAttribute("currentPage");
-            response.sendRedirect("/menu?command=menu&currentPage=" + currentPageString);
+            response.sendRedirect("/menu?command=menu&currentPage=" + currentPageString + "&message=" + result);
         } catch (ServiceException e) {
             throw new ControllerException();
         }
     }
 
-    private void setProportion(HttpServletRequest request) throws NullPointerException {
+    private void setProportion(HttpServletRequest request, String currentUser) throws NullPointerException, ServiceException {
+        products = menuService.selectAllFromMenuService(currentUser);
         final String formattedProportion = dataProcessorList.calculate(products);
         serviceValidator.isNotNull(formattedProportion);
         request.getSession().setAttribute("proportion", formattedProportion);
