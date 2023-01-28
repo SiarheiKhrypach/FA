@@ -26,28 +26,8 @@
   <component name="ChangeListManager">
     <list default="true" id="59ca0b27-6170-41d2-a1a1-ba36d40b5d8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/AbstractCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/AbstractCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/AddCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/AddCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/AddPortionsCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/AddPortionsCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/BulkChangePortionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/BulkChangePortionCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/DefaultCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/DefaultCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/DeleteCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/DeleteCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/DeleteFromMenuCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/DeleteFromMenuCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/DeleteUserCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/DeleteUserCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/EditCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/EditCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/EditFormCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/EditFormCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/FormsAccessCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/FormsAccessCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/LoginCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/LoginCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/MenuCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/MenuCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/RegisterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/RegisterCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/UserListCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/UserListCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/formDataCollector/BulkMenuFormDataCollector.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/formDataCollector/BulkMenuFormDataCollector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/formDataCollector/MenuFormDataCollector.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/formDataCollector/MenuFormDataCollector.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/formDataCollector/ProductFormDataCollector.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/formDataCollector/ProductFormDataCollector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/formDataCollector/UserFormDataCollector.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/formDataCollector/UserFormDataCollector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/servlet/AntiInjectionFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/servlet/AntiInjectionFilter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/servlet/FrontController.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/servlet/FrontController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/servlet/Log4jInit.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/servlet/Log4jInit.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/domain/Product.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/domain/Product.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -651,7 +631,7 @@
       <workItem from="1673880597698" duration="6544000" />
       <workItem from="1673891083215" duration="18000" />
       <workItem from="1673891363695" duration="19984000" />
-      <workItem from="1674130693309" duration="74164000" />
+      <workItem from="1674130693309" duration="75722000" />
     </task>
     <servers />
   </component>

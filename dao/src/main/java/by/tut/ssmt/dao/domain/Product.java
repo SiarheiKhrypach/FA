@@ -17,6 +17,12 @@ public class Product {
         this.portions = portions;
     }
 
+    public Product(String productName, double omegaThree, double omegaSix) {
+        this.productName = productName;
+        this.omegaThree = omegaThree;
+        this.omegaSix = omegaSix;
+    }
+
     public Product(int productID, String productName, double omegaThree, double omegaSix, int portions) {
         this.productID = productID;
         this.productName = productName;
