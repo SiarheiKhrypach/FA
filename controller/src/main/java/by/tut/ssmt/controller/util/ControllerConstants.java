@@ -19,12 +19,10 @@ public class ControllerConstants {
             PROPORTION = "proportion",
             PRODUCT_ID = "productId",
             PRODUCT = "product",
-            PRODUCTS_ATTRIBUTE = "productsAttribute",
             PRODUCT_NAME = "productName",
             PRODUCTS_PAGES_ATTRIBUTE = "productsPagedAttribute",
             ROLE = "role",
             USER = "user",
-            USERS_IN_CONTEXT = "usersInContext",
             USER_NAME = "userName",
             USERS_PAGED_ATTRIBUTE = "usersPagedAttribute",
             WELCOME = "Welcome, ";

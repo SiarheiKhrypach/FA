@@ -9,7 +9,6 @@ import by.tut.ssmt.service.ProductService;
 import by.tut.ssmt.service.ServiceFactory;
 import by.tut.ssmt.service.ServiceValidator;
 import by.tut.ssmt.service.UserService;
-import by.tut.ssmt.service.exception.ServiceException;
 import org.apache.log4j.spi.RootLogger;
 
 import javax.servlet.ServletContext;
@@ -51,35 +50,7 @@ public class FrontController extends HttpServlet {
 
         ServletContext servletContext = getServletContext();
         servletContext.setAttribute(MESSAGE, "default");
-        try {
-            setUserInitialData(servletContext);
-            setProductInitialData(servletContext);
-        } catch (ControllerException e) {
-            log.error(ControllerException.getCause(e));
-            servletContext.setAttribute(MESSAGE, "error");
-        }
 
-    }
-
-    private void setUserInitialData(ServletContext servletContext) throws ControllerException {
-        try {
-            users = userService.selectAllService();
-            serviceValidator.isNotNull(users);
-            servletContext.setAttribute(USERS_IN_CONTEXT, users);
-        } catch (NullPointerException | ServiceException e) {
-            throw new ControllerException(e);
-        }
-    }
-
-    private void setProductInitialData(ServletContext servletContext) throws ControllerException {
-
-        try {
-            products = productService.selectAllService();
-            serviceValidator.isNotNull(products);
-            servletContext.setAttribute(PRODUCTS_ATTRIBUTE, products);
-        } catch (ServiceException | NullPointerException e) {
-            throw new ControllerException(e);
-        }
     }
 
     private void initCommandsMap() {
