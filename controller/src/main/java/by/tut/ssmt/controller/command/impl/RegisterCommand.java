@@ -15,6 +15,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static by.tut.ssmt.controller.util.ControllerConstants.*;
+
 public class RegisterCommand implements Command {
 
     private boolean userAdded;
@@ -31,7 +33,7 @@ public class RegisterCommand implements Command {
             userAdded = userService.registerService(user);
             postToMainPage(request, response);
         } catch (NullOrEmptyException e) {
-            request.setAttribute("message", "Please fill out the form");
+            request.setAttribute(MESSAGE, "Please fill out the form");
             request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
         } catch (ServletException | IOException | ServiceException e) {
             throw new ControllerException(e);
@@ -40,10 +42,10 @@ public class RegisterCommand implements Command {
 
     private void postToMainPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (userAdded) {
-            request.getSession().setAttribute("message", "Successful operation");
-            response.sendRedirect("/main?message=" + userAdded);
+            request.getSession().setAttribute(MESSAGE, "Successful operation");
+            response.sendRedirect("/main?" + MESSAGE + "=" + userAdded);
         } else {
-            request.setAttribute("message", "User name or/and password are already in use, try one more time");
+            request.setAttribute(MESSAGE, "User name or/and password are already in use, try one more time");
             request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
         }
     }

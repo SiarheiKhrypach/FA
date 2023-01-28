@@ -19,6 +19,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static by.tut.ssmt.controller.util.ControllerConstants.*;
+
+
 
 public class BulkChangePortionCommand extends AbstractCommand implements Command {
 
@@ -38,15 +41,15 @@ public class BulkChangePortionCommand extends AbstractCommand implements Command
             final List menuList = (List) dataCollector.collectFormData(request);
             boolean result = menuService.bulkPortionChangeService(menuList);
             checkOperationForSuccess(request, result);
-            String currentUser = (String) request.getSession().getAttribute("userName");
+            String currentUser = (String) request.getSession().getAttribute(USER_NAME);
             products  = menuService.selectAllFromMenuService(currentUser);
             setProportion(request);
-            String currentPageString = (String) request.getSession().getAttribute("currentPage");
-            response.sendRedirect("/menu?command=menu&currentPage=" + currentPageString + "&message=" + result);
+            String currentPageString = (String) request.getSession().getAttribute(CURRENT_PAGE);
+            response.sendRedirect("/menu?command=menu&" + CURRENT_PAGE + "=" + currentPageString + "&" + MESSAGE + "=" + result);
         } catch (ServiceException e) {
             throw new ControllerException();
         } catch (NullOrEmptyException e) {
-            request.setAttribute("message", "Please enter valid data" );
+            request.setAttribute(MESSAGE, "Please enter valid data" );
             request.getRequestDispatcher("/WEB-INF/menu.jsp");
         }
     }
@@ -54,7 +57,7 @@ public class BulkChangePortionCommand extends AbstractCommand implements Command
     private void setProportion(HttpServletRequest request) throws NullPointerException {
         final String formattedProportion = dataProcessorList.calculate(products);
         serviceValidator.isNotNull(formattedProportion);
-        request.getSession().setAttribute("proportion", formattedProportion);
+        request.getSession().setAttribute(PROPORTION, formattedProportion);
     }
 
 

@@ -16,6 +16,9 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
+import static by.tut.ssmt.controller.util.ControllerConstants.*;
+
+
 public class LoginCommand implements Command {
     boolean passwordVerified;
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
@@ -29,11 +32,11 @@ public class LoginCommand implements Command {
         try {
             final User user = (User) dataCollector.collectFormData(request);
             passwordVerified = userService.loginService(user);
-            request.setAttribute("name", user.getUserName());
+            request.setAttribute(NAME, user.getUserName());
 //            request.setAttribute("userId", user.getUserId());
             postToMainPage(request, response);
         } catch (NullOrEmptyException e) {
-            request.setAttribute("message", "Please fill out the form");
+            request.setAttribute(MESSAGE, "Please fill out the form");
             request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         } catch (ServletException | IOException | ServiceException e) {
             throw new ControllerException(e);
@@ -41,21 +44,21 @@ public class LoginCommand implements Command {
     }
 
     private void postToMainPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        if (passwordVerified && request.getAttribute("name").equals("admin")) {
+        if (passwordVerified && request.getAttribute(NAME).equals(ADMIN)) {
             HttpSession session = request.getSession();
-            session.setAttribute("message", "Welcome, ");
-            session.setAttribute("role", "admin");
-            session.setAttribute("userName", request.getAttribute("name"));
+            session.setAttribute(MESSAGE, WELCOME);
+            session.setAttribute(ROLE, ADMIN);
+            session.setAttribute(USER_NAME, request.getAttribute(NAME));
             request.getRequestDispatcher("index.jsp").forward(request, response);
-        } else if (passwordVerified && !request.getAttribute("name").equals("admin")) {
+        } else if (passwordVerified && !request.getAttribute(NAME).equals(ADMIN)) {
             HttpSession session = request.getSession();
-            session.setAttribute("message", "Welcome, ");
-            session.setAttribute("role", "user");
+            session.setAttribute(MESSAGE, WELCOME);
+            session.setAttribute(ROLE, USER);
 //            session.setAttribute("name", request.getAttribute("name"));
-            session.setAttribute("userName", request.getAttribute("name"));
+            session.setAttribute(USER_NAME, request.getAttribute(NAME));
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } else {
-            request.setAttribute("message", "User name or/and password are not valid");
+            request.setAttribute(MESSAGE, "User name or/and password are not valid");
             request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         }
     }

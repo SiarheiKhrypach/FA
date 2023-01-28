@@ -13,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static by.tut.ssmt.controller.util.ControllerConstants.*;
+
 public class EditFormCommand extends FormsAccessCommand {
 
     private static final Logger LOGGER = Logger.getLogger(FormsAccessCommand.class.getName());
@@ -24,11 +26,11 @@ public class EditFormCommand extends FormsAccessCommand {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ControllerException  {
         try {
-            final String productId = request.getParameter("productId");
+            final String productId = request.getParameter(PRODUCT_ID);
             final Product product;
             product = productService.selectOneService(Integer.parseInt(productId));
             serviceValidator.isNotNull(product);
-            request.setAttribute("product", product);
+            request.setAttribute(PRODUCT, product);
             super.execute(request, response);
         } catch (ServiceException | NullPointerException e) {
             throw new ControllerException(e);

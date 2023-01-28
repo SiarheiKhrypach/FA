@@ -8,6 +8,10 @@ import javax.servlet.annotation.WebInitParam;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 
+import static by.tut.ssmt.controller.util.ControllerConstants.LOG4;
+import static by.tut.ssmt.controller.util.ControllerConstants.LOG_FILE_NAME;
+
+
 @WebServlet
         (
         name = "Log4jInit",
@@ -23,8 +27,8 @@ public class Log4jInit extends HttpServlet {
         pref = getServletContext().getRealPath("/");
         PropertyConfigurator.configure(pref + logFileName);
         Logger globalLog = Logger.getRootLogger();
-        getServletContext().setAttribute("log4", globalLog);
-        getServletContext().setAttribute("logfilename", logFileName);
+        getServletContext().setAttribute(LOG4, globalLog);
+        getServletContext().setAttribute(LOG_FILE_NAME, logFileName);
         globalLog.info("Log4jInit Servlet");
 
     }

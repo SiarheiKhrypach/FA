@@ -6,6 +6,9 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Map;
 
+
+import static by.tut.ssmt.controller.util.ControllerConstants.*;
+
 public class AntiInjectionFilter implements Filter {
 
     private static final String DOES_NOT_CONTAIN = "^((?!<|>|script).)*$";
@@ -26,7 +29,7 @@ public class AntiInjectionFilter implements Filter {
         if (sb.toString().trim().matches(DOES_NOT_CONTAIN)) {
             filterChain.doFilter(request, response);
         } else {
-            servletRequest.setAttribute("message", "Attempt of injection!");
+            servletRequest.setAttribute(MESSAGE, "Attempt of injection!");
             servletRequest.getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
         }
     }

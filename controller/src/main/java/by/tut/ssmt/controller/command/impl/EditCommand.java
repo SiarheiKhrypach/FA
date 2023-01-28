@@ -17,6 +17,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static by.tut.ssmt.controller.util.ControllerConstants.*;
+
 public class EditCommand implements Command {
     private static final Logger LOGGER = Logger.getLogger(EditCommand.class.getName());
     private boolean productUpdated;
@@ -33,7 +35,7 @@ public class EditCommand implements Command {
             productUpdated = productService.updateService(product);
             postToMainPage(request, response);
         } catch (NullOrEmptyException e) {
-            request.setAttribute("message", "Please enter valid data");
+            request.setAttribute(MESSAGE, "Please enter valid data");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } catch (ServiceException e) {
             throw new ControllerException(e);
@@ -42,16 +44,16 @@ public class EditCommand implements Command {
 
     private void postToMainPage(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (productUpdated) {
-            request.getSession().setAttribute("message", "Successful operation");
-            response.sendRedirect("/main?message=" + productUpdated);
+            request.getSession().setAttribute(MESSAGE, "Successful operation");
+            response.sendRedirect("/main?" + MESSAGE + "=" + productUpdated);
         } else {
-            request.setAttribute("message", "The list already has product with such name");
+            request.setAttribute(MESSAGE, "The list already has product with such name");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         }
     }
 
     private Product getProduct(HttpServletRequest request) throws NullOrEmptyException {
-        final String productId = request.getParameter("productId").trim();
+        final String productId = request.getParameter(PRODUCT_ID).trim();
         controllerValidator.isNotNullOrEmpty(productId);
         final Product product = (Product) dataCollector.collectFormData(request);
         product.setProductId(Integer.parseInt(productId));

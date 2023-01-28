@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static by.tut.ssmt.controller.util.ControllerConstants.*;
 import static by.tut.ssmt.controller.util.Util.isNullOrEmpty;
 
 
@@ -30,16 +31,16 @@ public class MenuCommand extends FormsAccessCommand {
 
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ControllerException {
         try {
-            String currentPageString = request.getParameter("currentPage");
+            String currentPageString = request.getParameter(CURRENT_PAGE);
             if (isNullOrEmpty(currentPageString)) {
                 currentPageString = "1";
             }
-            request.getSession().setAttribute("currentPage", currentPageString);
-            String currentPageLimit = request.getParameter("pageLimit");
+            request.getSession().setAttribute(CURRENT_PAGE, currentPageString);
+            String currentPageLimit = request.getParameter(PAGE_LIMIT);
             if (isNullOrEmpty(currentPageLimit)) {
                 currentPageLimit = "5";
             }
-            String currentUser = (String) request.getSession().getAttribute("userName");
+            String currentUser = (String) request.getSession().getAttribute(USER_NAME);
             int currentPage = Integer.parseInt(currentPageString);
             int pageLimit = Integer.parseInt(currentPageLimit);
             final Page<Product> pagedRequest = new Page<>();
@@ -48,11 +49,11 @@ public class MenuCommand extends FormsAccessCommand {
             pagedRequest.setCurrentUser(currentUser);
             Page<Product> pagedMenuItem = menuService.findPageService(pagedRequest);
             ServletContext servletContext = request.getServletContext();
-            servletContext.setAttribute("menuItemsPagedAttribute", pagedMenuItem);
+            servletContext.setAttribute(MENU_ITEMS_PAGED_ATTRIBUTE, pagedMenuItem);
             products = menuService.selectAllFromMenuService(currentUser);
             setProportion(request);
-            if (request.getParameter("message") == null) {
-                request.getSession().setAttribute("message", "You are in the menu now");
+            if (request.getParameter(MESSAGE) == null) {
+                request.getSession().setAttribute(MESSAGE, "You are in the menu now");
             }
             super.execute(request, response);
         } catch (ServiceException | NullPointerException e) {
@@ -63,6 +64,6 @@ public class MenuCommand extends FormsAccessCommand {
     private void setProportion(HttpServletRequest request) throws NullPointerException {
         final String formattedProportion = dataProcessorList.calculate(products);
         serviceValidator.isNotNull(formattedProportion);
-        request.getSession().setAttribute("proportion", formattedProportion);
+        request.getSession().setAttribute(PROPORTION, formattedProportion);
     }
 }

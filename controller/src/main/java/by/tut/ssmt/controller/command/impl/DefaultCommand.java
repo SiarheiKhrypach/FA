@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static by.tut.ssmt.controller.util.ControllerConstants.*;
 import static by.tut.ssmt.controller.util.Util.isNullOrEmpty;
 
 public class DefaultCommand implements Command {
@@ -35,11 +36,11 @@ public class DefaultCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ControllerException {
         try {
-            String currentPageString = request.getParameter("currentPage");
+            String currentPageString = request.getParameter(CURRENT_PAGE);
             if (isNullOrEmpty(currentPageString)) {
                 currentPageString = "1";
             }
-            String currentPageLimit = request.getParameter("pageLimit");
+            String currentPageLimit = request.getParameter(PAGE_LIMIT);
             if (isNullOrEmpty(currentPageLimit)) {
                 currentPageLimit = "5";
             }
@@ -51,14 +52,14 @@ public class DefaultCommand implements Command {
             Page<Product> pagedProduct = productService.findPageService(pagedRequest);
 
             ServletContext servletContext = request.getServletContext();
-            servletContext.setAttribute("productsPagedAttribute", pagedProduct);
+            servletContext.setAttribute(PRODUCTS_PAGES_ATTRIBUTE, pagedProduct);
 
 
             products = productService.selectAllService();
 //            LOGGER.info("products - " + products);
             serviceValidator.isNotNull(products);
-            if (request.getParameter("message") == null) {
-                request.getSession().setAttribute("message", "");
+            if (request.getParameter(MESSAGE) == null) {
+                request.getSession().setAttribute(MESSAGE, "");
             }
             servletContext.getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (ServiceException | NullPointerException e) {

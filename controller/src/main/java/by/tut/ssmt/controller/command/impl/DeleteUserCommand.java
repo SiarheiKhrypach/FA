@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static by.tut.ssmt.controller.util.ControllerConstants.*;
+
 public class DeleteUserCommand extends AbstractCommand implements Command {
 
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
@@ -21,11 +23,11 @@ public class DeleteUserCommand extends AbstractCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException, ServletException, IOException {
         try {
-            final String userName = request.getParameter("userName");
+            final String userName = request.getParameter(USER_NAME);
             boolean result = userService.deleteService(userName);
             checkOperationForSuccess(request, result);
-            String currentPageString = (String) request.getSession().getAttribute("currentPage");
-            response.sendRedirect("/userList?command=userList&currentPage=" + currentPageString + "&message=" + result);
+            String currentPageString = (String) request.getSession().getAttribute(CURRENT_PAGE);
+            response.sendRedirect("/userList?command=userList&" + CURRENT_PAGE + "=" + currentPageString + "&" + MESSAGE + "=" + result);
         } catch (ServiceException e) {
             throw new ControllerException();
         }

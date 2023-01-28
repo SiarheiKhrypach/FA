@@ -23,6 +23,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static by.tut.ssmt.controller.util.ControllerConstants.*;
 import static java.util.Objects.isNull;
 
 @WebServlet
@@ -46,16 +47,16 @@ public class FrontController extends HttpServlet {
     public void init() throws ServletException {
 
         initCommandsMap();
-        RootLogger log = (RootLogger) getServletContext().getAttribute("log4");
+        RootLogger log = (RootLogger) getServletContext().getAttribute(LOG4);
 
         ServletContext servletContext = getServletContext();
-        servletContext.setAttribute("message", "default");
+        servletContext.setAttribute(MESSAGE, "default");
         try {
             setUserInitialData(servletContext);
             setProductInitialData(servletContext);
         } catch (ControllerException e) {
             log.error(ControllerException.getCause(e));
-            servletContext.setAttribute("message", "error");
+            servletContext.setAttribute(MESSAGE, "error");
         }
 
     }
@@ -64,7 +65,7 @@ public class FrontController extends HttpServlet {
         try {
             users = userService.selectAllService();
             serviceValidator.isNotNull(users);
-            servletContext.setAttribute("usersInContext", users);
+            servletContext.setAttribute(USERS_IN_CONTEXT, users);
         } catch (NullPointerException | ServiceException e) {
             throw new ControllerException(e);
         }
@@ -75,7 +76,7 @@ public class FrontController extends HttpServlet {
         try {
             products = productService.selectAllService();
             serviceValidator.isNotNull(products);
-            servletContext.setAttribute("productsAttribute", products);
+            servletContext.setAttribute(PRODUCTS_ATTRIBUTE, products);
         } catch (ServiceException | NullPointerException e) {
             throw new ControllerException(e);
         }
@@ -114,7 +115,7 @@ public class FrontController extends HttpServlet {
 
     private void doExecute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         boolean isRequiredForward;
-        RootLogger log = (RootLogger) getServletContext().getAttribute("log4");
+        RootLogger log = (RootLogger) getServletContext().getAttribute(LOG4);
         isRequiredForward = processLocale(request, response);
         if (isRequiredForward) {
             try {
@@ -129,11 +130,11 @@ public class FrontController extends HttpServlet {
 
     private boolean processLocale(HttpServletRequest request, HttpServletResponse response) throws IOException {
         boolean isRequiredForward = true;
-        String command = request.getParameter("command");
+        String command = request.getParameter(COMMAND);
         if ("locale".equals(command)) {
-            request.setAttribute("command", "default");
-            String locale = request.getParameter("locale");
-            request.getSession().setAttribute("locale", locale);
+            request.setAttribute(COMMAND, "default");
+            String locale = request.getParameter(LOCALE);
+            request.getSession().setAttribute(LOCALE, locale);
             isRequiredForward = false;
             response.sendRedirect("/");
         }
@@ -141,7 +142,7 @@ public class FrontController extends HttpServlet {
     }
 
     private String getCommand(HttpServletRequest request) {
-        String commandNameParam = request.getParameter("command");
+        String commandNameParam = request.getParameter(COMMAND);
         if (isNull(commandNameParam)) {
             commandNameParam = "default";
         }

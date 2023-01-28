@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.List;
 
+import static by.tut.ssmt.controller.util.ControllerConstants.*;
 import static by.tut.ssmt.controller.util.Util.isNullOrEmpty;
 
 public class UserListCommand extends FormsAccessCommand{
@@ -28,12 +29,12 @@ public class UserListCommand extends FormsAccessCommand{
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException, ServletException, IOException {
         try {
-            String currentPageString = request.getParameter("currentPage");
+            String currentPageString = request.getParameter(CURRENT_PAGE);
             if (isNullOrEmpty(currentPageString)) {
                 currentPageString = "1";
             }
-            request.getSession().setAttribute("currentPage", currentPageString);
-            String currentPageLimit = request.getParameter("pageLimit");
+            request.getSession().setAttribute(CURRENT_PAGE, currentPageString);
+            String currentPageLimit = request.getParameter(PAGE_LIMIT);
             if (isNullOrEmpty(currentPageLimit)) {
                 currentPageLimit = "5";
             }
@@ -44,9 +45,9 @@ public class UserListCommand extends FormsAccessCommand{
             pagedRequest.setLimit(pageLimit);
             Page<String> pagedUserList = userService.findPageService(pagedRequest);
             ServletContext servletContext = request.getServletContext();
-            servletContext.setAttribute("usersPagedAttribute", pagedUserList);
-            if (request.getParameter("message") == null) {
-                request.getSession().setAttribute("message", "You are in the user list now");
+            servletContext.setAttribute(USERS_PAGED_ATTRIBUTE, pagedUserList);
+            if (request.getParameter(MESSAGE) == null) {
+                request.getSession().setAttribute(MESSAGE, "You are in the user list now");
             }
             super.execute(request, response);
         } catch (ServiceException | NullPointerException e) {

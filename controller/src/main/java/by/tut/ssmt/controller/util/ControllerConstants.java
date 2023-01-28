@@ -1,0 +1,31 @@
+package by.tut.ssmt.controller.util;
+
+public class ControllerConstants {
+    public static final String
+            ADMIN = "admin",
+            COMMAND = "command",
+            CURRENT_PAGE = "currentPage",
+            LOCALE = "locale",
+            LOG4 = "log4",
+            LOG_FILE_NAME = "logfilename",
+            MENU_ITEMS_PAGED_ATTRIBUTE = "menuItemsPagedAttribute",
+            MESSAGE = "message",
+            NAME = "name",
+            OMEGA_THREE = "omegaThree",
+            OMEGA_SIX = "omegaSix",
+            PAGE_LIMIT = "pageLimit",
+            PASS = "pass",
+            PORTIONS = "portions",
+            PROPORTION = "proportion",
+            PRODUCT_ID = "productId",
+            PRODUCT = "product",
+            PRODUCTS_ATTRIBUTE = "productsAttribute",
+            PRODUCT_NAME = "productName",
+            PRODUCTS_PAGES_ATTRIBUTE = "productsPagedAttribute",
+            ROLE = "role",
+            USER = "user",
+            USERS_IN_CONTEXT = "usersInContext",
+            USER_NAME = "userName",
+            USERS_PAGED_ATTRIBUTE = "usersPagedAttribute",
+            WELCOME = "Welcome, ";
+}

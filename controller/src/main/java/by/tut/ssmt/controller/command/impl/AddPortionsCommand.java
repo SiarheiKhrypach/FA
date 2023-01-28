@@ -16,6 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
+import static by.tut.ssmt.controller.util.ControllerConstants.*;
+
+
+
 public class AddPortionsCommand extends AbstractCommand implements Command {
 
     private final ControllerFactory controllerFactory = ControllerFactory.getInstance();
@@ -30,9 +34,9 @@ public class AddPortionsCommand extends AbstractCommand implements Command {
             final MenuItem menuItem = (MenuItem) dataCollector.collectFormData(request);
             boolean result = menuService.addService(menuItem);
             checkOperationForSuccess(request, result);
-            response.sendRedirect("/main?message=" + result);
+            response.sendRedirect("/main?" + MESSAGE + "=" + result);
         } catch (NullOrEmptyException e) {
-            request.setAttribute("message", "Please enter valid data");
+            request.setAttribute(MESSAGE, "Please enter valid data");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } catch (ServiceException e) {
             throw new ControllerException(e);
