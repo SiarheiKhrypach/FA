@@ -14,7 +14,7 @@ public class ControllerConstants {
             OMEGA_THREE = "omegaThree",
             OMEGA_SIX = "omegaSix",
             PAGE_LIMIT = "pageLimit",
-            PASS = "pass",
+            PASSWORD = "pass",
             PORTIONS = "portions",
             PROPORTION = "proportion",
             PRODUCT_ID = "productId",

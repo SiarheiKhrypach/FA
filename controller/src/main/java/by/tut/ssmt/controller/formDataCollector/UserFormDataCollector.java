@@ -13,7 +13,7 @@ public class UserFormDataCollector extends FormDataCollector {
     public User collectFormData(HttpServletRequest req) throws NullOrEmptyException {
         final String userName = req.getParameter(NAME);
         controllerValidator.isNotNullOrEmpty(userName);
-        final String password = req.getParameter(PASS);
+        final String password = req.getParameter(PASSWORD);
 //        char[] password = req.getParameter("pass").trim().toCharArray();
         controllerValidator.isNotNullOrEmpty(password);
         final User user = new User(userName, password);

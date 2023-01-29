@@ -24,7 +24,9 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="59ca0b27-6170-41d2-a1a1-ba36d40b5d8b" name="Default Changelist" comment="" />
+    <list default="true" id="59ca0b27-6170-41d2-a1a1-ba36d40b5d8b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -627,7 +629,7 @@
       <workItem from="1673880597698" duration="6544000" />
       <workItem from="1673891083215" duration="18000" />
       <workItem from="1673891363695" duration="19984000" />
-      <workItem from="1674130693309" duration="78216000" />
+      <workItem from="1674130693309" duration="79043000" />
     </task>
     <servers />
   </component>
@@ -743,10 +745,10 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="530" y="190" key="extract.method.dialog/0.0.1600.860@0.0.1600.860" timestamp="1673457320979" />
-    <state x="136" y="268" width="784" height="592" key="find.popup" timestamp="1674945519131">
+    <state x="136" y="268" width="784" height="592" key="find.popup" timestamp="1674993738644">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="136" y="268" width="784" height="592" key="find.popup/0.0.1600.860@0.0.1600.860" timestamp="1674945519131" />
+    <state x="136" y="268" width="784" height="592" key="find.popup/0.0.1600.860@0.0.1600.860" timestamp="1674993738644" />
     <state x="506" y="187" key="refactoring.ChangeSignatureDialog" timestamp="1673745309680">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
