@@ -63,7 +63,7 @@
                     <form method="get" action="/deleteUser">
                         <input type="hidden" name="userName" value="${user}">
                             <%--                        <input type="hidden" name="userName" value="${user.userName}">--%>
-                        <input type="hidden" name="command" value="deleteUser">
+                        <input type="hidden" name="command" value="delete_user">
                         <input type="submit" name="Delete" value="${delete_btn}">
                     </form>
                 </td>
@@ -78,7 +78,7 @@
             <c:if test="${i == usersPagedAttribute.pageNumber}">
                 <form form="show_users" method="post" action="/userList">
                     <input type="hidden" name="currentPage" value="${i}">
-                    <input type="hidden" name="command" value="userList">
+                    <input type="hidden" name="command" value="user_list">
                     <button style="color: red" type="submit" name="currentPage">
                             ${i}
                     </button>
@@ -88,7 +88,7 @@
             <c:if test="${i != usersPagedAttribute.pageNumber}">
                 <form form="show_users" method="post" action="/userList">
                     <input type="hidden" name="currentPage" value="${i}">
-                    <input type="hidden" name="command" value="userList">
+                    <input type="hidden" name="command" value="user_list">
                     <button type="submit" name="currentPage">
                             ${i}
                     </button>

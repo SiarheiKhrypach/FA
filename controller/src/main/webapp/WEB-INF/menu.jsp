@@ -82,7 +82,7 @@
                 <td>
                     <form method="get" action="/delete">
                         <input type="hidden" name="productName" value="${menuItem.productName}"/>
-                        <input type="hidden" name="command" value="deleteFromMenu"/>
+                        <input type="hidden" name="command" value="delete_from_menu"/>
                         <input type="submit" name="Delete" value="${delete_btn}">
                     </form>
                 </td>
@@ -101,7 +101,7 @@
     </table>
 
     <form id="portions" method="post" action="/bulkChangePortion">
-        <input type="hidden" name="command" value="bulkChangePortion"/>
+        <input type="hidden" name="command" value="bulk_change_portion"/>
         <input type="submit" name="BulkChangePortions" value="${save_btn}">
     </form>
 

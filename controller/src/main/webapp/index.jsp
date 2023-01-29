@@ -208,7 +208,7 @@
                     <td>
                         <form method="get" action="/update">
                             <input type="hidden" name="productId" value="${product.productId}"/>
-                            <input type="hidden" name="command" value="editForm"/>
+                            <input type="hidden" name="command" value="edit_form"/>
                             <input type="submit" name="Edit" value="${edit_btn}"/>
                         </form>
                     </td>
@@ -221,7 +221,7 @@
                             <input class="w3-input w3-border-0" type="number" class="register-input"
                                    name="portions" value="0" min="0" step="1" required>
                             <input type="hidden" name="productId" value="${product.productId}"/>
-                            <input type="hidden" name="command" value="addPortions"/>
+                            <input type="hidden" name="command" value="add_portions"/>
                             <input type="submit" name="AddPortions" value="${add_to_the_menu_btn}">
                         </form>
 
@@ -306,7 +306,7 @@
     <c:if test="${sessionScope.role == 'admin'}">
         <div>
             <form id="userList" method="get" action="/userList">
-                <input type="hidden" name="command" value="userList"/>
+                <input type="hidden" name="command" value="user_list"/>
                 <button form="userList" type="submit">
                     <c:out value="${user_list_btn}"></c:out>
                 </button>
