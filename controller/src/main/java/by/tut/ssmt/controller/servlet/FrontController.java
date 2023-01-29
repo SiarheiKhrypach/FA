@@ -3,12 +3,6 @@ package by.tut.ssmt.controller.servlet;
 import by.tut.ssmt.controller.command.Command;
 import by.tut.ssmt.controller.command.impl.*;
 import by.tut.ssmt.controller.exception.ControllerException;
-import by.tut.ssmt.dao.domain.Product;
-import by.tut.ssmt.dao.domain.User;
-import by.tut.ssmt.service.ProductService;
-import by.tut.ssmt.service.ServiceFactory;
-import by.tut.ssmt.service.ServiceValidator;
-import by.tut.ssmt.service.UserService;
 import org.apache.log4j.spi.RootLogger;
 
 import javax.servlet.ServletContext;
@@ -19,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import static by.tut.ssmt.controller.util.ControllerConstants.*;
@@ -33,14 +26,7 @@ import static java.util.Objects.isNull;
         )
 public class FrontController extends HttpServlet {
 
-    private List<Product> products;
-    private List<User> users;
     private Map<String, Command> commands;
-    private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
-    private final ServiceValidator serviceValidator = serviceFactory.getServiceValidator();
-    private final ProductService productService = serviceFactory.getProductService();
-    private final UserService userService = serviceFactory.getUserService();
-
 
     @Override
     public void init() throws ServletException {
