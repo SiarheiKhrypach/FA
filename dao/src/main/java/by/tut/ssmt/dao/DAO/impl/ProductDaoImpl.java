@@ -24,7 +24,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
     private static final String SELECT_FROM_TABLE_WHERE = "SELECT * FROM products WHERE product_id=?";
     private static final String INSERT_INTO_TABLE = "INSERT INTO products (product_name, omega_three, omega_six, portions) Values (?, ?, ?, ?)";
     private static final String UPDATE_TABLE = "UPDATE products SET product_name = ?, omega_three = ?, omega_six = ?, portions = ? WHERE product_id = ?";
-    private static final String DELETE_FROM_TABLE = "DELETE FROM products WHERE product_name = ?";
+    private static final String DELETE_FROM_TABLE = "DELETE products, menu FROM products INNER JOIN menu ON menu.product_id = products.product_id WHERE product_name = ?";
     private static final String FIND_PRODUCT_BY_NAME = "SELECT * FROM products WHERE product_name=?";
     private static final String FIND_PRODUCT_BY_NAME_WITH_DIFFERENT_ID = "SELECT * FROM products WHERE product_name=? AND NOT product_id=?";
 
