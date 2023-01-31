@@ -6,8 +6,6 @@ import by.tut.ssmt.dao.domain.Page;
 import by.tut.ssmt.dao.domain.Product;
 import by.tut.ssmt.service.ProductService;
 import by.tut.ssmt.service.ServiceFactory;
-import by.tut.ssmt.service.ServiceValidator;
-import by.tut.ssmt.service.dataProcessor.DataProcessorList;
 import by.tut.ssmt.service.exception.ServiceException;
 import org.apache.log4j.Logger;
 
@@ -16,19 +14,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 
 import static by.tut.ssmt.controller.util.ControllerConstants.*;
 import static by.tut.ssmt.controller.util.Util.isNullOrEmpty;
 
 public class DefaultCommand implements Command {
 
-    List<Product> products;
-
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final ProductService productService = serviceFactory.getProductService();
-    private final ServiceValidator serviceValidator = serviceFactory.getServiceValidator();
-    private final DataProcessorList dataProcessorList = serviceFactory.getDataProcessorList();
 
     public static final Logger LOGGER = Logger.getLogger(DefaultCommand.class.getName());
 
@@ -54,10 +47,6 @@ public class DefaultCommand implements Command {
             ServletContext servletContext = request.getServletContext();
             servletContext.setAttribute(PRODUCTS_PAGES_ATTRIBUTE, pagedProduct);
 
-
-            products = productService.selectAllService();
-//            LOGGER.info("products - " + products);
-            serviceValidator.isNotNull(products);
             if (request.getParameter(MESSAGE) == null) {
                 request.getSession().setAttribute(MESSAGE, "");
             }
