@@ -1,5 +1,6 @@
 package by.tut.ssmt.controller.command.impl;
 
+import by.tut.ssmt.controller.ControllerValidator;
 import by.tut.ssmt.controller.exception.ControllerException;
 import by.tut.ssmt.dao.domain.Page;
 import by.tut.ssmt.dao.domain.Product;
@@ -7,6 +8,7 @@ import by.tut.ssmt.service.MenuService;
 import by.tut.ssmt.service.ServiceFactory;
 import by.tut.ssmt.service.ServiceValidator;
 import by.tut.ssmt.service.dataProcessor.DataProcessorList;
+import by.tut.ssmt.service.exception.NullOrEmptyException;
 import by.tut.ssmt.service.exception.ServiceException;
 
 import javax.servlet.ServletContext;
@@ -27,7 +29,7 @@ public class MenuCommand extends FormsAccessCommand {
     private final MenuService menuService = serviceFactory.getMenuService();
     private final DataProcessorList dataProcessorList = serviceFactory.getDataProcessorList();
     private final ServiceValidator serviceValidator = serviceFactory.getServiceValidator();
-
+    private final ControllerValidator controllerValidator = new ControllerValidator();
 
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ControllerException {
         try {
@@ -41,6 +43,7 @@ public class MenuCommand extends FormsAccessCommand {
                 currentPageLimit = "5";
             }
             String currentUser = (String) request.getSession().getAttribute(USER_NAME);
+            controllerValidator.isNotNullOrEmpty(currentUser);
             int currentPage = Integer.parseInt(currentPageString);
             int pageLimit = Integer.parseInt(currentPageLimit);
             final Page<Product> pagedRequest = new Page<>();
@@ -56,8 +59,8 @@ public class MenuCommand extends FormsAccessCommand {
                 request.getSession().setAttribute(MESSAGE, "You are in the menu now");
             }
             super.execute(request, response);
-        } catch (ServiceException | NullPointerException e) {
-            throw new ControllerException(e);
+        } catch (ServiceException | NullPointerException | NullOrEmptyException e) {
+            throw new ControllerException();
         }
     }
 
