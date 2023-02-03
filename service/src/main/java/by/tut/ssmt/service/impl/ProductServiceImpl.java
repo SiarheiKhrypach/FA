@@ -6,6 +6,7 @@ import by.tut.ssmt.dao.domain.Page;
 import by.tut.ssmt.dao.domain.Product;
 import by.tut.ssmt.dao.exception.DaoException;
 import by.tut.ssmt.service.ProductService;
+import by.tut.ssmt.service.ServiceValidator;
 import by.tut.ssmt.service.exception.ServiceException;
 
 import java.util.List;
@@ -13,6 +14,7 @@ import java.util.List;
 public class ProductServiceImpl implements ProductService {
 
     private final ProductDao productDao = DaoFactory.getInstance().getProductDao();
+    private final ServiceValidator serviceValidator = new ServiceValidator();
 
     public ProductServiceImpl() {
     }
@@ -29,6 +31,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Page<Product> findPageService(Page<Product> productPagedRequest) throws ServiceException {
         try {
+            serviceValidator.isNotNull(productPagedRequest);
             return productDao.findPageDao(productPagedRequest);
         } catch (DaoException e) {
             throw new ServiceException(e);
@@ -39,6 +42,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public Product selectOneService(int productId) throws ServiceException {
         try {
+            serviceValidator.isNotZero(productId);
             return productDao.selectOneDao(productId);
         } catch (DaoException e) {
             throw new ServiceException(e);
@@ -48,6 +52,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public boolean addService(Product product) throws ServiceException {
         try {
+            serviceValidator.isNotNull(product);
             return productDao.insertDao(product);
         } catch (DaoException e) {
             throw new ServiceException(e);
@@ -57,6 +62,7 @@ public class ProductServiceImpl implements ProductService {
     @Override
     public boolean updateService(Product product) throws ServiceException {
         try {
+            serviceValidator.isNotNull(product);
             return productDao.updateDao(product);
         } catch (DaoException e) {
             throw new ServiceException(e);
@@ -65,14 +71,11 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public boolean deleteService(String productName) throws ServiceException {
-////    public void deleteService(int productId) {
-//        productDao.delete(productName);
-////        productDao.delete(productId);
         try {
+            serviceValidator.isNotNull(productName);
             return productDao.deleteDao(productName);
         } catch (DaoException e) {
             throw new ServiceException(e);
         }
-
     }
 }
