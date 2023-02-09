@@ -32,7 +32,7 @@ public class DeleteUserCommand extends AbstractCommand implements Command {
             String currentPageString = (String) request.getSession().getAttribute(CURRENT_PAGE);
             response.sendRedirect("/userList?command=userList&" + CURRENT_PAGE + "=" + currentPageString + "&" + MESSAGE + "=" + result);
         } catch (ServiceException | NullOrEmptyException e) {
-            throw new ControllerException();
+            throw new ControllerException(e.getMessage());
         }
     }
 }

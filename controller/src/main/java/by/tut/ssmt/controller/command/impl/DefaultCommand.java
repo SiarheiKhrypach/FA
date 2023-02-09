@@ -52,7 +52,7 @@ public class DefaultCommand implements Command {
             }
             servletContext.getRequestDispatcher("/index.jsp").forward(request, response);
         } catch (ServiceException | NullPointerException e) {
-            throw new ControllerException(e);
+            throw new ControllerException(e.getMessage());
         }
     }
 }

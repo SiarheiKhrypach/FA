@@ -51,7 +51,7 @@ public class UserListCommand extends FormsAccessCommand{
             }
             super.execute(request, response);
         } catch (ServiceException | NullPointerException e) {
-            throw new ControllerException(e);
+            throw new ControllerException(e.getMessage());
         }
 
     }

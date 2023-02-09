@@ -14,7 +14,7 @@ public class LogoutCommand implements Command {
             request.getSession().invalidate();
             response.sendRedirect("/main");
         } catch (IOException e) {
-            throw new ControllerException(e);
+            throw new ControllerException(e.getMessage());
         }
     }
 }

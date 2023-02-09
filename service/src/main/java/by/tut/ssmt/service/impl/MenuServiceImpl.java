@@ -24,7 +24,7 @@ public class MenuServiceImpl implements MenuService {
             serviceValidator.isNotNullOrEmpty(currentUser);
             return menuDao.selectFromMenuDao(currentUser);
         } catch (DaoException | NullOrEmptyException e) {
-            throw new ServiceException();
+            throw new ServiceException(e.getMessage());
         }
     }
 
@@ -34,7 +34,7 @@ public class MenuServiceImpl implements MenuService {
             serviceValidator.isNotNull(menuItemPagedRequest);
             return menuDao.findPageDao(menuItemPagedRequest);
         } catch (DaoException e) {
-            throw new ServiceException(e);
+            throw new ServiceException(e.getMessage());
         }
     }
 
@@ -44,7 +44,7 @@ public class MenuServiceImpl implements MenuService {
             serviceValidator.isNotNull(menuItem);
             return menuDao.insertDao(menuItem);
         } catch (DaoException e) {
-            throw new ServiceException(e);
+            throw new ServiceException(e.getMessage());
         }
     }
 
@@ -53,7 +53,7 @@ public class MenuServiceImpl implements MenuService {
             serviceValidator.isNotNullOrEmpty(productName, userName);
             return menuDao.deleteDao(productName, userName);
         } catch (DaoException | NullOrEmptyException e) {
-            throw new ServiceException();
+            throw new ServiceException(e.getMessage());
         }
     }
 
@@ -63,7 +63,7 @@ public class MenuServiceImpl implements MenuService {
             serviceValidator.isNotNull(menuList);
             return menuDao.bulkPortionChangeDao(menuList);
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e.getMessage());
         }
     }
 }

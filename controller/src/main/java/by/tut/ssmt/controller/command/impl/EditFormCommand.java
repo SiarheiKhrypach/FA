@@ -37,7 +37,7 @@ public class EditFormCommand extends FormsAccessCommand {
             request.setAttribute(PRODUCT, product);
             super.execute(request, response);
         } catch (ServiceException | NullPointerException | NullOrEmptyException e) {
-            throw new ControllerException();
+            throw new ControllerException(e.getMessage());
         }
     }
 }

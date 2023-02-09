@@ -39,7 +39,7 @@ public class LoginCommand implements Command {
             request.setAttribute(MESSAGE, "Please fill out the form");
             request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
         } catch (ServletException | IOException | ServiceException e) {
-            throw new ControllerException(e);
+            throw new ControllerException(e.getMessage());
         }
     }
 

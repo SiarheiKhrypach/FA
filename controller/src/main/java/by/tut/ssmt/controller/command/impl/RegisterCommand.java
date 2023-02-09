@@ -36,7 +36,7 @@ public class RegisterCommand implements Command {
             request.setAttribute(MESSAGE, "Please fill out the form");
             request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
         } catch (ServletException | IOException | ServiceException e) {
-            throw new ControllerException(e);
+            throw new ControllerException(e.getMessage());
         }
     }
 

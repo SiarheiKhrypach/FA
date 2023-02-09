@@ -47,14 +47,14 @@ public class BulkChangePortionCommand extends AbstractCommand implements Command
             String currentPageString = (String) request.getSession().getAttribute(CURRENT_PAGE);
             response.sendRedirect("/menu?command=menu&" + CURRENT_PAGE + "=" + currentPageString + "&" + MESSAGE + "=" + result);
         } catch (ServiceException e) {
-            throw new ControllerException();
+            throw new ControllerException(e.getMessage());
         } catch (NullOrEmptyException e) {
             request.setAttribute(MESSAGE, "Please enter valid data" );
             request.getRequestDispatcher("/WEB-INF/menu.jsp");
         }
     }
 
-    private void setProportion(HttpServletRequest request) throws NullPointerException {
+    private void setProportion(HttpServletRequest request) throws ServiceException {
         final String formattedProportion = dataProcessorList.calculate(products);
         serviceValidator.isNotNull(formattedProportion);
         request.getSession().setAttribute(PROPORTION, formattedProportion);

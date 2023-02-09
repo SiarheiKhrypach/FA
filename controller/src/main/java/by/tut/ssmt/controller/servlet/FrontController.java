@@ -83,7 +83,9 @@ public class FrontController extends HttpServlet {
                 final CommandEnum command = getCommand(request);
                 commands.get(command).execute(request, response);
             } catch (ServletException | IOException | ControllerException e) {
-                log.error(ControllerException.getCause(e));
+                System.out.println(e.toString());
+//                e.printStackTrace();
+                log.error(ControllerException.getCause(e) +": " + ControllerException.getCause(e).getMessage());
                 request.getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
             }
         }

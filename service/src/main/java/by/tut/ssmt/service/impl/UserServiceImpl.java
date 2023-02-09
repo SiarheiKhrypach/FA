@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
         try {
             return userDao.selectDao();
         } catch (DaoException e) {
-            throw new ServiceException(e);
+            throw new ServiceException(e.getMessage());
         }
     }
 
@@ -34,7 +34,7 @@ public class UserServiceImpl implements UserService {
             serviceValidator.isNotNull(userPagedRequest);
             return userDao.findPageDao(userPagedRequest);
         } catch (DaoException e) {
-            throw new ServiceException(e);
+            throw new ServiceException(e.getMessage());
         }
     }
 
@@ -45,7 +45,7 @@ public class UserServiceImpl implements UserService {
             user = userDao.find(user);
             return user != null;
         } catch (DaoException e) {
-            throw new ServiceException(e);
+            throw new ServiceException(e.getMessage());
         }
     }
 
@@ -55,7 +55,7 @@ public class UserServiceImpl implements UserService {
             serviceValidator.isNotZero(userId);
             return userDao.selectOneDao(userId);
         } catch (DaoException e) {
-            throw new ServiceException(e);
+            throw new ServiceException(e.getMessage());
         }
     }
 
@@ -65,7 +65,7 @@ public class UserServiceImpl implements UserService {
             serviceValidator.isNotNull(user);
             return userDao.insert(user);
         } catch (DaoException e) {
-            throw new ServiceException(e);
+            throw new ServiceException(e.getMessage());
         }
     }
 
@@ -75,7 +75,7 @@ public class UserServiceImpl implements UserService {
             serviceValidator.isNotNull(user);
             return userDao.update(user);
         } catch (DaoException e) {
-            throw new ServiceException(e);
+            throw new ServiceException(e.getMessage());
         }
     }
 
@@ -85,7 +85,7 @@ public class UserServiceImpl implements UserService {
             serviceValidator.isNotNull(userName);
             return userDao.delete(userName);
         } catch (DaoException e) {
-            throw new ServiceException();
+            throw new ServiceException(e.getMessage());
         }
     }
 }

@@ -1,23 +1,17 @@
 package by.tut.ssmt.service;
 
-import by.tut.ssmt.dao.domain.MenuItem;
-import by.tut.ssmt.dao.domain.Page;
-import by.tut.ssmt.dao.domain.Product;
-import by.tut.ssmt.dao.domain.User;
 import by.tut.ssmt.service.exception.NullOrEmptyException;
-
-import java.util.List;
 
 import static java.util.Objects.isNull;
 
 public class ServiceValidator {
 
-    public void isNotNull(final String str) {
-        if (isNull(str)) {
-            throw new NullPointerException("The incoming string is null");
-//            throw new ControllerException ("The incoming string is null");
-        }
-    }
+//    public void isNotNull(final String str) {
+//        if (isNull(str)) {
+//            throw new NullPointerException("The incoming string is null");
+////            throw new ControllerException ("The incoming string is null");
+//        }
+//    }
 
 public void isNotZero(final int i) {
         if(i == 0) {
@@ -25,35 +19,45 @@ public void isNotZero(final int i) {
         }
 }
 
-    public void isNotNull(final List list) {
-        if (isNull(list)) {
-            throw new NullPointerException("The incoming list is null");
+//    public void isNotNull(final List list) {
+//        if (isNull(list)) {
+//            throw new NullPointerException("The incoming list is null");
+//        }
+//    }
+
+    public <T> void isNotNull(final T t) throws NullPointerException {
+//    public <T> void isNotNull(final T t) throws ServiceException {
+//        if (t == "") {
+        if (isNull(t)) {
+//            throw (new NullOrEmptyException("The incoming " + t.getClass().getName() + " list is null"));
+//            throw new ServiceException("The incoming  data is null");
+            throw new NullPointerException("The incoming  data is null");
         }
     }
 
-    public void isNotNull(final MenuItem menuItem) {
-        if (isNull(menuItem)) {
-            throw new NullPointerException("The incoming menuitem is null");
-        }
-    }
+//    public void isNotNull(final MenuItem menuItem) {
+//        if (isNull(menuItem)) {
+//            throw new NullPointerException("The incoming menuitem is null");
+//        }
+//    }
 
-    public void isNotNull(final Page page) {
-        if (isNull(page)) {
-            throw new NullPointerException("The incoming page is null");
-        }
-    }
+//    public void isNotNull(final Page page) {
+//        if (isNull(page)) {
+//            throw new NullPointerException("The incoming page is null");
+//        }
+//    }
 
-    public void isNotNull(final Product product) {
-        if (isNull(product)) {
-            throw new NullPointerException("The incoming product is null");
-        }
-    }
+//    public void isNotNull(final Product product) {
+//        if (isNull(product)) {
+//            throw new NullPointerException("The incoming product is null");
+//        }
+//    }
 
-    public void isNotNull(final User user) {
-        if (isNull(user)) {
-            throw new NullPointerException("The incoming user is null");
-        }
-    }
+//    public void isNotNull(final User user) {
+//        if (isNull(user)) {
+//            throw new NullPointerException("The incoming user is null");
+//        }
+//    }
 
 
     public void isNotNullOrEmpty(String...names) throws NullOrEmptyException {

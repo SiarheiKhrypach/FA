@@ -19,6 +19,10 @@ import static java.util.Objects.nonNull;
         super(e);
     }
 
+    public ControllerException(String message) {
+        super(message);
+    }
+
     public ControllerException(String message, Exception e) {
         super(message, e);
     }

@@ -59,8 +59,8 @@ public class MenuCommand extends FormsAccessCommand {
                 request.getSession().setAttribute(MESSAGE, "You are in the menu now");
             }
             super.execute(request, response);
-        } catch (ServiceException | NullPointerException | NullOrEmptyException e) {
-            throw new ControllerException();
+        } catch (ServiceException | NullOrEmptyException | NullPointerException e) {
+            throw new ControllerException(e.getMessage());
         }
     }
 

@@ -24,7 +24,7 @@ public class ProductServiceImpl implements ProductService {
         try {
             return productDao.selectDao();
         } catch (DaoException e) {
-            throw new ServiceException(e);
+            throw new ServiceException(e.getMessage());
         }
     }
 
@@ -34,7 +34,7 @@ public class ProductServiceImpl implements ProductService {
             serviceValidator.isNotNull(productPagedRequest);
             return productDao.findPageDao(productPagedRequest);
         } catch (DaoException e) {
-            throw new ServiceException(e);
+            throw new ServiceException(e.getMessage());
         }
     }
 
@@ -45,7 +45,7 @@ public class ProductServiceImpl implements ProductService {
             serviceValidator.isNotZero(productId);
             return productDao.selectOneDao(productId);
         } catch (DaoException e) {
-            throw new ServiceException(e);
+            throw new ServiceException(e.getMessage());
         }
     }
 
@@ -55,7 +55,7 @@ public class ProductServiceImpl implements ProductService {
             serviceValidator.isNotNull(product);
             return productDao.insertDao(product);
         } catch (DaoException e) {
-            throw new ServiceException(e);
+            throw new ServiceException(e.getMessage());
         }
     }
 
@@ -65,7 +65,7 @@ public class ProductServiceImpl implements ProductService {
             serviceValidator.isNotNull(product);
             return productDao.updateDao(product);
         } catch (DaoException e) {
-            throw new ServiceException(e);
+            throw new ServiceException(e.getMessage());
         }
     }
 
@@ -75,7 +75,7 @@ public class ProductServiceImpl implements ProductService {
             serviceValidator.isNotNull(productName);
             return productDao.deleteDao(productName);
         } catch (DaoException e) {
-            throw new ServiceException(e);
+            throw new ServiceException(e.getMessage());
         }
     }
 }

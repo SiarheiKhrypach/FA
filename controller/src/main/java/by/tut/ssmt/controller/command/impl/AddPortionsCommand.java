@@ -39,7 +39,7 @@ public class AddPortionsCommand extends AbstractCommand implements Command {
             request.setAttribute(MESSAGE, "Please enter valid data");
             request.getRequestDispatcher("index.jsp").forward(request, response);
         } catch (ServiceException e) {
-            throw new ControllerException(e);
+            throw new ControllerException(e.getMessage());
         }
     }
 }

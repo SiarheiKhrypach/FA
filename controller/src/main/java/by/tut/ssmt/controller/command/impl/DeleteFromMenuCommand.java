@@ -44,11 +44,11 @@ public class DeleteFromMenuCommand extends AbstractCommand implements Command {
             String currentPageString = (String) request.getSession().getAttribute(CURRENT_PAGE);
             response.sendRedirect("/menu?command=menu&"+ CURRENT_PAGE + "=" + currentPageString + "&" + MESSAGE+ "=" + result);
         } catch (ServiceException | NullOrEmptyException e) {
-            throw new ControllerException();
+            throw new ControllerException(e.getMessage());
         }
     }
 
-    private void setProportion(HttpServletRequest request, String currentUser) throws NullPointerException, ServiceException {
+    private void setProportion(HttpServletRequest request, String currentUser) throws NullPointerException, ServiceException, NullOrEmptyException {
         products = menuService.selectAllFromMenuService(currentUser);
         final String formattedProportion = dataProcessorList.calculate(products);
         serviceValidator.isNotNull(formattedProportion);
