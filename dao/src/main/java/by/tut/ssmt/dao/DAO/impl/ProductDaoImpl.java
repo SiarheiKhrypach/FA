@@ -23,9 +23,11 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
     private static final String FIND_PAGE = "SELECT * FROM products LIMIT ? OFFSET ?";
     private static final String SELECT_FROM_TABLE_WHERE = "SELECT * FROM products WHERE product_id=?";
     private static final String INSERT_INTO_TABLE = "INSERT INTO products (product_name, omega_three, omega_six, portions) Values (?, ?, ?, ?)";
-    private static final String UPDATE_TABLE = "UPDATE products SET product_name = ?, omega_three = ?, omega_six = ?, portions = ? WHERE product_id = ?";
-    private static final String DELETE_FROM_TABLE = "DELETE products, menu FROM products INNER JOIN menu ON menu.product_id = products.product_id WHERE product_name = ?";
+    private static final String UPDATE_TABLE = "UPDATE products SET product_name = ?, omega_three = ?, omega_six = ? WHERE product_id = ?";
+    private static final String DELETE_FROM_TABLE = "DELETE FROM products WHERE product_name = ?";
+    private static final String DELETE_FROM_TABLES = "DELETE products, menu FROM products INNER JOIN menu ON menu.product_id = products.product_id WHERE product_name = ?";
     private static final String FIND_PRODUCT_BY_NAME = "SELECT * FROM products WHERE product_name=?";
+    private static final String FIND_PRODUCT_BY_NAME_IN_MENU = "SELECT * FROM menu INNER JOIN products ON products.product_id = menu.product_id WHERE product_name=?";
     private static final String FIND_PRODUCT_BY_NAME_WITH_DIFFERENT_ID = "SELECT * FROM products WHERE product_name=? AND NOT product_id=?";
 
     private static final Logger LOGGER = Logger.getLogger(ProductDaoImpl.class.getName());
@@ -180,7 +182,6 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
                 product.getProductName(),
                 product.getOmegaThree(),
                 product.getOmegaSix(),
-                product.getPortions(),
                 product.getProductId()
         );
         Connection connection = null;
@@ -216,16 +217,27 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
 
     @Override
     public boolean deleteDao(String productName) throws DaoException {
-//    public void deleteDao(String productName) throws DaoException {
         List<Object> parameters = Arrays.asList(
           productName
         );
         Connection connection = null;
-        PreparedStatement preparedStatement = null;
+        PreparedStatement preparedStatement1 = null;
+        PreparedStatement preparedStatement2 = null;
+        ResultSet resultSet = null;
         try {
+
+            int result = 0;
             connection = getConnection(false);
-            preparedStatement = getPreparedStatement(DELETE_FROM_TABLE, connection, parameters);
-            int result = preparedStatement.executeUpdate();
+            preparedStatement1 = getPreparedStatement(FIND_PRODUCT_BY_NAME_IN_MENU, connection, parameters);
+            resultSet = preparedStatement1.executeQuery();
+            Product productMatch = getProduct(resultSet);
+
+            if (productMatch.getProductName() == null) {
+                preparedStatement2 = getPreparedStatement(DELETE_FROM_TABLE, connection, parameters);
+            } else {
+                preparedStatement2 = getPreparedStatement(DELETE_FROM_TABLES, connection, parameters);
+            }
+            result = preparedStatement2.executeUpdate();
             connection.commit();
             return (result != 0);
         } catch (SQLException e) {
@@ -236,7 +248,8 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
             }
             throw new DaoException("Error in ProductDao", e);
         } finally {
-            close(null, preparedStatement);
+            close(resultSet);
+            close(preparedStatement1, preparedStatement2);
             retrieve(connection);
         }
     }
