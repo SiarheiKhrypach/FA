@@ -30,7 +30,7 @@ public class DeleteUserCommand extends AbstractCommand implements Command {
             boolean result = userService.deleteService(userName);
             checkOperationForSuccess(request, result);
             String currentPageString = (String) request.getSession().getAttribute(CURRENT_PAGE);
-            response.sendRedirect("/userList?command=userList&" + CURRENT_PAGE + "=" + currentPageString + "&" + MESSAGE + "=" + result);
+            response.sendRedirect("/userList?command=user_list&" + CURRENT_PAGE + "=" + currentPageString + "&" + MESSAGE + "=" + result);
         } catch (ServiceException | NullOrEmptyException e) {
             throw new ControllerException(e.getMessage());
         }
