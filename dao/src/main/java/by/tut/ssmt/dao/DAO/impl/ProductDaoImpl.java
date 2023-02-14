@@ -20,7 +20,10 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
 
     private static final String SELECT_FROM_TABLE = "SELECT * FROM products";
     private static final String COUNT_ALL = "SELECT COUNT(*) FROM products";
-    private static final String FIND_PAGE = "SELECT * FROM products LIMIT ? OFFSET ?";
+    private static final String FIND_PAGE = "SELECT * FROM products p ORDER BY p.%s LIMIT ? OFFSET ?";
+    //    private static final String FIND_PAGE = "SELECT * FROM products ORDER BY ? LIMIT ? OFFSET ?";
+//    private static final String FIND_PAGE = "SELECT * FROM products ORDER BY product_name ASC LIMIT ? OFFSET ?";
+//    private static final String FIND_PAGE = "SELECT * FROM products LIMIT ? OFFSET ?";
     private static final String SELECT_FROM_TABLE_WHERE = "SELECT * FROM products WHERE product_id=?";
     private static final String INSERT_INTO_TABLE = "INSERT INTO products (product_name, omega_three, omega_six, portions) Values (?, ?, ?, ?)";
     private static final String UPDATE_TABLE = "UPDATE products SET product_name = ?, omega_three = ?, omega_six = ? WHERE product_id = ?";
@@ -59,10 +62,12 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
     }
 
     public Page<Product> findPageDao(Page<Product> productPagedRequest) throws DaoException {
+//        final String byOrder = productPagedRequest.getOrderBy();
         final int limit = productPagedRequest.getLimit();
         final int offset = (productPagedRequest.getPageNumber() - 1) * productPagedRequest.getLimit();
         List<Object> parameters1 = Collections.emptyList();
         List<Object> parameters2 = Arrays.asList(
+//                byOrder,
                 limit,
                 offset
         );
@@ -74,7 +79,8 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
         try {
             connection = getConnection(true);
             preparedStatement1 = getPreparedStatement(COUNT_ALL, connection, parameters1);
-            preparedStatement2 = getPreparedStatement(FIND_PAGE, connection, parameters2);
+            final String findPageOrderedQuery = String.format(FIND_PAGE, productPagedRequest.getOrderBy());
+            preparedStatement2 = getPreparedStatement(findPageOrderedQuery, connection, parameters2);
             resultSet1 = preparedStatement1.executeQuery();
             resultSet2 = preparedStatement2.executeQuery();
             return getProductPaged(productPagedRequest, resultSet1, resultSet2);
@@ -218,7 +224,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
     @Override
     public boolean deleteDao(String productName) throws DaoException {
         List<Object> parameters = Arrays.asList(
-          productName
+                productName
         );
         Connection connection = null;
         PreparedStatement preparedStatement1 = null;

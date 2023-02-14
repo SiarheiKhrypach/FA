@@ -8,15 +8,17 @@ private int pageNumber;
 private long totalElements;
 private int limit;
 private String currentUser;
+private String orderBy;
 private List<T> elements = new ArrayList<>();
 
     public Page() {}
 
-    public Page(int pageNumber, long totalElements, int limit, String currentUser, List<T> elements) {
+    public Page(int pageNumber, long totalElements, int limit, String currentUser, String orderBy, List<T> elements) {
         this.pageNumber = pageNumber;
         this.totalElements = totalElements;
         this.limit = limit;
         this.currentUser = currentUser;
+        this.orderBy = orderBy;
         this.elements = elements;
     }
 
@@ -52,6 +54,14 @@ private List<T> elements = new ArrayList<>();
         this.currentUser = currentUser;
     }
 
+    public String getOrderBy() {
+        return orderBy;
+    }
+
+    public void setOrderBy(String orderBy) {
+        this.orderBy = orderBy;
+    }
+
     public List<T> getElements() {
         return elements;
     }
@@ -70,8 +80,9 @@ private List<T> elements = new ArrayList<>();
         if (pageNumber != page.pageNumber) return false;
         if (totalElements != page.totalElements) return false;
         if (limit != page.limit) return false;
-        if (!currentUser.equals(page.currentUser)) return false;
-        return elements.equals(page.elements);
+        if (currentUser != null ? !currentUser.equals(page.currentUser) : page.currentUser != null) return false;
+        if (orderBy != null ? !orderBy.equals(page.orderBy) : page.orderBy != null) return false;
+        return elements != null ? elements.equals(page.elements) : page.elements == null;
     }
 
     @Override
@@ -79,8 +90,9 @@ private List<T> elements = new ArrayList<>();
         int result = pageNumber;
         result = 31 * result + (int) (totalElements ^ (totalElements >>> 32));
         result = 31 * result + limit;
-        result = 31 * result + currentUser.hashCode();
-        result = 31 * result + elements.hashCode();
+        result = 31 * result + (currentUser != null ? currentUser.hashCode() : 0);
+        result = 31 * result + (orderBy != null ? orderBy.hashCode() : 0);
+        result = 31 * result + (elements != null ? elements.hashCode() : 0);
         return result;
     }
 
@@ -91,10 +103,10 @@ private List<T> elements = new ArrayList<>();
                 ", totalElements=" + totalElements +
                 ", limit=" + limit +
                 ", currentUser='" + currentUser + '\'' +
+                ", orderBy='" + orderBy + '\'' +
                 ", elements=" + elements +
                 '}';
     }
-
 }
 
 

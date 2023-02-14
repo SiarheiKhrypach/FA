@@ -11,7 +11,8 @@
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <meta http-equiv="content-type" content="text/html; charset=utf-8">
 <html>
-<link rel="stylesheet" href="w3.css"/>
+<%--<link rel="stylesheet" href="w3.css"/>--%>
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <style type="text/css">
     div form {
         display: inline-block
@@ -31,6 +32,9 @@
 <fmt:message bundle="${loc}" key="local.button.edit" var="edit_btn"/>
 <fmt:message bundle="${loc}" key="local.button.add_to_the_menu_btn" var="add_to_the_menu_btn"/>
 <fmt:message bundle="${loc}" key="local.button.menu" var="menu_btn"/>
+<fmt:message bundle="${loc}" key="local.button.sort" var="sort_btn"/>
+<fmt:message bundle="${loc}" key="local.button.sort_by_name_asc" var="sort_by_name_asc_btn"/>
+<fmt:message bundle="${loc}" key="local.button.sort_by_name_des" var="sort_by_name_des_btn"/>
 <fmt:message bundle="${loc}" key="local.button.user_list" var="user_list_btn"/>
 
 <fmt:message bundle="${loc}" key="local.text.welcome" var="welcome"/>
@@ -126,6 +130,7 @@
     </div>
 
     <c:if test="${sessionScope.role == 'admin'}">
+   <div>
         <p>
             <c:out value="${form}"/>
         </p>
@@ -159,9 +164,43 @@
             <input type="submit" name="Add" value="${add_btn}">
 
         </form>
-
+   </div>
     </c:if>
 
+    <div class="w3-dropdown-hover">
+    <button class="w3-button w3-light-grey">
+        <c:out value="${sort_btn}"></c:out>
+    </button>
+        <div class="w3-dropdown-content w3-bar-block w3-border">
+
+            <form id="sortByNameAsc" method="get" action="/main">
+                <input type="hidden" name="command" value="default"/>
+                <input type="hidden" name="orderBy" value="product_name ASC"/>
+                <button form="sortByNameAsc" type="submit">
+                    <c:out value="${sort_by_name_asc_btn}"></c:out>
+                </button>
+            </form>
+
+            <form id="sortByNameDsc" method="get" action="/main">
+                <input type="hidden" name="command" value="default"/>
+                <input type="hidden" name="orderBy" value="product_name DESC"/>
+                <button form="sortByNameDsc" type="submit">
+                    <c:out value="${sort_by_name_des_btn}"></c:out>
+                </button>
+            </form>
+
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div>
     <table class="w3-table w3-striped">
         <thead>
         <tr>
@@ -231,7 +270,7 @@
         </c:forEach>
         </tbody>
     </table>
-
+    </div>
     <%--Block below prevents the following block from taking action data of previous one - bug persisting--%>
     <%--during product page browsing after logination    --%>
     <form>

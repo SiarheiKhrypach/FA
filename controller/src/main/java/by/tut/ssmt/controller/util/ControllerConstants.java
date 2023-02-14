@@ -13,6 +13,7 @@ public class ControllerConstants {
             NAME = "name",
             OMEGA_THREE = "omegaThree",
             OMEGA_SIX = "omegaSix",
+            ORDER_BY = "orderBy",
             PAGE_LIMIT = "pageLimit",
             PASSWORD = "pass",
             PORTIONS = "portions",

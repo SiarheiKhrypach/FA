@@ -37,11 +37,16 @@ public class DefaultCommand implements Command {
             if (isNullOrEmpty(currentPageLimit)) {
                 currentPageLimit = "5";
             }
+            String orderBy = request.getParameter(ORDER_BY);
+            if (isNullOrEmpty(orderBy)) {
+                orderBy = "product_name ASC";
+            }
             int currentPage = Integer.parseInt(currentPageString);
             int pageLimit = Integer.parseInt(currentPageLimit);
             final Page<Product> pagedRequest = new Page<>();
             pagedRequest.setPageNumber(currentPage);
             pagedRequest.setLimit(pageLimit);
+            pagedRequest.setOrderBy(orderBy);
             Page<Product> pagedProduct = productService.findPageService(pagedRequest);
 
             ServletContext servletContext = request.getServletContext();
