@@ -175,7 +175,7 @@
 
             <form id="sortByNameAsc" method="get" action="/main">
                 <input type="hidden" name="command" value="default"/>
-                <input type="hidden" name="orderBy" value="product_name ASC"/>
+                <input type="hidden" name="orderBy" value="products.product_name ASC"/>
                 <button form="sortByNameAsc" type="submit">
                     <c:out value="${sort_by_name_asc_btn}"></c:out>
                 </button>
@@ -183,7 +183,7 @@
 
             <form id="sortByNameDsc" method="get" action="/main">
                 <input type="hidden" name="command" value="default"/>
-                <input type="hidden" name="orderBy" value="product_name DESC"/>
+                <input type="hidden" name="orderBy" value="products.product_name DESC"/>
                 <button form="sortByNameDsc" type="submit">
                     <c:out value="${sort_by_name_des_btn}"></c:out>
                 </button>

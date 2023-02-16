@@ -20,10 +20,8 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
 
     private static final String SELECT_FROM_TABLE = "SELECT * FROM products";
     private static final String COUNT_ALL = "SELECT COUNT(*) FROM products";
-    private static final String FIND_PAGE = "SELECT * FROM products p ORDER BY p.%s LIMIT ? OFFSET ?";
-    //    private static final String FIND_PAGE = "SELECT * FROM products ORDER BY ? LIMIT ? OFFSET ?";
-//    private static final String FIND_PAGE = "SELECT * FROM products ORDER BY product_name ASC LIMIT ? OFFSET ?";
-//    private static final String FIND_PAGE = "SELECT * FROM products LIMIT ? OFFSET ?";
+    private static final String FIND_PAGE = "SELECT * FROM products ORDER BY %s LIMIT ? OFFSET ?";
+//    private static final String FIND_PAGE = "SELECT * FROM products p ORDER BY p.%s LIMIT ? OFFSET ?";
     private static final String SELECT_FROM_TABLE_WHERE = "SELECT * FROM products WHERE product_id=?";
     private static final String INSERT_INTO_TABLE = "INSERT INTO products (product_name, omega_three, omega_six, portions) Values (?, ?, ?, ?)";
     private static final String UPDATE_TABLE = "UPDATE products SET product_name = ?, omega_three = ?, omega_six = ? WHERE product_id = ?";
