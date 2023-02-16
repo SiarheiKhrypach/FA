@@ -21,9 +21,15 @@
 <fmt:setLocale value="${sessionScope.locale}"/>
 <fmt:setBundle basename="localization.local" var="loc"/>
 
+<fmt:message bundle="${loc}" key="local.button.back" var="back"/>
 <fmt:message bundle="${loc}" key="local.button.delete" var="delete_btn"/>
 <fmt:message bundle="${loc}" key="local.button.save" var="save_btn"/>
-<fmt:message bundle="${loc}" key="local.button.back" var="back"/>
+<fmt:message bundle="${loc}" key="local.button.sort" var="sort_btn"/>
+<fmt:message bundle="${loc}" key="local.button.sort_by_name_asc" var="sort_by_name_asc_btn"/>
+<fmt:message bundle="${loc}" key="local.button.sort_by_name_des" var="sort_by_name_des_btn"/>
+<fmt:message bundle="${loc}" key="local.button.sort_by_portions_asc" var="sort_by_portions_asc"/>
+<fmt:message bundle="${loc}" key="local.button.sort_by_portions_des" var="sort_by_portions_des"/>
+
 
 <fmt:message bundle="${loc}" key="local.text.menu" var="menu"/>
 <fmt:message bundle="${loc}" key="local.text.proportion" var="proportion_line"/>
@@ -42,7 +48,6 @@
 <fmt:message bundle="${loc}" key="local.message.you_are_in_the_menu" var="you_are_in_the_menu"/>
 
 
-
 <head>
     <title>
         <c:out value="${menu}"/>
@@ -52,6 +57,48 @@
 <body>
 
 <div class="content">
+
+    <div class="w3-dropdown-hover">
+        <button class="w3 button w3-light-grey">
+            <c:out value="${sort_btn}"></c:out>
+        </button>
+        <div class="w3-dropdown-content w3-bar-block w3-border">
+
+            <form id="sortByNameAsc" method="get" action="/menu">
+                <input type="hidden" name="command" value="menu">
+                <input type="hidden" name="orderBy" value="products.product_name ASC">
+                <button form="sortByNameAsc" type="submit">
+                    <c:out value="${sort_by_name_asc_btn}"></c:out>
+                </button>
+            </form>
+
+            <form id="sortByNameDesc" method="get" action="/menu">
+                <input type="hidden" name="command" value="menu">
+                <input type="hidden" name="orderBy" value="products.product_name DESC">
+                <button form="sortByNameDesc" type="submit">
+                    <c:out value="${sort_by_name_des_btn}"></c:out>
+                </button>
+            </form>
+
+            <form id="sortByPortionsAsc" method="get" action="/menu">
+                <input type="hidden" name="command" value="menu">
+                <input type="hidden" name="orderBy" value="menu.portions ASC">
+                <button form="sortByPortionsAsc" type="submit">
+                    <c:out value="${sort_by_portions_asc}"></c:out>
+                </button>
+            </form>
+
+            <form id="sortByPortionsDesc" method="get" action="/menu">
+                <input type="hidden" name="command" value="menu">
+                <input type="hidden" name="orderBy" value="menu.portions DESC">
+                <button form="sortByPortionsDesc" type="submit">
+                    <c:out value="${sort_by_portions_des}"></c:out>
+                </button>
+            </form>
+
+        </div>
+    </div>
+
 
     <table class="w3-table w3-striped">
         <thread>
@@ -156,7 +203,7 @@
     </c:if>
 
     <c:if test="${sessionScope.message == 'You are in the menu now'}">
-        <p><c:out value="${you_are_in_the_menu}"/> </p>
+        <p><c:out value="${you_are_in_the_menu}"/></p>
     </c:if>
 
 

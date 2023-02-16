@@ -188,7 +188,6 @@
                     <c:out value="${sort_by_name_des_btn}"></c:out>
                 </button>
             </form>
-
         </div>
     </div>
 

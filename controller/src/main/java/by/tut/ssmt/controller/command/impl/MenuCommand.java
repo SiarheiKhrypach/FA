@@ -42,6 +42,10 @@ public class MenuCommand extends FormsAccessCommand {
             if (isNullOrEmpty(currentPageLimit)) {
                 currentPageLimit = "5";
             }
+            String orderBy = request.getParameter(ORDER_BY);
+            if (isNullOrEmpty(orderBy)){
+                orderBy = "products.product_name ASC";
+            }
             String currentUser = (String) request.getSession().getAttribute(USER_NAME);
             controllerValidator.isNotNullOrEmpty(currentUser);
             int currentPage = Integer.parseInt(currentPageString);
@@ -50,6 +54,7 @@ public class MenuCommand extends FormsAccessCommand {
             pagedRequest.setPageNumber(currentPage);
             pagedRequest.setLimit(pageLimit);
             pagedRequest.setCurrentUser(currentUser);
+            pagedRequest.setOrderBy(orderBy);
             Page<Product> pagedMenuItem = menuService.findPageService(pagedRequest);
             ServletContext servletContext = request.getServletContext();
             servletContext.setAttribute(MENU_ITEMS_PAGED_ATTRIBUTE, pagedMenuItem);
