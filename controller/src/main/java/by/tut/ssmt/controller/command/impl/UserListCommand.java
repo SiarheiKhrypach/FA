@@ -38,11 +38,16 @@ public class UserListCommand extends FormsAccessCommand{
             if (isNullOrEmpty(currentPageLimit)) {
                 currentPageLimit = "5";
             }
+            String orderBy = request.getParameter(ORDER_BY);
+            if (isNullOrEmpty(orderBy)) {
+                orderBy = "users.user_name ASC";
+            }
             int currentPage = Integer.parseInt(currentPageString);
             int pageLimit = Integer.parseInt(currentPageLimit);
             final Page<User> pagedRequest = new Page<>();
             pagedRequest.setPageNumber(currentPage);
             pagedRequest.setLimit(pageLimit);
+            pagedRequest.setOrderBy(orderBy);
             Page<String> pagedUserList = userService.findPageService(pagedRequest);
             ServletContext servletContext = request.getServletContext();
             servletContext.setAttribute(USERS_PAGED_ATTRIBUTE, pagedUserList);

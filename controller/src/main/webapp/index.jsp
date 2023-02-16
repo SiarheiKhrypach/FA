@@ -130,47 +130,49 @@
     </div>
 
     <c:if test="${sessionScope.role == 'admin'}">
-   <div>
-        <p>
-            <c:out value="${form}"/>
-        </p>
+        <div>
+            <p>
+                <c:out value="${form}"/>
+            </p>
 
-        <form class="w3-container w3-light-grey" method="post" action="/add">
+            <form class="w3-container w3-light-grey" method="post" action="/add">
 
-            <label>
-                <c:out value="${product_name}"/>
-            </label>
-            <input class="w3-input w3-border-0" type="text" class="register-input" name="productName" required>
+                <label>
+                    <c:out value="${product_name}"/>
+                </label>
+                <input class="w3-input w3-border-0" type="text" class="register-input" name="productName" required>
 
-            <label>
-                <c:out value="${omega3}"/>
-            </label>
-            <input class="w3-input w3-border-0" type="number" class="register-input" name="omegaThree" min="0"
-                   step="0.1"
-                   required>
+                <label>
+                    <c:out value="${omega3}"/>
+                </label>
+                <input class="w3-input w3-border-0" type="number" class="register-input" name="omegaThree" min="0"
+                       step="0.1"
+                       required>
 
-            <label>
-                <c:out value="${omega6}"/>
-            </label>
-            <input class="w3-input w3-border-0" type="number" class="register-input" name="omegaSix" min="0" step="0.1"
-                   required>
+                <label>
+                    <c:out value="${omega6}"/>
+                </label>
+                <input class="w3-input w3-border-0" type="number" class="register-input" name="omegaSix" min="0"
+                       step="0.1"
+                       required>
 
-            <label>
-                <c:out value="${portions}"/>
-            </label>
-            <input class="w3-input w3-border-0" type="number" class="register-input" name="portions" min="1" required>
+                <label>
+                    <c:out value="${portions}"/>
+                </label>
+                <input class="w3-input w3-border-0" type="number" class="register-input" name="portions" min="1"
+                       required>
 
-            <input type="hidden" name="command" value="add"/>
-            <input type="submit" name="Add" value="${add_btn}">
+                <input type="hidden" name="command" value="add"/>
+                <input type="submit" name="Add" value="${add_btn}">
 
-        </form>
-   </div>
+            </form>
+        </div>
     </c:if>
 
     <div class="w3-dropdown-hover">
-    <button class="w3-button w3-light-grey">
-        <c:out value="${sort_btn}"></c:out>
-    </button>
+        <button class="w3-button w3-light-grey">
+            <c:out value="${sort_btn}"></c:out>
+        </button>
         <div class="w3-dropdown-content w3-bar-block w3-border">
 
             <form id="sortByNameAsc" method="get" action="/main">
@@ -200,75 +202,75 @@
     <br>
 
     <div>
-    <table class="w3-table w3-striped">
-        <thead>
-        <tr>
-            <th>
-                <c:out value="${product_name}"/>
-            </th>
-            <th>
-                <c:out value="${omega3}"/>
-            </th>
-            <th>
-                <c:out value="${omega6}"/>
-            </th>
-            <c:if test="${sessionScope.role == 'admin'}">
-                <th>
-                    <c:out value="${delete}"/>
-                </th>
-                <th>
-                    <c:out value="${edit}"/>
-                </th>
-            </c:if>
-            <c:if test="${sessionScope.role != null}">
-                <th>
-                    <c:out value="${portions}"/>
-                </th>
-            </c:if>
-        </tr>
-        </thead>
-        <tbody>
-        <c:forEach var="product" items="${productsPagedAttribute.elements}">
-
+        <table class="w3-table w3-striped">
+            <thead>
             <tr>
-                <td><c:out value="${product.productName}"/></td>
-                <td><c:out value="${product.omegaThree}"/></td>
-                <td><c:out value="${product.omegaSix}"/></td>
+                <th>
+                    <c:out value="${product_name}"/>
+                </th>
+                <th>
+                    <c:out value="${omega3}"/>
+                </th>
+                <th>
+                    <c:out value="${omega6}"/>
+                </th>
                 <c:if test="${sessionScope.role == 'admin'}">
-                    <td>
-                        <form method="get" action="/delete">
-                            <input type="hidden" name="productName" value="${product.productName}"/>
-                            <input type="hidden" name="command" value="delete"/>
-                            <input type="submit" name="Delete" value="${delete_btn}"/>
-                        </form>
-                    </td>
-
-                    <td>
-                        <form method="get" action="/update">
-                            <input type="hidden" name="productId" value="${product.productId}"/>
-                            <input type="hidden" name="command" value="edit_form"/>
-                            <input type="submit" name="Edit" value="${edit_btn}"/>
-                        </form>
-                    </td>
+                    <th>
+                        <c:out value="${delete}"/>
+                    </th>
+                    <th>
+                        <c:out value="${edit}"/>
+                    </th>
                 </c:if>
-
                 <c:if test="${sessionScope.role != null}">
-
-                    <td>
-                        <form class="w3-container w3-light-grey" method="post" action="/addPortions">
-                            <input class="w3-input w3-border-0" type="number" class="register-input"
-                                   name="portions" value="0" min="0" step="1" required>
-                            <input type="hidden" name="productId" value="${product.productId}"/>
-                            <input type="hidden" name="command" value="add_portions"/>
-                            <input type="submit" name="AddPortions" value="${add_to_the_menu_btn}">
-                        </form>
-
-                    </td>
+                    <th>
+                        <c:out value="${portions}"/>
+                    </th>
                 </c:if>
             </tr>
-        </c:forEach>
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+            <c:forEach var="product" items="${productsPagedAttribute.elements}">
+
+                <tr>
+                    <td><c:out value="${product.productName}"/></td>
+                    <td><c:out value="${product.omegaThree}"/></td>
+                    <td><c:out value="${product.omegaSix}"/></td>
+                    <c:if test="${sessionScope.role == 'admin'}">
+                        <td>
+                            <form method="get" action="/delete">
+                                <input type="hidden" name="productName" value="${product.productName}"/>
+                                <input type="hidden" name="command" value="delete"/>
+                                <input type="submit" name="Delete" value="${delete_btn}"/>
+                            </form>
+                        </td>
+
+                        <td>
+                            <form method="get" action="/update">
+                                <input type="hidden" name="productId" value="${product.productId}"/>
+                                <input type="hidden" name="command" value="edit_form"/>
+                                <input type="submit" name="Edit" value="${edit_btn}"/>
+                            </form>
+                        </td>
+                    </c:if>
+
+                    <c:if test="${sessionScope.role != null}">
+
+                        <td>
+                            <form class="w3-container w3-light-grey" method="post" action="/addPortions">
+                                <input class="w3-input w3-border-0" type="number" class="register-input"
+                                       name="portions" value="0" min="0" step="1" required>
+                                <input type="hidden" name="productId" value="${product.productId}"/>
+                                <input type="hidden" name="command" value="add_portions"/>
+                                <input type="submit" name="AddPortions" value="${add_to_the_menu_btn}">
+                            </form>
+
+                        </td>
+                    </c:if>
+                </tr>
+            </c:forEach>
+            </tbody>
+        </table>
     </div>
     <%--Block below prevents the following block from taking action data of previous one - bug persisting--%>
     <%--during product page browsing after logination    --%>

@@ -21,7 +21,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
     private static final String SELECT_FROM_TABLE = "SELECT * FROM users";
     private static final String COUNT_ALL_USERS = "SELECT COUNT(*) FROM users";
-    public static final String FIND_USER_PAGE = "SELECT user_name FROM users LIMIT ? OFFSET ?";
+    public static final String FIND_USER_PAGE = "SELECT user_name FROM users ORDER BY %s LIMIT ? OFFSET ?";
     private static final String FIND_USER_BY_LOGIN_AND_PASSWORD = "SELECT * FROM users WHERE user_name = BINARY ? AND password = BINARY ?";
     private static final String FIND_USER_BY_LOGIN = "SELECT * FROM users WHERE user_name = ?";
     private static final String SELECT_FROM_TABLE_WHERE = "SELECT * FROM users WHERE user_id = ?";
@@ -136,7 +136,8 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         try {
             connection = getConnection(true);
             preparedStatement1 = getPreparedStatement(COUNT_ALL_USERS, connection, parameters1);
-            preparedStatement2 = getPreparedStatement(FIND_USER_PAGE, connection, parameters2);
+            final String findPageOrderedQuery = String.format(FIND_USER_PAGE, usersPagedRequest.getOrderBy());
+            preparedStatement2 = getPreparedStatement(findPageOrderedQuery, connection, parameters2);
             resultSet1 = preparedStatement1.executeQuery();
             resultSet2 = preparedStatement2.executeQuery();
             return getUserPaged(usersPagedRequest, resultSet1, resultSet2);
