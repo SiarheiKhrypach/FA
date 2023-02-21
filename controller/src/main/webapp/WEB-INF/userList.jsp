@@ -23,6 +23,7 @@
 
 <fmt:message bundle="${loc}" key="local.button.delete" var="delete_btn"/>
 <fmt:message bundle="${loc}" key="local.button.back" var="back"/>
+<fmt:message bundle="${loc}" key="local.button.search" var="search_btn"/>
 <fmt:message bundle="${loc}" key="local.button.sort" var="sort_btn"/>
 <fmt:message bundle="${loc}" key="local.button.sort_by_name_asc" var="sort_by_name_asc_btn"/>
 <fmt:message bundle="${loc}" key="local.button.sort_by_name_des" var="sort_by_name_des_btn"/>
@@ -45,31 +46,39 @@
 
 <div class="content">
 
-<div class="w3-dropdown-hover">
-    <button class="w3 button w3-light-grey">
-        <c:out value="${sort_btn}"></c:out>
-    </button>
-    <div class="w3-dropdown-content w3-bar-block w3-border">
+    <div class="w3-dropdown-hover">
+        <button class="w3 button w3-light-grey">
+            <c:out value="${sort_btn}"></c:out>
+        </button>
+        <div class="w3-dropdown-content w3-bar-block w3-border">
 
-        <form id="sortByNameAsc" method="get" action="/userList">
-            <input type="hidden" name="command" value="user_List">
-            <input type="hidden" name="orderBy" value="users.user_name ASC">
-            <button form="sortByNameAsc" type="submit">
-                <c:out value="${sort_by_name_asc_btn}"></c:out>
-            </button>
-        </form>
+            <form id="sortByNameAsc" method="get" action="/userList">
+                <input type="hidden" name="command" value="user_List">
+                <input type="hidden" name="orderBy" value="users.user_name ASC">
+                <button form="sortByNameAsc" type="submit">
+                    <c:out value="${sort_by_name_asc_btn}"></c:out>
+                </button>
+            </form>
 
-        <form id="sortByNameDsc" method="get" action="/userList">
-            <input type="hidden" name="command" value="user_List">
-            <input type="hidden" name="orderBy" value="users.user_name DESC">\
-            <button form="sortByNameDsc" type="submit">
-                <c:out value="${sort_by_name_des_btn}"></c:out>
-            </button>
-        </form>
+            <form id="sortByNameDsc" method="get" action="/userList">
+                <input type="hidden" name="command" value="user_List">
+                <input type="hidden" name="orderBy" value="users.user_name DESC">\
+                <button form="sortByNameDsc" type="submit">
+                    <c:out value="${sort_by_name_des_btn}"></c:out>
+                </button>
+            </form>
+
+        </div>
 
     </div>
 
-</div>
+    <div>
+        <form class="w3-container w3-light-grey" method="post" action="/userList">
+            <input class="w3-input w3-border-0" type="text" class="register-input" name="filter">
+            <input type="hidden" name="command" value="user_list">
+            <input type="submit" name="Search" value="${search_btn}">
+        </form>
+    </div>
 
     <table class="w3-table w3-striped">
         <thread>

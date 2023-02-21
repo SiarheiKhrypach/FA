@@ -5,6 +5,7 @@ public class ControllerConstants {
             ADMIN = "admin",
             COMMAND = "command",
             CURRENT_PAGE = "currentPage",
+            FILTER = "filter",
             LOCALE = "locale",
             LOG4 = "log4",
             LOG_FILE_NAME = "logfilename",

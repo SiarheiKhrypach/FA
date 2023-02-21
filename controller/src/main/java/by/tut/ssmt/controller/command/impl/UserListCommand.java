@@ -42,12 +42,21 @@ public class UserListCommand extends FormsAccessCommand{
             if (isNullOrEmpty(orderBy)) {
                 orderBy = "users.user_name ASC";
             }
+            String filter = request.getParameter(FILTER);
+            if (isNullOrEmpty(filter)) {
+                filter = "'%'";
+            } else {
+                filter = "'%" + filter + "%'";
+            }
+
             int currentPage = Integer.parseInt(currentPageString);
             int pageLimit = Integer.parseInt(currentPageLimit);
             final Page<User> pagedRequest = new Page<>();
             pagedRequest.setPageNumber(currentPage);
             pagedRequest.setLimit(pageLimit);
             pagedRequest.setOrderBy(orderBy);
+            pagedRequest.setFilter(filter);
+
             Page<String> pagedUserList = userService.findPageService(pagedRequest);
             ServletContext servletContext = request.getServletContext();
             servletContext.setAttribute(USERS_PAGED_ATTRIBUTE, pagedUserList);

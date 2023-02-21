@@ -9,16 +9,18 @@ private long totalElements;
 private int limit;
 private String currentUser;
 private String orderBy;
+private String filter;
 private List<T> elements = new ArrayList<>();
 
     public Page() {}
 
-    public Page(int pageNumber, long totalElements, int limit, String currentUser, String orderBy, List<T> elements) {
+    public Page(int pageNumber, long totalElements, int limit, String currentUser, String orderBy, String filter, List<T> elements) {
         this.pageNumber = pageNumber;
         this.totalElements = totalElements;
         this.limit = limit;
         this.currentUser = currentUser;
         this.orderBy = orderBy;
+        this.filter = filter;
         this.elements = elements;
     }
 
@@ -62,6 +64,14 @@ private List<T> elements = new ArrayList<>();
         this.orderBy = orderBy;
     }
 
+    public String getFilter() {
+        return filter;
+    }
+
+    public void setFilter(String filter) {
+        this.filter = filter;
+    }
+
     public List<T> getElements() {
         return elements;
     }
@@ -82,6 +92,7 @@ private List<T> elements = new ArrayList<>();
         if (limit != page.limit) return false;
         if (currentUser != null ? !currentUser.equals(page.currentUser) : page.currentUser != null) return false;
         if (orderBy != null ? !orderBy.equals(page.orderBy) : page.orderBy != null) return false;
+        if (filter != null ? !filter.equals(page.filter) : page.filter != null) return false;
         return elements != null ? elements.equals(page.elements) : page.elements == null;
     }
 
@@ -92,6 +103,7 @@ private List<T> elements = new ArrayList<>();
         result = 31 * result + limit;
         result = 31 * result + (currentUser != null ? currentUser.hashCode() : 0);
         result = 31 * result + (orderBy != null ? orderBy.hashCode() : 0);
+        result = 31 * result + (filter != null ? filter.hashCode() : 0);
         result = 31 * result + (elements != null ? elements.hashCode() : 0);
         return result;
     }
@@ -104,6 +116,7 @@ private List<T> elements = new ArrayList<>();
                 ", limit=" + limit +
                 ", currentUser='" + currentUser + '\'' +
                 ", orderBy='" + orderBy + '\'' +
+                ", filter='" + filter + '\'' +
                 ", elements=" + elements +
                 '}';
     }

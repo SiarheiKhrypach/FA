@@ -13,11 +13,11 @@ public void isNotZero(final int i) throws ServiceException {
         }
 }
 
-    public <T> void isNotNull(final T t) throws NullPointerException {
-        if (isNull(t)) {
-            throw new NullPointerException("The incoming data is null");
+        public <T> void isNotNull(final T t) throws NullPointerException {
+            if (isNull(t)) {
+                throw new NullPointerException("The incoming data is null");
+            }
         }
-    }
 
     public void isNotNullOrEmpty(String...names) throws NullOrEmptyException {
         for (String name: names) {

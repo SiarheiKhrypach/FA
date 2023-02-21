@@ -56,7 +56,7 @@ public class MenuCommand extends FormsAccessCommand {
             pagedRequest.setCurrentUser(currentUser);
             pagedRequest.setOrderBy(orderBy);
             Page<Product> pagedMenuItem = menuService.findPageService(pagedRequest);
-            ServletContext servletContext = request.getServletContext();
+            ServletContext servletContext   = request.getServletContext();
             servletContext.setAttribute(MENU_ITEMS_PAGED_ATTRIBUTE, pagedMenuItem);
             products = menuService.selectAllFromMenuService(currentUser);
             setProportion(request);
