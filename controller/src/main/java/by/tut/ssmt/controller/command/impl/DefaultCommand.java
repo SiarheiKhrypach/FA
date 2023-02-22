@@ -41,12 +41,20 @@ public class DefaultCommand implements Command {
             if (isNullOrEmpty(orderBy)) {
                 orderBy = "product_name ASC";
             }
+            String filter = request.getParameter(FILTER);
+            if( isNullOrEmpty(filter)) {
+                filter = "'%'";
+            } else {
+                filter = "'%" + filter + "%'";
+            }
+
             int currentPage = Integer.parseInt(currentPageString);
             int pageLimit = Integer.parseInt(currentPageLimit);
             final Page<Product> pagedRequest = new Page<>();
             pagedRequest.setPageNumber(currentPage);
             pagedRequest.setLimit(pageLimit);
             pagedRequest.setOrderBy(orderBy);
+            pagedRequest.setFilter(filter);
             Page<Product> pagedProduct = productService.findPageService(pagedRequest);
 
             ServletContext servletContext = request.getServletContext();

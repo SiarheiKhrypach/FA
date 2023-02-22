@@ -32,6 +32,7 @@
 <fmt:message bundle="${loc}" key="local.button.edit" var="edit_btn"/>
 <fmt:message bundle="${loc}" key="local.button.add_to_the_menu_btn" var="add_to_the_menu_btn"/>
 <fmt:message bundle="${loc}" key="local.button.menu" var="menu_btn"/>
+<fmt:message bundle="${loc}" key="local.button.search" var="search_btn"/>
 <fmt:message bundle="${loc}" key="local.button.sort" var="sort_btn"/>
 <fmt:message bundle="${loc}" key="local.button.sort_by_name_asc" var="sort_by_name_asc_btn"/>
 <fmt:message bundle="${loc}" key="local.button.sort_by_name_des" var="sort_by_name_des_btn"/>
@@ -200,6 +201,14 @@
     <br>
     <br>
     <br>
+
+    <div>
+        <form class="w3-container w3-light-grey" method="post" action="/main">
+            <input class="w3-input w3-border-0" type="text" class="register-input" name="filter">
+            <input type="hidden" name="command" value="default">
+            <input type="submit" name="Search" value="${search_btn}">
+        </form>
+    </div>
 
     <div>
         <table class="w3-table w3-striped">
