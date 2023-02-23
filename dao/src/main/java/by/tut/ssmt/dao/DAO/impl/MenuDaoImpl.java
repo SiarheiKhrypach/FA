@@ -20,9 +20,11 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
     private static final String FIND_ITEM_BY_ID_AND_USER_NAME = "SELECT * FROM menu WHERE product_id = ? AND user_name = ?";
     private static final String INSERT_INTO_MENU = "INSERT INTO menu (portions, user_name, product_id) Values (?, ?, ?)";
     private static final String DELETE_FROM_MENU = "DELETE a FROM menu a INNER JOIN products b ON b.product_id = a.product_id AND b.product_name = ? AND a.user_name = ?";
-    private static final String COUNT_ALL = "SELECT COUNT(*) FROM menu WHERE user_name = ?";
+    private static final String COUNT_ALL = "SELECT COUNT(*) FROM menu, products WHERE user_name = ? AND menu.product_id = products.product_id AND products.product_name LIKE %s";
+//    private static final String COUNT_ALL = "SELECT COUNT(*) FROM menu WHERE user_name = ?";
     private static final String SELECT_FROM_MENU_TABLE = "SELECT products.product_id, products.product_name,products.omega_three, products.omega_six, menu.portions FROM menu, products WHERE menu.user_name = ? and menu.product_id = products.product_id";
-    private static final String FIND_PAGE = "SELECT products.product_id, products.product_name, products.omega_three, products.omega_six, menu.portions FROM menu, products WHERE menu.user_name = ? and menu.product_id = products.product_id ORDER BY %s LIMIT ? OFFSET ?";
+    private static final String FIND_PAGE = "SELECT products.product_id, products.product_name, products.omega_three, products.omega_six, menu.portions FROM menu, products WHERE menu.user_name = ? AND menu.product_id = products.product_id AND products.product_name LIKE %s ORDER BY %s LIMIT ? OFFSET ?";
+//    private static final String FIND_PAGE = "SELECT products.product_id, products.product_name, products.omega_three, products.omega_six, menu.portions FROM menu, products WHERE menu.user_name = ? and menu.product_id = products.product_id ORDER BY %s LIMIT ? OFFSET ?";
     private static final String ADD_PORTION = "UPDATE menu SET portions = portions + ? WHERE user_name = ? AND product_id = ?";
     private static final String CHANGE_PORTIONS = "UPDATE menu SET portions = ? WHERE user_name = ? AND product_id = ?";
 
@@ -73,8 +75,9 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
         ResultSet resultSet2 = null;
         try {
             connection = getConnection(true);
-            preparedStatement1 = getPreparedStatement(COUNT_ALL, connection, parameters1);
-            final String findPageOrderQuery = String.format(FIND_PAGE, menuItemPagedRequest.getOrderBy());
+            final String countFilterQuery = String.format(COUNT_ALL, menuItemPagedRequest.getFilter());
+            preparedStatement1 = getPreparedStatement(countFilterQuery, connection, parameters1);
+            final String findPageOrderQuery = String.format(FIND_PAGE, menuItemPagedRequest.getFilter(), menuItemPagedRequest.getOrderBy());
             preparedStatement2 = getPreparedStatement(findPageOrderQuery, connection, parameters2);
 //            preparedStatement2 = getPreparedStatement(FIND_PAGE, connection, parameters2);
 

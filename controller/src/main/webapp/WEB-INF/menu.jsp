@@ -24,6 +24,7 @@
 <fmt:message bundle="${loc}" key="local.button.back" var="back"/>
 <fmt:message bundle="${loc}" key="local.button.delete" var="delete_btn"/>
 <fmt:message bundle="${loc}" key="local.button.save" var="save_btn"/>
+<fmt:message bundle="${loc}" key="local.button.search" var="search_btn"/>
 <fmt:message bundle="${loc}" key="local.button.sort" var="sort_btn"/>
 <fmt:message bundle="${loc}" key="local.button.sort_by_name_asc" var="sort_by_name_asc_btn"/>
 <fmt:message bundle="${loc}" key="local.button.sort_by_name_des" var="sort_by_name_des_btn"/>
@@ -97,6 +98,13 @@
             </form>
 
         </div>
+    </div>
+
+    <div>
+        <form class="w3-container w3-light-grey" method="post" action="/menu">
+            <input class="w3-input w3-border-0" type="text" class="register-input" name="filter">
+            <input type="hidden" name="command" value="menu">
+            <input type="submit" name="Search" value="${search_btn}">
     </div>
 
 
