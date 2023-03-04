@@ -123,7 +123,12 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
     @Override
     public Page<String> findPageDao(Page<User> usersPagedRequest) throws DaoException {
-        final int limit = usersPagedRequest.getLimit();
+
+        int limit = usersPagedRequest.getLimit();
+        if(!usersPagedRequest.getFilter().equals("'%'")) {
+            limit = (int) usersPagedRequest.getTotalElements();
+        }
+
         final int offset = (usersPagedRequest.getPageNumber() - 1) * usersPagedRequest.getLimit();
         List<Object> parameters1 = Collections.emptyList();
         List<Object> parameters2 = Arrays.asList(
@@ -132,19 +137,32 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         );
         Connection connection = null;
         PreparedStatement preparedStatement1 = null;
-        PreparedStatement preparedStatement2 = null;
         ResultSet resultSet1 = null;
+        PreparedStatement preparedStatement2 = null;
         ResultSet resultSet2 = null;
         try {
             connection = getConnection(true);
             final String countFilteredQuery = String.format(COUNT_ALL_USERS,usersPagedRequest.getFilter());
             preparedStatement1 = getPreparedStatement(countFilteredQuery, connection, parameters1);
-            final String findPageOrderedQuery = String.format(FIND_USER_PAGE, usersPagedRequest.getFilter(), usersPagedRequest.getOrderBy());
+
 //            final String findPageOrderedQuery = String.format(FIND_USER_PAGE, usersPagedRequest.getOrderBy());
-            preparedStatement2 = getPreparedStatement(findPageOrderedQuery, connection, parameters2);
             resultSet1 = preparedStatement1.executeQuery();
+
+            long totalElements = 0L;
+            if (resultSet1.next()) {
+                totalElements = resultSet1.getLong((1));
+            }
+            if(!usersPagedRequest.getFilter().equals("'%'")) {
+                limit = (int) totalElements;
+                parameters2.set(0, limit);
+            }
+
+
+            final String findPageOrderedQuery = String.format(FIND_USER_PAGE, usersPagedRequest.getFilter(), usersPagedRequest.getOrderBy());
+            preparedStatement2 = getPreparedStatement(findPageOrderedQuery, connection, parameters2);
             resultSet2 = preparedStatement2.executeQuery();
-            return getUserPaged(usersPagedRequest, resultSet1, resultSet2);
+            return getUserPaged(usersPagedRequest, totalElements, resultSet2);
+//            return getUserPaged(usersPagedRequest, resultSet1, resultSet2);
         } catch (SQLException | DaoException e) {
             throw new DaoException("Error in UserDao", e);
         } finally {
@@ -154,13 +172,17 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         }
     }
 
-    protected Page<String> getUserPaged(Page<User> usersPagedRequest, ResultSet resultSet1, ResultSet resultSet2) throws SQLException {
+    protected Page<String> getUserPaged(Page<User> usersPagedRequest, long totalElements, ResultSet resultSet2) throws SQLException {
+//    protected Page<String> getUserPaged(Page<User> usersPagedRequest, ResultSet resultSet1, ResultSet resultSet2) throws SQLException {
         final Page<String> usersPaged = new Page<>();
-        long totalElements = 0L;
-        if (resultSet1.next()) {
-            totalElements = resultSet1.getLong(1);
-        }
+
+//                long totalElements = 0L;
+//        if (resultSet1.next()) {
+//            totalElements = resultSet1.getLong(1);
+//        }
+
         final List<String> rows = addUsersFromResultSet(resultSet2);
+
         usersPaged.setPageNumber(usersPagedRequest.getPageNumber());
         usersPaged.setLimit(usersPagedRequest.getLimit());
         usersPaged.setTotalElements(totalElements);

@@ -37,15 +37,26 @@ public abstract class AbstractDao {
         return products;
     }
 
-    protected Page<Product> getProductPaged(Page<Product> menuItemPagedRequest, ResultSet resultSet1, ResultSet resultSet2) throws SQLException {
+    protected Page<Product> getProductPaged(Page<Product> menuItemPagedRequest, long totalElements, ResultSet resultSet2) throws SQLException {
+//    protected Page<Product> getProductPaged(Page<Product> menuItemPagedRequest, ResultSet resultSet1, ResultSet resultSet2) throws SQLException {
         final Page<Product> menuItemPaged = new Page<>();
-        long totalElements = 0L;
-        if (resultSet1.next()) {
-            totalElements = resultSet1.getLong(1);
-        }
+//        long totalElements = 0L;
+//        if (resultSet1.next()) {
+//            totalElements = resultSet1.getLong(1);
+//        }
         final List<Product> rows = addProductsFromResultSet(resultSet2);
         menuItemPaged.setPageNumber(menuItemPagedRequest.getPageNumber());
-        menuItemPaged.setLimit(menuItemPagedRequest.getLimit());
+
+//        if (!menuItemPagedRequest.getFilter().equals("'%'")) {
+//            menuItemPaged.setLimit((int) totalElements);
+////            menuItemPaged.setLimit((int) totalElements);
+//        } else {
+//            menuItemPaged.setLimit(menuItemPagedRequest.getLimit());
+//        }
+
+//        menuItemPaged.setLimit(menuItemPagedRequest.getLimit());
+
+
         menuItemPaged.setTotalElements(totalElements);
         menuItemPaged.setElements(rows);
         return menuItemPaged;

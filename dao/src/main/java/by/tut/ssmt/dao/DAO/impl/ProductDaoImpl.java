@@ -59,7 +59,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
     }
 
     public Page<Product> findPageDao(Page<Product> productPagedRequest) throws DaoException {
-        final int limit = productPagedRequest.getLimit();
+        int limit = productPagedRequest.getLimit();
         final int offset = (productPagedRequest.getPageNumber() - 1) * productPagedRequest.getLimit();
         List<Object> parameters1 = Collections.emptyList();
         List<Object> parameters2 = Arrays.asList(
@@ -75,11 +75,28 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
             connection = getConnection(true);
             final  String countFilterQuery = String.format(COUNT_ALL, productPagedRequest.getFilter());
             preparedStatement1 = getPreparedStatement(countFilterQuery, connection, parameters1);
-            final String findPageOrderedQuery = String.format(FIND_PAGE, productPagedRequest.getFilter(), productPagedRequest.getOrderBy());
-            preparedStatement2 = getPreparedStatement(findPageOrderedQuery, connection, parameters2);
             resultSet1 = preparedStatement1.executeQuery();
+
+            long totalElements = 0L;
+            if (resultSet1.next()) {
+                totalElements = resultSet1.getLong(1);
+            }
+            if (!productPagedRequest.getFilter().equals("'%'")) {
+                limit = (int) totalElements;
+//                limit = (int)productPagedRequest.getTotalElements();
+                parameters2.set(0, limit);
+            }
+
+            final String findPageOrderedQuery = String.format(FIND_PAGE, productPagedRequest.getFilter(), productPagedRequest.getOrderBy());
+
+
+            preparedStatement2 = getPreparedStatement(findPageOrderedQuery, connection, parameters2);
             resultSet2 = preparedStatement2.executeQuery();
-            return getProductPaged(productPagedRequest, resultSet1, resultSet2);
+            Page<Product> productPage = getProductPaged(productPagedRequest, totalElements, resultSet2);
+//            Page<Product> productPage = getProductPaged(productPagedRequest, resultSet1, resultSet2);
+            productPage.setLimit(limit);
+            return productPage;
+//            return getProductPaged(productPagedRequest, resultSet1, resultSet2);
         } catch (SQLException | DaoException e) {
             throw new DaoException("Error in ProductDAO", e);
         } finally {
