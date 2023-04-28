@@ -27,7 +27,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
     private static final String DELETE_FROM_TABLE = "DELETE FROM products WHERE product_name = ?";
     private static final String DELETE_FROM_TABLES = "DELETE products, menu FROM products INNER JOIN menu ON menu.product_id = products.product_id WHERE product_name = ?";
     private static final String FIND_PRODUCT_BY_NAME = "SELECT * FROM products WHERE product_name=?";
-    private static final String FIND_PRODUCT_BY_NAME_IN_MENU = "SELECT * FROM menu INNER JOIN products ON products.product_id = menu.product_id WHERE product_name=?";
+    private static final String FIND_PRODUCT_BY_NAME_IN_MENU = "SELECT products.product_id, product_name, omega_three, omega_six, menu.portions FROM menu INNER JOIN products ON products.product_id = menu.product_id WHERE product_name=?";
     private static final String FIND_PRODUCT_BY_NAME_WITH_DIFFERENT_ID = "SELECT * FROM products WHERE product_name=? AND NOT product_id=?";
 
     private static final Logger LOGGER = Logger.getLogger(ProductDaoImpl.class.getName());
@@ -66,46 +66,16 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
                 limit,
                 offset
         );
-        Connection connection = null;
-        PreparedStatement preparedStatement1 = null;
-        PreparedStatement preparedStatement2 = null;
-        ResultSet resultSet1 = null;
-        ResultSet resultSet2 = null;
         try {
-            connection = getConnection(true);
-            final  String countFilterQuery = String.format(COUNT_ALL, productPagedRequest.getFilter());
-            preparedStatement1 = getPreparedStatement(countFilterQuery, connection, parameters1);
-            resultSet1 = preparedStatement1.executeQuery();
-
-            long totalElements = 0L;
-            if (resultSet1.next()) {
-                totalElements = resultSet1.getLong(1);
-            }
-            if (!productPagedRequest.getFilter().equals("'%'")) {
-                limit = (int) totalElements;
-//                limit = (int)productPagedRequest.getTotalElements();
-                parameters2.set(0, limit);
-            }
-
-            final String findPageOrderedQuery = String.format(FIND_PAGE, productPagedRequest.getFilter(), productPagedRequest.getOrderBy());
-
-
-            preparedStatement2 = getPreparedStatement(findPageOrderedQuery, connection, parameters2);
-            resultSet2 = preparedStatement2.executeQuery();
-            Page<Product> productPage = getProductPaged(productPagedRequest, totalElements, resultSet2);
-//            Page<Product> productPage = getProductPaged(productPagedRequest, resultSet1, resultSet2);
+            long totalElements = getTotalElements(productPagedRequest, parameters1, COUNT_ALL);
+            changeParameterSetIfSearched(productPagedRequest, parameters2, totalElements);
+            Page<Product> productPage = (Page<Product>) getPaged(productPagedRequest, FIND_PAGE, parameters2);
             productPage.setLimit(limit);
+            productPage.setTotalElements(totalElements);
             return productPage;
-//            return getProductPaged(productPagedRequest, resultSet1, resultSet2);
         } catch (SQLException | DaoException e) {
             throw new DaoException("Error in ProductDAO", e);
-        } finally {
-            close(resultSet1, resultSet2);
-            close(preparedStatement1, preparedStatement2);
-            retrieve(connection);
         }
-
-
     }
 
     @Override
@@ -121,14 +91,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
             connection = getConnection(true);
             preparedStatement = getPreparedStatement(SELECT_FROM_TABLE_WHERE, connection, parameters);
             resultSet = preparedStatement.executeQuery();
-            if (resultSet.next()) {
-                int productID = resultSet.getInt(1);
-                String productName = resultSet.getString(2);
-                double omegaThree = resultSet.getDouble(3);
-                double omegaSix = resultSet.getDouble(4);
-                int portion = resultSet.getInt(5);
-                product = new Product(productID, productName, omegaThree, omegaSix, portion);
-            }
+            product = getProduct(resultSet);
             return product;
         } catch (SQLException e) {
             throw new DaoException("Error in ProductDAO", e);

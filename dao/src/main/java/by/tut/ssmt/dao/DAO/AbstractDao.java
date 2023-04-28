@@ -2,6 +2,7 @@ package by.tut.ssmt.dao.DAO;
 
 import by.tut.ssmt.dao.domain.Page;
 import by.tut.ssmt.dao.domain.Product;
+import by.tut.ssmt.dao.domain.User;
 import by.tut.ssmt.dao.exception.DaoException;
 import org.apache.log4j.Logger;
 
@@ -37,29 +38,80 @@ public abstract class AbstractDao {
         return products;
     }
 
-    protected Page<Product> getProductPaged(Page<Product> menuItemPagedRequest, long totalElements, ResultSet resultSet2) throws SQLException {
-//    protected Page<Product> getProductPaged(Page<Product> menuItemPagedRequest, ResultSet resultSet1, ResultSet resultSet2) throws SQLException {
-        final Page<Product> menuItemPaged = new Page<>();
-//        long totalElements = 0L;
-//        if (resultSet1.next()) {
-//            totalElements = resultSet1.getLong(1);
-//        }
-        final List<Product> rows = addProductsFromResultSet(resultSet2);
-        menuItemPaged.setPageNumber(menuItemPagedRequest.getPageNumber());
+    protected List addUsersFromResultSet(ResultSet resultSet) throws SQLException {
+        List<String> users = new ArrayList<>();
+        while (resultSet.next()) {
+            String userName = resultSet.getString(1);
+            users.add(userName);
+        }
+        return users;
+    }
 
-//        if (!menuItemPagedRequest.getFilter().equals("'%'")) {
-//            menuItemPaged.setLimit((int) totalElements);
-////            menuItemPaged.setLimit((int) totalElements);
-//        } else {
-//            menuItemPaged.setLimit(menuItemPagedRequest.getLimit());
-//        }
+    protected Page<?> getPaged(Page<?> pagedRequest, String sqlQuery, List<Object> parameters) throws SQLException, DaoException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
 
-//        menuItemPaged.setLimit(menuItemPagedRequest.getLimit());
+        try {
+            connection = getConnection(true);
+            final String findPageOrderedQuery = String.format(sqlQuery, pagedRequest.getFilter(), pagedRequest.getOrderBy());
+            preparedStatement = getPreparedStatement(findPageOrderedQuery, connection, parameters);
+            resultSet = preparedStatement.executeQuery();
+            if (resultSet.next() && resultSet.getObject(1) instanceof Integer) {
+                resultSet.beforeFirst();
+                final Page<Product> menuItemPaged = new Page<>();
+                final List<Product> rows = addProductsFromResultSet(resultSet);
+                menuItemPaged.setPageNumber(pagedRequest.getPageNumber());
+                menuItemPaged.setElements(rows);
+                return menuItemPaged;
+            } else {
+                resultSet.beforeFirst();
+                final Page<User> userPaged = new Page<>();
+                final List<User> rows = addUsersFromResultSet(resultSet);
+                userPaged.setPageNumber(pagedRequest.getPageNumber());
+                userPaged.setElements(rows);
+                return userPaged;
+            }
+        } catch (SQLException | DaoException e) {
+            throw new DaoException("Error in AbstractDAO", e);
+        } finally {
+            close(resultSet);
+            close(preparedStatement);
+            retrieve(connection);
+        }
+    }
 
+    protected long getTotalElements(Page<?> pagedRequest, List<Object> parameters, String sqlQuery) throws DaoException {
+        Connection connection = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        try {
+            connection = getConnection(true);
+            final String countFilterQuery = String.format(sqlQuery, pagedRequest.getFilter());
+            preparedStatement = getPreparedStatement(countFilterQuery, connection, parameters);
+            resultSet = preparedStatement.executeQuery();
 
-        menuItemPaged.setTotalElements(totalElements);
-        menuItemPaged.setElements(rows);
-        return menuItemPaged;
+            long totalElements = 0L;
+            if (resultSet.next()) {
+                totalElements = resultSet.getLong(1);
+            }
+
+            return totalElements;
+        } catch (SQLException | DaoException e) {
+            throw new DaoException("Error in AbstractDAO", e);
+        } finally {
+            close(resultSet);
+            close(preparedStatement);
+            retrieve(connection);
+        }
+
+    }
+
+    protected void changeParameterSetIfSearched(Page<Product> pagedRequest, List<Object> parameters, long totalElements) {
+        if (!pagedRequest.getFilter().equals("'%'")) {
+            int limit = (int) totalElements;
+            parameters.set(0, limit);
+        }
     }
 
     protected Connection getConnection(final boolean hasAutocommit) throws SQLException, DaoException {
@@ -71,7 +123,6 @@ public abstract class AbstractDao {
     protected void retrieve(final Connection connection) {
         connectionPool.retrieve(connection);
     }
-
 
     protected void close(final ResultSet... resultSets) throws DaoException {
         try {

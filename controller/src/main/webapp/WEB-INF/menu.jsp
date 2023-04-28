@@ -134,6 +134,10 @@
                 <td><c:out value="${menuItem.productName}"/></td>
                 <td><c:out value="${menuItem.omegaThree}"/></td>
                 <td><c:out value="${menuItem.omegaSix}"/></td>
+                    <%--Block below prevents bug in the following block which didn't allow to delete first line of forEach sequence--%>
+                <form>
+                </form>
+
                 <td>
                     <form method="get" action="/delete">
                         <input type="hidden" name="productName" value="${menuItem.productName}"/>

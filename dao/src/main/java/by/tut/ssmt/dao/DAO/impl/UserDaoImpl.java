@@ -20,8 +20,8 @@ import java.util.List;
 public class UserDaoImpl extends AbstractDao implements UserDao {
 
     private static final String SELECT_FROM_TABLE = "SELECT * FROM users";
-    private static final String COUNT_ALL_USERS = "SELECT COUNT(*) FROM users WHERE users.user_name LIKE %s";
-//    private static final String COUNT_ALL_USERS = "SELECT COUNT(*) FROM users";
+    private static final String COUNT_ALL = "SELECT COUNT(*) FROM users WHERE users.user_name LIKE %s";
+//    private static final String COUNT_ALL_USERS = "SELECT COUNT(*) FROM users WHERE users.user_name LIKE %s";
     public static final String FIND_USER_PAGE = "SELECT user_name FROM users WHERE users.user_name LIKE %s ORDER BY %s  LIMIT ? OFFSET ?";
 //    public static final String FIND_USER_PAGE = "SELECT user_name FROM users ORDER BY %s LIMIT ? OFFSET ?";
     private static final String FIND_USER_BY_LOGIN_AND_PASSWORD = "SELECT * FROM users WHERE user_name = BINARY ? AND password = BINARY ?";
@@ -122,75 +122,30 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     }
 
     @Override
-    public Page<String> findPageDao(Page<User> usersPagedRequest) throws DaoException {
-
+    public Page<?> findPageDao(Page<User> usersPagedRequest) throws DaoException {
         int limit = usersPagedRequest.getLimit();
-        if(!usersPagedRequest.getFilter().equals("'%'")) {
-            limit = (int) usersPagedRequest.getTotalElements();
-        }
-
         final int offset = (usersPagedRequest.getPageNumber() - 1) * usersPagedRequest.getLimit();
         List<Object> parameters1 = Collections.emptyList();
         List<Object> parameters2 = Arrays.asList(
                 limit,
                 offset
         );
-        Connection connection = null;
-        PreparedStatement preparedStatement1 = null;
-        ResultSet resultSet1 = null;
-        PreparedStatement preparedStatement2 = null;
-        ResultSet resultSet2 = null;
         try {
-            connection = getConnection(true);
-            final String countFilteredQuery = String.format(COUNT_ALL_USERS,usersPagedRequest.getFilter());
-            preparedStatement1 = getPreparedStatement(countFilteredQuery, connection, parameters1);
-
-//            final String findPageOrderedQuery = String.format(FIND_USER_PAGE, usersPagedRequest.getOrderBy());
-            resultSet1 = preparedStatement1.executeQuery();
-
-            long totalElements = 0L;
-            if (resultSet1.next()) {
-                totalElements = resultSet1.getLong((1));
-            }
+            long totalElements = getTotalElements(usersPagedRequest, parameters1, COUNT_ALL);
             if(!usersPagedRequest.getFilter().equals("'%'")) {
                 limit = (int) totalElements;
                 parameters2.set(0, limit);
             }
-
-
-            final String findPageOrderedQuery = String.format(FIND_USER_PAGE, usersPagedRequest.getFilter(), usersPagedRequest.getOrderBy());
-            preparedStatement2 = getPreparedStatement(findPageOrderedQuery, connection, parameters2);
-            resultSet2 = preparedStatement2.executeQuery();
-            return getUserPaged(usersPagedRequest, totalElements, resultSet2);
-//            return getUserPaged(usersPagedRequest, resultSet1, resultSet2);
+            Page<User> userPage = (Page<User>) getPaged(usersPagedRequest, FIND_USER_PAGE, parameters2);
+            userPage.setLimit(limit);
+            userPage.setTotalElements(totalElements);
+            return userPage;
         } catch (SQLException | DaoException e) {
             throw new DaoException("Error in UserDao", e);
-        } finally {
-            close(resultSet1, resultSet2);
-            close(preparedStatement1, preparedStatement2);
-            retrieve(connection);
         }
     }
 
-    protected Page<String> getUserPaged(Page<User> usersPagedRequest, long totalElements, ResultSet resultSet2) throws SQLException {
-//    protected Page<String> getUserPaged(Page<User> usersPagedRequest, ResultSet resultSet1, ResultSet resultSet2) throws SQLException {
-        final Page<String> usersPaged = new Page<>();
-
-//                long totalElements = 0L;
-//        if (resultSet1.next()) {
-//            totalElements = resultSet1.getLong(1);
-//        }
-
-        final List<String> rows = addUsersFromResultSet(resultSet2);
-
-        usersPaged.setPageNumber(usersPagedRequest.getPageNumber());
-        usersPaged.setLimit(usersPagedRequest.getLimit());
-        usersPaged.setTotalElements(totalElements);
-        usersPaged.setElements(rows);
-        return usersPaged;
-    }
-
-    private List<String> addUsersFromResultSet(ResultSet resultSet2) throws SQLException {
+    public List<String> addUsersFromResultSet(ResultSet resultSet2) throws SQLException {
         List<String> users = new ArrayList<>();
         while (resultSet2.next()) {
             String userName = resultSet2.getString(1);
@@ -250,49 +205,6 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
             retrieve(connection);
         }
     }
-//    public boolean update(User user) throws DaoException {
-//        List<Object> parameters1 = Arrays.asList(
-//                user.getUserName()
-//        );
-//        List<Object> parameters2 = Arrays.asList(
-//                user.getPassword(),
-//                user.getUserName()
-//        );
-//        Connection connection = null;
-//        PreparedStatement preparedStatement1 = null;
-//        PreparedStatement preparedStatement2 = null;
-//        ResultSet resultSet = null;
-//        try {
-//            int result = 0;
-//            connection = getConnection(false);
-//            preparedStatement1 = getPreparedStatement(FIND_USER_BY_LOGIN, connection, parameters1);
-//            resultSet = preparedStatement1.executeQuery();
-//            User userMatch = new User();
-//            if (resultSet.next()) {
-//                userMatch.setUserId(resultSet.getInt(1));
-//                userMatch.setName(resultSet.getString(2));
-//                userMatch.setPassword(resultSet.getString(3));
-//            }
-//            if (userMatch.getUserName() == null) {
-//                preparedStatement2 = getPreparedStatement(UPDATE_TABLE, connection, parameters2);
-//                result = preparedStatement2.executeUpdate();
-//            }
-//            connection.commit();
-//            return (result != 0);
-//
-//        } catch (SQLException e) {
-//            try {
-//                connection.rollback();
-//            } catch (SQLException ex) {
-//                throw new DaoException("Error while rolling back", ex);
-//            }
-//            throw new DaoException("Error in UserDao", e);
-//        } finally {
-//            close(resultSet);
-//            close(preparedStatement1, preparedStatement2);
-//            retrieve(connection);
-//        }
-//    }
 
     public boolean delete(String userName) throws DaoException {
         List<Object> parameters = Arrays.asList(

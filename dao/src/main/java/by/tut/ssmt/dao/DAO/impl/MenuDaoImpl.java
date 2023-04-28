@@ -21,10 +21,8 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
     private static final String INSERT_INTO_MENU = "INSERT INTO menu (portions, user_name, product_id) Values (?, ?, ?)";
     private static final String DELETE_FROM_MENU = "DELETE a FROM menu a INNER JOIN products b ON b.product_id = a.product_id AND b.product_name = ? AND a.user_name = ?";
     private static final String COUNT_ALL = "SELECT COUNT(*) FROM menu, products WHERE user_name = ? AND menu.product_id = products.product_id AND products.product_name LIKE %s";
-//    private static final String COUNT_ALL = "SELECT COUNT(*) FROM menu WHERE user_name = ?";
     private static final String SELECT_FROM_MENU_TABLE = "SELECT products.product_id, products.product_name,products.omega_three, products.omega_six, menu.portions FROM menu, products WHERE menu.user_name = ? and menu.product_id = products.product_id";
     private static final String FIND_PAGE = "SELECT products.product_id, products.product_name, products.omega_three, products.omega_six, menu.portions FROM menu, products WHERE menu.user_name = ? AND menu.product_id = products.product_id AND products.product_name LIKE %s ORDER BY %s LIMIT ? OFFSET ?";
-//    private static final String FIND_PAGE = "SELECT products.product_id, products.product_name, products.omega_three, products.omega_six, menu.portions FROM menu, products WHERE menu.user_name = ? and menu.product_id = products.product_id ORDER BY %s LIMIT ? OFFSET ?";
     private static final String ADD_PORTION = "UPDATE menu SET portions = portions + ? WHERE user_name = ? AND product_id = ?";
     private static final String CHANGE_PORTIONS = "UPDATE menu SET portions = ? WHERE user_name = ? AND product_id = ?";
 
@@ -60,10 +58,6 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
         final String currentUser = menuItemPagedRequest.getCurrentUser();
 
         int limit = menuItemPagedRequest.getLimit();
-        if (!menuItemPagedRequest.getFilter().equals("'%'")) {
-            limit = (int) menuItemPagedRequest.getTotalElements();
-        }
-
         final int offset = (menuItemPagedRequest.getPageNumber() - 1) * menuItemPagedRequest.getLimit();
         List<Object> parameters1 = Arrays.asList(
                 currentUser
@@ -73,45 +67,15 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
                 limit,
                 offset
         );
-        Connection connection = null;
-        PreparedStatement preparedStatement1 = null;
-        PreparedStatement preparedStatement2 = null;
-        ResultSet resultSet1 = null;
-        ResultSet resultSet2 = null;
         try {
-            connection = getConnection(true);
-            final String countFilterQuery = String.format(COUNT_ALL, menuItemPagedRequest.getFilter());
-            preparedStatement1 = getPreparedStatement(countFilterQuery, connection, parameters1);
-            resultSet1 = preparedStatement1.executeQuery();
-
-            long totalElements = 0L;
-            if (resultSet1.next()) {
-                totalElements = resultSet1.getLong(1);
-            }
-            if (!menuItemPagedRequest.getFilter().equals("'%'")) {
-                limit = (int) totalElements;
-//                limit = (int)productPagedRequest.getTotalElements();
-                parameters2.set(0, limit);
-            }
-
-
-            final String findPageOrderQuery = String.format(FIND_PAGE, menuItemPagedRequest.getFilter(), menuItemPagedRequest.getOrderBy());
-
-            preparedStatement2 = getPreparedStatement(findPageOrderQuery, connection, parameters2);
-//            preparedStatement2 = getPreparedStatement(FIND_PAGE, connection, parameters2);
-
-            resultSet2 = preparedStatement2.executeQuery();
-            Page<Product> menuItemPage = getProductPaged(menuItemPagedRequest, totalElements, resultSet2);
-//            return getProductPaged(menuItemPagedRequest, totalElements, resultSet2);
-//            return getProductPaged(menuItemPagedRequest, resultSet1, resultSet2);
+            long totalElements = getTotalElements(menuItemPagedRequest, parameters1, COUNT_ALL);
+            changeParameterSetIfSearched(menuItemPagedRequest, parameters2, totalElements);
+            Page<Product> menuItemPage = (Page<Product>) getPaged(menuItemPagedRequest, FIND_PAGE, parameters2);
             menuItemPage.setLimit(limit);
+            menuItemPage.setTotalElements(totalElements);
             return menuItemPage;
         } catch (SQLException | DaoException e) {
             throw new DaoException("Error in MenuDao", e);
-        } finally {
-            close(resultSet1, resultSet2);
-            close(preparedStatement1, preparedStatement2);
-            retrieve(connection);
         }
     }
 

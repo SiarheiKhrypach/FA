@@ -34,10 +34,10 @@ public interface UserDao {
     /**
      * selects page of users
      * @param usersPaged - Page request frame
-     * @return Page<String>
+     * @return Object
      * @throws DaoException
      */
-    Page<String> findPageDao(Page<User> usersPaged) throws DaoException;
+    Page<?> findPageDao(Page<User> usersPaged) throws DaoException;
 
     /**
      * inserts users

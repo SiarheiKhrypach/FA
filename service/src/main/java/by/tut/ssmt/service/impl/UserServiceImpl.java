@@ -32,7 +32,7 @@ public class UserServiceImpl implements UserService {
     public Page<String> findPageService(Page<User> userPagedRequest) throws ServiceException {
         try {
             serviceValidator.isNotNull(userPagedRequest);
-            return userDao.findPageDao(userPagedRequest);
+            return (Page<String>) userDao.findPageDao(userPagedRequest);
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage());
         }
