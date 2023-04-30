@@ -108,9 +108,13 @@ public abstract class AbstractDao {
     }
 
     protected void changeParameterSetIfSearched(Page<Product> pagedRequest, List<Object> parameters, long totalElements) {
-        if (!pagedRequest.getFilter().equals("'%'")) {
+        if (!pagedRequest.getFilter().equals("'%'") && parameters.size()==2) {
             int limit = (int) totalElements;
             parameters.set(0, limit);
+        }
+        if (!pagedRequest.getFilter().equals("'%'") && parameters.size()==3) {
+            int limit = (int) totalElements;
+            parameters.set(1, limit);
         }
     }
 
