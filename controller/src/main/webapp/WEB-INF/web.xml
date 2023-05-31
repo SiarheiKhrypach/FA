@@ -84,6 +84,17 @@
     </filter-mapping>
 
 
+    <filter>
+        <filter-name>AdminFilter</filter-name>
+        <filter-class>by.tut.ssmt.controller.servlet.AdminFilter</filter-class>
+    </filter>
+
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/userList</url-pattern>
+    </filter-mapping>
+
+
     <servlet>
         <servlet-name>FrontController</servlet-name>
         <servlet-class>by.tut.ssmt.controller.servlet.FrontController</servlet-class>

@@ -26,7 +26,7 @@
   <component name="ChangeListManager">
     <list default="true" id="59ca0b27-6170-41d2-a1a1-ba36d40b5d8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/AbstractDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/AbstractDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -102,7 +102,27 @@
       <recent name="C:\Users\ssmt\IdeaProjects\FA\controller\src\main\java\by.tut.ssmt" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 8.5.706">
+  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.75">
+    <configuration default="true" type="com.poratu.idea.plugins.tomcat" factoryName="SMART_TOMCAT_FACTORY">
+      <option name="adminPort" value="8005" />
+      <option name="contextPath" value="/controller" />
+      <option name="docBase" value="$PROJECT_DIR$/controller/src/main/webapp" />
+      <option name="envOptions" />
+      <option name="passParentEnvironmentVariables" value="true" />
+      <option name="port" value="8080" />
+      <option name="tomcatInfo">
+        <TomcatInfo>
+          <option name="name" value="Apache Tomcat/8.5.70" />
+          <option name="number" value="0" />
+          <option name="path" value="C:\dev\apache-tomcat-8.5.70" />
+          <option name="version" value="8.5.70.0" />
+        </TomcatInfo>
+      </option>
+      <option name="vmOptions" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MenuItem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.dao.domain.MenuItem" />
       <module name="dao" />
@@ -116,7 +136,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="Tomcat 8.5.706" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.5.706" ALTERNATIVE_JRE_ENABLED="false" nameIsGenerated="true">
+    <configuration name="Tomcat 9.0.75" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.75" ALTERNATIVE_JRE_ENABLED="false">
       <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
       <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
@@ -533,29 +553,9 @@
         </option>
       </method>
     </configuration>
-    <configuration default="true" type="com.poratu.idea.plugins.tomcat" factoryName="SMART_TOMCAT_FACTORY">
-      <option name="adminPort" value="8005" />
-      <option name="contextPath" value="/controller" />
-      <option name="docBase" value="$PROJECT_DIR$/controller/src/main/webapp" />
-      <option name="envOptions" />
-      <option name="passParentEnvironmentVariables" value="true" />
-      <option name="port" value="8080" />
-      <option name="tomcatInfo">
-        <TomcatInfo>
-          <option name="name" value="Apache Tomcat/8.5.70" />
-          <option name="number" value="0" />
-          <option name="path" value="C:\dev\apache-tomcat-8.5.70" />
-          <option name="version" value="8.5.70.0" />
-        </TomcatInfo>
-      </option>
-      <option name="vmOptions" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
       <item itemvalue="Application.MenuItem" />
-      <item itemvalue="Tomcat Server.Tomcat 8.5.706" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.75" />
       <item itemvalue="Tomcat Server.index.jsp" />
       <item itemvalue="Tomcat Server.menu.jsp" />
       <item itemvalue="Tomcat Server.menu.jsp (1)" />
@@ -660,69 +660,94 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="447" y="292" key="#com.intellij.codeInsight.i18n.I18nizeQuickFixDialog" timestamp="1676647383382">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="465" y="46" key="#Tomcat_8.5.706" timestamp="1685514647666">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state x="447" y="292" key="#com.intellij.codeInsight.i18n.I18nizeQuickFixDialog/0.0.1600.860@0.0.1600.860" timestamp="1676647383382" />
-    <state x="254" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1678887112354">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="465" y="46" key="#Tomcat_8.5.706/0.0.1536.920@0.0.1536.920" timestamp="1685514647666" />
+    <state x="547" y="339" key="#Tomcat_Server" timestamp="1685514624384">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
+    <state x="547" y="339" key="#Tomcat_Server/0.0.1536.920@0.0.1536.920" timestamp="1685514624384" />
+    <state x="244" y="90" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1685514688233">
+      <screen x="0" y="0" width="1536" height="920" />
+    </state>
+    <state x="244" y="90" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.920@0.0.1536.920" timestamp="1685514688233" />
     <state x="254" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1678887112354" />
     <state x="605" y="135" key="#com.intellij.ide.util.MemberChooser" timestamp="1676983749718">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="605" y="135" key="#com.intellij.ide.util.MemberChooser/0.0.1600.860@0.0.1600.860" timestamp="1676983749718" />
+    <state x="499" y="99" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable" timestamp="1685514634570">
+      <screen x="0" y="0" width="1536" height="920" />
+    </state>
+    <state x="499" y="99" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable/0.0.1536.920@0.0.1536.920" timestamp="1685514634570" />
     <state x="100" y="101" width="1400" height="659" key="DiffContextDialog" timestamp="1677852792638">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="100" y="101" width="1400" height="659" key="DiffContextDialog/0.0.1600.860@0.0.1600.860" timestamp="1677852792638" />
-    <state width="1556" height="229" key="GridCell.Tab.0.bottom" timestamp="1682873343612">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="548" y="201" key="FileChooserDialogImpl" timestamp="1685514622375">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
+    <state x="548" y="201" key="FileChooserDialogImpl/0.0.1536.920@0.0.1536.920" timestamp="1685514622375" />
+    <state width="825" height="185" key="GridCell.Tab.0.bottom" timestamp="1685514654753">
+      <screen x="0" y="0" width="1536" height="920" />
+    </state>
+    <state width="825" height="185" key="GridCell.Tab.0.bottom/0.0.1536.920@0.0.1536.920" timestamp="1685514654753" />
     <state width="1556" height="229" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1682873343612" />
-    <state width="1556" height="229" key="GridCell.Tab.0.center" timestamp="1682873343612">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="825" height="185" key="GridCell.Tab.0.center" timestamp="1685514654753">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
+    <state width="825" height="185" key="GridCell.Tab.0.center/0.0.1536.920@0.0.1536.920" timestamp="1685514654753" />
     <state width="1556" height="229" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1682873343612" />
-    <state width="1556" height="229" key="GridCell.Tab.0.left" timestamp="1682873343612">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="825" height="185" key="GridCell.Tab.0.left" timestamp="1685514654753">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
+    <state width="825" height="185" key="GridCell.Tab.0.left/0.0.1536.920@0.0.1536.920" timestamp="1685514654753" />
     <state width="1556" height="229" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1682873343612" />
-    <state width="1556" height="229" key="GridCell.Tab.0.right" timestamp="1682873343612">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="825" height="185" key="GridCell.Tab.0.right" timestamp="1685514654753">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
+    <state width="825" height="185" key="GridCell.Tab.0.right/0.0.1536.920@0.0.1536.920" timestamp="1685514654753" />
     <state width="1556" height="229" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1682873343612" />
-    <state width="1556" height="229" key="GridCell.Tab.1.bottom" timestamp="1682873406085">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="825" height="185" key="GridCell.Tab.1.bottom" timestamp="1685514654754">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
+    <state width="825" height="185" key="GridCell.Tab.1.bottom/0.0.1536.920@0.0.1536.920" timestamp="1685514654754" />
     <state width="1556" height="229" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1682873406085" />
-    <state width="1556" height="229" key="GridCell.Tab.1.center" timestamp="1682873406085">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="825" height="185" key="GridCell.Tab.1.center" timestamp="1685514654753">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
+    <state width="825" height="185" key="GridCell.Tab.1.center/0.0.1536.920@0.0.1536.920" timestamp="1685514654753" />
     <state width="1556" height="229" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1682873406085" />
-    <state width="1556" height="229" key="GridCell.Tab.1.left" timestamp="1682873406085">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="825" height="185" key="GridCell.Tab.1.left" timestamp="1685514654753">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
+    <state width="825" height="185" key="GridCell.Tab.1.left/0.0.1536.920@0.0.1536.920" timestamp="1685514654753" />
     <state width="1556" height="229" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1682873406085" />
-    <state width="1556" height="229" key="GridCell.Tab.1.right" timestamp="1682873406085">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="825" height="185" key="GridCell.Tab.1.right" timestamp="1685514654754">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
+    <state width="825" height="185" key="GridCell.Tab.1.right/0.0.1536.920@0.0.1536.920" timestamp="1685514654754" />
     <state width="1556" height="229" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1682873406085" />
-    <state width="1556" height="229" key="GridCell.Tab.2.bottom" timestamp="1682873343458">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="825" height="185" key="GridCell.Tab.2.bottom" timestamp="1685514654755">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
+    <state width="825" height="185" key="GridCell.Tab.2.bottom/0.0.1536.920@0.0.1536.920" timestamp="1685514654755" />
     <state width="1556" height="229" key="GridCell.Tab.2.bottom/0.0.1600.860@0.0.1600.860" timestamp="1682873343458" />
-    <state width="1556" height="229" key="GridCell.Tab.2.center" timestamp="1682873343458">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="825" height="185" key="GridCell.Tab.2.center" timestamp="1685514654754">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
+    <state width="825" height="185" key="GridCell.Tab.2.center/0.0.1536.920@0.0.1536.920" timestamp="1685514654754" />
     <state width="1556" height="229" key="GridCell.Tab.2.center/0.0.1600.860@0.0.1600.860" timestamp="1682873343458" />
-    <state width="1556" height="229" key="GridCell.Tab.2.left" timestamp="1682873343458">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="825" height="185" key="GridCell.Tab.2.left" timestamp="1685514654754">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
+    <state width="825" height="185" key="GridCell.Tab.2.left/0.0.1536.920@0.0.1536.920" timestamp="1685514654754" />
     <state width="1556" height="229" key="GridCell.Tab.2.left/0.0.1600.860@0.0.1600.860" timestamp="1682873343458" />
-    <state width="1556" height="229" key="GridCell.Tab.2.right" timestamp="1682873343458">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="825" height="185" key="GridCell.Tab.2.right" timestamp="1685514654755">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
+    <state width="825" height="185" key="GridCell.Tab.2.right/0.0.1536.920@0.0.1536.920" timestamp="1685514654755" />
     <state width="1556" height="229" key="GridCell.Tab.2.right/0.0.1600.860@0.0.1600.860" timestamp="1682873343458" />
     <state width="1556" height="229" key="GridCell.Tab.3.bottom" timestamp="1682873343459">
       <screen x="0" y="0" width="1600" height="860" />
@@ -740,18 +765,6 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1556" height="229" key="GridCell.Tab.3.right/0.0.1600.860@0.0.1600.860" timestamp="1682873343458" />
-    <state x="330" y="84" key="Maven.ArtifactSearchDialog" timestamp="1675428300668">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="330" y="84" key="Maven.ArtifactSearchDialog/0.0.1600.860@0.0.1600.860" timestamp="1675428300668" />
-    <state x="301" y="61" key="SettingsEditor" timestamp="1675435525038">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="301" y="61" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1675435525038" />
-    <state x="376" y="140" key="Vcs.Push.Dialog.v2" timestamp="1675435496915">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="376" y="140" key="Vcs.Push.Dialog.v2/0.0.1600.860@0.0.1600.860" timestamp="1675435496915" />
     <state x="16" y="317" key="extract.method.dialog" timestamp="1682712390043">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -760,14 +773,6 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="209" y="268" width="784" height="592" key="find.popup/0.0.1600.860@0.0.1600.860" timestamp="1682872525216" />
-    <state x="600" y="331" key="git4idea.remote.GitConfigureRemotesDialog" timestamp="1675522690597">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="600" y="331" key="git4idea.remote.GitConfigureRemotesDialog/0.0.1600.860@0.0.1600.860" timestamp="1675522690597" />
-    <state x="506" y="187" key="refactoring.ChangeSignatureDialog" timestamp="1675959008610">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="506" y="187" key="refactoring.ChangeSignatureDialog/0.0.1600.860@0.0.1600.860" timestamp="1675959008610" />
     <state x="456" y="190" key="run.anything.popup" timestamp="1679770463094">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -783,47 +788,23 @@
         <line-breakpoint type="java-method">
           <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/AddCommand.java</url>
           <line>29</line>
-          <properties class="by.tut.ssmt.controller.command.impl.AddCommand" method="execute">
+          <properties class="by.tut.ssmt.controller.command.impl.AddCommand">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="42" />
         </line-breakpoint>
-        <line-breakpoint type="java-method">
-          <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/AbstractDao.java</url>
-          <line>22</line>
-          <properties class="by.tut.ssmt.dao.DAO.AbstractDao" method="&lt;init&gt;">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="86" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/UserDao.java</url>
-          <line>54</line>
-          <properties class="by.tut.ssmt.dao.DAO.UserDao" method="update">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="104" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/DeleteUserCommand.java</url>
           <line>25</line>
-          <properties class="by.tut.ssmt.controller.command.impl.DeleteUserCommand" method="execute">
+          <properties class="by.tut.ssmt.controller.command.impl.DeleteUserCommand">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="167" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/MenuDaoImpl.java</url>
-          <line>143</line>
-          <properties class="by.tut.ssmt.dao.DAO.impl.MenuDaoImpl" method="executeUpdate">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="189" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/ProductDaoImpl.java</url>
           <line>200</line>
-          <properties class="by.tut.ssmt.dao.DAO.impl.ProductDaoImpl" method="deleteDao">
+          <properties class="by.tut.ssmt.dao.DAO.impl.ProductDaoImpl">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="190" />
@@ -831,7 +812,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/DeleteCommand.java</url>
           <line>28</line>
-          <properties class="by.tut.ssmt.controller.command.impl.DeleteCommand" method="execute">
+          <properties class="by.tut.ssmt.controller.command.impl.DeleteCommand">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="191" />
@@ -839,7 +820,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/DeleteFromMenuCommand.java</url>
           <line>34</line>
-          <properties class="by.tut.ssmt.controller.command.impl.DeleteFromMenuCommand" method="execute">
+          <properties class="by.tut.ssmt.controller.command.impl.DeleteFromMenuCommand">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="192" />
@@ -847,7 +828,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/UserDaoImpl.java</url>
           <line>124</line>
-          <properties class="by.tut.ssmt.dao.DAO.impl.UserDaoImpl" method="findPageDao">
+          <properties class="by.tut.ssmt.dao.DAO.impl.UserDaoImpl">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="195" />
@@ -855,7 +836,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/ProductDaoImpl.java</url>
           <line>105</line>
-          <properties class="by.tut.ssmt.dao.DAO.impl.ProductDaoImpl" method="insertDao">
+          <properties class="by.tut.ssmt.dao.DAO.impl.ProductDaoImpl">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="200" />
@@ -875,11 +856,6 @@
           <line>15</line>
           <option name="timeStamp" value="84" />
         </line-breakpoint>
-        <line-breakpoint type="java-line">
-          <url>file://$PROJECT_DIR$/service/src/main/java/by/tut/ssmt/service/impl/UserServiceImpl.java</url>
-          <line>15</line>
-          <option name="timeStamp" value="85" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/BulkChangePortionCommand.java</url>
           <line>44</line>
@@ -889,11 +865,6 @@
           <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/UserDaoImpl.java</url>
           <line>133</line>
           <option name="timeStamp" value="188" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/MenuDaoImpl.java</url>
-          <line>71</line>
-          <option name="timeStamp" value="203" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
