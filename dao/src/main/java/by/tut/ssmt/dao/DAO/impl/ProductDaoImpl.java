@@ -38,7 +38,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
 
 
     @Override
-    public List<Product> selectDao() throws DaoException {
+    public List<Product> selectAllProductDao() throws DaoException {
         List<Object> parameters = Collections.emptyList();
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -58,7 +58,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
         }
     }
 
-    public Page<Product> findPageDao(Page<Product> productPagedRequest) throws DaoException {
+    public Page<Product> findProductPageDao(Page<Product> productPagedRequest) throws DaoException {
         int limit = productPagedRequest.getLimit();
         final int offset = (productPagedRequest.getPageNumber() - 1) * productPagedRequest.getLimit();
         List<Object> parameters1 = Collections.emptyList();
@@ -79,7 +79,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
     }
 
     @Override
-    public Product selectOneDao(int productId) throws DaoException {
+    public Product selectOneProductDao(int productId) throws DaoException {
         List<Object> parameters = Arrays.asList(
                 productId
         );
@@ -103,7 +103,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
     }
 
     @Override
-    public boolean insertDao(Product product) throws DaoException {
+    public boolean insertProductDao(Product product) throws DaoException {
         List<Object> parameters1 = Arrays.asList(product.getProductName());
         List<Object> parameters2 = Arrays.asList(
                 product.getProductName(),
@@ -155,7 +155,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
     }
 
     @Override
-    public boolean updateDao(Product product) throws DaoException {
+    public boolean updateProductDao(Product product) throws DaoException {
         List<Object> parameters1 = Arrays.asList(
                 product.getProductName(),
                 product.getProductId()
@@ -198,7 +198,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
     }
 
     @Override
-    public boolean deleteDao(String productName) throws DaoException {
+    public boolean deleteProductDao(String productName) throws DaoException {
         List<Object> parameters = Arrays.asList(
                 productName
         );

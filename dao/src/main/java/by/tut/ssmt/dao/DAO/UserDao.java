@@ -14,7 +14,7 @@ public interface UserDao {
      * @return List<User>
      * @throws DaoException is a module exception
      */
-    List<User> selectDao() throws DaoException;
+    List<User> selectUserDao() throws DaoException;
 
     /**
      * finds user
@@ -23,13 +23,13 @@ public interface UserDao {
      * @return User
      * @throws DaoException is a module exception
      */
-    User find(User user) throws DaoException;
+    User findUserDao(User user) throws DaoException;
 
     /**
      * @param userId
      * @return
      */
-    User selectOneDao(int userId) throws DaoException;
+    User selectOneUserDao(int userId) throws DaoException;
 
     /**
      * selects page of users
@@ -37,7 +37,7 @@ public interface UserDao {
      * @return Object
      * @throws DaoException
      */
-    Page<?> findPageDao(Page<User> usersPaged) throws DaoException;
+    Page<?> findUserPageDao(Page<User> usersPaged) throws DaoException;
 
     /**
      * inserts users
@@ -46,13 +46,13 @@ public interface UserDao {
      * @return true if successful, otherwise false
      * @throws DaoException is a module exception
      */
-    boolean insert(User user) throws DaoException;
+    boolean insertUserDao(User user) throws DaoException;
 
     /**
      * @param user
      * @return boolean
      */
-    boolean update(User user) throws DaoException;
+    boolean updateUserDao(User user) throws DaoException;
 
     /**
      * deletes users
@@ -60,5 +60,5 @@ public interface UserDao {
      * @throws DaoException - is a module exceptions
      * @return boolean
      */
-    boolean delete(String userName) throws DaoException;
+    boolean deleteUserDao(String userName) throws DaoException;
 }

@@ -20,19 +20,19 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public List<Product> selectAllService() throws ServiceException {
+    public List<Product> selectAllProductService() throws ServiceException {
         try {
-            return productDao.selectDao();
+            return productDao.selectAllProductDao();
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage());
         }
     }
 
     @Override
-    public Page<Product> findPageService(Page<Product> productPagedRequest) throws ServiceException {
+    public Page<Product> findProductPageService(Page<Product> productPagedRequest) throws ServiceException {
         try {
             serviceValidator.isNotNull(productPagedRequest);
-            return productDao.findPageDao(productPagedRequest);
+            return productDao.findProductPageDao(productPagedRequest);
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage());
         }
@@ -43,17 +43,17 @@ public class ProductServiceImpl implements ProductService {
     public Product selectOneService(int productId) throws ServiceException {
         try {
             serviceValidator.isNotZero(productId);
-            return productDao.selectOneDao(productId);
+            return productDao.selectOneProductDao(productId);
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage());
         }
     }
 
     @Override
-    public boolean addService(Product product) throws ServiceException {
+    public boolean addProductService(Product product) throws ServiceException {
         try {
             serviceValidator.isNotNull(product);
-            return productDao.insertDao(product);
+            return productDao.insertProductDao(product);
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage());
         }
@@ -63,17 +63,17 @@ public class ProductServiceImpl implements ProductService {
     public boolean updateService(Product product) throws ServiceException {
         try {
             serviceValidator.isNotNull(product);
-            return productDao.updateDao(product);
+            return productDao.updateProductDao(product);
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage());
         }
     }
 
     @Override
-    public boolean deleteService(String productName) throws ServiceException {
+    public boolean deleteProductService(String productName) throws ServiceException {
         try {
             serviceValidator.isNotNull(productName);
-            return productDao.deleteDao(productName);
+            return productDao.deleteProductDao(productName);
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage());
         }

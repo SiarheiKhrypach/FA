@@ -14,7 +14,7 @@ public interface MenuDao {
      * @return List<Product>
      * @throws DaoException
      */
-    List<Product> selectFromMenuDao(String currentUser) throws DaoException;
+    List<Product> selectAllFromMenuDao(String currentUser) throws DaoException;
 
     /**
      * selects page of menu items
@@ -22,7 +22,7 @@ public interface MenuDao {
      * @param menuItemPaged - Page request frame
      * @return Page<Product>
      */
-    Page<Product> findPageDao(Page<Product> menuItemPaged) throws DaoException;
+    Page<Product> findMenuPageDao(Page<Product> menuItemPaged) throws DaoException;
 
     /**
      * adds product
@@ -30,7 +30,7 @@ public interface MenuDao {
      * @param menuItem - product to be added to the menu, received from UI
      * @throws DaoException is a module exception
      */
-    boolean insertDao(MenuItem menuItem) throws DaoException;
+    boolean insertMenuDao(MenuItem menuItem) throws DaoException;
 
 
     /**
@@ -40,7 +40,7 @@ public interface MenuDao {
      * @param userName - user
      * @throws DaoException - is a module Exception
      */
-    boolean deleteDao(String menuItemName, String userName) throws DaoException;
+    boolean deleteMenuDao(String menuItemName, String userName) throws DaoException;
 
     /**
      * change portion number of the product
@@ -48,7 +48,7 @@ public interface MenuDao {
      * @param menuItem - product with portion number changed, received from UI
      * @throws DaoException - is a module Exception
      */
-    boolean portionChangeDao(MenuItem menuItem) throws DaoException;
+    boolean portionChangeMenuDao(MenuItem menuItem) throws DaoException;
 
 
     /**
@@ -56,5 +56,5 @@ public interface MenuDao {
      * @param menuList - list of products with updated portion numbers, received from UI
      * @throws DaoException - is a module exception
      */
-    boolean bulkPortionChangeDao(List <MenuItem> menuList) throws DaoException;
+    boolean bulkPortionChangeMenuDao(List <MenuItem> menuList) throws DaoException;
 }

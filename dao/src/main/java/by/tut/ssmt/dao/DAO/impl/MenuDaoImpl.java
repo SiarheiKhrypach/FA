@@ -31,7 +31,7 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
     }
 
     @Override
-    public List<Product> selectFromMenuDao(String currentUser) throws DaoException {
+    public List<Product> selectAllFromMenuDao(String currentUser) throws DaoException {
         List<Object> parameters = Arrays.asList(
                 currentUser
         );
@@ -54,7 +54,7 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
     }
 
     @Override
-    public Page<Product> findPageDao(Page<Product> menuItemPagedRequest) throws DaoException {
+    public Page<Product> findMenuPageDao(Page<Product> menuItemPagedRequest) throws DaoException {
         final String currentUser = menuItemPagedRequest.getCurrentUser();
 
         int limit = menuItemPagedRequest.getLimit();
@@ -80,7 +80,7 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
     }
 
     @Override
-    public boolean insertDao(MenuItem menuItem) throws DaoException {
+    public boolean insertMenuDao(MenuItem menuItem) throws DaoException {
         List<Object> parameters1 = Arrays.asList(
                 menuItem.getProductID(),
                 menuItem.getUserName()
@@ -133,7 +133,7 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
     }
 
     @Override
-    public boolean deleteDao(String productName, String userName) throws DaoException {
+    public boolean deleteMenuDao(String productName, String userName) throws DaoException {
         List<Object> parameters = Arrays.asList(
                 productName,
                 userName
@@ -164,7 +164,7 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
     }
 
     @Override
-    public boolean portionChangeDao(MenuItem menuItem) throws DaoException {
+    public boolean portionChangeMenuDao(MenuItem menuItem) throws DaoException {
         List<Object> parameters = Arrays.asList(
                 menuItem.getPortions(),
                 menuItem.getUserName(),
@@ -174,10 +174,10 @@ public class MenuDaoImpl extends AbstractDao implements MenuDao {
     }
 
     @Override
-    public boolean bulkPortionChangeDao(List<MenuItem> menuList) throws DaoException {
+    public boolean bulkPortionChangeMenuDao(List<MenuItem> menuList) throws DaoException {
         boolean success = true;
         for (MenuItem menuItem : menuList) {
-             if (!portionChangeDao(menuItem)) {
+             if (!portionChangeMenuDao(menuItem)) {
                  success = false;
              }
         }

@@ -13,7 +13,7 @@ public interface UserService {
      * @return List<User>
      * @throws ServiceException is a module exception
      */
-    List<User> selectAllService() throws ServiceException;
+    List<User> selectAllUserService() throws ServiceException;
 
     /**
      * Service to show page of users
@@ -21,7 +21,7 @@ public interface UserService {
      * @return Page<String>
      * @throws ServiceException
      */
-    Page<String> findPageService(Page<User> userPagedRequest) throws ServiceException;
+    Page<String> findUserPageService(Page<User> userPagedRequest) throws ServiceException;
 
     /**
      * login service
@@ -31,7 +31,7 @@ public interface UserService {
      */
     boolean loginService(User user) throws ServiceException;
 
-    User selectOneDaoService(int userId) throws ServiceException;
+    User selectOneUserService(int userId) throws ServiceException;
 
     /**
      * Service to add users
@@ -39,9 +39,9 @@ public interface UserService {
      * @return true if successful, otherwise false
      * @throws ServiceException is a module exception
      */
-    boolean registerService(User user) throws ServiceException;
+    boolean registerUserService(User user) throws ServiceException;
 
-    boolean updateService(User user) throws ServiceException;
+    boolean updateUserService(User user) throws ServiceException;
 
 
     /**
@@ -49,5 +49,5 @@ public interface UserService {
      * @param userName - user credential, received from Ui
      * @throws ServiceException is a module exception
      */
-    boolean deleteService(String userName) throws ServiceException;
+    boolean deleteUserService(String userName) throws ServiceException;
 }

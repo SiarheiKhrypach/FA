@@ -32,7 +32,7 @@ public class AddPortionsCommand extends AbstractCommand implements Command {
 
         try {
             final MenuItem menuItem = (MenuItem) dataCollector.collectFormData(request);
-            boolean result = menuService.addService(menuItem);
+            boolean result = menuService.addMenuService(menuItem);
             checkOperationForSuccess(request, result);
             response.sendRedirect("/main?" + MESSAGE + "=" + result);
         } catch (NullOrEmptyException e) {

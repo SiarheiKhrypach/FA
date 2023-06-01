@@ -31,7 +31,7 @@ public class AddCommand implements Command {
 
         try {
             final Product product = (Product) dataCollector.collectFormData(request);
-            productAdded = productService.addService(product);
+            productAdded = productService.addProductService(product);
             postToMainPage(request, response);
         } catch (NullOrEmptyException e) {
             request.setAttribute(MESSAGE, "Please enter valid data");

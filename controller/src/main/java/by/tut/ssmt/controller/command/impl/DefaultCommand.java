@@ -55,7 +55,7 @@ public class DefaultCommand implements Command {
             pagedRequest.setLimit(pageLimit);
             pagedRequest.setOrderBy(orderBy);
             pagedRequest.setFilter(filter);
-            Page<Product> pagedProduct = productService.findPageService(pagedRequest);
+            Page<Product> pagedProduct = productService.findProductPageService(pagedRequest);
 
             ServletContext servletContext = request.getServletContext();
             servletContext.setAttribute(PRODUCTS_PAGES_ATTRIBUTE, pagedProduct);

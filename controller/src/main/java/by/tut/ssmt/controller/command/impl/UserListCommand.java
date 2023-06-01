@@ -57,7 +57,7 @@ public class UserListCommand extends FormsAccessCommand{
             pagedRequest.setOrderBy(orderBy);
             pagedRequest.setFilter(filter);
 
-            Page<String> pagedUserList = userService.findPageService(pagedRequest);
+            Page<String> pagedUserList = userService.findUserPageService(pagedRequest);
             ServletContext servletContext = request.getServletContext();
             servletContext.setAttribute(USERS_PAGED_ATTRIBUTE, pagedUserList);
             if (request.getParameter(MESSAGE) == null) {

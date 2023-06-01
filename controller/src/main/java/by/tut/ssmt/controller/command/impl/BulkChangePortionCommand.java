@@ -36,7 +36,7 @@ public class BulkChangePortionCommand extends AbstractCommand implements Command
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException, ServletException, IOException {
         try {
             final List menuList = (List) dataCollector.collectFormData(request);
-            boolean result = menuService.bulkPortionChangeService(menuList);
+            boolean result = menuService.bulkPortionChangeMenuService(menuList);
             checkOperationForSuccess(request, result);
             String currentUser = (String) request.getSession().getAttribute(USER_NAME);
             products  = menuService.selectAllFromMenuService(currentUser);

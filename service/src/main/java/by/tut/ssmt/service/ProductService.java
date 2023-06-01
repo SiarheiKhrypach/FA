@@ -14,7 +14,7 @@ public interface ProductService {
      * @return List<Product>
      * @throws ServiceException is module exception
      */
-    List<Product> selectAllService() throws ServiceException;
+    List<Product> selectAllProductService() throws ServiceException;
 
     /**
      * Service to show page of products
@@ -22,7 +22,7 @@ public interface ProductService {
      * @return Page<Product>
      * @throws ServiceException
      */
-    Page<Product> findPageService(Page<Product> productPagedRequest) throws ServiceException;
+    Page<Product> findProductPageService(Page<Product> productPagedRequest) throws ServiceException;
 
     /**
      * Service to select one product by id provided
@@ -38,7 +38,7 @@ public interface ProductService {
      * @return true if successful, otherwise false
      * @throws ServiceException is a module exception
      */
-    boolean addService(Product product) throws ServiceException;
+    boolean addProductService(Product product) throws ServiceException;
 
     /**
      * Service to update product
@@ -53,6 +53,6 @@ public interface ProductService {
      * @param productName - name of the product to be deleted, received form UI
      * @throws ServiceException is a module exception
      */
-    boolean deleteService(String productName) throws ServiceException;
+    boolean deleteProductService(String productName) throws ServiceException;
 
 }

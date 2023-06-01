@@ -27,7 +27,7 @@ public class DeleteUserCommand extends AbstractCommand implements Command {
         try {
             final String userName = request.getParameter(USER_NAME);
             controllerValidator.isNotNullOrEmpty(userName);
-            boolean result = userService.deleteService(userName);
+            boolean result = userService.deleteUserService(userName);
             checkOperationForSuccess(request, result);
             String currentPageString = (String) request.getSession().getAttribute(CURRENT_PAGE);
             response.sendRedirect("/userList?command=user_list&" + CURRENT_PAGE + "=" + currentPageString + "&" + MESSAGE + "=" + result);

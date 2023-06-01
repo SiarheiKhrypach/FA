@@ -37,7 +37,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
     private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class.getName());
 
-    public List<User> selectDao() throws DaoException {
+    public List<User> selectUserDao() throws DaoException {
         List<Object> parameters = Collections.emptyList();
         Connection connection = null;
         PreparedStatement preparedStatement = null;
@@ -64,7 +64,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         }
     }
 
-    public User find(User user) throws DaoException {
+    public User findUserDao(User user) throws DaoException {
         List<Object> parameters = Arrays.asList(
                 user.getUserName(),
                 user.getPassword()
@@ -93,7 +93,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         }
     }
 
-    public User selectOneDao(int userId) throws DaoException {
+    public User selectOneUserDao(int userId) throws DaoException {
         List<Object> parameters = Arrays.asList(
                 userId
         );
@@ -122,7 +122,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     }
 
     @Override
-    public Page<?> findPageDao(Page<User> usersPagedRequest) throws DaoException {
+    public Page<?> findUserPageDao(Page<User> usersPagedRequest) throws DaoException {
         int limit = usersPagedRequest.getLimit();
         final int offset = (usersPagedRequest.getPageNumber() - 1) * usersPagedRequest.getLimit();
         List<Object> parameters1 = Collections.emptyList();
@@ -154,11 +154,11 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         return users;
     }
 
-    public boolean insert(User user) throws DaoException {
+    public boolean insertUserDao(User user) throws DaoException {
         return edit(user, INSERT_INTO_TABLE);
     }
 
-    public boolean update(User user) throws DaoException {
+    public boolean updateUserDao(User user) throws DaoException {
         return edit(user, UPDATE_TABLE);
     }
 
@@ -206,7 +206,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         }
     }
 
-    public boolean delete(String userName) throws DaoException {
+    public boolean deleteUserDao(String userName) throws DaoException {
         List<Object> parameters = Arrays.asList(
                 userName
         );

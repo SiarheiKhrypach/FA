@@ -37,7 +37,7 @@ public class DeleteFromMenuCommand extends AbstractCommand implements Command {
             controllerValidator.isNotNullOrEmpty(productName);
             String currentUser = (String) request.getSession().getAttribute(USER_NAME);
             controllerValidator.isNotNullOrEmpty(currentUser);
-            boolean result = menuService.deleteService(productName, currentUser);
+            boolean result = menuService.deleteMenuService(productName, currentUser);
             checkOperationForSuccess(request, result);
             products = menuService.selectAllFromMenuService(currentUser);
             String formattedProportion = calcProportion(dataProcessorList, products);

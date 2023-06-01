@@ -13,7 +13,7 @@ public interface ProductDao {
      * @return List<Product>
      * @throws DaoException
      */
-    List<Product> selectDao() throws DaoException;
+    List<Product> selectAllProductDao() throws DaoException;
 
 
     /**
@@ -22,7 +22,7 @@ public interface ProductDao {
      * @return Page<Product>
      * @throws DaoException
      */
-    Page<Product> findPageDao(Page<Product> productPaged) throws DaoException;
+    Page<Product> findProductPageDao(Page<Product> productPaged) throws DaoException;
 
 
     /**
@@ -31,7 +31,7 @@ public interface ProductDao {
          * @return Product corresponding to given id
          * @throws DaoException is a module exception
          */
-    Product selectOneDao(int productId) throws DaoException;
+    Product selectOneProductDao(int productId) throws DaoException;
 
     /**
      * adds product
@@ -39,7 +39,7 @@ public interface ProductDao {
      * @return true if successful, otherwise false
      * @throws DaoException is a module exception
      */
-    boolean insertDao(Product product) throws DaoException;
+    boolean insertProductDao(Product product) throws DaoException;
 
     /**
      * changes product
@@ -47,13 +47,13 @@ public interface ProductDao {
      * @return true if successful, otherwise false
      * @throws DaoException is a module exception
      */
-    boolean updateDao(Product product) throws DaoException;
+    boolean updateProductDao(Product product) throws DaoException;
 
     /**
      * deletes product
      * @param productName - name of the product to be deleted
      * @throws DaoException - is a module exception
      */
-    boolean deleteDao(String productName) throws DaoException;
+    boolean deleteProductDao(String productName) throws DaoException;
 
 }

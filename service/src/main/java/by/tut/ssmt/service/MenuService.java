@@ -23,7 +23,7 @@ public interface MenuService {
      * @param menuItemPagedRequest - paged form of request
      * @return Page<Product>
      */
-    Page<Product> findPageService(Page<Product> menuItemPagedRequest) throws ServiceException;
+    Page<Product> findMenuPageService(Page<Product> menuItemPagedRequest) throws ServiceException;
 
     /**
      * Service to add product to the menu
@@ -32,7 +32,7 @@ public interface MenuService {
      *                 //     * @param menuItem - product to be added, received from UI
      * @throws ServiceException is a module exception
      */
-    boolean addService(MenuItem menuItem) throws ServiceException;
+    boolean addMenuService(MenuItem menuItem) throws ServiceException;
 
     /**
      * Service to delete product from the menu
@@ -42,7 +42,7 @@ public interface MenuService {
      * @return boolean
      * @throws ServiceException is a module exception
      */
-    boolean deleteService(String productName, String userName) throws ServiceException;
+    boolean deleteMenuService(String productName, String userName) throws ServiceException;
 
     /**
      * Service to chane portions number of menu item in a bulk
@@ -50,5 +50,5 @@ public interface MenuService {
      * @param menuList - list of products with updated portion number, received from UI
      * @throws ServiceException is a module exception
      */
-    boolean bulkPortionChangeService(List<MenuItem> menuList) throws ServiceException;
+    boolean bulkPortionChangeMenuService(List<MenuItem> menuList) throws ServiceException;
 }

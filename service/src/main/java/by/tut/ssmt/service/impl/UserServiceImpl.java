@@ -20,19 +20,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> selectAllService() throws ServiceException {
+    public List<User> selectAllUserService() throws ServiceException {
         try {
-            return userDao.selectDao();
+            return userDao.selectUserDao();
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage());
         }
     }
 
     @Override
-    public Page<String> findPageService(Page<User> userPagedRequest) throws ServiceException {
+    public Page<String> findUserPageService(Page<User> userPagedRequest) throws ServiceException {
         try {
             serviceValidator.isNotNull(userPagedRequest);
-            return (Page<String>) userDao.findPageDao(userPagedRequest);
+            return (Page<String>) userDao.findUserPageDao(userPagedRequest);
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage());
         }
@@ -42,7 +42,7 @@ public class UserServiceImpl implements UserService {
     public boolean loginService(User user) throws ServiceException {
         try {
             serviceValidator.isNotNull(user);
-            user = userDao.find(user);
+            user = userDao.findUserDao(user);
             return user != null;
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage());
@@ -50,40 +50,40 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User selectOneDaoService(int userId) throws ServiceException {
+    public User selectOneUserService(int userId) throws ServiceException {
         try {
             serviceValidator.isNotZero(userId);
-            return userDao.selectOneDao(userId);
+            return userDao.selectOneUserDao(userId);
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage());
         }
     }
 
     @Override
-    public boolean registerService(User user) throws ServiceException {
+    public boolean registerUserService(User user) throws ServiceException {
         try {
             serviceValidator.isNotNull(user);
-            return userDao.insert(user);
+            return userDao.insertUserDao(user);
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage());
         }
     }
 
     @Override
-    public boolean updateService(User user) throws ServiceException {
+    public boolean updateUserService(User user) throws ServiceException {
         try {
             serviceValidator.isNotNull(user);
-            return userDao.update(user);
+            return userDao.updateUserDao(user);
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage());
         }
     }
 
     @Override
-    public boolean deleteService(String userName) throws ServiceException {
+    public boolean deleteUserService(String userName) throws ServiceException {
         try {
             serviceValidator.isNotNull(userName);
-            return userDao.delete(userName);
+            return userDao.deleteUserDao(userName);
         } catch (DaoException e) {
             throw new ServiceException(e.getMessage());
         }
