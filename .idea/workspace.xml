@@ -26,7 +26,11 @@
   <component name="ChangeListManager">
     <list default="true" id="59ca0b27-6170-41d2-a1a1-ba36d40b5d8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/webapp/WEB-INF/web.xml" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/webapp/WEB-INF/web.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/AbstractCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/AbstractCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/BulkChangePortionCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/BulkChangePortionCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/DeleteFromMenuCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/DeleteFromMenuCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/FormsAccessCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/FormsAccessCommand.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/MenuCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/MenuCommand.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -689,89 +693,94 @@
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state x="548" y="201" key="FileChooserDialogImpl/0.0.1536.920@0.0.1536.920" timestamp="1685514622375" />
-    <state width="825" height="185" key="GridCell.Tab.0.bottom" timestamp="1685514654753">
+    <state width="823" height="372" key="GridCell.Tab.0.bottom" timestamp="1685594178623">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="825" height="185" key="GridCell.Tab.0.bottom/0.0.1536.920@0.0.1536.920" timestamp="1685514654753" />
+    <state width="823" height="372" key="GridCell.Tab.0.bottom/0.0.1536.920@0.0.1536.920" timestamp="1685594178623" />
     <state width="1556" height="229" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1682873343612" />
-    <state width="825" height="185" key="GridCell.Tab.0.center" timestamp="1685514654753">
+    <state width="823" height="372" key="GridCell.Tab.0.center" timestamp="1685594178623">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="825" height="185" key="GridCell.Tab.0.center/0.0.1536.920@0.0.1536.920" timestamp="1685514654753" />
+    <state width="823" height="372" key="GridCell.Tab.0.center/0.0.1536.920@0.0.1536.920" timestamp="1685594178623" />
     <state width="1556" height="229" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1682873343612" />
-    <state width="825" height="185" key="GridCell.Tab.0.left" timestamp="1685514654753">
+    <state width="823" height="372" key="GridCell.Tab.0.left" timestamp="1685594178623">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="825" height="185" key="GridCell.Tab.0.left/0.0.1536.920@0.0.1536.920" timestamp="1685514654753" />
+    <state width="823" height="372" key="GridCell.Tab.0.left/0.0.1536.920@0.0.1536.920" timestamp="1685594178623" />
     <state width="1556" height="229" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1682873343612" />
-    <state width="825" height="185" key="GridCell.Tab.0.right" timestamp="1685514654753">
+    <state width="823" height="372" key="GridCell.Tab.0.right" timestamp="1685594178623">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="825" height="185" key="GridCell.Tab.0.right/0.0.1536.920@0.0.1536.920" timestamp="1685514654753" />
+    <state width="823" height="372" key="GridCell.Tab.0.right/0.0.1536.920@0.0.1536.920" timestamp="1685594178623" />
     <state width="1556" height="229" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1682873343612" />
-    <state width="825" height="185" key="GridCell.Tab.1.bottom" timestamp="1685514654754">
+    <state width="823" height="372" key="GridCell.Tab.1.bottom" timestamp="1685594178624">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="825" height="185" key="GridCell.Tab.1.bottom/0.0.1536.920@0.0.1536.920" timestamp="1685514654754" />
+    <state width="823" height="372" key="GridCell.Tab.1.bottom/0.0.1536.920@0.0.1536.920" timestamp="1685594178624" />
     <state width="1556" height="229" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1682873406085" />
-    <state width="825" height="185" key="GridCell.Tab.1.center" timestamp="1685514654753">
+    <state width="823" height="372" key="GridCell.Tab.1.center" timestamp="1685594178624">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="825" height="185" key="GridCell.Tab.1.center/0.0.1536.920@0.0.1536.920" timestamp="1685514654753" />
+    <state width="823" height="372" key="GridCell.Tab.1.center/0.0.1536.920@0.0.1536.920" timestamp="1685594178624" />
     <state width="1556" height="229" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1682873406085" />
-    <state width="825" height="185" key="GridCell.Tab.1.left" timestamp="1685514654753">
+    <state width="823" height="372" key="GridCell.Tab.1.left" timestamp="1685594178624">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="825" height="185" key="GridCell.Tab.1.left/0.0.1536.920@0.0.1536.920" timestamp="1685514654753" />
+    <state width="823" height="372" key="GridCell.Tab.1.left/0.0.1536.920@0.0.1536.920" timestamp="1685594178624" />
     <state width="1556" height="229" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1682873406085" />
-    <state width="825" height="185" key="GridCell.Tab.1.right" timestamp="1685514654754">
+    <state width="823" height="372" key="GridCell.Tab.1.right" timestamp="1685594178624">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="825" height="185" key="GridCell.Tab.1.right/0.0.1536.920@0.0.1536.920" timestamp="1685514654754" />
+    <state width="823" height="372" key="GridCell.Tab.1.right/0.0.1536.920@0.0.1536.920" timestamp="1685594178624" />
     <state width="1556" height="229" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1682873406085" />
-    <state width="825" height="185" key="GridCell.Tab.2.bottom" timestamp="1685514654755">
+    <state width="823" height="372" key="GridCell.Tab.2.bottom" timestamp="1685594178624">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="825" height="185" key="GridCell.Tab.2.bottom/0.0.1536.920@0.0.1536.920" timestamp="1685514654755" />
+    <state width="823" height="372" key="GridCell.Tab.2.bottom/0.0.1536.920@0.0.1536.920" timestamp="1685594178624" />
     <state width="1556" height="229" key="GridCell.Tab.2.bottom/0.0.1600.860@0.0.1600.860" timestamp="1682873343458" />
-    <state width="825" height="185" key="GridCell.Tab.2.center" timestamp="1685514654754">
+    <state width="823" height="372" key="GridCell.Tab.2.center" timestamp="1685594178624">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="825" height="185" key="GridCell.Tab.2.center/0.0.1536.920@0.0.1536.920" timestamp="1685514654754" />
+    <state width="823" height="372" key="GridCell.Tab.2.center/0.0.1536.920@0.0.1536.920" timestamp="1685594178624" />
     <state width="1556" height="229" key="GridCell.Tab.2.center/0.0.1600.860@0.0.1600.860" timestamp="1682873343458" />
-    <state width="825" height="185" key="GridCell.Tab.2.left" timestamp="1685514654754">
+    <state width="823" height="372" key="GridCell.Tab.2.left" timestamp="1685594178624">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="825" height="185" key="GridCell.Tab.2.left/0.0.1536.920@0.0.1536.920" timestamp="1685514654754" />
+    <state width="823" height="372" key="GridCell.Tab.2.left/0.0.1536.920@0.0.1536.920" timestamp="1685594178624" />
     <state width="1556" height="229" key="GridCell.Tab.2.left/0.0.1600.860@0.0.1600.860" timestamp="1682873343458" />
-    <state width="825" height="185" key="GridCell.Tab.2.right" timestamp="1685514654755">
+    <state width="823" height="372" key="GridCell.Tab.2.right" timestamp="1685594178624">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="825" height="185" key="GridCell.Tab.2.right/0.0.1536.920@0.0.1536.920" timestamp="1685514654755" />
+    <state width="823" height="372" key="GridCell.Tab.2.right/0.0.1536.920@0.0.1536.920" timestamp="1685594178624" />
     <state width="1556" height="229" key="GridCell.Tab.2.right/0.0.1600.860@0.0.1600.860" timestamp="1682873343458" />
-    <state width="1556" height="229" key="GridCell.Tab.3.bottom" timestamp="1682873343459">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="823" height="372" key="GridCell.Tab.3.bottom" timestamp="1685594178624">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
+    <state width="823" height="372" key="GridCell.Tab.3.bottom/0.0.1536.920@0.0.1536.920" timestamp="1685594178624" />
     <state width="1556" height="229" key="GridCell.Tab.3.bottom/0.0.1600.860@0.0.1600.860" timestamp="1682873343459" />
-    <state width="1556" height="229" key="GridCell.Tab.3.center" timestamp="1682873343458">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="823" height="372" key="GridCell.Tab.3.center" timestamp="1685594178624">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
+    <state width="823" height="372" key="GridCell.Tab.3.center/0.0.1536.920@0.0.1536.920" timestamp="1685594178624" />
     <state width="1556" height="229" key="GridCell.Tab.3.center/0.0.1600.860@0.0.1600.860" timestamp="1682873343458" />
-    <state width="1556" height="229" key="GridCell.Tab.3.left" timestamp="1682873343458">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="823" height="372" key="GridCell.Tab.3.left" timestamp="1685594178624">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
+    <state width="823" height="372" key="GridCell.Tab.3.left/0.0.1536.920@0.0.1536.920" timestamp="1685594178624" />
     <state width="1556" height="229" key="GridCell.Tab.3.left/0.0.1600.860@0.0.1600.860" timestamp="1682873343458" />
-    <state width="1556" height="229" key="GridCell.Tab.3.right" timestamp="1682873343458">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="823" height="372" key="GridCell.Tab.3.right" timestamp="1685594178624">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
+    <state width="823" height="372" key="GridCell.Tab.3.right/0.0.1536.920@0.0.1536.920" timestamp="1685594178624" />
     <state width="1556" height="229" key="GridCell.Tab.3.right/0.0.1600.860@0.0.1600.860" timestamp="1682873343458" />
     <state x="16" y="317" key="extract.method.dialog" timestamp="1682712390043">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="16" y="317" key="extract.method.dialog/0.0.1600.860@0.0.1600.860" timestamp="1682712390043" />
-    <state x="209" y="268" width="784" height="592" key="find.popup" timestamp="1682872525216">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state x="201" y="286" width="753" height="634" key="find.popup" timestamp="1685539263532">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
+    <state x="201" y="286" width="753" height="634" key="find.popup/0.0.1536.920@0.0.1536.920" timestamp="1685539263532" />
     <state x="209" y="268" width="784" height="592" key="find.popup/0.0.1600.860@0.0.1600.860" timestamp="1682872525216" />
     <state x="456" y="190" key="run.anything.popup" timestamp="1679770463094">
       <screen x="0" y="0" width="1600" height="860" />
@@ -788,7 +797,7 @@
         <line-breakpoint type="java-method">
           <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/AddCommand.java</url>
           <line>29</line>
-          <properties class="by.tut.ssmt.controller.command.impl.AddCommand">
+          <properties class="by.tut.ssmt.controller.command.impl.AddCommand" method="execute">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="42" />
@@ -796,7 +805,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/DeleteUserCommand.java</url>
           <line>25</line>
-          <properties class="by.tut.ssmt.controller.command.impl.DeleteUserCommand">
+          <properties class="by.tut.ssmt.controller.command.impl.DeleteUserCommand" method="execute">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="167" />
@@ -804,7 +813,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/ProductDaoImpl.java</url>
           <line>200</line>
-          <properties class="by.tut.ssmt.dao.DAO.impl.ProductDaoImpl">
+          <properties class="by.tut.ssmt.dao.DAO.impl.ProductDaoImpl" method="deleteDao">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="190" />
@@ -812,7 +821,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/DeleteCommand.java</url>
           <line>28</line>
-          <properties class="by.tut.ssmt.controller.command.impl.DeleteCommand">
+          <properties class="by.tut.ssmt.controller.command.impl.DeleteCommand" method="execute">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="191" />
@@ -820,7 +829,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/DeleteFromMenuCommand.java</url>
           <line>34</line>
-          <properties class="by.tut.ssmt.controller.command.impl.DeleteFromMenuCommand">
+          <properties class="by.tut.ssmt.controller.command.impl.DeleteFromMenuCommand" method="execute">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="192" />
@@ -828,7 +837,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/UserDaoImpl.java</url>
           <line>124</line>
-          <properties class="by.tut.ssmt.dao.DAO.impl.UserDaoImpl">
+          <properties class="by.tut.ssmt.dao.DAO.impl.UserDaoImpl" method="findPageDao">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="195" />
@@ -836,7 +845,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/ProductDaoImpl.java</url>
           <line>105</line>
-          <properties class="by.tut.ssmt.dao.DAO.impl.ProductDaoImpl">
+          <properties class="by.tut.ssmt.dao.DAO.impl.ProductDaoImpl" method="insertDao">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="200" />
@@ -857,14 +866,14 @@
           <option name="timeStamp" value="84" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/BulkChangePortionCommand.java</url>
-          <line>44</line>
-          <option name="timeStamp" value="152" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/UserDaoImpl.java</url>
           <line>133</line>
           <option name="timeStamp" value="188" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/BulkChangePortionCommand.java</url>
+          <line>41</line>
+          <option name="timeStamp" value="204" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -1,5 +1,6 @@
 package by.tut.ssmt.controller.command.impl;
 
+import by.tut.ssmt.controller.command.AbstractCommand;
 import by.tut.ssmt.controller.command.Command;
 import by.tut.ssmt.controller.exception.ControllerException;
 
@@ -10,7 +11,7 @@ import java.io.IOException;
 
 import static by.tut.ssmt.controller.util.ControllerConstants.*;
 
-public class FormsAccessCommand implements Command {
+public class FormsAccessCommand extends AbstractCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ControllerException {

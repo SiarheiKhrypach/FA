@@ -21,8 +21,6 @@ import java.util.List;
 
 import static by.tut.ssmt.controller.util.ControllerConstants.*;
 
-
-
 public class BulkChangePortionCommand extends AbstractCommand implements Command {
 
     List<Product> products;
@@ -34,7 +32,6 @@ public class BulkChangePortionCommand extends AbstractCommand implements Command
     private final MenuService menuService = serviceFactory.getMenuService();
     private final DataProcessorList dataProcessorList = serviceFactory.getDataProcessorList();
 
-
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ControllerException, ServletException, IOException {
         try {
@@ -43,7 +40,9 @@ public class BulkChangePortionCommand extends AbstractCommand implements Command
             checkOperationForSuccess(request, result);
             String currentUser = (String) request.getSession().getAttribute(USER_NAME);
             products  = menuService.selectAllFromMenuService(currentUser);
-            setProportion(request);
+            String formattedProportion = calcProportion(dataProcessorList, products);
+            setAttProportion(serviceValidator, formattedProportion, request);
+
             String currentPageString = (String) request.getSession().getAttribute(CURRENT_PAGE);
             response.sendRedirect("/menu?command=menu&" + CURRENT_PAGE + "=" + currentPageString + "&" + MESSAGE + "=" + result);
         } catch (ServiceException e) {
@@ -53,12 +52,4 @@ public class BulkChangePortionCommand extends AbstractCommand implements Command
             request.getRequestDispatcher("/WEB-INF/menu.jsp");
         }
     }
-
-    private void setProportion(HttpServletRequest request) throws ServiceException {
-        final String formattedProportion = dataProcessorList.calculate(products);
-        serviceValidator.isNotNull(formattedProportion);
-        request.getSession().setAttribute(PROPORTION, formattedProportion);
-    }
-
-
 }

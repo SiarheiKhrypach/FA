@@ -20,7 +20,6 @@ import java.util.List;
 
 import static by.tut.ssmt.controller.util.ControllerConstants.*;
 
-
 public class DeleteFromMenuCommand extends AbstractCommand implements Command {
 
     List<Product> products;
@@ -40,20 +39,14 @@ public class DeleteFromMenuCommand extends AbstractCommand implements Command {
             controllerValidator.isNotNullOrEmpty(currentUser);
             boolean result = menuService.deleteService(productName, currentUser);
             checkOperationForSuccess(request, result);
-            setProportion(request, currentUser);
+            products = menuService.selectAllFromMenuService(currentUser);
+            String formattedProportion = calcProportion(dataProcessorList, products);
+            setAttProportion(serviceValidator, formattedProportion, request);
             String currentPageString = (String) request.getSession().getAttribute(CURRENT_PAGE);
             response.sendRedirect("/menu?command=menu&"+ CURRENT_PAGE + "=" + currentPageString + "&" + MESSAGE+ "=" + result);
         } catch (ServiceException | NullOrEmptyException e) {
             throw new ControllerException(e.getMessage());
         }
     }
-
-    private void setProportion(HttpServletRequest request, String currentUser) throws NullPointerException, ServiceException, NullOrEmptyException {
-        products = menuService.selectAllFromMenuService(currentUser);
-        final String formattedProportion = dataProcessorList.calculate(products);
-        serviceValidator.isNotNull(formattedProportion);
-        request.getSession().setAttribute(PROPORTION, formattedProportion);
-    }
-
 }
 

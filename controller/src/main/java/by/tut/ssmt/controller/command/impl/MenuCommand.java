@@ -66,7 +66,9 @@ public class MenuCommand extends FormsAccessCommand {
             ServletContext servletContext = request.getServletContext();
             servletContext.setAttribute(MENU_ITEMS_PAGED_ATTRIBUTE, pagedMenuItem);
             products = menuService.selectAllFromMenuService(currentUser);
-            setProportion(request);
+            String formattedProportion = calcProportion(dataProcessorList, products);
+            setAttProportion(serviceValidator, formattedProportion, request);
+
             if (request.getParameter(MESSAGE) == null) {
                 request.getSession().setAttribute(MESSAGE, "You are in the menu now");
             }
@@ -74,11 +76,5 @@ public class MenuCommand extends FormsAccessCommand {
         } catch (ServiceException | NullOrEmptyException | NullPointerException e) {
             throw new ControllerException(e.getMessage());
         }
-    }
-
-    private void setProportion(HttpServletRequest request) throws NullPointerException {
-        final String formattedProportion = dataProcessorList.calculate(products);
-        serviceValidator.isNotNull(formattedProportion);
-        request.getSession().setAttribute(PROPORTION, formattedProportion);
     }
 }
