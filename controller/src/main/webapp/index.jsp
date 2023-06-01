@@ -156,13 +156,6 @@
                 <input class="w3-input w3-border-0" type="number" class="register-input" name="omegaSix" min="0"
                        step="0.1"
                        required>
-
-                <label>
-                    <c:out value="${portions}"/>
-                </label>
-                <input class="w3-input w3-border-0" type="number" class="register-input" name="portions" min="1"
-                       required>
-
                 <input type="hidden" name="command" value="add"/>
                 <input type="submit" name="Add" value="${add_btn}">
 
@@ -233,7 +226,7 @@
                 </c:if>
                 <c:if test="${sessionScope.role != null}">
                     <th>
-                        <c:out value="${portions}"/>
+                        <c:out value="${porxtions}"/>
                     </th>
                 </c:if>
             </tr>
