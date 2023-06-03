@@ -94,6 +94,12 @@
         <url-pattern>/userList</url-pattern>
     </filter-mapping>
 
+    <filter-mapping>
+        <filter-name>AdminFilter</filter-name>
+        <url-pattern>/update</url-pattern>
+    </filter-mapping>
+
+
 
     <servlet>
         <servlet-name>FrontController</servlet-name>
