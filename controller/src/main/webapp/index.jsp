@@ -259,12 +259,12 @@
                     <c:if test="${sessionScope.role != null}">
 
                         <td>
-                            <form class="w3-container w3-light-grey" method="post" action="/addPortions">
+                            <form class="w3-container w3-light-grey" method="post" action="/addToMenu">
                                 <input class="w3-input w3-border-0" type="number" class="register-input"
                                        name="portions" value="0" min="0" step="1" required>
                                 <input type="hidden" name="productId" value="${product.productId}"/>
                                 <input type="hidden" name="command" value="add_portions"/>
-                                <input type="submit" name="AddPortions" value="${add_to_the_menu_btn}">
+                                <input type="submit" name="AddToMenu" value="${add_to_the_menu_btn}">
                             </form>
 
                         </td>

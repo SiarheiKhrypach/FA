@@ -48,7 +48,7 @@ public class FrontController extends HttpServlet {
 //            commands = new HashMap<>();
         }
         commands.put(CommandEnum.ADD, new AddCommand());
-        commands.put(CommandEnum.ADD_PORTIONS, new AddPortionsCommand());
+        commands.put(CommandEnum.ADD_PORTIONS, new AddToMenuCommand());
         commands.put(CommandEnum.BULK_CHANGE_PORTION, new BulkChangePortionCommand());
         commands.put(DEFAULT, new DefaultCommand());
         commands.put(CommandEnum.DELETE, new DeleteCommand());

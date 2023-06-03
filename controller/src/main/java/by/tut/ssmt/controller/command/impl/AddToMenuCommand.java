@@ -20,7 +20,7 @@ import static by.tut.ssmt.controller.util.ControllerConstants.*;
 
 
 
-public class AddPortionsCommand extends AbstractCommand implements Command {
+public class AddToMenuCommand extends AbstractCommand implements Command {
 
     private final ControllerFactory controllerFactory = ControllerFactory.getInstance();
     private final FormDataCollector dataCollector = controllerFactory.getMenuFormDataCollector();

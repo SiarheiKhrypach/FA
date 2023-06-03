@@ -80,7 +80,7 @@
 
     <filter-mapping>
         <filter-name>AuthFilter</filter-name>
-        <url-pattern>/addPortions</url-pattern>
+        <url-pattern>/addToMenu</url-pattern>
     </filter-mapping>
 
 
