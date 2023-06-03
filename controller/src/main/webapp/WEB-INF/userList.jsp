@@ -23,6 +23,7 @@
 
 <fmt:message bundle="${loc}" key="local.button.delete" var="delete_btn"/>
 <fmt:message bundle="${loc}" key="local.button.back" var="back"/>
+<fmt:message bundle="${loc}" key="local.button.logout" var="logout_btn"/>
 <fmt:message bundle="${loc}" key="local.button.search" var="search_btn"/>
 <fmt:message bundle="${loc}" key="local.button.sort" var="sort_btn"/>
 <fmt:message bundle="${loc}" key="local.button.sort_by_name_asc" var="sort_by_name_asc_btn"/>
@@ -155,6 +156,16 @@
             <c:out value="${back}"/>
         </button>
     </div>
+
+    <div>
+        <form id="logout" method="get" action="/main">
+            <input type="hidden" name="command" value="logout"/>
+            <button form="logout" type="submit">
+                <c:out value="${logout_btn}"/>
+            </button>
+        </form>
+    </div>
+
 
 </div>
 

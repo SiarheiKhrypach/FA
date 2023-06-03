@@ -19,6 +19,7 @@
 
 <fmt:message bundle="${loc}" key="local.button.edit" var="edit_btn"/>
 <fmt:message bundle="${loc}" key="local.button.back" var="back"/>
+<fmt:message bundle="${loc}" key="local.button.logout" var="logout_btn"/>
 
 <fmt:message bundle="${loc}" key="local.text.enter_new_data" var="enter_new_data"/>
 
@@ -88,7 +89,19 @@
         <c:out value="${back}"/>
     </button>
 
+    <div>
+        <form id="logout" method="get" action="/main">
+            <input type="hidden" name="command" value="logout"/>
+            <button form="logout" type="submit">
+                <c:out value="${logout_btn}"/>
+            </button>
+        </form>
+    </div>
+
+
 </div>
+
+
 
 
 </body>
