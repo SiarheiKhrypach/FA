@@ -7,6 +7,7 @@ public class ControllerConstants {
             CURRENT_PAGE = "currentPage",
             FILTER = "filter",
             LOCALE = "locale",
+            LOCALE_CHANGE = "locale_change",
             LOG4 = "log4",
             LOG_FILE_NAME = "logfilename",
             MENU_ITEMS_PAGED_ATTRIBUTE = "menuItemsPagedAttribute",

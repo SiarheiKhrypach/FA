@@ -70,16 +70,17 @@
     <div>
 
         <form action="/main" method="post">
-            <input type="hidden" name="command" value="locale"/>
+            <input type="hidden" name="command" value="default"/>
+            <input type="hidden" name="locale_change" value="true"/>
             <input type="hidden" name="locale" value="en">
             <button type="submit">
                 <c:out value="${en_btn}"/>
             </button>
         </form>
 
-        <%--        id="show_products"--%>
         <form action="/main" method="post">
-            <input type="hidden" name="command" value="locale"/>
+            <input type="hidden" name="command" value="default"/>
+            <input type="hidden" name="locale_change" value="true"/>
             <input type="hidden" name="locale" value="be">
             <button type="submit">
                 <c:out value="${be_btn}"/>
@@ -87,7 +88,8 @@
         </form>
 
         <form action="/main" method="post">
-            <input type="hidden" name="command" value="locale"/>
+            <input type="hidden" name="command" value="default"/>
+            <input type="hidden" name="locale_change" value="true"/>
             <input type="hidden" name="locale" value="ru">
             <button type="submit">
                 <c:out value="${ru_btn}"/>

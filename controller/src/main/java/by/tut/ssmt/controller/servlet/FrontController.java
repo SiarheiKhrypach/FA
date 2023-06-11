@@ -29,7 +29,6 @@ import static java.util.Objects.isNull;
 public class FrontController extends HttpServlet {
 
     private Map <CommandEnum, Command> commands;
-//    private Map<String, Command> commands;
 
     @Override
     public void init() throws ServletException {
@@ -45,7 +44,6 @@ public class FrontController extends HttpServlet {
     private void initCommandsMap() {
         if (isNull(commands)) {
             commands = new EnumMap<>(CommandEnum.class);
-//            commands = new HashMap<>();
         }
         commands.put(CommandEnum.ADD, new AddCommand());
         commands.put(CommandEnum.ADD_PORTIONS, new AddToMenuCommand());
@@ -75,10 +73,8 @@ public class FrontController extends HttpServlet {
     }
 
     private void doExecute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        boolean isRequiredForward;
         RootLogger log = (RootLogger) getServletContext().getAttribute(LOG4);
-        isRequiredForward = processLocale(request, response);
-        if (isRequiredForward) {
+        processLocale(request, response);
             try {
                 final CommandEnum command = getCommand(request);
                 commands.get(command).execute(request, response);
@@ -88,20 +84,14 @@ public class FrontController extends HttpServlet {
                 log.error(ControllerException.getCause(e) +": " + ControllerException.getCause(e).getMessage());
                 request.getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
             }
-        }
     }
 
-    private boolean processLocale(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        boolean isRequiredForward = true;
-        String command = request.getParameter(COMMAND);
-        if ("locale".equals(command)) {
-            request.setAttribute(COMMAND, DEFAULT);
+    private void processLocale(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String localeChange = request.getParameter(LOCALE_CHANGE);
+        if ("true".equals(localeChange)) {
             String locale = request.getParameter(LOCALE);
             request.getSession().setAttribute(LOCALE, locale);
-            isRequiredForward = false;
-            response.sendRedirect("/");
         }
-        return isRequiredForward;
     }
 
     private CommandEnum getCommand(HttpServletRequest request) {

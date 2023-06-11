@@ -20,6 +20,10 @@
 <fmt:message bundle="${loc}" key="local.text.login" var="login"/>
 <fmt:message bundle="${loc}" key="local.form.name" var="name"/>
 <fmt:message bundle="${loc}" key="local.form.password" var="password"/>
+
+<fmt:message bundle="${loc}" key="local.locbutton.name.en" var="en_btn"/>
+<fmt:message bundle="${loc}" key="local.locbutton.name.be" var="be_btn"/>
+<fmt:message bundle="${loc}" key="local.locbutton.name.ru" var="ru_btn"/>
 <fmt:message bundle="${loc}" key="local.button.submit" var="submit"/>
 <fmt:message bundle="${loc}" key="local.button.back" var="back"/>
 <fmt:message bundle="${loc}" key="local.message.fill_the_form" var="fill_the_form"/>
@@ -34,6 +38,35 @@
 <body>
 
     <div>
+
+        <form action="/login" method="post">
+            <input type="hidden" name="command" value="form"/>
+            <input type="hidden" name="locale_change" value="true"/>
+            <input type="hidden" name="locale" value="en">
+            <button type="submit">
+                <c:out value="${en_btn}"/>
+            </button>
+        </form>
+
+        <form action="/login" method="post">
+            <input type="hidden" name="command" value="form"/>
+            <input type="hidden" name="locale_change" value="true"/>
+            <input type="hidden" name="locale" value="be">
+            <button type="submit">
+                <c:out value="${be_btn}"/>
+            </button>
+        </form>
+
+        <form action="/login" method="post">
+            <input type="hidden" name="command" value="form"/>
+            <input type="hidden" name="locale_change" value="true"/>
+            <input type="hidden" name="locale" value="ru">
+            <button type="submit">
+                <c:out value="${ru_btn}"/>
+            </button>
+        </form>
+
+
         <div>
             <h2>
                 <c:out value="${login}"/>
