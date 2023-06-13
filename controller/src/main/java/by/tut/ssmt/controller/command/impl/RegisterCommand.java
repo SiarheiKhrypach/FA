@@ -31,6 +31,7 @@ public class RegisterCommand implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, ControllerException {
         try {
             final User user = (User) dataCollector.collectFormData(request);
+            dataCollector.rePass(request);
             userAdded = userService.registerUserService(user);
             postToMainPage(request, response);
         } catch (NullOrEmptyException e) {

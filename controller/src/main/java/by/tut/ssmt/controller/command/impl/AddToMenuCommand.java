@@ -4,7 +4,6 @@ import by.tut.ssmt.controller.ControllerFactory;
 import by.tut.ssmt.controller.command.AbstractCommand;
 import by.tut.ssmt.controller.command.Command;
 import by.tut.ssmt.controller.exception.ControllerException;
-import by.tut.ssmt.controller.exception.NotEqualOperatorsException;
 import by.tut.ssmt.controller.formDataCollector.FormDataCollector;
 import by.tut.ssmt.dao.domain.MenuItem;
 import by.tut.ssmt.service.MenuService;
@@ -17,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static by.tut.ssmt.controller.util.ControllerConstants.*;
+import static by.tut.ssmt.controller.util.ControllerConstants.MESSAGE;
 
 
 
@@ -39,7 +38,7 @@ public class AddToMenuCommand extends AbstractCommand implements Command {
         } catch (NullOrEmptyException e) {
             request.setAttribute(MESSAGE, "Please enter valid data");
             request.getRequestDispatcher("index.jsp").forward(request, response);
-        } catch (ServiceException | NotEqualOperatorsException e) {
+        } catch (ServiceException e) {
             throw new ControllerException(e.getMessage());
         }
     }

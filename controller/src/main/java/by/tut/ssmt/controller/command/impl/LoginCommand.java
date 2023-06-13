@@ -3,7 +3,6 @@ package by.tut.ssmt.controller.command.impl;
 import by.tut.ssmt.controller.ControllerFactory;
 import by.tut.ssmt.controller.command.Command;
 import by.tut.ssmt.controller.exception.ControllerException;
-import by.tut.ssmt.controller.exception.NotEqualOperatorsException;
 import by.tut.ssmt.controller.formDataCollector.FormDataCollector;
 import by.tut.ssmt.dao.domain.User;
 import by.tut.ssmt.service.ServiceFactory;
@@ -39,7 +38,7 @@ public class LoginCommand implements Command {
         } catch (NullOrEmptyException e) {
             request.setAttribute(MESSAGE, "Please fill out the form");
             request.getRequestDispatcher("/WEB-INF/login.jsp").forward(request, response);
-        } catch (ServletException | IOException | ServiceException | NotEqualOperatorsException e) {
+        } catch (ServletException | IOException | ServiceException e) {
             throw new ControllerException(e.getMessage());
         }
     }
