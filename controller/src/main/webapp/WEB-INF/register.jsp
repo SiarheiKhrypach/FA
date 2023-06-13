@@ -19,7 +19,7 @@
 <fmt:message bundle="${loc}" key="local.text.registration" var="registration"/>
 <fmt:message bundle="${loc}" key="local.form.name" var="name"/>
 <fmt:message bundle="${loc}" key="local.form.password" var="password"/>
-
+<fmt:message bundle="${loc}" key="local.form.repeat_password" var="repeat_password"/>
 <fmt:message bundle="${loc}" key="local.locbutton.name.en" var="en_btn"/>
 <fmt:message bundle="${loc}" key="local.locbutton.name.be" var="be_btn"/>
 <fmt:message bundle="${loc}" key="local.locbutton.name.ru" var="ru_btn"/>
@@ -27,6 +27,7 @@
 <fmt:message bundle="${loc}" key="local.button.back" var="back"/>
 <fmt:message bundle="${loc}" key="local.message.user_exist" var="user_exist"/>
 <fmt:message bundle="${loc}" key="local.message.fill_the_form" var="fill_the_form"/>
+<fmt:message bundle="${loc}" key="local.message.no_password_match" var="no_password_match"/>
 
 <head>
     <title>
@@ -65,26 +66,29 @@
     </form>
 
 
-
-<div>
-    <h2>
-        <c:out value="${registration}"/>
-    </h2>
-</div>
+    <div>
+        <h2>
+            <c:out value="${registration}"/>
+        </h2>
+    </div>
 
     <form method="post" action="/main"/>
-<%--    <form method="post" action="<c:url value="/main"/>">--%>
-<%--    <form method="post" action="<c:url value="productId'/>">--%>
-        <input type="hidden" name="command" value="register"/>
-        <label><c:out value="${name}"/>
-            <input type="text" name="name" maxlength="30" required><br/>
-        </label>
-        <label><c:out value="${password}"/>
-            <input type="password" name="pass" maxlength="30" required><br/>
-        </label>
-        <button type="submit">
-            <c:out value="${submit}"/>
-        </button>
+    <%--    <form method="post" action="<c:url value="/main"/>">--%>
+    <%--    <form method="post" action="<c:url value="productId'/>">--%>
+    <input type="hidden" name="command" value="register"/>
+    <label><c:out value="${name}"/>
+        <input type="text" name="name" maxlength="30" required><br/>
+    </label>
+    <label><c:out value="${password}"/>
+        <input type="password" name="pass" maxlength="30" required><br/>
+    </label>
+    <label><c:out value="${repeat_password}"/>
+        <input type="password" name="repass" maxlength="30" required><br/>
+    </label>
+
+    <button type="submit">
+        <c:out value="${submit}"/>
+    </button>
     </form>
 
 </div>
@@ -98,13 +102,18 @@
 </div>
 
 <div>
-<c:if test="${fn:contains(message, 'Please fill out the form' )}">
-    <p><c:out value="${fill_the_form}"/></p>
-</c:if>
+    <c:if test="${fn:contains(message, 'Please fill out the form' )}">
+        <p><c:out value="${fill_the_form}"/></p>
+    </c:if>
 
-<c:if test="${fn:contains(message, 'User name or/and password are already in use, try one more time' )}">
-    <p><c:out value="${user_exist}"/></p>
-</c:if>
+    <c:if test="${fn:contains(message, 'User name or/and password are already in use, try one more time' )}">
+        <p><c:out value="${user_exist}"/></p>
+    </c:if>
+
+    <c:if test="${fn:contains(message, 'The passwords do not match' )}">
+        <p><c:out value="${no_password_match}"/></p>
+    </c:if>
+
 </div>
 
 </html>

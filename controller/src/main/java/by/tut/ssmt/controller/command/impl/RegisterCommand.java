@@ -3,6 +3,7 @@ package by.tut.ssmt.controller.command.impl;
 import by.tut.ssmt.controller.ControllerFactory;
 import by.tut.ssmt.controller.command.Command;
 import by.tut.ssmt.controller.exception.ControllerException;
+import by.tut.ssmt.controller.exception.NotEqualOperatorsException;
 import by.tut.ssmt.controller.formDataCollector.FormDataCollector;
 import by.tut.ssmt.dao.domain.User;
 import by.tut.ssmt.service.ServiceFactory;
@@ -15,7 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static by.tut.ssmt.controller.util.ControllerConstants.*;
+import static by.tut.ssmt.controller.util.ControllerConstants.MESSAGE;
 
 public class RegisterCommand implements Command {
 
@@ -34,6 +35,9 @@ public class RegisterCommand implements Command {
             postToMainPage(request, response);
         } catch (NullOrEmptyException e) {
             request.setAttribute(MESSAGE, "Please fill out the form");
+            request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
+        } catch (NotEqualOperatorsException e) {
+            request.setAttribute(MESSAGE, "The passwords do not match");
             request.getRequestDispatcher("/WEB-INF/register.jsp").forward(request, response);
         } catch (ServletException | IOException | ServiceException e) {
             throw new ControllerException(e.getMessage());

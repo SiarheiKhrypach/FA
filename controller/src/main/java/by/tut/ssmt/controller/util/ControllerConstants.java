@@ -24,6 +24,7 @@ public class ControllerConstants {
             PRODUCT = "product",
             PRODUCT_NAME = "productName",
             PRODUCTS_PAGES_ATTRIBUTE = "productsPagedAttribute",
+            RE_PASSWORD = "repass",
             ROLE = "role",
             USER = "user",
             USER_NAME = "userName",
