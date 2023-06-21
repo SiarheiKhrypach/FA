@@ -37,6 +37,10 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
     private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class.getName());
 
+    public UserDaoImpl() {
+        super();
+    }
+
     public List<User> selectUserDao() throws DaoException {
         List<Object> parameters = Collections.emptyList();
         Connection connection = null;

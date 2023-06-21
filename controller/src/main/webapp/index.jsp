@@ -189,13 +189,13 @@
         </div>
     </div>
 
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
-    <br>
+<%--    <br>--%>
+<%--    <br>--%>
+<%--    <br>--%>
+<%--    <br>--%>
+<%--    <br>--%>
+<%--    <br>--%>
+<%--    <br>--%>
 
     <div>
         <form class="w3-container w3-light-grey" method="post" action="/main">

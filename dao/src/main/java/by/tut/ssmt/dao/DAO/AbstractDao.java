@@ -17,11 +17,15 @@ import static java.util.Objects.nonNull;
 
 public abstract class AbstractDao {
 
-    private final ConnectionPool connectionPool;
+    private ConnectionPool connectionPool;
     private static final Logger LOGGER = Logger.getLogger(AbstractDao.class.getName());
 
     protected AbstractDao(ConnectionPool connectionPool) {
         this.connectionPool = connectionPool;
+    }
+
+    public AbstractDao() {
+
     }
 
     protected List addProductsFromResultSet(ResultSet resultSet) throws SQLException {

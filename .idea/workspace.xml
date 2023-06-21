@@ -25,10 +25,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="59ca0b27-6170-41d2-a1a1-ba36d40b5d8b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/artifacts/controller_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/controller_war_exploded.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/RegisterCommand.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/RegisterCommand.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/formDataCollector/FormDataCollector.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/formDataCollector/FormDataCollector.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/formDataCollector/UserFormDataCollector.java" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/formDataCollector/UserFormDataCollector.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controller/src/main/webapp/index.jsp" beforeDir="false" afterPath="$PROJECT_DIR$/controller/src/main/webapp/index.jsp" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/dao/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/AbstractDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/AbstractDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/UserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -45,6 +49,7 @@
         <option value="Jspx File" />
         <option value="Jsp File" />
         <option value="Class" />
+        <option value="JUnit4 Test Class" />
       </list>
     </option>
   </component>
@@ -73,23 +78,40 @@
     <property name="TERMINAL_CUSTOM_COMMANDS_GOT_IT" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit4" value="" />
     <property name="extract.method.default.visibility" value="private" />
     <property name="ignore.virus.scanning.warn.message" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/service/src/main/java/by/tut/ssmt/service" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/controller/src/test/resources" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.36230367" />
-    <property name="settings.editor.selected.configurable" value="org.jetbrains.plugins.github.ui.GithubSettingsConfigurable" />
+    <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="by.tut.ssmt.service.impl" />
+      <recent name="by.tut.ssmt.dao.DAO.impl" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="by.tut.ssmt.service" />
       <recent name="by.tut.ssmt.dao.DAO.impl" />
       <recent name="" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ssmt\IdeaProjects\FA\dao\src" />
+      <recent name="C:\Users\ssmt\IdeaProjects\FA\service\src\main\java\by\tut\ssmt\service" />
+      <recent name="C:\Users\ssmt\IdeaProjects\FA\controller\src\main\resources" />
+      <recent name="C:\Users\ssmt\IdeaProjects\FA\controller\src\main" />
+      <recent name="C:\Users\ssmt\IdeaProjects\FA\dao\src\main\resources" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ssmt\IdeaProjects\FA\controller\src\test\resources" />
       <recent name="C:\Users\ssmt\IdeaProjects\FA\controller\src\main" />
       <recent name="C:\Users\ssmt\IdeaProjects\FA\src\main\webapp" />
       <recent name="C:\Users\ssmt\IdeaProjects\FA\src\main\webapp\WEB-INF\lib" />
@@ -97,15 +119,8 @@
     <key name="CreateClassDialog.RecentsKey">
       <recent name="by.tut.ssmt.services.exceptions" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\ssmt\IdeaProjects\FA\service\src\main\java\by\tut\ssmt\service" />
-      <recent name="C:\Users\ssmt\IdeaProjects\FA\controller\src\main\resources" />
-      <recent name="C:\Users\ssmt\IdeaProjects\FA\controller\src\main" />
-      <recent name="C:\Users\ssmt\IdeaProjects\FA\dao\src\main\resources" />
-      <recent name="C:\Users\ssmt\IdeaProjects\FA\controller\src\main\java\by.tut.ssmt" />
-    </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.75">
+  <component name="RunManager" selected="JUnit.UserServiceImplTest.testSelectAllUserService">
     <configuration default="true" type="com.poratu.idea.plugins.tomcat" factoryName="SMART_TOMCAT_FACTORY">
       <option name="adminPort" value="8005" />
       <option name="contextPath" value="/controller" />
@@ -126,22 +141,40 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="MenuItem" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.dao.domain.MenuItem" />
-      <module name="dao" />
+    <configuration name="UserServiceImplTest.findUserPageService" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="service" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="by.tut.ssmt.dao.domain.*" />
+          <option name="PATTERN" value="by.tut.ssmt.service.impl.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="by.tut.ssmt.service.impl" />
+      <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.service.impl.UserServiceImplTest" />
+      <option name="METHOD_NAME" value="findUserPageService" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceImplTest.testSelectAllUserService" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="by.tut.ssmt.service.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="by.tut.ssmt.service.impl" />
+      <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.service.impl.UserServiceImplTest" />
+      <option name="METHOD_NAME" value="testSelectAllUserService" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <configuration name="Tomcat 9.0.75" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 9.0.75" ALTERNATIVE_JRE_ENABLED="false">
       <option name="BROWSER_ID" value="98ca6316-2f89-46d9-a9e5-fa9e2b0625b3" />
-      <option name="UPDATING_POLICY" value="restart-server" />
       <deployment>
         <artifact name="controller:war exploded">
           <settings>
@@ -557,18 +590,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="Application.MenuItem" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.75" />
       <item itemvalue="Tomcat Server.index.jsp" />
       <item itemvalue="Tomcat Server.menu.jsp" />
       <item itemvalue="Tomcat Server.menu.jsp (1)" />
+      <item itemvalue="JUnit.UserServiceImplTest.testSelectAllUserService" />
+      <item itemvalue="JUnit.UserServiceImplTest.findUserPageService" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UserServiceImplTest.testSelectAllUserService" />
+        <item itemvalue="JUnit.UserServiceImplTest.findUserPageService" />
         <item itemvalue="Tomcat Server.menu.jsp (1)" />
         <item itemvalue="Tomcat Server.menu.jsp" />
         <item itemvalue="Tomcat Server.index.jsp" />
-        <item itemvalue="Application.MenuItem" />
       </list>
     </recent_temporary>
   </component>
@@ -649,6 +684,7 @@
       <workItem from="1686658419245" duration="686000" />
       <workItem from="1686664323751" duration="295000" />
       <workItem from="1686664638708" duration="29000" />
+      <workItem from="1686901514292" duration="17424000" />
     </task>
     <servers />
   </component>
@@ -668,6 +704,14 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="395" y="139" key="#Inspections" timestamp="1687001564128">
+      <screen x="0" y="0" width="1536" height="920" />
+    </state>
+    <state x="395" y="139" key="#Inspections/0.0.1536.920@0.0.1536.920" timestamp="1687001564128" />
+    <state x="249" y="35" key="#Project_Structure" timestamp="1687339484319">
+      <screen x="0" y="0" width="1536" height="920" />
+    </state>
+    <state x="249" y="35" key="#Project_Structure/0.0.1536.920@0.0.1536.920" timestamp="1687339484319" />
     <state x="206" y="302" key="#SQL_Dialects" timestamp="1685866392187">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
@@ -697,65 +741,65 @@
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state x="548" y="201" key="FileChooserDialogImpl/0.0.1536.920@0.0.1536.920" timestamp="1685514622375" />
-    <state width="807" height="349" key="GridCell.Tab.0.bottom" timestamp="1686670926260">
+    <state width="746" height="300" key="GridCell.Tab.0.bottom" timestamp="1687340469606">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="807" height="349" key="GridCell.Tab.0.bottom/0.0.1536.920@0.0.1536.920" timestamp="1686670926260" />
+    <state width="746" height="300" key="GridCell.Tab.0.bottom/0.0.1536.920@0.0.1536.920" timestamp="1687340469606" />
     <state width="1556" height="229" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1682873343612" />
-    <state width="807" height="349" key="GridCell.Tab.0.center" timestamp="1686670926260">
+    <state width="746" height="300" key="GridCell.Tab.0.center" timestamp="1687340469606">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="807" height="349" key="GridCell.Tab.0.center/0.0.1536.920@0.0.1536.920" timestamp="1686670926260" />
+    <state width="746" height="300" key="GridCell.Tab.0.center/0.0.1536.920@0.0.1536.920" timestamp="1687340469606" />
     <state width="1556" height="229" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1682873343612" />
-    <state width="807" height="349" key="GridCell.Tab.0.left" timestamp="1686670926260">
+    <state width="746" height="300" key="GridCell.Tab.0.left" timestamp="1687340469606">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="807" height="349" key="GridCell.Tab.0.left/0.0.1536.920@0.0.1536.920" timestamp="1686670926260" />
+    <state width="746" height="300" key="GridCell.Tab.0.left/0.0.1536.920@0.0.1536.920" timestamp="1687340469606" />
     <state width="1556" height="229" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1682873343612" />
-    <state width="807" height="349" key="GridCell.Tab.0.right" timestamp="1686670926260">
+    <state width="746" height="300" key="GridCell.Tab.0.right" timestamp="1687340469606">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="807" height="349" key="GridCell.Tab.0.right/0.0.1536.920@0.0.1536.920" timestamp="1686670926260" />
+    <state width="746" height="300" key="GridCell.Tab.0.right/0.0.1536.920@0.0.1536.920" timestamp="1687340469606" />
     <state width="1556" height="229" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1682873343612" />
-    <state width="807" height="349" key="GridCell.Tab.1.bottom" timestamp="1686670926260">
+    <state width="746" height="300" key="GridCell.Tab.1.bottom" timestamp="1687340469524">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="807" height="349" key="GridCell.Tab.1.bottom/0.0.1536.920@0.0.1536.920" timestamp="1686670926260" />
+    <state width="746" height="300" key="GridCell.Tab.1.bottom/0.0.1536.920@0.0.1536.920" timestamp="1687340469524" />
     <state width="1556" height="229" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1682873406085" />
-    <state width="807" height="349" key="GridCell.Tab.1.center" timestamp="1686670926260">
+    <state width="746" height="300" key="GridCell.Tab.1.center" timestamp="1687340469524">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="807" height="349" key="GridCell.Tab.1.center/0.0.1536.920@0.0.1536.920" timestamp="1686670926260" />
+    <state width="746" height="300" key="GridCell.Tab.1.center/0.0.1536.920@0.0.1536.920" timestamp="1687340469524" />
     <state width="1556" height="229" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1682873406085" />
-    <state width="807" height="349" key="GridCell.Tab.1.left" timestamp="1686670926260">
+    <state width="746" height="300" key="GridCell.Tab.1.left" timestamp="1687340469524">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="807" height="349" key="GridCell.Tab.1.left/0.0.1536.920@0.0.1536.920" timestamp="1686670926260" />
+    <state width="746" height="300" key="GridCell.Tab.1.left/0.0.1536.920@0.0.1536.920" timestamp="1687340469524" />
     <state width="1556" height="229" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1682873406085" />
-    <state width="807" height="349" key="GridCell.Tab.1.right" timestamp="1686670926260">
+    <state width="746" height="300" key="GridCell.Tab.1.right" timestamp="1687340469524">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="807" height="349" key="GridCell.Tab.1.right/0.0.1536.920@0.0.1536.920" timestamp="1686670926260" />
+    <state width="746" height="300" key="GridCell.Tab.1.right/0.0.1536.920@0.0.1536.920" timestamp="1687340469524" />
     <state width="1556" height="229" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1682873406085" />
-    <state width="807" height="349" key="GridCell.Tab.2.bottom" timestamp="1686670926260">
+    <state width="806" height="349" key="GridCell.Tab.2.bottom" timestamp="1686671207490">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="807" height="349" key="GridCell.Tab.2.bottom/0.0.1536.920@0.0.1536.920" timestamp="1686670926260" />
+    <state width="806" height="349" key="GridCell.Tab.2.bottom/0.0.1536.920@0.0.1536.920" timestamp="1686671207490" />
     <state width="1556" height="229" key="GridCell.Tab.2.bottom/0.0.1600.860@0.0.1600.860" timestamp="1682873343458" />
-    <state width="807" height="349" key="GridCell.Tab.2.center" timestamp="1686670926260">
+    <state width="806" height="349" key="GridCell.Tab.2.center" timestamp="1686671207490">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="807" height="349" key="GridCell.Tab.2.center/0.0.1536.920@0.0.1536.920" timestamp="1686670926260" />
+    <state width="806" height="349" key="GridCell.Tab.2.center/0.0.1536.920@0.0.1536.920" timestamp="1686671207490" />
     <state width="1556" height="229" key="GridCell.Tab.2.center/0.0.1600.860@0.0.1600.860" timestamp="1682873343458" />
-    <state width="807" height="349" key="GridCell.Tab.2.left" timestamp="1686670926260">
+    <state width="806" height="349" key="GridCell.Tab.2.left" timestamp="1686671207490">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="807" height="349" key="GridCell.Tab.2.left/0.0.1536.920@0.0.1536.920" timestamp="1686670926260" />
+    <state width="806" height="349" key="GridCell.Tab.2.left/0.0.1536.920@0.0.1536.920" timestamp="1686671207490" />
     <state width="1556" height="229" key="GridCell.Tab.2.left/0.0.1600.860@0.0.1600.860" timestamp="1682873343458" />
-    <state width="807" height="349" key="GridCell.Tab.2.right" timestamp="1686670926260">
+    <state width="806" height="349" key="GridCell.Tab.2.right" timestamp="1686671207490">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="807" height="349" key="GridCell.Tab.2.right/0.0.1536.920@0.0.1536.920" timestamp="1686670926260" />
+    <state width="806" height="349" key="GridCell.Tab.2.right/0.0.1536.920@0.0.1536.920" timestamp="1686671207490" />
     <state width="1556" height="229" key="GridCell.Tab.2.right/0.0.1600.860@0.0.1600.860" timestamp="1682873343458" />
     <state width="729" height="349" key="GridCell.Tab.3.bottom" timestamp="1686471898524">
       <screen x="0" y="0" width="1536" height="920" />
@@ -777,6 +821,18 @@
     </state>
     <state width="729" height="349" key="GridCell.Tab.3.right/0.0.1536.920@0.0.1536.920" timestamp="1686471898524" />
     <state width="1556" height="229" key="GridCell.Tab.3.right/0.0.1600.860@0.0.1600.860" timestamp="1682873343458" />
+    <state x="299" y="115" key="Maven.ArtifactSearchDialog" timestamp="1687001690619">
+      <screen x="0" y="0" width="1536" height="920" />
+    </state>
+    <state x="299" y="115" key="Maven.ArtifactSearchDialog/0.0.1536.920@0.0.1536.920" timestamp="1687001690619" />
+    <state x="277" y="105" key="SettingsEditor" timestamp="1687002202223">
+      <screen x="0" y="0" width="1536" height="920" />
+    </state>
+    <state x="277" y="105" key="SettingsEditor/0.0.1536.920@0.0.1536.920" timestamp="1687002202223" />
+    <state x="1009" y="197" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1687339808716">
+      <screen x="0" y="0" width="1536" height="920" />
+    </state>
+    <state x="1009" y="197" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.920@0.0.1536.920" timestamp="1687339808716" />
     <state x="16" y="317" key="extract.method.dialog" timestamp="1682712390043">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
@@ -791,10 +847,10 @@
     </state>
     <state x="438" y="203" key="run.anything.popup/0.0.1536.920@0.0.1536.920" timestamp="1686474976555" />
     <state x="456" y="190" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1679770463094" />
-    <state x="444" y="193" width="670" height="726" key="search.everywhere.popup" timestamp="1685801870968">
+    <state x="444" y="193" width="672" height="726" key="search.everywhere.popup" timestamp="1687002218122">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state x="444" y="193" width="670" height="726" key="search.everywhere.popup/0.0.1536.920@0.0.1536.920" timestamp="1685801870968" />
+    <state x="444" y="193" width="672" height="726" key="search.everywhere.popup/0.0.1536.920@0.0.1536.920" timestamp="1687002218122" />
     <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1682872913390" />
   </component>
   <component name="XDebuggerManager">
@@ -802,7 +858,7 @@
       <breakpoints>
         <line-breakpoint type="java-method">
           <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/AddCommand.java</url>
-          <line>30</line>
+          <line>29</line>
           <properties class="by.tut.ssmt.controller.command.impl.AddCommand" method="execute">
             <option name="EMULATED" value="true" />
           </properties>
@@ -842,7 +898,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/UserDaoImpl.java</url>
-          <line>124</line>
+          <line>128</line>
           <properties class="by.tut.ssmt.dao.DAO.impl.UserDaoImpl" method="findUserPageDao">
             <option name="EMULATED" value="true" />
           </properties>
@@ -889,12 +945,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/UserDaoImpl.java</url>
-          <line>133</line>
+          <line>137</line>
           <option name="timeStamp" value="188" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/BulkChangePortionCommand.java</url>
-          <line>39</line>
+          <line>37</line>
           <option name="timeStamp" value="204" />
         </line-breakpoint>
       </breakpoints>
