@@ -14,7 +14,13 @@ public class User {
         this.password = password;
     }
 
-//    public User(int UserId, String userName, char [] password) {
+    public User(int UserId, String userName) {
+        this.UserId = UserId;
+        this.userName = userName;
+    }
+
+
+    //    public User(int UserId, String userName, char [] password) {
     public User(int UserId, String userName, String password) {
         this.UserId = UserId;
         this.userName = userName;
