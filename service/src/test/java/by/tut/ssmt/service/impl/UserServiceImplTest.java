@@ -50,7 +50,12 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void loginService() {
+    public void testLoginService() throws DaoException {
+
+        User expectedLoginServiceResult = new User("admin", "root");
+        User actualLoginServiceResult = userDao.findUserDao(expectedLoginServiceResult);
+
+        assertEquals(expectedLoginServiceResult, actualLoginServiceResult);
     }
 
     @Test
