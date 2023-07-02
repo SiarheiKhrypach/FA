@@ -60,14 +60,16 @@ public class User {
 
         User user = (User) o;
 
-        if (!userName.equals(user.userName)) return false;
-        return password.equals(user.password);
+        if (UserId != user.UserId) return false;
+        if (userName != null ? !userName.equals(user.userName) : user.userName != null) return false;
+        return password != null ? password.equals(user.password) : user.password == null;
     }
 
     @Override
     public int hashCode() {
-        int result = userName.hashCode();
-        result = 31 * result + password.hashCode();
+        int result = UserId;
+        result = 31 * result + (userName != null ? userName.hashCode() : 0);
+        result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
     }
 
@@ -76,6 +78,7 @@ public class User {
         return "User{" +
                 "UserId=" + UserId +
                 ", userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
                 '}';
     }
 }

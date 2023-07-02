@@ -25,7 +25,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="59ca0b27-6170-41d2-a1a1-ba36d40b5d8b" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/domain/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/domain/User.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/test/java/by/tut/ssmt/service/impl/UserServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/test/java/by/tut/ssmt/service/impl/UserServiceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -114,7 +116,7 @@
       <recent name="by.tut.ssmt.services.exceptions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserServiceImplTest.testLoginService">
+  <component name="RunManager" selected="JUnit.UserServiceImplTest.deleteUserService">
     <configuration default="true" type="com.poratu.idea.plugins.tomcat" factoryName="SMART_TOMCAT_FACTORY">
       <option name="adminPort" value="8005" />
       <option name="contextPath" value="/controller" />
@@ -135,7 +137,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserServiceImplTest.findUserPageService" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserServiceImplTest.deleteUserService" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="service" />
       <extension name="coverage">
         <pattern>
@@ -145,7 +147,7 @@
       </extension>
       <option name="PACKAGE_NAME" value="by.tut.ssmt.service.impl" />
       <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.service.impl.UserServiceImplTest" />
-      <option name="METHOD_NAME" value="findUserPageService" />
+      <option name="METHOD_NAME" value="deleteUserService" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -183,7 +185,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserServiceImplTest.testSelectAllUserService" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserServiceImplTest.testRegisterUserService" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="service" />
       <extension name="coverage">
         <pattern>
@@ -193,7 +195,23 @@
       </extension>
       <option name="PACKAGE_NAME" value="by.tut.ssmt.service.impl" />
       <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.service.impl.UserServiceImplTest" />
-      <option name="METHOD_NAME" value="testSelectAllUserService" />
+      <option name="METHOD_NAME" value="testRegisterUserService" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserServiceImplTest.testSelectOneUserService" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="by.tut.ssmt.service.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="by.tut.ssmt.service.impl" />
+      <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.service.impl.UserServiceImplTest" />
+      <option name="METHOD_NAME" value="testSelectOneUserService" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -375,101 +393,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="menu.jsp (1)" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" temporary="true" APPLICATION_SERVER_NAME="Tomcat 8.5.708" ALTERNATIVE_JRE_ENABLED="false">
-      <option name="OPEN_IN_BROWSER_URL" value="http://localhost:8080/WEB-INF/menu.jsp" />
-      <option name="UPDATING_POLICY" value="restart-server" />
-      <deployment>
-        <artifact name="FA:Web exploded">
-          <settings>
-            <option name="CONTEXT_PATH" value="/FA_Web_exploded" />
-          </settings>
-        </artifact>
-        <artifact name="controller:war exploded">
-          <settings>
-            <option name="CONTEXT_PATH" value="/controller_war_exploded" />
-          </settings>
-        </artifact>
-      </deployment>
-      <server-settings>
-        <option name="BASE_DIRECTORY_NAME" value="_FA_2" />
-      </server-settings>
-      <predefined_log_file enabled="true" id="Tomcat" />
-      <predefined_log_file enabled="true" id="Tomcat Catalina" />
-      <predefined_log_file id="Tomcat Manager" />
-      <predefined_log_file id="Tomcat Host Manager" />
-      <predefined_log_file id="Tomcat Localhost Access" />
-      <RunnerSettings RunnerId="Debug">
-        <option name="DEBUG_PORT" value="51825" />
-      </RunnerSettings>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
-        <option name="USE_ENV_VARIABLES" value="true" />
-        <STARTUP>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </STARTUP>
-        <SHUTDOWN>
-          <option name="USE_DEFAULT" value="true" />
-          <option name="SCRIPT" value="" />
-          <option name="VM_PARAMETERS" value="" />
-          <option name="PROGRAM_PARAMETERS" value="" />
-        </SHUTDOWN>
-      </ConfigurationWrapper>
-      <method v="2">
-        <option name="Make" enabled="true" />
-        <option name="BuildArtifacts" enabled="true">
-          <artifact name="FA:Web exploded" />
-          <artifact name="controller:war" />
-          <artifact name="controller:war exploded" />
-        </option>
-      </method>
-    </configuration>
     <list>
-      <item itemvalue="JUnit.UserServiceImplTest.testSelectAllUserService" />
-      <item itemvalue="JUnit.UserServiceImplTest.findUserPageService" />
-      <item itemvalue="Tomcat Server.Tomcat 9.0.75" />
-      <item itemvalue="Tomcat Server.menu.jsp (1)" />
       <item itemvalue="JUnit.UserServiceImplTest.testFindUserPageService" />
       <item itemvalue="JUnit.UserServiceImplTest.testLoginService" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.75" />
+      <item itemvalue="JUnit.UserServiceImplTest.testSelectOneUserService" />
+      <item itemvalue="JUnit.UserServiceImplTest.testRegisterUserService" />
+      <item itemvalue="JUnit.UserServiceImplTest.deleteUserService" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.UserServiceImplTest.deleteUserService" />
+        <item itemvalue="JUnit.UserServiceImplTest.testRegisterUserService" />
+        <item itemvalue="JUnit.UserServiceImplTest.testSelectOneUserService" />
         <item itemvalue="JUnit.UserServiceImplTest.testLoginService" />
         <item itemvalue="JUnit.UserServiceImplTest.testFindUserPageService" />
-        <item itemvalue="JUnit.UserServiceImplTest.testSelectAllUserService" />
-        <item itemvalue="JUnit.UserServiceImplTest.findUserPageService" />
-        <item itemvalue="Tomcat Server.menu.jsp (1)" />
       </list>
     </recent_temporary>
   </component>
@@ -552,7 +490,8 @@
       <workItem from="1686664638708" duration="29000" />
       <workItem from="1686901514292" duration="17688000" />
       <workItem from="1687530002235" duration="9384000" />
-      <workItem from="1688012530445" duration="5192000" />
+      <workItem from="1688012530445" duration="5494000" />
+      <workItem from="1688283424351" duration="2848000" />
     </task>
     <servers />
   </component>
@@ -600,6 +539,10 @@
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state x="438" y="98" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.920@0.0.1536.920" timestamp="1685866283192" />
+    <state x="537" y="161" key="#com.intellij.ide.util.MemberChooser" timestamp="1688284789343">
+      <screen x="0" y="0" width="1536" height="920" />
+    </state>
+    <state x="537" y="161" key="#com.intellij.ide.util.MemberChooser/0.0.1536.920@0.0.1536.920" timestamp="1688284789343" />
     <state x="499" y="99" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable" timestamp="1685514634570">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
@@ -608,45 +551,45 @@
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state x="548" y="201" key="FileChooserDialogImpl/0.0.1536.920@0.0.1536.920" timestamp="1685514622375" />
-    <state width="1231" height="383" key="GridCell.Tab.0.bottom" timestamp="1688015706332">
+    <state width="1226" height="383" key="GridCell.Tab.0.bottom" timestamp="1688286038252">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="1231" height="383" key="GridCell.Tab.0.bottom/0.0.1536.920@0.0.1536.920" timestamp="1688015706332" />
+    <state width="1226" height="383" key="GridCell.Tab.0.bottom/0.0.1536.920@0.0.1536.920" timestamp="1688286038252" />
     <state width="1556" height="229" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1682873343612" />
-    <state width="1231" height="383" key="GridCell.Tab.0.center" timestamp="1688015706332">
+    <state width="1226" height="383" key="GridCell.Tab.0.center" timestamp="1688286038252">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="1231" height="383" key="GridCell.Tab.0.center/0.0.1536.920@0.0.1536.920" timestamp="1688015706332" />
+    <state width="1226" height="383" key="GridCell.Tab.0.center/0.0.1536.920@0.0.1536.920" timestamp="1688286038252" />
     <state width="1556" height="229" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1682873343612" />
-    <state width="1231" height="383" key="GridCell.Tab.0.left" timestamp="1688015706332">
+    <state width="1226" height="383" key="GridCell.Tab.0.left" timestamp="1688286038251">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="1231" height="383" key="GridCell.Tab.0.left/0.0.1536.920@0.0.1536.920" timestamp="1688015706332" />
+    <state width="1226" height="383" key="GridCell.Tab.0.left/0.0.1536.920@0.0.1536.920" timestamp="1688286038251" />
     <state width="1556" height="229" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1682873343612" />
-    <state width="1231" height="383" key="GridCell.Tab.0.right" timestamp="1688015706332">
+    <state width="1226" height="383" key="GridCell.Tab.0.right" timestamp="1688286038252">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="1231" height="383" key="GridCell.Tab.0.right/0.0.1536.920@0.0.1536.920" timestamp="1688015706332" />
+    <state width="1226" height="383" key="GridCell.Tab.0.right/0.0.1536.920@0.0.1536.920" timestamp="1688286038252" />
     <state width="1556" height="229" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1682873343612" />
-    <state width="1200" height="183" key="GridCell.Tab.1.bottom" timestamp="1687530653990">
+    <state width="1198" height="183" key="GridCell.Tab.1.bottom" timestamp="1688284544830">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="1200" height="183" key="GridCell.Tab.1.bottom/0.0.1536.920@0.0.1536.920" timestamp="1687530653990" />
+    <state width="1198" height="183" key="GridCell.Tab.1.bottom/0.0.1536.920@0.0.1536.920" timestamp="1688284544830" />
     <state width="1556" height="229" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1682873406085" />
-    <state width="1200" height="183" key="GridCell.Tab.1.center" timestamp="1687530653990">
+    <state width="1198" height="183" key="GridCell.Tab.1.center" timestamp="1688284544830">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="1200" height="183" key="GridCell.Tab.1.center/0.0.1536.920@0.0.1536.920" timestamp="1687530653990" />
+    <state width="1198" height="183" key="GridCell.Tab.1.center/0.0.1536.920@0.0.1536.920" timestamp="1688284544830" />
     <state width="1556" height="229" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1682873406085" />
-    <state width="1200" height="183" key="GridCell.Tab.1.left" timestamp="1687530653990">
+    <state width="1198" height="183" key="GridCell.Tab.1.left" timestamp="1688284544830">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="1200" height="183" key="GridCell.Tab.1.left/0.0.1536.920@0.0.1536.920" timestamp="1687530653990" />
+    <state width="1198" height="183" key="GridCell.Tab.1.left/0.0.1536.920@0.0.1536.920" timestamp="1688284544830" />
     <state width="1556" height="229" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1682873406085" />
-    <state width="1200" height="183" key="GridCell.Tab.1.right" timestamp="1687530653990">
+    <state width="1198" height="183" key="GridCell.Tab.1.right" timestamp="1688284544830">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="1200" height="183" key="GridCell.Tab.1.right/0.0.1536.920@0.0.1536.920" timestamp="1687530653990" />
+    <state width="1198" height="183" key="GridCell.Tab.1.right/0.0.1536.920@0.0.1536.920" timestamp="1688284544830" />
     <state width="1556" height="229" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1682873406085" />
     <state width="806" height="349" key="GridCell.Tab.2.bottom" timestamp="1686671207490">
       <screen x="0" y="0" width="1536" height="920" />
@@ -823,6 +766,11 @@
           <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/BulkChangePortionCommand.java</url>
           <line>37</line>
           <option name="timeStamp" value="204" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/service/src/test/java/by/tut/ssmt/service/impl/UserServiceImplTest.java</url>
+          <line>76</line>
+          <option name="timeStamp" value="209" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
