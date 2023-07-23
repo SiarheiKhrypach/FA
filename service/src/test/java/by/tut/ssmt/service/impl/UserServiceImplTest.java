@@ -91,9 +91,11 @@ public class UserServiceImplTest {
     }
 
     @Test
-    public void updateUserService() {
+    public void testUpdateUserService() throws ServiceException {
 
-
+        User testUserChanged = new User("testUserName", "testUserPasswordChanged");
+        boolean actualUpdateUserServiceResult = userService.updateUserService(testUserChanged);
+        assertEquals(true, actualUpdateUserServiceResult);
     }
 
     @Test
