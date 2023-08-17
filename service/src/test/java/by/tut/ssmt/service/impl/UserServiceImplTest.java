@@ -1,12 +1,8 @@
 package by.tut.ssmt.service.impl;
 
-import by.tut.ssmt.dao.DAO.DaoFactory;
-import by.tut.ssmt.dao.DAO.UserDao;
 import by.tut.ssmt.dao.domain.Page;
 import by.tut.ssmt.dao.domain.User;
-import by.tut.ssmt.dao.exception.DaoException;
 import by.tut.ssmt.service.ServiceFactory;
-import by.tut.ssmt.service.ServiceValidator;
 import by.tut.ssmt.service.UserService;
 import by.tut.ssmt.service.exception.ServiceException;
 import org.junit.Test;
@@ -20,12 +16,10 @@ public class UserServiceImplTest {
 
 
     private final UserService userService = ServiceFactory.getInstance().getUserService();
-    private final UserDao userDao = DaoFactory.getInstance().getUserDao();
-    private final ServiceValidator serviceValidator = new ServiceValidator();
 
 
     @Test
-    public void testSelectAllUserService() throws DaoException, ServiceException {
+    public void testSelectAllUserService_positive() throws ServiceException {
         final List<User> expectedUsers = Arrays.asList(
                 new User(1, "admin", "root"),
                 new User(5, "zxvb", "xcbxcb")
@@ -38,72 +32,107 @@ public class UserServiceImplTest {
         assertEquals(expectedUsers, actualUsers);
     }
 
+
     @Test
-    public void testFindUserPageService() throws DaoException, ServiceException {
+    public void testFindUserPageService_positive() throws ServiceException {
         final Page<User> userPagedRequest = new Page<>();
         userPagedRequest.setPageNumber(1);
         userPagedRequest.setLimit(5);
         userPagedRequest.setOrderBy("users.user_name ASC");
         userPagedRequest.setFilter("'%'");
 
-
         Page<String> expectedPagedUserList = new Page(1, 2, 5, null, null, null, Arrays.asList("admin", "zxvb"));
-        Page<String> actualPagedUserList = (Page<String>) userService.findUserPageService(userPagedRequest);
+        Page<String> actualPagedUserList = userService.findUserPageService(userPagedRequest);
 
         assertEquals(expectedPagedUserList, actualPagedUserList);
     }
 
-    @Test
-    public void testLoginService() throws DaoException, ServiceException {
-
-        User testUser = new User ("admin", "root");
-        boolean expectedLoginServiceResult = true;
-//        User expectedLoginServiceResult = new User("admin", "root");
-        boolean actualLoginServiceResult = userService.loginService(testUser);
-//        User actualLoginServiceResult = userService.loginService(expectedLoginServiceResult);
-//        User actualLoginServiceResult = userDao.findUserDao(expectedLoginServiceResult);
-
-        assertEquals(expectedLoginServiceResult, actualLoginServiceResult);
+    @Test(expected = ServiceException.class)
+    public void testFindUserPageService_negative() throws ServiceException {
+        final Page<User> userPagedRequest = null;
+        userService.findUserPageService(userPagedRequest);
     }
 
     @Test
-    public void testSelectOneUserService() throws DaoException, ServiceException {
+    public void testLoginService_positive() throws ServiceException {
+
+        User testUser = new User("admin", "root");
+        boolean expectedLoginServiceResult = true;
+        boolean actualLoginServiceResult = userService.loginService(testUser);
+        assertEquals(expectedLoginServiceResult, actualLoginServiceResult);
+    }
+
+    @Test(expected = ServiceException.class)
+    public void testLoginService_negative() throws ServiceException {
+        User testUser = null;
+        userService.loginService(testUser);
+    }
+
+    @Test
+    public void testSelectOneUserService_positive() throws ServiceException {
         int userId = 1;
 
-        User expectedUser = new User (1, "admin", "root");
+        User expectedUser = new User(1, "admin", "root");
         User actualUser = userService.selectOneUserService(userId);
-//        User actualUser = userDao.selectOneUserDao(userId);
 
         assertEquals(expectedUser, actualUser);
     }
 
+    @Test(expected = ServiceException.class)
+    public void testSelectOneUserService_negative() throws ServiceException {
+        int userId = 0;
+        userService.selectOneUserService(userId);
+    }
+
     @Test
-    public void testRegisterUserService() throws DaoException, ServiceException {
+    public void testRegisterUserService_positive() throws ServiceException {
 
         User testUser = new User("testUserName", "testUserPassword");
-
         boolean actualRegisterServiceResult = userService.registerUserService(testUser);
-//        boolean actualLoginServiceResult = userDao.insertUserDao(testUser);
-
         assertEquals(true, actualRegisterServiceResult);
-//        userService.deleteUserService(testUser);
+        userService.deleteUserService(testUser.getUserName());
+
+    }
+
+    @Test(expected = ServiceException.class)
+    public void testRegisterUserService_negative() throws ServiceException {
+        User testUser = null;
+        userService.registerUserService(testUser);
 
     }
 
     @Test
-    public void testUpdateUserService() throws ServiceException {
+    public void testUpdateUserService_positive() throws ServiceException {
 
-        User testUserChanged = new User("testUserName", "testUserPasswordChanged");
+        User testUserChanged = new User(1, "admin", "PasswordChanged");
         boolean actualUpdateUserServiceResult = userService.updateUserService(testUserChanged);
         assertEquals(true, actualUpdateUserServiceResult);
+        User originalUser = new User(1, "admin", "root");
+        userService.updateUserService(originalUser);
     }
 
-    @Test
-    public void deleteUserService() throws ServiceException {
-        String userName = "testUserName";
+    @Test(expected = ServiceException.class)
+    public void testUpdateUserService_negative() throws ServiceException {
+        User testUserChanged = null;
+        userService.updateUserService(testUserChanged);
+    }
 
-        boolean actualDeleteUserServiceResult = userService.deleteUserService(userName);
+
+    @Test
+    public void deleteUserService_positive() throws ServiceException {
+//        String userName = "testUserName";
+
+        User testUser = new User("testUserName", "testUserPassword");
+        userService.registerUserService(testUser);
+
+        boolean actualDeleteUserServiceResult = userService.deleteUserService(testUser.getUserName());
         assertEquals(true, actualDeleteUserServiceResult);
 
+    }
+
+    @Test(expected = ServiceException.class)
+    public void deleteUserService_negative() throws ServiceException {
+        User testUser = new User(null, null);
+        userService.deleteUserService(testUser.getUserName());
     }
 }

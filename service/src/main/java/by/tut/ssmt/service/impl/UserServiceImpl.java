@@ -33,7 +33,7 @@ public class UserServiceImpl implements UserService {
         try {
             serviceValidator.isNotNull(userPagedRequest);
             return (Page<String>) userDao.findUserPageDao(userPagedRequest);
-        } catch (DaoException e) {
+        } catch (DaoException | NullPointerException e) {
             throw new ServiceException(e.getMessage());
         }
     }
@@ -44,7 +44,7 @@ public class UserServiceImpl implements UserService {
             serviceValidator.isNotNull(user);
             user = userDao.findUserDao(user);
             return user != null;
-        } catch (DaoException e) {
+        } catch (DaoException | NullPointerException e) {
             throw new ServiceException(e.getMessage());
         }
     }
@@ -64,7 +64,7 @@ public class UserServiceImpl implements UserService {
         try {
             serviceValidator.isNotNull(user);
             return userDao.insertUserDao(user);
-        } catch (DaoException e) {
+        } catch (DaoException | NullPointerException e) {
             throw new ServiceException(e.getMessage());
         }
     }
@@ -74,7 +74,7 @@ public class UserServiceImpl implements UserService {
         try {
             serviceValidator.isNotNull(user);
             return userDao.updateUserDao(user);
-        } catch (DaoException e) {
+        } catch (DaoException | NullPointerException e) {
             throw new ServiceException(e.getMessage());
         }
     }
@@ -84,7 +84,7 @@ public class UserServiceImpl implements UserService {
         try {
             serviceValidator.isNotNull(userName);
             return userDao.deleteUserDao(userName);
-        } catch (DaoException e) {
+        } catch (DaoException | NullPointerException e) {
             throw new ServiceException(e.getMessage());
         }
     }

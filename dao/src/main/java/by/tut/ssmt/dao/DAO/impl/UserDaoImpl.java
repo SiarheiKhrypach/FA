@@ -26,9 +26,11 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 //    public static final String FIND_USER_PAGE = "SELECT user_name FROM users ORDER BY %s LIMIT ? OFFSET ?";
     private static final String FIND_USER_BY_LOGIN_AND_PASSWORD = "SELECT * FROM users WHERE user_name = BINARY ? AND password = BINARY ?";
     private static final String FIND_USER_BY_LOGIN = "SELECT * FROM users WHERE user_name = ?";
+    private static final String FIND_USER_BY_LOGIN_WITH_DIFFERENT_ID = "SELECT * FROM users WHERE user_name=? AND NOT user_id=?";
     private static final String SELECT_FROM_TABLE_WHERE = "SELECT * FROM users WHERE user_id = ?";
-    private static final String INSERT_INTO_TABLE = "INSERT INTO users (user_name, password) VALUES (?, ?)";
-    private static final String UPDATE_TABLE = "UPDATE users SET password = ?, WHERE user_name = ?";
+    private static final String INSERT_INTO_TABLE = "INSERT INTO users (password, user_name) VALUES (?, ?)";
+//    private static final String INSERT_INTO_TABLE = "INSERT INTO users (user_name, password) VALUES (?, ?)";
+    private static final String UPDATE_TABLE = "UPDATE users SET password = ? WHERE user_name = ?";
     private static final String DELETE_FROM_TABLE = "DELETE FROM users WHERE user_name = ?";
 
     public UserDaoImpl(ConnectionPool connectionPool) {
@@ -168,12 +170,13 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
 
     public boolean edit(User user, String query) throws DaoException {
         List<Object> parameters1 = Arrays.asList(
-                user.getUserName()
+                user.getUserName(),
+                user.getUserId()
         );
         List<Object> parameters2 = Arrays.asList(
-                user.getUserName(),
-                user.getPassword()
-        );
+                user.getPassword(),
+                user.getUserName()
+                );
         Connection connection = null;
         PreparedStatement preparedStatement1 = null;
         PreparedStatement preparedStatement2 = null;
@@ -181,7 +184,8 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         try {
             int result = 0;
             connection = getConnection(false);
-            preparedStatement1 = getPreparedStatement(FIND_USER_BY_LOGIN, connection, parameters1);
+            preparedStatement1 = getPreparedStatement(FIND_USER_BY_LOGIN_WITH_DIFFERENT_ID, connection, parameters1);
+//            preparedStatement1 = getPreparedStatement(FIND_USER_BY_LOGIN, connection, parameters1);
             resultSet = preparedStatement1.executeQuery();
             User userMatch = new User();
             if (resultSet.next()) {

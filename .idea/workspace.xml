@@ -25,8 +25,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="59ca0b27-6170-41d2-a1a1-ba36d40b5d8b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/controller_war_exploded.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/artifacts/controller_war_exploded.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/AbstractDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/AbstractDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/UserDaoImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/src/test/java/by/tut/ssmt/dao/DAO/impl/UserDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/test/java/by/tut/ssmt/dao/DAO/impl/UserDaoImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/by/tut/ssmt/service/impl/MenuServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/by/tut/ssmt/service/impl/MenuServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/by/tut/ssmt/service/impl/ProductServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/by/tut/ssmt/service/impl/ProductServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/service/src/main/java/by/tut/ssmt/service/impl/UserServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/main/java/by/tut/ssmt/service/impl/UserServiceImpl.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/service/src/test/java/by/tut/ssmt/service/impl/UserServiceImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/service/src/test/java/by/tut/ssmt/service/impl/UserServiceImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -115,8 +120,28 @@
       <recent name="by.tut.ssmt.services.exceptions" />
     </key>
   </component>
-  <component name="RunManager" selected="Tomcat Server.Tomcat 9.0.75">
-    <configuration name="UserServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.UserDaoImplTest.testDeleteUserDao">
+    <configuration default="true" type="com.poratu.idea.plugins.tomcat" factoryName="SMART_TOMCAT_FACTORY">
+      <option name="adminPort" value="8005" />
+      <option name="contextPath" value="/controller" />
+      <option name="docBase" value="$PROJECT_DIR$/controller/src/main/webapp" />
+      <option name="envOptions" />
+      <option name="passParentEnvironmentVariables" value="true" />
+      <option name="port" value="8080" />
+      <option name="tomcatInfo">
+        <TomcatInfo>
+          <option name="name" value="Apache Tomcat/8.5.70" />
+          <option name="number" value="0" />
+          <option name="path" value="C:\dev\apache-tomcat-8.5.70" />
+          <option name="version" value="8.5.70.0" />
+        </TomcatInfo>
+      </option>
+      <option name="vmOptions" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MenuServiceImplTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="service" />
       <extension name="coverage">
         <pattern>
@@ -125,13 +150,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="by.tut.ssmt.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.service.impl.UserServiceImplTest" />
+      <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.service.impl.MenuServiceImplTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserServiceImplTest.deleteUserService" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MenuServiceImplTest.testBulkPortionChangeMenuServiceNegative" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="service" />
       <extension name="coverage">
         <pattern>
@@ -140,14 +165,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="by.tut.ssmt.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.service.impl.UserServiceImplTest" />
-      <option name="METHOD_NAME" value="deleteUserService" />
+      <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.service.impl.MenuServiceImplTest" />
+      <option name="METHOD_NAME" value="testBulkPortionChangeMenuServiceNegative" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserServiceImplTest.testRegisterUserService" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MenuServiceImplTest.testBulkPortionChangeMenuServicePositive" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="service" />
       <extension name="coverage">
         <pattern>
@@ -156,14 +181,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="by.tut.ssmt.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.service.impl.UserServiceImplTest" />
-      <option name="METHOD_NAME" value="testRegisterUserService" />
+      <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.service.impl.MenuServiceImplTest" />
+      <option name="METHOD_NAME" value="testBulkPortionChangeMenuServicePositive" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserServiceImplTest.testSelectAllUserService" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MenuServiceImplTest.testDeleteMenuServiceNegative" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="service" />
       <extension name="coverage">
         <pattern>
@@ -172,24 +197,24 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="by.tut.ssmt.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.service.impl.UserServiceImplTest" />
-      <option name="METHOD_NAME" value="testSelectAllUserService" />
+      <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.service.impl.MenuServiceImplTest" />
+      <option name="METHOD_NAME" value="testDeleteMenuServiceNegative" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserServiceImplTest.testSelectOneUserService" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="service" />
+    <configuration name="UserDaoImplTest.testDeleteUserDao" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dao" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="by.tut.ssmt.service.impl.*" />
+          <option name="PATTERN" value="by.tut.ssmt.dao.DAO.impl.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="by.tut.ssmt.service.impl" />
-      <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.service.impl.UserServiceImplTest" />
-      <option name="METHOD_NAME" value="testSelectOneUserService" />
+      <option name="PACKAGE_NAME" value="by.tut.ssmt.dao.DAO.impl" />
+      <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.dao.DAO.impl.UserDaoImplTest" />
+      <option name="METHOD_NAME" value="testDeleteUserDao" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -371,41 +396,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="com.poratu.idea.plugins.tomcat" factoryName="SMART_TOMCAT_FACTORY">
-      <option name="adminPort" value="8005" />
-      <option name="contextPath" value="/controller" />
-      <option name="docBase" value="$PROJECT_DIR$/controller/src/main/webapp" />
-      <option name="envOptions" />
-      <option name="passParentEnvironmentVariables" value="true" />
-      <option name="port" value="8080" />
-      <option name="tomcatInfo">
-        <TomcatInfo>
-          <option name="name" value="Apache Tomcat/8.5.70" />
-          <option name="number" value="0" />
-          <option name="path" value="C:\dev\apache-tomcat-8.5.70" />
-          <option name="version" value="8.5.70.0" />
-        </TomcatInfo>
-      </option>
-      <option name="vmOptions" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
-      <item itemvalue="JUnit.UserServiceImplTest.testSelectOneUserService" />
-      <item itemvalue="JUnit.UserServiceImplTest.testRegisterUserService" />
-      <item itemvalue="JUnit.UserServiceImplTest.deleteUserService" />
-      <item itemvalue="JUnit.UserServiceImplTest" />
-      <item itemvalue="JUnit.UserServiceImplTest.testSelectAllUserService" />
+      <item itemvalue="JUnit.MenuServiceImplTest.testDeleteMenuServiceNegative" />
+      <item itemvalue="JUnit.MenuServiceImplTest.testBulkPortionChangeMenuServicePositive" />
+      <item itemvalue="JUnit.MenuServiceImplTest.testBulkPortionChangeMenuServiceNegative" />
+      <item itemvalue="JUnit.MenuServiceImplTest" />
+      <item itemvalue="JUnit.UserDaoImplTest.testDeleteUserDao" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.75" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.UserServiceImplTest.testSelectAllUserService" />
-        <item itemvalue="JUnit.UserServiceImplTest" />
-        <item itemvalue="JUnit.UserServiceImplTest.deleteUserService" />
-        <item itemvalue="JUnit.UserServiceImplTest.testRegisterUserService" />
-        <item itemvalue="JUnit.UserServiceImplTest.testSelectOneUserService" />
+        <item itemvalue="JUnit.UserDaoImplTest.testDeleteUserDao" />
+        <item itemvalue="JUnit.MenuServiceImplTest" />
+        <item itemvalue="JUnit.MenuServiceImplTest.testBulkPortionChangeMenuServiceNegative" />
+        <item itemvalue="JUnit.MenuServiceImplTest.testBulkPortionChangeMenuServicePositive" />
+        <item itemvalue="JUnit.MenuServiceImplTest.testDeleteMenuServiceNegative" />
       </list>
     </recent_temporary>
   </component>
@@ -492,6 +497,12 @@
       <workItem from="1688283424351" duration="2848000" />
       <workItem from="1690096897103" duration="55000" />
       <workItem from="1690097362586" duration="2267000" />
+      <workItem from="1690358869752" duration="48054000" />
+      <workItem from="1691559701378" duration="2583000" />
+      <workItem from="1691730694858" duration="3260000" />
+      <workItem from="1691941471714" duration="5080000" />
+      <workItem from="1692084191028" duration="9315000" />
+      <workItem from="1692282221806" duration="2126000" />
     </task>
     <servers />
   </component>
@@ -515,6 +526,10 @@
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state x="395" y="139" key="#Inspections/0.0.1536.920@0.0.1536.920" timestamp="1687001564128" />
+    <state x="361" y="119" width="814" height="728" key="#Intentions" timestamp="1691504777899">
+      <screen x="0" y="0" width="1536" height="920" />
+    </state>
+    <state x="361" y="119" width="814" height="728" key="#Intentions/0.0.1536.920@0.0.1536.920" timestamp="1691504777899" />
     <state x="249" y="35" key="#Project_Structure" timestamp="1687339484319">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
@@ -537,6 +552,10 @@
     </state>
     <state x="244" y="90" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.920@0.0.1536.920" timestamp="1686664663566" />
     <state x="254" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1690099028932" />
+    <state x="93" y="93" width="1350" height="734" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1690190452662">
+      <screen x="0" y="0" width="1536" height="920" />
+    </state>
+    <state x="93" y="93" width="1350" height="734" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1536.920@0.0.1536.920" timestamp="1690190452662" />
     <state x="438" y="98" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1685866283192">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
@@ -554,86 +573,82 @@
     </state>
     <state x="548" y="201" key="FileChooserDialogImpl/0.0.1536.920@0.0.1536.920" timestamp="1685514622375" />
     <state x="571" y="188" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1690096478915" />
-    <state width="1556" height="248" key="GridCell.Tab.0.bottom" timestamp="1690100774970">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1204" height="388" key="GridCell.Tab.0.bottom" timestamp="1692284352388">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="1226" height="383" key="GridCell.Tab.0.bottom/0.0.1536.920@0.0.1536.920" timestamp="1688286038252" />
+    <state width="1204" height="388" key="GridCell.Tab.0.bottom/0.0.1536.920@0.0.1536.920" timestamp="1692284352388" />
     <state width="1556" height="248" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1690100774970" />
-    <state width="1556" height="248" key="GridCell.Tab.0.center" timestamp="1690100774970">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1204" height="388" key="GridCell.Tab.0.center" timestamp="1692284352388">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="1226" height="383" key="GridCell.Tab.0.center/0.0.1536.920@0.0.1536.920" timestamp="1688286038252" />
+    <state width="1204" height="388" key="GridCell.Tab.0.center/0.0.1536.920@0.0.1536.920" timestamp="1692284352388" />
     <state width="1556" height="248" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1690100774970" />
-    <state width="1556" height="248" key="GridCell.Tab.0.left" timestamp="1690100774970">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1204" height="388" key="GridCell.Tab.0.left" timestamp="1692284352388">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="1226" height="383" key="GridCell.Tab.0.left/0.0.1536.920@0.0.1536.920" timestamp="1688286038251" />
+    <state width="1204" height="388" key="GridCell.Tab.0.left/0.0.1536.920@0.0.1536.920" timestamp="1692284352388" />
     <state width="1556" height="248" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1690100774970" />
-    <state width="1556" height="248" key="GridCell.Tab.0.right" timestamp="1690100774970">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1204" height="388" key="GridCell.Tab.0.right" timestamp="1692284352388">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="1226" height="383" key="GridCell.Tab.0.right/0.0.1536.920@0.0.1536.920" timestamp="1688286038252" />
+    <state width="1204" height="388" key="GridCell.Tab.0.right/0.0.1536.920@0.0.1536.920" timestamp="1692284352388" />
     <state width="1556" height="248" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1690100774970" />
-    <state width="1556" height="248" key="GridCell.Tab.1.bottom" timestamp="1690100774963">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1184" height="440" key="GridCell.Tab.1.bottom" timestamp="1692284297954">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="1198" height="183" key="GridCell.Tab.1.bottom/0.0.1536.920@0.0.1536.920" timestamp="1688284544830" />
+    <state width="1184" height="440" key="GridCell.Tab.1.bottom/0.0.1536.920@0.0.1536.920" timestamp="1692284297954" />
     <state width="1556" height="248" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1690100774963" />
-    <state width="1556" height="248" key="GridCell.Tab.1.center" timestamp="1690100774963">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1184" height="440" key="GridCell.Tab.1.center" timestamp="1692284297954">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="1198" height="183" key="GridCell.Tab.1.center/0.0.1536.920@0.0.1536.920" timestamp="1688284544830" />
+    <state width="1184" height="440" key="GridCell.Tab.1.center/0.0.1536.920@0.0.1536.920" timestamp="1692284297954" />
     <state width="1556" height="248" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1690100774963" />
-    <state width="1556" height="248" key="GridCell.Tab.1.left" timestamp="1690100774963">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1184" height="440" key="GridCell.Tab.1.left" timestamp="1692284297954">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="1198" height="183" key="GridCell.Tab.1.left/0.0.1536.920@0.0.1536.920" timestamp="1688284544830" />
+    <state width="1184" height="440" key="GridCell.Tab.1.left/0.0.1536.920@0.0.1536.920" timestamp="1692284297954" />
     <state width="1556" height="248" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1690100774963" />
-    <state width="1556" height="248" key="GridCell.Tab.1.right" timestamp="1690100774963">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="1184" height="440" key="GridCell.Tab.1.right" timestamp="1692284297954">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="1198" height="183" key="GridCell.Tab.1.right/0.0.1536.920@0.0.1536.920" timestamp="1688284544830" />
+    <state width="1184" height="440" key="GridCell.Tab.1.right/0.0.1536.920@0.0.1536.920" timestamp="1692284297954" />
     <state width="1556" height="248" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1690100774963" />
-    <state width="1556" height="248" key="GridCell.Tab.2.bottom" timestamp="1690100774964">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="805" height="349" key="GridCell.Tab.2.bottom" timestamp="1690360236245">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="806" height="349" key="GridCell.Tab.2.bottom/0.0.1536.920@0.0.1536.920" timestamp="1686671207490" />
+    <state width="805" height="349" key="GridCell.Tab.2.bottom/0.0.1536.920@0.0.1536.920" timestamp="1690360236245" />
     <state width="1556" height="248" key="GridCell.Tab.2.bottom/0.0.1600.860@0.0.1600.860" timestamp="1690100774964" />
-    <state width="1556" height="248" key="GridCell.Tab.2.center" timestamp="1690100774964">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="805" height="349" key="GridCell.Tab.2.center" timestamp="1690360236245">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="806" height="349" key="GridCell.Tab.2.center/0.0.1536.920@0.0.1536.920" timestamp="1686671207490" />
+    <state width="805" height="349" key="GridCell.Tab.2.center/0.0.1536.920@0.0.1536.920" timestamp="1690360236245" />
     <state width="1556" height="248" key="GridCell.Tab.2.center/0.0.1600.860@0.0.1600.860" timestamp="1690100774964" />
-    <state width="1556" height="248" key="GridCell.Tab.2.left" timestamp="1690100774964">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="805" height="349" key="GridCell.Tab.2.left" timestamp="1690360236245">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="806" height="349" key="GridCell.Tab.2.left/0.0.1536.920@0.0.1536.920" timestamp="1686671207490" />
+    <state width="805" height="349" key="GridCell.Tab.2.left/0.0.1536.920@0.0.1536.920" timestamp="1690360236245" />
     <state width="1556" height="248" key="GridCell.Tab.2.left/0.0.1600.860@0.0.1600.860" timestamp="1690100774964" />
-    <state width="1556" height="248" key="GridCell.Tab.2.right" timestamp="1690100774964">
-      <screen x="0" y="0" width="1600" height="860" />
+    <state width="805" height="349" key="GridCell.Tab.2.right" timestamp="1690360236245">
+      <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state width="806" height="349" key="GridCell.Tab.2.right/0.0.1536.920@0.0.1536.920" timestamp="1686671207490" />
+    <state width="805" height="349" key="GridCell.Tab.2.right/0.0.1536.920@0.0.1536.920" timestamp="1690360236245" />
     <state width="1556" height="248" key="GridCell.Tab.2.right/0.0.1600.860@0.0.1600.860" timestamp="1690100774964" />
     <state width="729" height="349" key="GridCell.Tab.3.bottom" timestamp="1686471898524">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state width="729" height="349" key="GridCell.Tab.3.bottom/0.0.1536.920@0.0.1536.920" timestamp="1686471898524" />
-    <state width="1556" height="229" key="GridCell.Tab.3.bottom/0.0.1600.860@0.0.1600.860" timestamp="1682873343459" />
     <state width="729" height="349" key="GridCell.Tab.3.center" timestamp="1686471898524">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state width="729" height="349" key="GridCell.Tab.3.center/0.0.1536.920@0.0.1536.920" timestamp="1686471898524" />
-    <state width="1556" height="229" key="GridCell.Tab.3.center/0.0.1600.860@0.0.1600.860" timestamp="1682873343458" />
     <state width="729" height="349" key="GridCell.Tab.3.left" timestamp="1686471898524">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state width="729" height="349" key="GridCell.Tab.3.left/0.0.1536.920@0.0.1536.920" timestamp="1686471898524" />
-    <state width="1556" height="229" key="GridCell.Tab.3.left/0.0.1600.860@0.0.1600.860" timestamp="1682873343458" />
     <state width="729" height="349" key="GridCell.Tab.3.right" timestamp="1686471898524">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state width="729" height="349" key="GridCell.Tab.3.right/0.0.1536.920@0.0.1536.920" timestamp="1686471898524" />
-    <state width="1556" height="229" key="GridCell.Tab.3.right/0.0.1600.860@0.0.1600.860" timestamp="1682873343458" />
     <state x="299" y="115" key="Maven.ArtifactSearchDialog" timestamp="1687001690619">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
@@ -643,32 +658,26 @@
     </state>
     <state x="277" y="105" key="SettingsEditor/0.0.1536.920@0.0.1536.920" timestamp="1687002202223" />
     <state x="289" y="7" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1690099494008" />
-    <state x="1009" y="197" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1687339808716">
+    <state x="1009" y="197" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1690889211154">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state x="1009" y="197" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.920@0.0.1536.920" timestamp="1687339808716" />
-    <state x="16" y="317" key="extract.method.dialog" timestamp="1682712390043">
-      <screen x="0" y="0" width="1600" height="860" />
-    </state>
-    <state x="16" y="317" key="extract.method.dialog/0.0.1600.860@0.0.1600.860" timestamp="1682712390043" />
-    <state x="155" y="286" width="753" height="634" key="find.popup" timestamp="1685969977441">
+    <state x="1009" y="197" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.920@0.0.1536.920" timestamp="1690889211154" />
+    <state x="155" y="286" width="753" height="634" key="find.popup" timestamp="1690467252120">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state x="155" y="286" width="753" height="634" key="find.popup/0.0.1536.920@0.0.1536.920" timestamp="1685969977441" />
-    <state x="209" y="268" width="784" height="592" key="find.popup/0.0.1600.860@0.0.1600.860" timestamp="1682872525216" />
+    <state x="155" y="286" width="753" height="634" key="find.popup/0.0.1536.920@0.0.1536.920" timestamp="1690467252120" />
     <state x="545" y="219" key="refactoring.ChangeSignatureDialog" timestamp="1688012671415">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state x="545" y="219" key="refactoring.ChangeSignatureDialog/0.0.1536.920@0.0.1536.920" timestamp="1688012671415" />
-    <state x="438" y="203" key="run.anything.popup" timestamp="1686474976555">
+    <state x="438" y="203" key="run.anything.popup" timestamp="1690699291562">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state x="438" y="203" key="run.anything.popup/0.0.1536.920@0.0.1536.920" timestamp="1686474976555" />
+    <state x="438" y="203" key="run.anything.popup/0.0.1536.920@0.0.1536.920" timestamp="1690699291562" />
     <state x="444" y="193" width="672" height="726" key="search.everywhere.popup" timestamp="1687002218122">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state x="444" y="193" width="672" height="726" key="search.everywhere.popup/0.0.1536.920@0.0.1536.920" timestamp="1687002218122" />
-    <state x="463" y="180" width="672" height="678" key="search.everywhere.popup/0.0.1600.860@0.0.1600.860" timestamp="1682872913390" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -714,14 +723,6 @@
           <option name="timeStamp" value="192" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/UserDaoImpl.java</url>
-          <line>128</line>
-          <properties class="by.tut.ssmt.dao.DAO.impl.UserDaoImpl" method="findUserPageDao">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="195" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/ProductDaoImpl.java</url>
           <line>105</line>
           <properties class="by.tut.ssmt.dao.DAO.impl.ProductDaoImpl" method="insertProductDao">
@@ -732,9 +733,7 @@
         <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/UserDao.java</url>
           <line>16</line>
-          <properties class="by.tut.ssmt.dao.DAO.UserDao" method="selectUserDao">
-            <option name="EMULATED" value="true" />
-          </properties>
+          <properties class="by.tut.ssmt.dao.DAO.UserDao" method="selectUserDao" />
           <option name="timeStamp" value="206" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
@@ -761,19 +760,19 @@
           <option name="timeStamp" value="84" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/UserDaoImpl.java</url>
-          <line>137</line>
-          <option name="timeStamp" value="188" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/command/impl/BulkChangePortionCommand.java</url>
           <line>37</line>
           <option name="timeStamp" value="204" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/service/src/test/java/by/tut/ssmt/service/impl/UserServiceImplTest.java</url>
-          <line>76</line>
-          <option name="timeStamp" value="209" />
+          <url>file://$PROJECT_DIR$/service/src/test/java/by/tut/ssmt/service/impl/MenuServiceImplTest.java</url>
+          <line>42</line>
+          <option name="timeStamp" value="212" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/dao/src/test/java/by/tut/ssmt/dao/DAO/impl/UserDaoImplTest.java</url>
+          <line>58</line>
+          <option name="timeStamp" value="214" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

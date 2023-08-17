@@ -160,8 +160,8 @@ public abstract class AbstractDao {
         }
     }
 
-    protected PreparedStatement getPreparedStatement(final String query, final Connection connection,
-                                                     final List<Object> parameters) throws SQLException {
+    public PreparedStatement getPreparedStatement(final String query, final Connection connection,
+                                                  final List<Object> parameters) throws SQLException {
         final PreparedStatement preparedStatement = connection.prepareStatement(query);
         setPreparedStatementParameters(preparedStatement, parameters);
         return preparedStatement;
