@@ -22,7 +22,7 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
     private static final String SELECT_FROM_TABLE = "SELECT * FROM users";
     private static final String COUNT_ALL = "SELECT COUNT(*) FROM users WHERE users.user_name LIKE %s";
 //    private static final String COUNT_ALL_USERS = "SELECT COUNT(*) FROM users WHERE users.user_name LIKE %s";
-    public static final String FIND_USER_PAGE = "SELECT user_name FROM users WHERE users.user_name LIKE %s ORDER BY %s  LIMIT ? OFFSET ?";
+    public static final String FIND_USER_PAGE = "SELECT user_name FROM users WHERE users.user_name LIKE %s ORDER BY %s LIMIT ? OFFSET ?";
 //    public static final String FIND_USER_PAGE = "SELECT user_name FROM users ORDER BY %s LIMIT ? OFFSET ?";
     private static final String FIND_USER_BY_LOGIN_AND_PASSWORD = "SELECT * FROM users WHERE user_name = BINARY ? AND password = BINARY ?";
     private static final String FIND_USER_BY_LOGIN = "SELECT * FROM users WHERE user_name = ?";
