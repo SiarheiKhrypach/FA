@@ -25,11 +25,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="59ca0b27-6170-41d2-a1a1-ba36d40b5d8b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/UserDaoImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/UserDaoImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/src/test/java/by/tut/ssmt/dao/DAO/impl/ProductDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/test/java/by/tut/ssmt/dao/DAO/impl/ProductDaoImplTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/src/test/java/by/tut/ssmt/dao/DAO/impl/UserDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/test/java/by/tut/ssmt/dao/DAO/impl/UserDaoImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,8 +85,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CreateTestDialog.RecentsKey">
-      <recent name="by.tut.ssmt.service.impl" />
       <recent name="by.tut.ssmt.dao.DAO.impl" />
+      <recent name="by.tut.ssmt.service.impl" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -507,7 +503,7 @@
       <workItem from="1693119714776" duration="3032000" />
       <workItem from="1693123719680" duration="3958000" />
       <workItem from="1693285342209" duration="15702000" />
-      <workItem from="1693896864851" duration="1738000" />
+      <workItem from="1693896864851" duration="4232000" />
     </task>
     <servers />
   </component>
@@ -519,7 +515,14 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_WIDTH">
+                <map>
+                  <entry key="2" value="15" />
+                  <entry key="3" value="15" />
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
@@ -539,18 +542,9 @@
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state x="249" y="35" key="#Project_Structure/0.0.1536.920@0.0.1536.920" timestamp="1687339484319" />
-    <state x="206" y="302" key="#SQL_Dialects" timestamp="1685866392187">
-      <screen x="0" y="0" width="1536" height="920" />
-    </state>
-    <state x="206" y="302" key="#SQL_Dialects/0.0.1536.920@0.0.1536.920" timestamp="1685866392187" />
-    <state x="465" y="46" key="#Tomcat_8.5.706" timestamp="1685514647666">
-      <screen x="0" y="0" width="1536" height="920" />
-    </state>
-    <state x="465" y="46" key="#Tomcat_8.5.706/0.0.1536.920@0.0.1536.920" timestamp="1685514647666" />
     <state x="570" y="317" key="#Tomcat_Server" timestamp="1690096481825">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="547" y="339" key="#Tomcat_Server/0.0.1536.920@0.0.1536.920" timestamp="1685514624384" />
     <state x="570" y="317" key="#Tomcat_Server/0.0.1600.860@0.0.1600.860" timestamp="1690096481825" />
     <state x="254" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1690099028932">
       <screen x="0" y="0" width="1600" height="860" />
@@ -561,22 +555,13 @@
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state x="93" y="93" width="1350" height="734" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1536.920@0.0.1536.920" timestamp="1690190452662" />
-    <state x="438" y="98" key="#com.intellij.fileTypes.FileTypeChooser" timestamp="1685866283192">
-      <screen x="0" y="0" width="1536" height="920" />
-    </state>
-    <state x="438" y="98" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1536.920@0.0.1536.920" timestamp="1685866283192" />
     <state x="537" y="161" key="#com.intellij.ide.util.MemberChooser" timestamp="1688284789343">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state x="537" y="161" key="#com.intellij.ide.util.MemberChooser/0.0.1536.920@0.0.1536.920" timestamp="1688284789343" />
-    <state x="499" y="99" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable" timestamp="1685514634570">
-      <screen x="0" y="0" width="1536" height="920" />
-    </state>
-    <state x="499" y="99" key="#com.intellij.j2ee.appServerIntegrations.ApplicationServersConfigurable/0.0.1536.920@0.0.1536.920" timestamp="1685514634570" />
     <state x="571" y="188" key="FileChooserDialogImpl" timestamp="1690096478915">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
-    <state x="548" y="201" key="FileChooserDialogImpl/0.0.1536.920@0.0.1536.920" timestamp="1685514622375" />
     <state x="571" y="188" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1690096478915" />
     <state width="1163" height="441" key="GridCell.Tab.0.bottom" timestamp="1693834237645">
       <screen x="0" y="0" width="1536" height="920" />
@@ -663,10 +648,10 @@
     </state>
     <state x="277" y="105" key="SettingsEditor/0.0.1536.920@0.0.1536.920" timestamp="1687002202223" />
     <state x="289" y="7" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1690099494008" />
-    <state x="1009" y="197" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1690889211154">
+    <state x="1009" y="197" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1694679343265">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state x="1009" y="197" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.920@0.0.1536.920" timestamp="1690889211154" />
+    <state x="1009" y="197" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.920@0.0.1536.920" timestamp="1694679343265" />
     <state x="155" y="286" width="753" height="634" key="find.popup" timestamp="1690467252120">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
