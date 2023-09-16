@@ -26,6 +26,7 @@
   <component name="ChangeListManager">
     <list default="true" id="59ca0b27-6170-41d2-a1a1-ba36d40b5d8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/src/test/java/by/tut/ssmt/dao/DAO/impl/MenuDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/test/java/by/tut/ssmt/dao/DAO/impl/MenuDaoImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,6 +85,9 @@
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="by.tut.ssmt.services.exceptions" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="by.tut.ssmt.dao.DAO.impl" />
       <recent name="by.tut.ssmt.service.impl" />
@@ -96,6 +100,12 @@
       <recent name="by.tut.ssmt.dao.DAO.impl" />
       <recent name="" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ssmt\IdeaProjects\FA\controller\src\test\resources" />
+      <recent name="C:\Users\ssmt\IdeaProjects\FA\controller\src\main" />
+      <recent name="C:\Users\ssmt\IdeaProjects\FA\src\main\webapp" />
+      <recent name="C:\Users\ssmt\IdeaProjects\FA\src\main\webapp\WEB-INF\lib" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\ssmt\IdeaProjects\FA\service\src\test" />
       <recent name="C:\Users\ssmt\IdeaProjects\FA\dao\src" />
@@ -103,33 +113,20 @@
       <recent name="C:\Users\ssmt\IdeaProjects\FA\controller\src\main\resources" />
       <recent name="C:\Users\ssmt\IdeaProjects\FA\controller\src\main" />
     </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\ssmt\IdeaProjects\FA\controller\src\test\resources" />
-      <recent name="C:\Users\ssmt\IdeaProjects\FA\controller\src\main" />
-      <recent name="C:\Users\ssmt\IdeaProjects\FA\src\main\webapp" />
-      <recent name="C:\Users\ssmt\IdeaProjects\FA\src\main\webapp\WEB-INF\lib" />
-    </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="by.tut.ssmt.services.exceptions" />
-    </key>
   </component>
-  <component name="RunManager" selected="JUnit.ProductDaoImplTest.testFindProductPageDao">
-    <configuration default="true" type="com.poratu.idea.plugins.tomcat" factoryName="SMART_TOMCAT_FACTORY">
-      <option name="adminPort" value="8005" />
-      <option name="contextPath" value="/controller" />
-      <option name="docBase" value="$PROJECT_DIR$/controller/src/main/webapp" />
-      <option name="envOptions" />
-      <option name="passParentEnvironmentVariables" value="true" />
-      <option name="port" value="8080" />
-      <option name="tomcatInfo">
-        <TomcatInfo>
-          <option name="name" value="Apache Tomcat/8.5.70" />
-          <option name="number" value="0" />
-          <option name="path" value="C:\dev\apache-tomcat-8.5.70" />
-          <option name="version" value="8.5.70.0" />
-        </TomcatInfo>
-      </option>
-      <option name="vmOptions" />
+  <component name="RunManager" selected="JUnit.MenuDaoImplTest.testSelectAllFromMenuDao">
+    <configuration name="MenuDaoImplTest.testSelectAllFromMenuDao" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dao" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="by.tut.ssmt.dao.DAO.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="by.tut.ssmt.dao.DAO.impl" />
+      <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.dao.DAO.impl.MenuDaoImplTest" />
+      <option name="METHOD_NAME" value="testSelectAllFromMenuDao" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -161,22 +158,6 @@
       <option name="PACKAGE_NAME" value="by.tut.ssmt.dao.DAO.impl" />
       <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.dao.DAO.impl.ProductDaoImplTest" />
       <option name="METHOD_NAME" value="testSelectAllProductDao" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserDaoImplTest.testDeleteUserDao" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dao" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="by.tut.ssmt.dao.DAO.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="by.tut.ssmt.dao.DAO.impl" />
-      <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.dao.DAO.impl.UserDaoImplTest" />
-      <option name="METHOD_NAME" value="testDeleteUserDao" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -390,21 +371,41 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration default="true" type="com.poratu.idea.plugins.tomcat" factoryName="SMART_TOMCAT_FACTORY">
+      <option name="adminPort" value="8005" />
+      <option name="contextPath" value="/controller" />
+      <option name="docBase" value="$PROJECT_DIR$/controller/src/main/webapp" />
+      <option name="envOptions" />
+      <option name="passParentEnvironmentVariables" value="true" />
+      <option name="port" value="8080" />
+      <option name="tomcatInfo">
+        <TomcatInfo>
+          <option name="name" value="Apache Tomcat/8.5.70" />
+          <option name="number" value="0" />
+          <option name="path" value="C:\dev\apache-tomcat-8.5.70" />
+          <option name="version" value="8.5.70.0" />
+        </TomcatInfo>
+      </option>
+      <option name="vmOptions" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <list>
       <item itemvalue="JUnit.UserDaoImplTest.testInsertUserDao" />
-      <item itemvalue="JUnit.UserDaoImplTest.testDeleteUserDao" />
       <item itemvalue="JUnit.UserDaoImplTest.testUpdateUserDao" />
       <item itemvalue="JUnit.ProductDaoImplTest.testSelectAllProductDao" />
       <item itemvalue="JUnit.ProductDaoImplTest.testFindProductPageDao" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.75" />
+      <item itemvalue="JUnit.MenuDaoImplTest.testSelectAllFromMenuDao" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MenuDaoImplTest.testSelectAllFromMenuDao" />
         <item itemvalue="JUnit.ProductDaoImplTest.testFindProductPageDao" />
         <item itemvalue="JUnit.ProductDaoImplTest.testSelectAllProductDao" />
         <item itemvalue="JUnit.UserDaoImplTest.testUpdateUserDao" />
         <item itemvalue="JUnit.UserDaoImplTest.testInsertUserDao" />
-        <item itemvalue="JUnit.UserDaoImplTest.testDeleteUserDao" />
       </list>
     </recent_temporary>
   </component>
@@ -660,10 +661,11 @@
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state x="545" y="219" key="refactoring.ChangeSignatureDialog/0.0.1536.920@0.0.1536.920" timestamp="1688012671415" />
-    <state x="438" y="203" key="run.anything.popup" timestamp="1690699291562">
-      <screen x="0" y="0" width="1536" height="920" />
+    <state x="456" y="190" key="run.anything.popup" timestamp="1694867247876">
+      <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="438" y="203" key="run.anything.popup/0.0.1536.920@0.0.1536.920" timestamp="1690699291562" />
+    <state x="456" y="190" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1694867247876" />
     <state x="444" y="193" width="672" height="726" key="search.everywhere.popup" timestamp="1692861159655">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
