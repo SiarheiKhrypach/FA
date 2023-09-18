@@ -85,12 +85,16 @@
     <property name="settings.editor.selected.configurable" value="MavenSettings" />
   </component>
   <component name="RecentsManager">
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="by.tut.ssmt.services.exceptions" />
-    </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="by.tut.ssmt.dao.DAO.impl" />
       <recent name="by.tut.ssmt.service.impl" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ssmt\IdeaProjects\FA\service\src\test" />
+      <recent name="C:\Users\ssmt\IdeaProjects\FA\dao\src" />
+      <recent name="C:\Users\ssmt\IdeaProjects\FA\service\src\main\java\by\tut\ssmt\service" />
+      <recent name="C:\Users\ssmt\IdeaProjects\FA\controller\src\main\resources" />
+      <recent name="C:\Users\ssmt\IdeaProjects\FA\controller\src\main" />
     </key>
     <key name="CreateTestDialog.Recents.Supers">
       <recent name="" />
@@ -106,15 +110,47 @@
       <recent name="C:\Users\ssmt\IdeaProjects\FA\src\main\webapp" />
       <recent name="C:\Users\ssmt\IdeaProjects\FA\src\main\webapp\WEB-INF\lib" />
     </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="C:\Users\ssmt\IdeaProjects\FA\service\src\test" />
-      <recent name="C:\Users\ssmt\IdeaProjects\FA\dao\src" />
-      <recent name="C:\Users\ssmt\IdeaProjects\FA\service\src\main\java\by\tut\ssmt\service" />
-      <recent name="C:\Users\ssmt\IdeaProjects\FA\controller\src\main\resources" />
-      <recent name="C:\Users\ssmt\IdeaProjects\FA\controller\src\main" />
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="by.tut.ssmt.services.exceptions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MenuDaoImplTest.testSelectAllFromMenuDao">
+  <component name="RunManager" selected="JUnit.MenuDaoImplTest.testFindMenuPageDao">
+    <configuration default="true" type="com.poratu.idea.plugins.tomcat" factoryName="SMART_TOMCAT_FACTORY">
+      <option name="adminPort" value="8005" />
+      <option name="contextPath" value="/controller" />
+      <option name="docBase" value="$PROJECT_DIR$/controller/src/main/webapp" />
+      <option name="envOptions" />
+      <option name="passParentEnvironmentVariables" value="true" />
+      <option name="port" value="8080" />
+      <option name="tomcatInfo">
+        <TomcatInfo>
+          <option name="name" value="Apache Tomcat/8.5.70" />
+          <option name="number" value="0" />
+          <option name="path" value="C:\dev\apache-tomcat-8.5.70" />
+          <option name="version" value="8.5.70.0" />
+        </TomcatInfo>
+      </option>
+      <option name="vmOptions" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MenuDaoImplTest.testFindMenuPageDao" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dao" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="by.tut.ssmt.dao.DAO.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="by.tut.ssmt.dao.DAO.impl" />
+      <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.dao.DAO.impl.MenuDaoImplTest" />
+      <option name="METHOD_NAME" value="testFindMenuPageDao" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="MenuDaoImplTest.testSelectAllFromMenuDao" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dao" />
       <extension name="coverage">
@@ -158,22 +194,6 @@
       <option name="PACKAGE_NAME" value="by.tut.ssmt.dao.DAO.impl" />
       <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.dao.DAO.impl.ProductDaoImplTest" />
       <option name="METHOD_NAME" value="testSelectAllProductDao" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserDaoImplTest.testInsertUserDao" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dao" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="by.tut.ssmt.dao.DAO.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="by.tut.ssmt.dao.DAO.impl" />
-      <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.dao.DAO.impl.UserDaoImplTest" />
-      <option name="METHOD_NAME" value="testInsertUserDao" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -371,41 +391,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="com.poratu.idea.plugins.tomcat" factoryName="SMART_TOMCAT_FACTORY">
-      <option name="adminPort" value="8005" />
-      <option name="contextPath" value="/controller" />
-      <option name="docBase" value="$PROJECT_DIR$/controller/src/main/webapp" />
-      <option name="envOptions" />
-      <option name="passParentEnvironmentVariables" value="true" />
-      <option name="port" value="8080" />
-      <option name="tomcatInfo">
-        <TomcatInfo>
-          <option name="name" value="Apache Tomcat/8.5.70" />
-          <option name="number" value="0" />
-          <option name="path" value="C:\dev\apache-tomcat-8.5.70" />
-          <option name="version" value="8.5.70.0" />
-        </TomcatInfo>
-      </option>
-      <option name="vmOptions" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <list>
-      <item itemvalue="JUnit.UserDaoImplTest.testInsertUserDao" />
       <item itemvalue="JUnit.UserDaoImplTest.testUpdateUserDao" />
       <item itemvalue="JUnit.ProductDaoImplTest.testSelectAllProductDao" />
       <item itemvalue="JUnit.ProductDaoImplTest.testFindProductPageDao" />
-      <item itemvalue="Tomcat Server.Tomcat 9.0.75" />
       <item itemvalue="JUnit.MenuDaoImplTest.testSelectAllFromMenuDao" />
+      <item itemvalue="Tomcat Server.Tomcat 9.0.75" />
+      <item itemvalue="JUnit.MenuDaoImplTest.testFindMenuPageDao" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MenuDaoImplTest.testFindMenuPageDao" />
         <item itemvalue="JUnit.MenuDaoImplTest.testSelectAllFromMenuDao" />
         <item itemvalue="JUnit.ProductDaoImplTest.testFindProductPageDao" />
         <item itemvalue="JUnit.ProductDaoImplTest.testSelectAllProductDao" />
         <item itemvalue="JUnit.UserDaoImplTest.testUpdateUserDao" />
-        <item itemvalue="JUnit.UserDaoImplTest.testInsertUserDao" />
       </list>
     </recent_temporary>
   </component>
@@ -556,10 +556,10 @@
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state x="93" y="93" width="1350" height="734" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1536.920@0.0.1536.920" timestamp="1690190452662" />
-    <state x="537" y="161" key="#com.intellij.ide.util.MemberChooser" timestamp="1688284789343">
+    <state x="537" y="161" key="#com.intellij.ide.util.MemberChooser" timestamp="1695021380655">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
-    <state x="537" y="161" key="#com.intellij.ide.util.MemberChooser/0.0.1536.920@0.0.1536.920" timestamp="1688284789343" />
+    <state x="537" y="161" key="#com.intellij.ide.util.MemberChooser/0.0.1536.920@0.0.1536.920" timestamp="1695021380655" />
     <state x="571" y="188" key="FileChooserDialogImpl" timestamp="1690096478915">
       <screen x="0" y="0" width="1600" height="860" />
     </state>

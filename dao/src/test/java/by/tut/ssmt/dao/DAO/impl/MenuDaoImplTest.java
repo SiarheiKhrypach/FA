@@ -2,6 +2,7 @@ package by.tut.ssmt.dao.DAO.impl;
 
 import by.tut.ssmt.dao.DAO.ConnectionPool;
 import by.tut.ssmt.dao.DAO.MenuDao;
+import by.tut.ssmt.dao.domain.Page;
 import by.tut.ssmt.dao.domain.Product;
 import by.tut.ssmt.dao.exception.DaoException;
 import org.junit.Test;
@@ -52,27 +53,66 @@ public class MenuDaoImplTest {
         Mockito.verify(resultSet, Mockito.times(2)).getInt(5);
         Mockito.verify(connectionPool).retrieve(connection);
 
+    }
 
+    @Test
+    public void testFindMenuPageDao() throws DaoException, SQLException {
+        String query = "SELECT COUNT(*) FROM menu, products WHERE user_name = ? AND menu.product_id = products.product_id AND products.product_name LIKE '%'";
+        String query2 = "SELECT products.product_id, products.product_name, products.omega_three, products.omega_six, menu.portions FROM menu, products WHERE menu.user_name = ? AND menu.product_id = products.product_id AND products.product_name LIKE '%' ORDER BY products.product_name ASC LIMIT ? OFFSET ?";
+        Page<Product> testMenuItemPageRequest = new Page();
+        testMenuItemPageRequest.setPageNumber(1);
+        testMenuItemPageRequest.setLimit(5);
+        testMenuItemPageRequest.setOrderBy("products.product_name ASC");
+        testMenuItemPageRequest.setFilter("'%'");
+
+        ArrayList<Product> testMenuItems = Mockito.mock(ArrayList.class);
+        ConnectionPool connectionPool = Mockito.mock(ConnectionPool.class);
+        Connection connection = Mockito.mock(Connection.class);
+        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+        ResultSet resultSet = Mockito.mock(ResultSet.class);
+
+        Mockito.when(connectionPool.take()).thenReturn(connection);
+        Mockito.when(connection.prepareStatement(query)).thenReturn(preparedStatement);
+        Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
+        Mockito.when(resultSet.next()).thenReturn(Boolean.TRUE, Boolean.FALSE);
+        Mockito.when(resultSet.getLong(1)).thenReturn(1L);
+
+        Mockito.when(connection.prepareStatement(query2)).thenReturn(preparedStatement);
+        Mockito.when(resultSet.getInt(1)).thenReturn(Mockito.anyInt());
+        Mockito.when(testMenuItems.add(new Product(resultSet.getInt(1), resultSet.getString(2), resultSet.getDouble(3), resultSet.getDouble(4), resultSet.getInt(5)))).thenReturn(Boolean.TRUE, Boolean.FALSE);
+        Mockito.doNothing().when(connectionPool).retrieve(connection);
+
+        MenuDao testMenuItemDao = new MenuDaoImpl(connectionPool);
+        testMenuItemDao.findMenuPageDao(testMenuItemPageRequest);
+
+        Mockito.verify(connectionPool, Mockito.times(2)).take();
+        Mockito.verify(connection).prepareStatement(query);
+        Mockito.verify(preparedStatement, Mockito.times(2)).executeQuery();
+        Mockito.verify(resultSet, Mockito.times(3)).next();
+        Mockito.verify(resultSet, Mockito.times(1)).getLong(1);
+
+        Mockito.verify(connection).prepareStatement(query2);
+        Mockito.verify(resultSet, Mockito.times(1)).getInt(1);
+        Mockito.verify(resultSet, Mockito.times(1)).getString(2);
+        Mockito.verify(resultSet, Mockito.times(1)).getDouble(3);
+        Mockito.verify(resultSet, Mockito.times(1)).getDouble(4);
+        Mockito.verify(resultSet, Mockito.times(1)).getInt(5);
 
     }
 
     @Test
-    public void findMenuPageDao() {
+    public void testInsertMenuDao() {
     }
 
     @Test
-    public void insertMenuDao() {
+    public void testDeleteMenuDao() {
     }
 
     @Test
-    public void deleteMenuDao() {
+    public void testPortionChangeMenuDao() {
     }
 
     @Test
-    public void portionChangeMenuDao() {
-    }
-
-    @Test
-    public void bulkPortionChangeMenuDao() {
+    public void testBulkPortionChangeMenuDao() {
     }
 }
