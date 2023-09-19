@@ -64,6 +64,7 @@ public class MenuDaoImplTest {
         testMenuItemPageRequest.setLimit(5);
         testMenuItemPageRequest.setOrderBy("products.product_name ASC");
         testMenuItemPageRequest.setFilter("'%'");
+        testMenuItemPageRequest.setCurrentUser("testUser");
 
         ArrayList<Product> testMenuItems = Mockito.mock(ArrayList.class);
         ConnectionPool connectionPool = Mockito.mock(ConnectionPool.class);
@@ -102,6 +103,7 @@ public class MenuDaoImplTest {
 
     @Test
     public void testInsertMenuDao() {
+
     }
 
     @Test
