@@ -26,7 +26,7 @@
   <component name="ChangeListManager">
     <list default="true" id="59ca0b27-6170-41d2-a1a1-ba36d40b5d8b" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/dao/src/test/java/by/tut/ssmt/dao/DAO/impl/MenuDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/test/java/by/tut/ssmt/dao/DAO/impl/MenuDaoImplTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/dao/src/test/java/by/tut/ssmt/dao/DAO/impl/ProductDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/test/java/by/tut/ssmt/dao/DAO/impl/ProductDaoImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -114,7 +114,7 @@
       <recent name="by.tut.ssmt.services.exceptions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.MenuDaoImplTest.testFindMenuPageDao">
+  <component name="RunManager" selected="JUnit.ProductDaoImplTest.testInsertProductDao">
     <configuration name="MenuDaoImplTest.testFindMenuPageDao" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dao" />
       <extension name="coverage">
@@ -163,7 +163,7 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ProductDaoImplTest.testSelectAllProductDao" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProductDaoImplTest.testInsertProductDao" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dao" />
       <extension name="coverage">
         <pattern>
@@ -173,13 +173,13 @@
       </extension>
       <option name="PACKAGE_NAME" value="by.tut.ssmt.dao.DAO.impl" />
       <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.dao.DAO.impl.ProductDaoImplTest" />
-      <option name="METHOD_NAME" value="testSelectAllProductDao" />
+      <option name="METHOD_NAME" value="testInsertProductDao" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserDaoImplTest.testUpdateUserDao" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ProductDaoImplTest.testSelectOneProductDao" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dao" />
       <extension name="coverage">
         <pattern>
@@ -188,8 +188,8 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="by.tut.ssmt.dao.DAO.impl" />
-      <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.dao.DAO.impl.UserDaoImplTest" />
-      <option name="METHOD_NAME" value="testUpdateUserDao" />
+      <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.dao.DAO.impl.ProductDaoImplTest" />
+      <option name="METHOD_NAME" value="testSelectOneProductDao" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -392,20 +392,20 @@
       </method>
     </configuration>
     <list>
-      <item itemvalue="JUnit.UserDaoImplTest.testUpdateUserDao" />
-      <item itemvalue="JUnit.ProductDaoImplTest.testSelectAllProductDao" />
       <item itemvalue="JUnit.ProductDaoImplTest.testFindProductPageDao" />
       <item itemvalue="JUnit.MenuDaoImplTest.testSelectAllFromMenuDao" />
       <item itemvalue="JUnit.MenuDaoImplTest.testFindMenuPageDao" />
       <item itemvalue="Tomcat Server.Tomcat 9.0.75" />
+      <item itemvalue="JUnit.ProductDaoImplTest.testSelectOneProductDao" />
+      <item itemvalue="JUnit.ProductDaoImplTest.testInsertProductDao" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ProductDaoImplTest.testInsertProductDao" />
+        <item itemvalue="JUnit.ProductDaoImplTest.testSelectOneProductDao" />
         <item itemvalue="JUnit.MenuDaoImplTest.testFindMenuPageDao" />
         <item itemvalue="JUnit.MenuDaoImplTest.testSelectAllFromMenuDao" />
         <item itemvalue="JUnit.ProductDaoImplTest.testFindProductPageDao" />
-        <item itemvalue="JUnit.ProductDaoImplTest.testSelectAllProductDao" />
-        <item itemvalue="JUnit.UserDaoImplTest.testUpdateUserDao" />
       </list>
     </recent_temporary>
   </component>
@@ -552,10 +552,11 @@
     </state>
     <state x="244" y="90" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1536.920@0.0.1536.920" timestamp="1686664663566" />
     <state x="254" y="84" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1600.860@0.0.1600.860" timestamp="1690099028932" />
-    <state x="93" y="93" width="1350" height="734" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1690190452662">
-      <screen x="0" y="0" width="1536" height="920" />
+    <state x="97" y="87" width="1407" height="687" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog" timestamp="1695536893374">
+      <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="93" y="93" width="1350" height="734" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1536.920@0.0.1536.920" timestamp="1690190452662" />
+    <state x="97" y="87" width="1407" height="687" key="#com.intellij.execution.junit2.states.ComparisonFailureState$DiffDialog/0.0.1600.860@0.0.1600.860" timestamp="1695536893374" />
     <state x="537" y="161" key="#com.intellij.ide.util.MemberChooser" timestamp="1695021380655">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
@@ -564,46 +565,46 @@
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="571" y="188" key="FileChooserDialogImpl/0.0.1600.860@0.0.1600.860" timestamp="1690096478915" />
-    <state width="1556" height="248" key="GridCell.Tab.0.bottom" timestamp="1695111739489">
+    <state width="1556" height="248" key="GridCell.Tab.0.bottom" timestamp="1695539745955">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1163" height="441" key="GridCell.Tab.0.bottom/0.0.1536.920@0.0.1536.920" timestamp="1693834237645" />
-    <state width="1556" height="248" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1695111739489" />
-    <state width="1556" height="248" key="GridCell.Tab.0.center" timestamp="1695111739489">
+    <state width="1556" height="248" key="GridCell.Tab.0.bottom/0.0.1600.860@0.0.1600.860" timestamp="1695539745955" />
+    <state width="1556" height="248" key="GridCell.Tab.0.center" timestamp="1695539745955">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1163" height="441" key="GridCell.Tab.0.center/0.0.1536.920@0.0.1536.920" timestamp="1693834237645" />
-    <state width="1556" height="248" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1695111739489" />
-    <state width="1556" height="248" key="GridCell.Tab.0.left" timestamp="1695111739488">
+    <state width="1556" height="248" key="GridCell.Tab.0.center/0.0.1600.860@0.0.1600.860" timestamp="1695539745955" />
+    <state width="1556" height="248" key="GridCell.Tab.0.left" timestamp="1695539745954">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1163" height="441" key="GridCell.Tab.0.left/0.0.1536.920@0.0.1536.920" timestamp="1693834237645" />
-    <state width="1556" height="248" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1695111739488" />
-    <state width="1556" height="248" key="GridCell.Tab.0.right" timestamp="1695111739489">
+    <state width="1556" height="248" key="GridCell.Tab.0.left/0.0.1600.860@0.0.1600.860" timestamp="1695539745954" />
+    <state width="1556" height="248" key="GridCell.Tab.0.right" timestamp="1695539745955">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1163" height="441" key="GridCell.Tab.0.right/0.0.1536.920@0.0.1536.920" timestamp="1693834237645" />
-    <state width="1556" height="248" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1695111739489" />
-    <state width="1556" height="224" key="GridCell.Tab.1.bottom" timestamp="1695110224823">
+    <state width="1556" height="248" key="GridCell.Tab.0.right/0.0.1600.860@0.0.1600.860" timestamp="1695539745955" />
+    <state width="1556" height="218" key="GridCell.Tab.1.bottom" timestamp="1695538399953">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1163" height="441" key="GridCell.Tab.1.bottom/0.0.1536.920@0.0.1536.920" timestamp="1693834237646" />
-    <state width="1556" height="224" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1695110224823" />
-    <state width="1556" height="224" key="GridCell.Tab.1.center" timestamp="1695110224823">
+    <state width="1556" height="218" key="GridCell.Tab.1.bottom/0.0.1600.860@0.0.1600.860" timestamp="1695538399953" />
+    <state width="1556" height="218" key="GridCell.Tab.1.center" timestamp="1695538399953">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1163" height="441" key="GridCell.Tab.1.center/0.0.1536.920@0.0.1536.920" timestamp="1693834237645" />
-    <state width="1556" height="224" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1695110224823" />
-    <state width="1556" height="224" key="GridCell.Tab.1.left" timestamp="1695110224823">
+    <state width="1556" height="218" key="GridCell.Tab.1.center/0.0.1600.860@0.0.1600.860" timestamp="1695538399953" />
+    <state width="1556" height="218" key="GridCell.Tab.1.left" timestamp="1695538399952">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1163" height="441" key="GridCell.Tab.1.left/0.0.1536.920@0.0.1536.920" timestamp="1693834237645" />
-    <state width="1556" height="224" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1695110224823" />
-    <state width="1556" height="224" key="GridCell.Tab.1.right" timestamp="1695110224823">
+    <state width="1556" height="218" key="GridCell.Tab.1.left/0.0.1600.860@0.0.1600.860" timestamp="1695538399952" />
+    <state width="1556" height="218" key="GridCell.Tab.1.right" timestamp="1695538399953">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state width="1163" height="441" key="GridCell.Tab.1.right/0.0.1536.920@0.0.1536.920" timestamp="1693834237646" />
-    <state width="1556" height="224" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1695110224823" />
+    <state width="1556" height="218" key="GridCell.Tab.1.right/0.0.1600.860@0.0.1600.860" timestamp="1695538399953" />
     <state width="804" height="349" key="GridCell.Tab.2.bottom" timestamp="1692860987705">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
@@ -649,10 +650,15 @@
     </state>
     <state x="277" y="105" key="SettingsEditor/0.0.1536.920@0.0.1536.920" timestamp="1687002202223" />
     <state x="289" y="7" key="SettingsEditor/0.0.1600.860@0.0.1600.860" timestamp="1690099494008" />
-    <state x="1009" y="197" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1694679343265">
-      <screen x="0" y="0" width="1536" height="920" />
+    <state x="92" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.FileHistoryDialog" timestamp="1695273919345">
+      <screen x="0" y="0" width="1600" height="860" />
+    </state>
+    <state x="92" y="92" width="1416" height="676" key="com.intellij.history.integration.ui.views.FileHistoryDialog/0.0.1600.860@0.0.1600.860" timestamp="1695273919345" />
+    <state x="1051" y="184" key="com.intellij.testIntegration.createTest.CreateTestDialog" timestamp="1695534351768">
+      <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="1009" y="197" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1536.920@0.0.1536.920" timestamp="1694679343265" />
+    <state x="1051" y="184" key="com.intellij.testIntegration.createTest.CreateTestDialog/0.0.1600.860@0.0.1600.860" timestamp="1695534351768" />
     <state x="155" y="286" width="753" height="634" key="find.popup" timestamp="1690467252120">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
@@ -661,11 +667,11 @@
       <screen x="0" y="0" width="1536" height="920" />
     </state>
     <state x="545" y="219" key="refactoring.ChangeSignatureDialog/0.0.1536.920@0.0.1536.920" timestamp="1688012671415" />
-    <state x="456" y="190" key="run.anything.popup" timestamp="1695105804030">
+    <state x="456" y="190" key="run.anything.popup" timestamp="1695531846911">
       <screen x="0" y="0" width="1600" height="860" />
     </state>
     <state x="438" y="203" key="run.anything.popup/0.0.1536.920@0.0.1536.920" timestamp="1690699291562" />
-    <state x="456" y="190" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1695105804030" />
+    <state x="456" y="190" key="run.anything.popup/0.0.1600.860@0.0.1600.860" timestamp="1695531846911" />
     <state x="444" y="193" width="672" height="726" key="search.everywhere.popup" timestamp="1692861159655">
       <screen x="0" y="0" width="1536" height="920" />
     </state>
@@ -715,20 +721,20 @@
           <option name="timeStamp" value="192" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/impl/ProductDaoImpl.java</url>
-          <line>105</line>
-          <properties class="by.tut.ssmt.dao.DAO.impl.ProductDaoImpl" method="insertProductDao">
-            <option name="EMULATED" value="true" />
-          </properties>
-          <option name="timeStamp" value="200" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-method">
           <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/servlet/FrontController.java</url>
           <line>74</line>
           <properties class="by.tut.ssmt.controller.servlet.FrontController" method="doExecute">
             <option name="EMULATED" value="true" />
           </properties>
           <option name="timeStamp" value="208" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/dao/src/main/java/by/tut/ssmt/dao/DAO/AbstractDao.java</url>
+          <line>169</line>
+          <properties class="by.tut.ssmt.dao.DAO.AbstractDao" method="setPreparedStatementParameters">
+            <option name="EMULATED" value="true" />
+          </properties>
+          <option name="timeStamp" value="228" />
         </line-breakpoint>
         <line-breakpoint type="java-line">
           <url>file://$PROJECT_DIR$/controller/src/main/java/by/tut/ssmt/controller/servlet/StartUpErrorFilter.java</url>
