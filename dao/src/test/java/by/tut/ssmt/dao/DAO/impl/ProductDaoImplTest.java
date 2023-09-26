@@ -143,7 +143,7 @@ public class ProductDaoImplTest {
 
         Mockito.when(connectionPool.take()).thenReturn(connection);
         Mockito.when(connection.prepareStatement(query)).thenReturn(preparedStatement);
-//        Mockito.doNothing().when(preparedStatement).setString(1, String.valueOf(testProduct));
+        Mockito.doNothing().when(preparedStatement).setString(1, String.valueOf(testProduct));
         Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
         Mockito.when(resultSet.next()).thenReturn(Boolean.FALSE);
 
@@ -184,17 +184,75 @@ public class ProductDaoImplTest {
 
         Mockito.when(connectionPool.take()).thenReturn(connection);
         Mockito.when(connection.prepareStatement(query)).thenReturn(preparedStatement);
+        Mockito.doNothing().when(preparedStatement).setString(1, testProduct.getProductName());
+        Mockito.doNothing().when(preparedStatement).setLong(2, testProduct.getProductId());
         Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
         Mockito.when(resultSet.next()).thenReturn(Boolean.FALSE);
 
-
+        Mockito.when(connection.prepareStatement(query2)).thenReturn(preparedStatement);
+        Mockito.doNothing().when(preparedStatement).setString(1, testProduct.getProductName());
+        Mockito.doNothing().when(preparedStatement).setDouble(2, testProduct.getOmegaThree());
+        Mockito.doNothing().when(preparedStatement).setDouble(3, testProduct.getOmegaSix());
+        Mockito.when(preparedStatement.executeUpdate()).thenReturn(1);
+        Mockito.doNothing().when(connectionPool).retrieve(connection);
 
         ProductDao testProductDao = new ProductDaoImpl(connectionPool);
         testProductDao.updateProductDao(testProduct);
 
+        Mockito.verify(connectionPool).take();
+        Mockito.verify(connection).prepareStatement(query2);
+        Mockito.verify(preparedStatement).executeQuery();
+        Mockito.verify(resultSet, Mockito.times(1)).next();
+
+        Mockito.verify(connection).prepareStatement(query);
+        Mockito.verify(preparedStatement, Mockito.times(2)).setString(1, testProduct.getProductName());
+        Mockito.verify(preparedStatement).setDouble(2, testProduct.getOmegaThree());
+        Mockito.verify(preparedStatement).setDouble(3, testProduct.getOmegaSix());
+        Mockito.verify(preparedStatement).executeUpdate();
+        Mockito.verify(connectionPool).retrieve(connection);
+
     }
 
     @Test
-    public void testDeleteProductDao() {
+    public void testDeleteProductDao() throws DaoException, SQLException {
+        String testProduct = "testProduct";
+        String query = "SELECT products.product_id, product_name, omega_three, omega_six, menu.portions FROM menu INNER JOIN products ON products.product_id = menu.product_id WHERE product_name=?";
+        String query2 = "DELETE FROM products WHERE product_name = ?";
+        String query3 = "DELETE products, menu FROM products INNER JOIN menu ON menu.product_id = products.product_id WHERE product_name = ?";
+
+        ConnectionPool connectionPool = Mockito.mock(ConnectionPool.class);
+        Connection connection = Mockito.mock(Connection.class);
+        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+        ResultSet resultSet = Mockito.mock(ResultSet.class);
+
+        Mockito.when(connectionPool.take()).thenReturn(connection);
+        Mockito.when(connection.prepareStatement(query)).thenReturn(preparedStatement);
+        Mockito.doNothing().when(preparedStatement).setString(1, testProduct);
+        Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
+        Mockito.when(resultSet.next()).thenReturn(Boolean.FALSE);
+        Mockito.doNothing().when(connectionPool).retrieve(connection);
+
+        Mockito.when(connection.prepareStatement(query2)).thenReturn(preparedStatement);
+        Mockito.doNothing().when(preparedStatement).setString(1, testProduct);
+        Mockito.when(preparedStatement.executeUpdate()).thenReturn(1);
+        Mockito.doNothing().when(connectionPool).retrieve(connection);
+
+        Mockito.when(connection.prepareStatement(query3)).thenReturn(preparedStatement);
+        Mockito.doNothing().when(preparedStatement).setString(1, testProduct);
+        Mockito.when(preparedStatement.executeUpdate()).thenReturn(1);
+        Mockito.doNothing().when(connectionPool).retrieve(connection);
+
+        ProductDao testProductDao = new ProductDaoImpl(connectionPool);
+        testProductDao.deleteProductDao(testProduct);
+
+        Mockito.verify(connectionPool).take();
+        Mockito.verify(connection).prepareStatement(query);
+        Mockito.verify(preparedStatement, Mockito.times(2)).setString(1, testProduct);
+        Mockito.verify(preparedStatement).executeQuery();
+        Mockito.verify(resultSet, Mockito.times(1)).next();
+
+        Mockito.verify(connection).prepareStatement(query2);
+        Mockito.verify(preparedStatement).executeUpdate();
+        Mockito.verify(connectionPool).retrieve(connection);
     }
 }

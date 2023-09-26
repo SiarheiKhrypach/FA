@@ -158,7 +158,7 @@ public class UserDaoImplTest {
 
     @Test
     public void testInsertUserDao() throws DaoException, SQLException {
-        User testUser = new User("testUser", "testPass");
+        User testUser = new User(1, "testUser", "testPass");
         String query = "INSERT INTO users (password, user_name) VALUES (?, ?)";
         String query2 = "SELECT * FROM users WHERE user_name=? AND NOT user_id=?";
 
@@ -169,6 +169,8 @@ public class UserDaoImplTest {
 
         Mockito.when(connectionPool.take()).thenReturn(connection);
         Mockito.when(connection.prepareStatement(query2)).thenReturn(preparedStatement);
+        Mockito.doNothing().when(preparedStatement).setString(1, testUser.getUserName());
+        Mockito.doNothing().when(preparedStatement).setLong(2, testUser.getUserId());
         Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
         Mockito.when(resultSet.next()).thenReturn(Boolean.FALSE);
 
@@ -195,7 +197,7 @@ public class UserDaoImplTest {
 
     @Test
     public void testUpdateUserDao() throws DaoException, SQLException {
-        User testUser = new User("testUser", "testPass");
+        User testUser = new User(1,"testUser", "testPass");
         String query = "UPDATE users SET password = ? WHERE user_name = ?";
         String query2 = "SELECT * FROM users WHERE user_name=? AND NOT user_id=?";
 
@@ -206,6 +208,8 @@ public class UserDaoImplTest {
 
         Mockito.when(connectionPool.take()).thenReturn(connection);
         Mockito.when(connection.prepareStatement(query2)).thenReturn(preparedStatement);
+        Mockito.doNothing().when(preparedStatement).setString(1, testUser.getPassword());
+        Mockito.doNothing().when(preparedStatement).setLong(2, testUser.getUserId());
         Mockito.when(preparedStatement.executeQuery()).thenReturn(resultSet);
         Mockito.when(resultSet.next()).thenReturn(Boolean.FALSE);
 
