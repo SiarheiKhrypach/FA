@@ -2,6 +2,7 @@ package by.tut.ssmt.dao.DAO.impl;
 
 import by.tut.ssmt.dao.DAO.ConnectionPool;
 import by.tut.ssmt.dao.DAO.MenuDao;
+import by.tut.ssmt.dao.domain.MenuItem;
 import by.tut.ssmt.dao.domain.Page;
 import by.tut.ssmt.dao.domain.Product;
 import by.tut.ssmt.dao.exception.DaoException;
@@ -102,7 +103,24 @@ public class MenuDaoImplTest {
     }
 
     @Test
-    public void testInsertMenuDao() {
+    public void testInsertMenuDao() throws DaoException, SQLException {
+        MenuItem testMenuItem = new MenuItem("testUser", 1, 1);
+        String query = "SELECT * FROM menu WHERE product_id = ? AND user_name = ?";
+        String query2 = "INSERT INTO menu (portions, user_name, product_id) Values (?, ?, ?)";
+        String query3 = "UPDATE menu SET portions = portions + ? WHERE user_name = ? AND product_id = ?";
+
+        ConnectionPool connectionPool = Mockito.mock(ConnectionPool.class);
+        Connection connection = Mockito.mock(Connection.class);
+        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+        ResultSet resultSet = Mockito.mock(ResultSet.class);
+
+        Mockito.when(connectionPool.take()).thenReturn(connection);
+        Mockito.when(connection.prepareStatement(query)).thenReturn(preparedStatement);
+        Mockito.doNothing().when(preparedStatement).setLong(1, testMenuItem.getProductID());
+        Mockito.doNothing().when(preparedStatement).setString(2, testMenuItem.getUserName());
+        Mockito.when(preparedStatement.executeQuery()).thenReturn(resultgSet);
+        Mockito.when(resultSet.next()).thenReturn(Boolean.FALSE);
+
 
     }
 
