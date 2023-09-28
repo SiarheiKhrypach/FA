@@ -25,7 +25,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="59ca0b27-6170-41d2-a1a1-ba36d40b5d8b" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/dao/src/test/java/by/tut/ssmt/dao/DAO/impl/MenuDaoImplTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/dao/src/test/java/by/tut/ssmt/dao/DAO/impl/MenuDaoImplTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -114,7 +113,23 @@
       <recent name="by.tut.ssmt.services.exceptions" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ProductDaoImplTest.testDeleteProductDao">
+  <component name="RunManager" selected="JUnit.MenuDaoImplTest.testInsertMenuDao">
+    <configuration name="MenuDaoImplTest.testInsertMenuDao" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="dao" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="by.tut.ssmt.dao.DAO.impl.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="by.tut.ssmt.dao.DAO.impl" />
+      <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.dao.DAO.impl.MenuDaoImplTest" />
+      <option name="METHOD_NAME" value="testInsertMenuDao" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ProductDaoImplTest.testDeleteProductDao" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="dao" />
       <extension name="coverage">
@@ -126,22 +141,6 @@
       <option name="PACKAGE_NAME" value="by.tut.ssmt.dao.DAO.impl" />
       <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.dao.DAO.impl.ProductDaoImplTest" />
       <option name="METHOD_NAME" value="testDeleteProductDao" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ProductDaoImplTest.testInsertProductDao" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="dao" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="by.tut.ssmt.dao.DAO.impl.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="by.tut.ssmt.dao.DAO.impl" />
-      <option name="MAIN_CLASS_NAME" value="by.tut.ssmt.dao.DAO.impl.ProductDaoImplTest" />
-      <option name="METHOD_NAME" value="testInsertProductDao" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -393,19 +392,19 @@
     </configuration>
     <list>
       <item itemvalue="Tomcat Server.Tomcat 9.0.75" />
-      <item itemvalue="JUnit.ProductDaoImplTest.testInsertProductDao" />
       <item itemvalue="JUnit.UserDaoImplTest.testInsertUserDao" />
       <item itemvalue="JUnit.UserDaoImplTest.testUpdateUserDao" />
       <item itemvalue="JUnit.ProductDaoImplTest.testUpdateProductDao" />
       <item itemvalue="JUnit.ProductDaoImplTest.testDeleteProductDao" />
+      <item itemvalue="JUnit.MenuDaoImplTest.testInsertMenuDao" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.MenuDaoImplTest.testInsertMenuDao" />
         <item itemvalue="JUnit.ProductDaoImplTest.testDeleteProductDao" />
         <item itemvalue="JUnit.ProductDaoImplTest.testUpdateProductDao" />
         <item itemvalue="JUnit.UserDaoImplTest.testInsertUserDao" />
         <item itemvalue="JUnit.UserDaoImplTest.testUpdateUserDao" />
-        <item itemvalue="JUnit.ProductDaoImplTest.testInsertProductDao" />
       </list>
     </recent_temporary>
   </component>
