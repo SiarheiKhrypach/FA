@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class MenuDaoImplTest {
@@ -154,7 +155,7 @@ public class MenuDaoImplTest {
     }
 
     @Test
-    public void testDeleteMenuDao() {
+    public void testDeleteMenuDao() throws DaoException, SQLException {
         String testUser = "testUser";
         String testProduct = "testProduct";
         String query = "DELETE a FROM menu a INNER JOIN products b ON b.product_id = a.product_id AND b.product_name = ? AND a.user_name = ?";
@@ -163,13 +164,83 @@ public class MenuDaoImplTest {
         Connection connection = Mockito.mock(Connection.class);
         PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
 
+        Mockito.when(connectionPool.take()).thenReturn(connection);
+        Mockito.when(connection.prepareStatement(query)).thenReturn(preparedStatement);
+        Mockito.doNothing().when(preparedStatement).setString(1, testProduct);
+        Mockito.doNothing().when(preparedStatement).setString(2, testUser);
+        Mockito.when(preparedStatement.executeUpdate()).thenReturn(1);
+        Mockito.doNothing().when(connectionPool).retrieve(connection);
+
+        MenuDao testMenuItemDao = new MenuDaoImpl(connectionPool);
+        testMenuItemDao.deleteMenuDao(testProduct, testUser);
+
+        Mockito.verify(connectionPool).take();
+        Mockito.verify(connection).prepareStatement(query);
+        Mockito.verify(preparedStatement).setString(1, testProduct);
+        Mockito.verify(preparedStatement).setString(2, testUser);
+        Mockito.verify(preparedStatement).executeUpdate();
+        Mockito.verify(connectionPool).retrieve(connection);
     }
 
     @Test
-    public void testPortionChangeMenuDao() {
+    public void testPortionChangeMenuDao() throws DaoException, SQLException {
+        MenuItem testMenuItem = new MenuItem("testUserName", 1, 1);
+        String query = "UPDATE menu SET portions = ? WHERE user_name = ? AND product_id = ?";
+
+        ConnectionPool connectionPool = Mockito.mock(ConnectionPool.class);
+        Connection connection = Mockito.mock(Connection.class);
+        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+
+        Mockito.when(connectionPool.take()).thenReturn(connection);
+        Mockito.when(connection.prepareStatement(query)).thenReturn(preparedStatement);
+        Mockito.doNothing().when(preparedStatement).setInt(1, testMenuItem.getPortions());
+        Mockito.doNothing().when(preparedStatement).setString(2, testMenuItem.getUserName());
+        Mockito.doNothing().when(preparedStatement).setInt(3, testMenuItem.getProductID());
+        Mockito.when(preparedStatement.executeUpdate()).thenReturn(1);
+        Mockito.doNothing().when(connectionPool).retrieve(connection);
+
+        MenuDao testMenuItemDao = new MenuDaoImpl(connectionPool);
+        testMenuItemDao.portionChangeMenuDao(testMenuItem);
+
+        Mockito.verify(connectionPool).take();
+        Mockito.verify(connection).prepareStatement(query);
+        Mockito.verify(preparedStatement).setInt(1, testMenuItem.getPortions());
+        Mockito.verify(preparedStatement).setString(2, testMenuItem.getUserName());
+        Mockito.verify(preparedStatement).setInt(3, testMenuItem.getProductID());
+        Mockito.verify(preparedStatement).executeUpdate();
+        Mockito.verify(connectionPool).retrieve(connection);
+
     }
 
     @Test
-    public void testBulkPortionChangeMenuDao() {
+    public void testBulkPortionChangeMenuDao() throws DaoException, SQLException {
+        MenuItem testMenuItem = new MenuItem("testUserName", 1, 3);
+        MenuItem testMenuItem2 = new MenuItem("testUserName2", 2, 4);
+        List <MenuItem> testMenuList = Arrays.asList(testMenuItem, testMenuItem2);
+        String query = "UPDATE menu SET portions = ? WHERE user_name = ? AND product_id = ?";
+
+        ConnectionPool connectionPool = Mockito.mock(ConnectionPool.class);
+        Connection connection = Mockito.mock(Connection.class);
+        PreparedStatement preparedStatement = Mockito.mock(PreparedStatement.class);
+
+        Mockito.when(connectionPool.take()).thenReturn(connection);
+        Mockito.when(connection.prepareStatement(query)).thenReturn(preparedStatement);
+        Mockito.doNothing().when(preparedStatement).setInt(1, testMenuItem.getPortions());
+        Mockito.doNothing().when(preparedStatement).setString(2, testMenuItem.getUserName());
+        Mockito.doNothing().when(preparedStatement).setInt(3, testMenuItem.getProductID());
+        Mockito.when(preparedStatement.executeUpdate()).thenReturn(1);
+        Mockito.doNothing().when(connectionPool).retrieve(connection);
+
+        MenuDao testMenuItemDao = new MenuDaoImpl(connectionPool);
+        testMenuItemDao.bulkPortionChangeMenuDao(testMenuList);
+
+        Mockito.verify(connectionPool, Mockito.times(2)).take();
+        Mockito.verify(connection, Mockito.times(2)).prepareStatement(query);
+        Mockito.verify(preparedStatement, Mockito.times(1)).setInt(1, testMenuItem.getPortions());
+        Mockito.verify(preparedStatement, Mockito.times(1)).setString(2, testMenuItem.getUserName());
+        Mockito.verify(preparedStatement, Mockito.times(1)).setInt(3, testMenuItem.getProductID());
+        Mockito.verify(preparedStatement, Mockito.times(2)).executeUpdate();
+        Mockito.verify(connectionPool, Mockito.times(2)).retrieve(connection);
+
     }
 }
