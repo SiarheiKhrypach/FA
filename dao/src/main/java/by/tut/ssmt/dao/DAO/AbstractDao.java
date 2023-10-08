@@ -15,6 +15,8 @@ import java.util.List;
 
 import static java.util.Objects.nonNull;
 
+//import org.apache.logging.log4j;
+
 public abstract class AbstractDao {
 
     private ConnectionPool connectionPool;
