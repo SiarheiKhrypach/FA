@@ -7,7 +7,8 @@ import by.tut.ssmt.dao.domain.Product;
 import by.tut.ssmt.service.ProductService;
 import by.tut.ssmt.service.ServiceFactory;
 import by.tut.ssmt.service.exception.ServiceException;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -18,12 +19,15 @@ import java.io.IOException;
 import static by.tut.ssmt.controller.util.ControllerConstants.*;
 import static by.tut.ssmt.controller.util.Util.isNullOrEmpty;
 
+//import org.apache.log4j.Logger;
+
 public class DefaultCommand implements Command {
 
     private final ServiceFactory serviceFactory = ServiceFactory.getInstance();
     private final ProductService productService = serviceFactory.getProductService();
 
-    public static final Logger LOGGER = Logger.getLogger(DefaultCommand.class.getName());
+    public static final Logger LOGGER = LogManager.getLogger(DefaultCommand.class.getName());
+//    public static final Logger LOGGER = Logger.getLogger(DefaultCommand.class.getName());
 
 
     @Override

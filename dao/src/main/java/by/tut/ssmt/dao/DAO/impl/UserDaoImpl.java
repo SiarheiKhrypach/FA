@@ -6,7 +6,9 @@ import by.tut.ssmt.dao.DAO.UserDao;
 import by.tut.ssmt.dao.domain.Page;
 import by.tut.ssmt.dao.domain.User;
 import by.tut.ssmt.dao.exception.DaoException;
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
+import org.apache.logging.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -37,7 +39,8 @@ public class UserDaoImpl extends AbstractDao implements UserDao {
         super(connectionPool);
     }
 
-    private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(UserDaoImpl.class.getName());
+//    private static final Logger LOGGER = Logger.getLogger(UserDaoImpl.class.getName());
 
     public UserDaoImpl() {
         super();

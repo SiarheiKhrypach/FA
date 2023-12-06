@@ -2,7 +2,8 @@ package by.tut.ssmt.dao.DAO.impl;
 
 import by.tut.ssmt.dao.DAO.DBConnector;
 import by.tut.ssmt.dao.exception.DaoException;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -10,6 +11,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.Properties;
+
+//import org.apache.log4j.Logger;
 
 public class DBConnectorImpl implements DBConnector {
 
@@ -22,7 +25,7 @@ public class DBConnectorImpl implements DBConnector {
 
     private Properties properties;
 
-    private static final Logger LOGGER = Logger.getLogger(DBConnectorImpl.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(DBConnectorImpl.class.getName());
 
     public DBConnectorImpl()  {
         try {

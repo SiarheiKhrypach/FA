@@ -1,12 +1,15 @@
 package by.tut.ssmt.controller.servlet;
 
-import org.apache.log4j.Logger;
+//import org.apache.log4j.Logger;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.*;
 import java.io.IOException;
 
 public class StartUpErrorFilter implements Filter {
-    private static final Logger LOGGER = Logger.getLogger(StartUpErrorFilter.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(StartUpErrorFilter.class.getName());
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {

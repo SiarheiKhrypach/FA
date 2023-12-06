@@ -4,7 +4,7 @@ import by.tut.ssmt.controller.command.Command;
 import by.tut.ssmt.controller.command.impl.*;
 import by.tut.ssmt.controller.exception.ControllerException;
 import by.tut.ssmt.controller.util.CommandEnum;
-import org.apache.log4j.spi.RootLogger;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -20,6 +20,8 @@ import static by.tut.ssmt.controller.util.CommandEnum.DEFAULT;
 import static by.tut.ssmt.controller.util.ControllerConstants.*;
 import static java.util.Objects.isNull;
 
+//import org.apache.log4j.spi.RootLogger;
+
 @WebServlet
         (
                 name = "FrontController",
@@ -34,7 +36,8 @@ public class FrontController extends HttpServlet {
     public void init() throws ServletException {
 
         initCommandsMap();
-        RootLogger log = (RootLogger) getServletContext().getAttribute(LOG4);
+        Logger log = (Logger) getServletContext().getAttribute(LOG4);
+//        RootLogger log = (RootLogger) getServletContext().getAttribute(LOG4);
 
         ServletContext servletContext = getServletContext();
         servletContext.setAttribute(MESSAGE, "default");
@@ -73,7 +76,12 @@ public class FrontController extends HttpServlet {
     }
 
     private void doExecute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        RootLogger log = (RootLogger) getServletContext().getAttribute(LOG4);
+//        Logger log = (Logger) getServletContext().getAttribute(LOG4);
+//        Logger log = LogManager.getRootLogger();
+//        Logger log = Logger.getRootLogger();
+        Logger log = (Logger) getServletContext().getAttribute(LOG4);
+//        LoggerConfig.RootLogger log = (LoggerConfig.RootLogger) getServletContext().getAttribute(LOG4);
+//        RootLogger log = (RootLogger) getServletContext().getAttribute(LOG4);
         processLocale(request, response);
             try {
                 final CommandEnum command = getCommand(request);
@@ -81,7 +89,8 @@ public class FrontController extends HttpServlet {
             } catch (ServletException | IOException | ControllerException e) {
                 System.out.println(e.toString());
 //                e.printStackTrace();
-                log.error(ControllerException.getCause(e) +": " + ControllerException.getCause(e).getMessage());
+                log.error(ControllerException.getCause(e) + ": " + ControllerException.getCause(e).getMessage());
+//                log.error(ControllerException.getCause(e) +": " + ControllerException.getCause(e).getMessage());
                 request.getRequestDispatcher("/WEB-INF/error.jsp").forward(request, response);
             }
     }

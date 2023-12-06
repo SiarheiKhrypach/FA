@@ -11,17 +11,21 @@ import by.tut.ssmt.service.ProductService;
 import by.tut.ssmt.service.ServiceFactory;
 import by.tut.ssmt.service.exception.NullOrEmptyException;
 import by.tut.ssmt.service.exception.ServiceException;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-import static by.tut.ssmt.controller.util.ControllerConstants.*;
+import static by.tut.ssmt.controller.util.ControllerConstants.MESSAGE;
+import static by.tut.ssmt.controller.util.ControllerConstants.PRODUCT_ID;
+
+//import org.apache.log4j.Logger;
 
 public class EditCommand implements Command {
-    private static final Logger LOGGER = Logger.getLogger(EditCommand.class.getName());
+    private static final Logger LOGGER = LogManager.getLogger(EditCommand.class.getName());
     private boolean productUpdated;
     private final ControllerFactory controllerFactory = ControllerFactory.getInstance();
     private final FormDataCollector dataCollector = controllerFactory.getProductFormDataCollector();
