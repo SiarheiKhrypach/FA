@@ -3,9 +3,7 @@ package by.tut.ssmt.dao.DAO.impl;
 import by.tut.ssmt.dao.DAO.ConnectionPool;
 import by.tut.ssmt.dao.DAO.DBConnector;
 import by.tut.ssmt.dao.exception.DaoException;
-//import org.apache.log4j.Logger;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -20,8 +18,7 @@ public class ConnectionPoolImpl implements ConnectionPool {
     private final ArrayBlockingQueue<Connection> pool;
     private final ArrayBlockingQueue<Connection> takenConnections;
 
-    private static final Logger LOGGER = LogManager.getLogger(ConnectionPoolImpl.class.getName());
-//    private static final Logger LOGGER = Logger.getLogger(ConnectionPoolImpl.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ConnectionPoolImpl.class.getName());
 
 
     public ConnectionPoolImpl(DBConnector dbConnector) {

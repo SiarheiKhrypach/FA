@@ -6,8 +6,7 @@ import by.tut.ssmt.dao.DAO.ProductDao;
 import by.tut.ssmt.dao.domain.Page;
 import by.tut.ssmt.dao.domain.Product;
 import by.tut.ssmt.dao.exception.DaoException;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import org.apache.log4j.Logger;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,8 +15,6 @@ import java.sql.SQLException;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-
-//import org.apache.log4j.Logger;
 
 public class ProductDaoImpl extends AbstractDao implements ProductDao {
 
@@ -33,8 +30,7 @@ public class ProductDaoImpl extends AbstractDao implements ProductDao {
     private static final String FIND_PRODUCT_BY_NAME_IN_MENU = "SELECT products.product_id, product_name, omega_three, omega_six, menu.portions FROM menu INNER JOIN products ON products.product_id = menu.product_id WHERE product_name=?";
     private static final String FIND_PRODUCT_BY_NAME_WITH_DIFFERENT_ID = "SELECT * FROM products WHERE product_name=? AND NOT product_id=?";
 
-    private static final Logger LOGGER = LogManager.getLogger(ProductDaoImpl.class.getName());
-//    private static final Logger LOGGER = Logger.getLogger(ProductDaoImpl.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(ProductDaoImpl.class.getName());
 
     public ProductDaoImpl(ConnectionPool connectionPool) {
         super(connectionPool);
